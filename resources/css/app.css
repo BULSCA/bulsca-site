@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+      font-family: 'Montserrat', system-ui, sans-serif;
+    }
+  }
+  
+  .nav-scrolled {
+    @apply bg-bulsca_red
+  }
+  
+  .nav-scrolled > .nav-wrapper {
+    @apply my-3
+  }
+  
+  .nav-scrolled > .nav-wrapper > .nav-brand {
+    max-width: 500px;
+    @apply text-2xl
+    
+    
+  }
+  
+  .nav-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  
+    color: white;
+  
+    letter-spacing: 0.03em;
+    line-height: 1;
+    max-width: 400px;
+    text-transform: uppercase;
+  }
+  
+  .nav-wrapper {
+    @apply my-6 mx-8 flex items-center  ;
+    
+  
+  }
+  
+  .nav-list > li {
+    @apply uppercase  transition-all relative cursor-pointer ;
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(255,255,255,0.8)
+  }
+  
+  .nav-list > li > a {
+    @apply p-2;
+  }
+  
+  .nav-list > li:hover, .nav-active {
+    @apply text-white font-semibold underline underline-offset-[12px];
+  }
+  
+  .nav-list li > .dropdown {
+    @apply absolute top-7 left-0 bg-white w-full h-0 overflow-hidden 
+  }
+  
+  .dropdown > ul {
+    @apply p-4 text-black border border-black
+  
+  }
+  
+  .dropdown > ul > li {
+    @apply py-1 text-gray-400 font-normal hover:font-semibold hover:text-gray-600;
+  
+  }
+  
+  .head-bg {
+    background-image: url("/storage/photos/DSC_0684.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .head-bg-2 {
+    background-image: url("/storage/photos/DSC_0834.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .head-bg-3 {
+    background-image: url("/storage/photos/DSC_0319.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .btn {
+    @apply text-bulsca bg-white p-6 cursor-pointer font-bold uppercase text-lg hover:bg-bulsca hover:border-white transition-all hover:text-white border-2 hover:scale-x-105
+  }
+  
+  
+  .bg-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .image-card-text {
+    @apply text-white text-2xl font-semibold uppercase w-full h-full flex items-center justify-center transition-all;
+    background-color: rgba(0,0,0,0.3);
+  }
+  
+  .image-card-text:hover {
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .notification-stripe {
+    @apply px-2 md:px-[20%] py-[1%] bg-bulsca_red flex text-white items-center justify-center font-bold uppercase text-xl;
+  }
+  
+  .notification-stripe:hover {
+    @apply underline
+  }
