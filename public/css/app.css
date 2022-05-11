@@ -379,9 +379,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 [hidden] {
   display: none;
 }
-    html {
-      font-family: 'Montserrat', system-ui, sans-serif;
-    }
+  html {
+    font-family: "Montserrat", system-ui, sans-serif;
+  }
 
 *, ::before, ::after {
   --tw-translate-x: 0;
@@ -602,11 +602,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -701,12 +696,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-center {
   text-align: center;
 }
-.indent-1 {
-  text-indent: 0.25rem;
-}
-.indent-4 {
-  text-indent: 1rem;
-}
 .indent-8 {
   text-indent: 2rem;
 }
@@ -797,35 +786,33 @@ Ensure the default browser behavior of the `hidden` attribute.
 .duration-100 {
   transition-duration: 100ms;
 }
-  
-  .nav-scrolled {
+.nav-scrolled {
   --tw-bg-opacity: 1;
   background-color: rgb(158 13 6 / var(--tw-bg-opacity));
 }
-  
-  .nav-scrolled > .nav-wrapper {
+
+.nav-scrolled > .nav-wrapper {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
-  
-  .nav-scrolled > .nav-wrapper > .nav-brand {
-    max-width: 500px;
-    font-size: 1.5rem;
-    line-height: 2rem}
-  
-  .nav-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-  
-    color: white;
-  
-    letter-spacing: 0.03em;
-    line-height: 1;
-    max-width: 400px;
-    text-transform: uppercase;
-  }
-  
-  .nav-wrapper {
+
+.nav-scrolled > .nav-wrapper > .nav-brand {
+  max-width: 500px;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.nav-brand {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  max-width: 400px;
+  text-transform: uppercase;
+}
+
+.nav-wrapper {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   margin-left: 2rem;
@@ -833,23 +820,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
   align-items: center;
 }
-  
-  .nav-list > li {
+
+.nav-list > li {
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-    font-family: 'Montserrat', sans-serif;
-    color: rgba(255,255,255,0.8);
+  font-family: "Montserrat", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
 }
-  
-  .nav-list > li > a {
+
+.nav-list > li > a {
   padding: 0.5rem;
 }
-  
-  .nav-list > li:hover, .nav-active {
+
+.nav-list > li:hover, .nav-active {
   font-weight: 600;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -857,8 +844,8 @@ Ensure the default browser behavior of the `hidden` attribute.
           text-decoration-line: underline;
   text-underline-offset: 12px;
 }
-  
-  .nav-list li > .dropdown {
+
+.nav-list li > .dropdown {
   position: absolute;
   top: 1.75rem;
   left: 0px;
@@ -868,8 +855,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-  
-  .dropdown > ul {
+
+.dropdown > ul {
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -877,43 +864,43 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
-  
-  .dropdown > ul > li {
+
+.dropdown > ul > li {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   font-weight: 400;
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
-  
-  .dropdown > ul > li:hover {
+
+.dropdown > ul > li:hover {
   font-weight: 600;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
-  
-  .head-bg {
-    background-image: url("/storage/photos/DSC_0684.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .head-bg-2 {
-    background-image: url("/storage/photos/DSC_0834.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .head-bg-3 {
-    background-image: url("/storage/photos/DSC_0319.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .btn {
+
+.head-bg {
+  background-image: url("/storage/photos/DSC_0684.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.head-bg-2 {
+  background-image: url("/storage/photos/DSC_0834.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.head-bg-3 {
+  background-image: url("/storage/photos/DSC_0319.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.btn {
   cursor: pointer;
   border-width: 2px;
   --tw-bg-opacity: 1;
@@ -929,8 +916,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-  
-  .btn:hover {
+
+.btn:hover {
   --tw-scale-x: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   --tw-border-opacity: 1;
@@ -940,15 +927,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-  
-  
-  .bg-image {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .image-card-text {
+
+.bg-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.image-card-text {
   display: flex;
   height: 100%;
   width: 100%;
@@ -963,14 +949,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-    background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
-  
-  .image-card-text:hover {
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .notification-stripe {
+
+.image-card-text:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.notification-stripe {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -987,61 +973,61 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-  
-  @media (min-width: 768px) {
+
+@media (min-width: 768px) {
 
   .notification-stripe {
     padding-left: 20%;
     padding-right: 20%;
   }
 }
-  
-  .notification-stripe:hover {
+
+.notification-stripe:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
 }
-  
-  .hover\:bg-white:hover {
+
+.hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-  
-  .hover\:bg-opacity-20:hover {
+
+.hover\:bg-opacity-20:hover {
   --tw-bg-opacity: 0.2;
 }
-  
-  .hover\:text-black:hover {
+
+.hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
-  
-  .hover\:outline-none:hover {
+
+.hover\:outline-none:hover {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-  
-  .focus\:outline-none:focus {
+
+.focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-  
-  .group:focus-within .group-focus-within\:h-auto {
+
+.group:focus-within .group-focus-within\:h-auto {
   height: auto;
 }
-  
-  .group:hover .group-hover\:h-auto {
+
+.group:hover .group-hover\:h-auto {
   height: auto;
 }
-  
-  .group:focus .group-focus\:h-auto {
+
+.group:focus .group-focus\:h-auto {
   height: auto;
 }
-  
-  .group:active .group-active\:h-auto {
+
+.group:active .group-active\:h-auto {
   height: auto;
 }
-  
-  @media (min-width: 768px) {
+
+@media (min-width: 768px) {
 
   .md\:mx-\[20\%\] {
     margin-left: 20%;

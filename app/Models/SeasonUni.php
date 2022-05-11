@@ -19,4 +19,10 @@ class SeasonUni extends Model
     public function currentUni() {
         return $this->hasOne(University::class, 'id', 'uni');
     }
+
+
+    public function seasonPlaces() {
+        return $this->hasMany(CompetitionUniPlace::class, 'season_uni', 'id');
+    }
+
 }

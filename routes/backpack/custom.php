@@ -20,4 +20,5 @@ Route::group([
     Route::crud('university', 'UniversityCrudController');
     Route::crud('league-competition', 'LeagueCompetitionCrudController');
     Route::crud('season-uni', 'SeasonUniCrudController');
+    Route::crud('competition-uni-place', 'CompetitionUniPlaceCrudController');
 }); // this should be the absolute last line of this file

@@ -86,17 +86,15 @@
             </tr>
         </thead>
         <tbody class=" ">
-          @foreach ($season->unis as $uni)
+          @foreach ($season->getALeagueResults() as $uni)
           <tr class="hover:bg-opacity-20 hover:bg-white  ">
-              <td class="px-6 py-2 ">{{ $uni->name }}</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
-              <td class="px-6">/</td>
+              <td class="px-6 py-2 ">{{ $uni->getName() }}</td>
+              <td class="px-6">{{ $loop->index + 1 }}</td>
+              <td class="px-6">{{ $uni->getTotal() }}</td>
+              @foreach ($uni->getScores() as $score)
+                <td class="px-6">{{ $score }}</td>
+              @endforeach
+
           </tr>
           @endforeach
 
@@ -105,6 +103,8 @@
   </div>
   @endif
 </details>
+
+
 
 <details>
     <summary class="text-white text-3xl font-bold uppercase mb-2 cursor-pointer">B-League Results</summary>

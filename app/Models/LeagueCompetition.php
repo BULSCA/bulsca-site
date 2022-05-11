@@ -23,4 +23,7 @@ class LeagueCompetition extends Model
     public function currentSeason() {
         return $this->hasOne(Season::class, 'id', 'season');
     }
+
+
+    
 }

@@ -12,8 +12,8 @@ require('laravel-mix-blade-reload');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require("tailwindcss"),
-    ]).bladeReload();
+    .sass('resources/css/app.scss', 'public/css').options({
+        postCss: [require("tailwindcss")],
+    }).bladeReload();
 
 mix.browserSync('127.0.0.1:8000')
