@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('universities', function (Blueprint $table) {
             $table->id();
-            $table->text('name')->unique('unique_uni_name');
+            $table->text('name');
             $table->timestamps();
         });
     }
