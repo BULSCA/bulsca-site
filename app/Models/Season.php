@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Season extends Model
@@ -28,7 +29,13 @@ class Season extends Model
     }
 
     public function getALeagueResults() {
-        /*
+        return Cache::remember($this->id . '-a-league-res', 3600, function () {
+            return $this->computeALeagueResults();
+        });
+    }
+
+    private function computeALeagueResults() {
+                /*
         SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS A_Points FROM competition_uni_places AS CUP
         INNER JOIN season_unis SU ON CUP.season_uni=SU.id
         INNER JOIN universities U ON SU.uni=U.id

@@ -11,4 +11,10 @@ class University extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+
+    public function getPage() {
+        return $this->hasOne(ClubPage::class, 'uni', 'id');
+        
+    }
 }

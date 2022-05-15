@@ -448,6 +448,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .z-50 {
   z-index: 50;
 }
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -499,6 +502,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .grid {
   display: grid;
 }
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
 .h-\[50vh\] {
   height: 50vh;
 }
@@ -519,6 +525,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-52 {
   height: 13rem;
+}
+.h-\[52vh\] {
+  height: 52vh;
 }
 .w-screen {
   width: 100vw;
@@ -571,14 +580,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex-col {
   flex-direction: column;
 }
+.items-start {
+  align-items: flex-start;
+}
 .items-center {
   align-items: center;
 }
 .justify-center {
   justify-content: center;
 }
+.justify-between {
+  justify-content: space-between;
+}
 .gap-32 {
   gap: 8rem;
+}
+.gap-8 {
+  gap: 2rem;
 }
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
@@ -780,6 +798,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .duration-1000 {
   transition-duration: 1000ms;
 }
@@ -850,7 +875,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 1.75rem;
   left: 0px;
   height: 0px;
-  width: 100%;
+  min-width: 100%;
   overflow: hidden;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -877,6 +902,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.dropdown > ul > li > a {
+  white-space: nowrap;
 }
 
 .head-bg {
@@ -926,6 +955,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(7 6 96 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.btn.btn-thinner {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.btn.btn-save:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(21 128 61 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
 
 .bg-image {
@@ -987,9 +1026,27 @@ Ensure the default browser behavior of the `hidden` attribute.
           text-decoration-line: underline;
 }
 
+.ck-editor__editable_inline {
+  min-height: 500px;
+}
+
+.even\:bg-bulsca:nth-child(even) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 6 96 / var(--tw-bg-opacity));
+}
+
+.even\:bg-opacity-10:nth-child(even) {
+  --tw-bg-opacity: 0.1;
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-bulsca_red:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 13 6 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-opacity-20:hover {
@@ -999,6 +1056,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .hover\:outline-none:hover {
