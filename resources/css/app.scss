@@ -33,6 +33,7 @@
     line-height: 1;
     
     text-transform: uppercase;
+    text-decoration: none !important;
 
     @apply  max-w-[500px] md:max-w-[400px];
   }
@@ -46,11 +47,17 @@
   .nav-list > li {
     @apply uppercase  transition-all relative cursor-pointer ;
     font-family: 'Montserrat', sans-serif;
-    color: rgba(255,255,255,0.8)
+    color: rgba(255,255,255,0.8) !important
   }
   
   .nav-list > li > a {
     @apply p-2;
+    color: rgba(255,255,255,0.8) !important;
+    text-decoration: none !important;
+
+    &:hover {
+      color: white !important;
+    }
   }
   
   .nav-list > li:hover, .nav-active {
@@ -73,6 +80,14 @@
 
   .dropdown > ul > li > a {
     white-space: nowrap;
+    color: black !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+
+    &:hover {
+      font-weight: bold !important;
+    }
+    
   }
   
   .head-bg {
@@ -97,7 +112,7 @@
   }
   
   .btn {
-    @apply text-bulsca bg-white p-6 cursor-pointer font-bold uppercase text-lg hover:bg-bulsca hover:border-white transition-all hover:text-white border-2 hover:scale-x-105;
+    @apply text-bulsca bg-white p-6 cursor-pointer font-bold uppercase text-lg hover:bg-bulsca hover:border-white transition-all hover:text-white border-2 hover:scale-105 no-underline;
 
     &.btn-thinner {
       @apply py-2;
@@ -234,4 +249,8 @@
 
  .image-link-group {
    @apply grid md:grid-cols-2 md:gap-32 grid-cols-1 gap-8 text-center
+ }
+
+ a {
+   @apply text-bulsca font-semibold underline
  }

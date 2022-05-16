@@ -30,7 +30,7 @@
     <div class=" grid md:grid-cols-3 grid-cols-1 text-center">
 
         @foreach ($clubs as $club)
-        <a href='{{ route("clubs") }}/{{ Str::lower($club->name) . "." . $club->id }}' class="grid grid-cols-3 gap-8 group hover:bg-bulsca_red hover:bg-opacity-20 even:bg-bulsca even:bg-opacity-10 px-6 py-2 cursor-pointer  transition-colors">
+        <a href='{{ route("clubs") }}/{{ Str::lower($club->name) . "." . $club->id }}' class="grid grid-cols-3 gap-8 group hover:bg-bulsca_red hover:bg-opacity-20 even:bg-bulsca even:bg-opacity-10 px-6 py-2 cursor-pointer  transition-colors no-underline">
           
 
           <div class="col-span-2  flex flex-col items-start justify-center ">

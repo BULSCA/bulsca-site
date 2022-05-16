@@ -24,7 +24,7 @@
         <a href="{{ route('clubs') }}" class=" " >Clubs</a>
       </div>
       <div class="image-link" style="background-image: url(/storage/photos/DSC_0348.jpg);">
-        <a href="#" class="">Create a Club</a>
+        <a href="{{  route('create-club')  }}" class="">Create a Club</a>
       </div>
 
 

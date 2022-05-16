@@ -33,6 +33,9 @@ Route::Get('/get-involved', function () {
 })->name('get-involved');
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
+Route::Get('/get-involved/clubs/create', function () {
+    return view('get-involved.create');
+})->name('create-club');
 Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('view-club');
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
 Route::Post('/get-involved/clubs/{cid}/edit', [ClubController::class, 'update'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('update-club');

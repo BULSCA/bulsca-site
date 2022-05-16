@@ -39,7 +39,7 @@
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
                 <li><a href="{{ route('clubs') }}">Clubs</a></li>
-                <li><a href="#">Create a Club</a></li>
+                <li><a href="{{  route('create-club')  }}">Create a Club</a></li>
               </ul>
             </div>
           </li>
@@ -91,7 +91,7 @@
             <div class="mobile-dropdown">
               <ul>
                 <li><a href="{{ route('clubs') }}">Clubs</a></li>
-                <li><a href="#">Create a Club</a></li>
+                <li><a href="{{ route('create-club') }}">Create a Club</a></li>
               </ul>
             </div>
           </li>

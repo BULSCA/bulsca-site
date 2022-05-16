@@ -574,9 +574,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[52vh\] {
   height: 52vh;
 }
-.h-52 {
-  height: 13rem;
-}
 .w-screen {
   width: 100vw;
 }
@@ -705,10 +702,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(7 6 96 / var(--tw-bg-opacity));
 }
-.bg-gray-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
 .p-2 {
   padding: 0.5rem;
 }
@@ -814,6 +807,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
 }
+.no-underline {
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
 .opacity-0 {
   opacity: 0;
 }
@@ -869,6 +866,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   letter-spacing: 0.03em;
   line-height: 1;
   text-transform: uppercase;
+  text-decoration: none !important;
   max-width: 500px;
 }
 
@@ -896,11 +894,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   font-family: "Montserrat", sans-serif;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .nav-list > li > a {
   padding: 0.5rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+}
+.nav-list > li > a:hover {
+  color: white !important;
 }
 
 .nav-list > li:hover, .nav-active {
@@ -948,6 +951,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .dropdown > ul > li > a {
   white-space: nowrap;
+  color: black !important;
+  font-weight: normal !important;
+  text-decoration: none !important;
+}
+.dropdown > ul > li > a:hover {
+  font-weight: bold !important;
 }
 
 .head-bg {
@@ -983,6 +992,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-transform: uppercase;
   --tw-text-opacity: 1;
   color: rgb(7 6 96 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -990,6 +1001,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .btn:hover {
   --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -1255,6 +1267,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8rem;
   }
+}
+
+a {
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(7 6 96 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .even\:bg-bulsca:nth-child(even) {
