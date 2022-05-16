@@ -18,7 +18,7 @@
   
   .nav-scrolled > .nav-wrapper > .nav-brand {
     max-width: 500px;
-    @apply text-2xl
+    @apply md:text-2xl
     
     
   }
@@ -31,8 +31,10 @@
   
     letter-spacing: 0.03em;
     line-height: 1;
-    max-width: 400px;
+    
     text-transform: uppercase;
+
+    @apply  max-w-[500px] md:max-w-[400px];
   }
   
   .nav-wrapper {
@@ -123,7 +125,7 @@
   }
   
   .notification-stripe {
-    @apply px-2 md:px-[20%] py-[1%] bg-bulsca_red flex text-white items-center justify-center font-bold uppercase text-xl;
+    @apply md:px-2 px-6 md:px-[20%] py-[3%] md:py-[1%] bg-bulsca_red flex text-white items-center justify-center font-bold uppercase md:text-xl text-sm;
   }
   
   .notification-stripe:hover {
@@ -132,4 +134,67 @@
 
   .ck-editor__editable_inline {
     min-height: 500px;
+ }
+
+
+ .container {
+   @apply md:mx-2 md:mx-[20%] px-2 md:px-0 md:my-[2%] my-[10%] w-screen  overflow-hidden;
+ }
+
+ .container-boast {
+   @apply px-2 md:px-[20%] md:py-[5%] py-[15%] bg-bulsca flex md:flex-row flex-col items-center
+ }
+
+ .mobile-nav {
+   @apply fixed top-0 right-full transition-all z-50 w-screen h-screen bg-white  ;
+
+   &.open {
+     @apply right-0;
+   }
+
+   > nav {
+    
+
+     @apply my-6 mx-8 flex items-center;
+
+    > ul {
+      @apply text-xl space-y-3;
+
+      > li {
+
+        &.mobile-nav-active {
+          @apply font-semibold
+        }
+
+        
+
+        > .mobile-nav-link {
+          @apply flex items-center;
+
+        }
+
+   
+  
+
+        > .mobile-dropdown {
+          @apply indent-4;
+        }
+      }
+    }
+   }
+
+   > div {
+
+    @apply flex items-center justify-center my-6 mx-8 ;
+     
+    > div {
+      color: black !important;
+    }
+    
+    > .nav-brand {
+       color: black !important;
+
+       
+    }
+   }
  }

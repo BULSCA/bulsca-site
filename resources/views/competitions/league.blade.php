@@ -8,9 +8,9 @@
 
 <div class="h-full w-full overflow-hidden relative">
   <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center " >
-    <img src="/storage/logo/blogo.png" class="w-[10%] " alt="">
-    <div class="border-l-2 border-white ml-12 pl-12 py-8">
-      <h2 class="text-6xl font-bold text-white">{{ $season->name }}</h2>
+    <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
+    <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+      <h2 class="md:text-6xl text-4xl font-bold text-white">{{ $season->name }}</h2>
       <p class="text-white">{{ $season->from->format('Y') }}-{{ $season->to->format('y') }}</p>
     </div>
   </div>
@@ -22,10 +22,10 @@
 
 
 
-<div class=" mx-2 md:mx-[20%] my-[2%] ">
+<div class=" container ">
 <h2 class="text-bulsca text-5xl font-bold mb-[4%]">Competition Calender</h2>
 
-<div class="grid grid-cols-4 gap-x-1 gap-y-12 ">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
     @foreach ($comps as $comp)
     <div class="flex flex-col ">
             <h2 class="font-bold text-3xl text-bulsca">

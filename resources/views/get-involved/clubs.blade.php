@@ -6,9 +6,9 @@
 
     <div class="h-full w-full overflow-hidden relative">
       <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center " >
-        <img src="/storage/logo/blogo.png" class="w-[10%] " alt="">
-        <div class="border-l-2 border-white ml-12 pl-12 py-8">
-          <h2 class="text-6xl font-bold text-white">Clubs</h2>
+        <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
+        <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+          <h2 class="md:text-6xl text-4xl font-bold text-white">Clubs</h2>
           <p class="text-white">🏊</p>
         </div>
       </div>
@@ -18,16 +18,16 @@
     
   </div>
 
-<div class="mx-2 md:mx-[20%] my-[2%] ">
+<div class="container ">
 <h1 class="text-bulsca text-3xl font-bold mb-2">Active Clubs </h1>
     <p>
         The following are all the actively competing clubs in BULSCA, click on one to find out more!
     </p>
 </div>
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
+  <div class=" container ">
 
-    <div class=" grid grid-cols-3  text-center">
+    <div class=" grid md:grid-cols-3 grid-cols-1 text-center">
 
         @foreach ($clubs as $club)
         <a href='{{ route("clubs") }}/{{ Str::lower($club->name) . "." . $club->id }}' class="grid grid-cols-3 gap-8 group hover:bg-bulsca_red hover:bg-opacity-20 even:bg-bulsca even:bg-opacity-10 px-6 py-2 cursor-pointer  transition-colors">

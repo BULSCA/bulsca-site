@@ -6,9 +6,9 @@
 
     <div class="h-full w-full overflow-hidden relative">
       <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center " >
-        <img src="/storage/logo/blogo.png" class="w-[10%] " alt="">
-        <div class="border-l-2 border-white ml-12 pl-12 py-8">
-          <h2 class="text-6xl font-bold text-white">Competitions</h2>
+        <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
+        <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+          <h2 class="md:text-6xl text-4xl font-bold text-white">Competitions</h2>
           <p class="text-white">At the heart of BULSCA</p>
         </div>
       </div>
@@ -25,12 +25,12 @@
     </svg>
   </a>
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
-    <div class=" grid grid-cols-2 gap-32 text-center">
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image" style="background-image: url(/storage/photos/IMG_4946.JPG);">
+  <div class=" container ">
+    <div class=" grid md:grid-cols-2 md:gap-32 grid-cols-1 gap-8 text-center">
+      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all " style="background-image: url(/storage/photos/IMG_4946.JPG);">
         <a href="{{ route('league') }}" class=" image-card-text" >{{ $season->name }}</a>
       </div>
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all image-card-text" style="background-image: url(/storage/photos/DSC_0016.jpg);">
+      <div class=" h-52  bg-gray-400 flex items-center justify-center bg-image transition-all " style="background-image: url(/storage/photos/DSC_0016.jpg);">
         <a href="#" class="image-card-text">Champs 2022</a>
       </div>
 
@@ -40,7 +40,7 @@
 
  
 
-  <div class="px-2 md:px-[20%] py-[2%] bg-bulsca flex">
+  <div class="container-boast">
     <div>
       <h1 class="text-white text-3xl font-bold uppercase mb-2">What makes a BULSCA Competition? </h1>
       <p class="text-white">
@@ -52,8 +52,8 @@
   </div>
 
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
-    <div class="grid grid-cols-2">
+  <div class=" container ">
+    <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col justify-center">
         <h2 class="text-bulsca text-4xl font-semibold">SERCs <small class=" text-sm text-slate-500">Simulated Emergency Response Competitions</small></h2>
         <p class="">
@@ -68,16 +68,16 @@
         </p>
       </div>
     
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center md:mt-0 mt-4">
         <img src="/storage/photos/DSC_1201.jpg" loading="lazy" class="w-[90%]" alt="">
       </div>
 
     </div>
   </div>
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
-    <div class="grid grid-cols-2">
-      <div class="flex items-center justify-center">
+  <div class=" container ">
+    <div class="grid md:grid-cols-2 grid-cols-1 ">
+      <div class="flex items-center justify-center md:mb-0 mb-4">
         <img src="/storage/photos/DSC_0335.jpg" loading="lazy" class="w-[90%]" alt="">
       </div>
       <div class="flex flex-col justify-center">

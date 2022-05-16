@@ -6,9 +6,9 @@
 
     <div class="h-full w-full overflow-hidden relative">
       <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center " >
-        <img src="/storage/logo/blogo.png" class="w-[10%] " alt="">
-        <div class="border-l-2 border-white ml-12 pl-12 py-8">
-          <h2 class="text-6xl font-bold text-white">Get Involved</h2>
+        <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
+        <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+          <h2 class="md:text-6xl text-4xl font-bold text-white">Get Involved</h2>
           <p class="text-white">You don't just have to compete!</p>
         </div>
       </div>
@@ -18,12 +18,12 @@
     
   </div>
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
-    <div class=" grid grid-cols-2 gap-32 text-center">
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image" style="background-image: url(/storage/photos/DSC_0410.jpg);">
+  <div class=" container ">
+    <div class=" grid md:grid-cols-2 grid-cols-1 md:gap-32 gap-8 text-center">
+      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all" style="background-image: url(/storage/photos/DSC_0410.jpg);">
         <a href="{{ route('clubs') }}" class=" image-card-text" >Clubs</a>
       </div>
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all image-card-text" style="background-image: url(/storage/photos/DSC_0348.jpg);">
+      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all" style="background-image: url(/storage/photos/DSC_0348.jpg);">
         <a href="#" class="image-card-text">Create a Club</a>
       </div>
 
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class=" mx-2 md:mx-[20%] my-[2%] ">
+  <div class=" container ">
     <h1 class="text-bulsca text-3xl font-bold mb-2">Me? </h1>
     <p>
       BULSCA runs purely through student clubs and volunteers.
