@@ -23,12 +23,12 @@
 
 
 <div class=" container ">
-<h2 class="text-bulsca text-5xl font-bold mb-[4%]">Competition Calender</h2>
+<h2 class="pb-3 header header-larger header-bold">Competition Calender</h2>
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
     @foreach ($comps as $comp)
     <div class="flex flex-col ">
-            <h2 class="font-bold text-3xl text-bulsca">
+            <h2 class="header header-bold">
                 {{ $comp->hostUni->name }}
             </h2>
             <small>

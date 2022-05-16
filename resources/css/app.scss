@@ -198,3 +198,40 @@
     }
    }
  }
+
+ .header {
+   @apply text-bulsca text-3xl font-semibold mb-2;
+
+   &.header-large {
+     @apply text-4xl
+
+   }
+
+   &.header-larger {
+     @apply text-5xl
+   }
+
+   &.header-bold {
+     @apply font-bold
+   }
+
+   &.header-white {
+     @apply text-white
+   }
+ }
+
+ .image-link {
+   @apply h-52 bg-gray-400 flex items-center justify-center bg-image transition-all;
+
+   > a {
+    @apply text-white text-2xl font-semibold uppercase w-full h-full flex items-center justify-center transition-all;
+    background-color: rgba(0,0,0,0.3);
+    &:hover {
+      background-color: rgba(0,0,0,0.4);
+    }
+   }
+ }
+
+ .image-link-group {
+   @apply grid md:grid-cols-2 md:gap-32 grid-cols-1 gap-8 text-center
+ }

@@ -110,7 +110,7 @@
   <div class=" container  ">
     <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col">
-        <h2 class="text-bulsca text-3xl font-semibold">Join the mailing list</h2>
+        <h2 class="header">Join the mailing list</h2>
         <form action="#" class="flex flex-col  overflow-hidden">
           <input type="text" class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none" placeholder="swimming@bulsca.co.uk" >
           <small class="my-2 mb-3">

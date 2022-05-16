@@ -19,12 +19,12 @@
   </div>
 
   <div class=" container ">
-    <div class=" grid md:grid-cols-2 grid-cols-1 md:gap-32 gap-8 text-center">
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all" style="background-image: url(/storage/photos/DSC_0410.jpg);">
-        <a href="{{ route('clubs') }}" class=" image-card-text" >Clubs</a>
+    <div class=" image-link-group">
+      <div class=" image-link" style="background-image: url(/storage/photos/DSC_0410.jpg);">
+        <a href="{{ route('clubs') }}" class=" " >Clubs</a>
       </div>
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all" style="background-image: url(/storage/photos/DSC_0348.jpg);">
-        <a href="#" class="image-card-text">Create a Club</a>
+      <div class="image-link" style="background-image: url(/storage/photos/DSC_0348.jpg);">
+        <a href="#" class="">Create a Club</a>
       </div>
 
 
@@ -32,7 +32,7 @@
   </div>
 
   <div class=" container ">
-    <h1 class="text-bulsca text-3xl font-bold mb-2">Me? </h1>
+    <h1 class="header">Me? </h1>
     <p>
       BULSCA runs purely through student clubs and volunteers.
       <br>

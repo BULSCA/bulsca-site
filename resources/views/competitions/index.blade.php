@@ -26,12 +26,12 @@
   </a>
 
   <div class=" container ">
-    <div class=" grid md:grid-cols-2 md:gap-32 grid-cols-1 gap-8 text-center">
-      <div class=" h-52 bg-gray-400 flex items-center justify-center bg-image transition-all " style="background-image: url(/storage/photos/IMG_4946.JPG);">
-        <a href="{{ route('league') }}" class=" image-card-text" >{{ $season->name }}</a>
+    <div class=" image-link-group">
+      <div class=" image-link " style="background-image: url(/storage/photos/IMG_4946.JPG);">
+        <a href="{{ route('league') }}" class=" " >{{ $season->name }}</a>
       </div>
-      <div class=" h-52  bg-gray-400 flex items-center justify-center bg-image transition-all " style="background-image: url(/storage/photos/DSC_0016.jpg);">
-        <a href="#" class="image-card-text">Champs 2022</a>
+      <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">
+        <a href="#" class="">Champs 2022</a>
       </div>
 
 
@@ -42,7 +42,7 @@
 
   <div class="container-boast">
     <div>
-      <h1 class="text-white text-3xl font-bold uppercase mb-2">What makes a BULSCA Competition? </h1>
+      <h1 class="header-white header header-bold uppercase mb-2">What makes a BULSCA Competition? </h1>
       <p class="text-white">
         BULSCA league competitions are all about enjoying the experience of competing, putting the skills you learn into practice and making new friends! Competitions provide the perfect opportunity for lifesavers to demonstrate their skills as a team and to see how they respond under pressure. Each league competition consists of two elements - SERCs and Speeds. Competitions are followed by food, results and a social - a great opportunity to make new friends, share knowledge, and celebrate successes!
       </p>
@@ -55,7 +55,7 @@
   <div class=" container ">
     <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col justify-center">
-        <h2 class="text-bulsca text-4xl font-semibold">SERCs <small class=" text-sm text-slate-500">Simulated Emergency Response Competitions</small></h2>
+        <h2 class="header header-large">SERCs <small class=" text-sm text-slate-500">Simulated Emergency Response Competitions</small></h2>
         <p class="">
           SERCs are the ultimate test of lifesavers’ skills, teamwork, and knowledge. 
           <br>
@@ -81,7 +81,7 @@
         <img src="/storage/photos/DSC_0335.jpg" loading="lazy" class="w-[90%]" alt="">
       </div>
       <div class="flex flex-col justify-center">
-        <h2 class="text-bulsca text-4xl font-semibold">Speeds</h2>
+        <h2 class="header header-large">Speeds</h2>
         <p class="">
           League competitions also consist of team speed relays. Speed events test the fitness of a lifesaver and their ability to use their skills quickly.
           <br><br>

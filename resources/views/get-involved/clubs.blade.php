@@ -19,7 +19,7 @@
   </div>
 
 <div class="container ">
-<h1 class="text-bulsca text-3xl font-bold mb-2">Active Clubs </h1>
+<h1 class="header">Active Clubs </h1>
     <p>
         The following are all the actively competing clubs in BULSCA, click on one to find out more!
     </p>
@@ -34,7 +34,7 @@
           
 
           <div class="col-span-2  flex flex-col items-start justify-center ">
-              <h1 class="text-3xl text-bulsca  font-semibold">
+              <h1 class="header ">
                   {{ $club->name }}
               </h1>
               <small>
