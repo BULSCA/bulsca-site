@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;use Illuminate\Support\Facades\Route;
 
 use App\Models\League;
@@ -25,6 +27,8 @@ Route::get('/competitions', function () {
     return view('competitions.index', ['season' => Season::orderBy('to','desc')->first()]);
 })->name('comps');
 
+Route::get('/competitions/championships', [ChampionshipController::class, 'index'])->name('champs');
+
 Route::get('/competitions/league', [SeasonController::class, 'currentSeason'])->name('league');
 Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');
 
@@ -39,3 +43,9 @@ Route::Get('/get-involved/clubs/create', function () {
 Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('view-club');
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
 Route::Post('/get-involved/clubs/{cid}/edit', [ClubController::class, 'update'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('update-club');
+
+Route::get('/resources', function () {
+    return view('resources.index');
+})->name('resources');
+Route::get('/resources/governance', [ResourceController::class, 'governance'])->name('governance');
+Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');

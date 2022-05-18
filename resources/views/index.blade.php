@@ -19,7 +19,7 @@
   </div>
 
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <div class=" grid md:grid-cols-3 grid-cols-1 overflow-hidden md:gap-32 text-center">
       <div class="flex flex-col items-center space-y-3 w-full">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

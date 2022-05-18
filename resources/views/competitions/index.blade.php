@@ -25,13 +25,13 @@
     </svg>
   </a>
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <div class=" image-link-group">
       <div class=" image-link " style="background-image: url(/storage/photos/IMG_4946.JPG);">
         <a href="{{ route('league') }}" class=" " >{{ $season->name }}</a>
       </div>
       <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">
-        <a href="#" class="">Champs 2022</a>
+        <a href="{{ route('champs') }}" class="">Champs 2022</a>
       </div>
 
 
@@ -52,7 +52,7 @@
   </div>
 
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col justify-center">
         <h2 class="header header-large">SERCs <small class=" text-sm text-slate-500">Simulated Emergency Response Competitions</small></h2>
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <div class="grid md:grid-cols-2 grid-cols-1 ">
       <div class="flex items-center justify-center md:mb-0 mb-4">
         <img src="/storage/photos/DSC_0335.jpg" loading="lazy" class="w-[90%]" alt="">

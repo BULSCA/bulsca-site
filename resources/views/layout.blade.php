@@ -30,7 +30,7 @@
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
                 <li><a href="{{ route('league') }}">League</a></li>
-                <li><a href="#">Champs</a></li>
+                <li><a href="{{ route('champs') }}">Champs</a></li>
               </ul>
             </div>
           </li>
@@ -43,7 +43,7 @@
               </ul>
             </div>
           </li>
-          <li><a href="#">Resources</a></li>
+          <li><a href="{{ route('resources') }}">Resources</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Account</a></li>      
         </ul>
@@ -76,7 +76,7 @@
             <div class="mobile-dropdown">
               <ul>
                 <li><a href="{{ route('league') }}">League</a></li>
-                <li><a href="#">Champs</a></li>
+                <li><a href="{{ route('champs') }}">Champs</a></li>
               </ul>
             </div>
           </li>
@@ -95,7 +95,7 @@
               </ul>
             </div>
           </li>
-          <li><a href="#">Resources</a></li>
+          <li><a href="{{ route('resources') }}">Resources</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Account</a></li>      
         </ul>
@@ -107,7 +107,7 @@
     @yield('content')
 
 
-  <div class=" container  ">
+  <div class=" container-responsive  ">
     <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col">
         <h2 class="header">Join the mailing list</h2>

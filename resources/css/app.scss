@@ -153,7 +153,11 @@
 
 
  .container {
-   @apply md:mx-2 md:mx-[20%] px-2 md:px-0 md:my-[2%] my-[10%] w-screen  overflow-hidden;
+   @apply  md:mx-[20%] px-2 md:px-0 md:my-[2%] my-[10%] w-screen  overflow-hidden;
+ }
+
+ .container-responsive {
+    @apply px-2 md:px-[20%] md:py-[2%] py-[10%]  flex-1
  }
 
  .container-boast {
@@ -226,6 +230,11 @@
      @apply text-5xl
    }
 
+   &.header-small {
+    @apply text-xl
+
+  }
+
    &.header-bold {
      @apply font-bold
    }
@@ -253,4 +262,32 @@
 
  a {
    @apply text-bulsca font-semibold underline
+ }
+
+ div.file-link {
+   @apply  border-2 rounded-md inline-block relative hover:border-gray-400 transition-colors;
+   
+   > a {
+      @apply no-underline p-3 px-5 flex items-center  hover:text-bulsca_red;
+
+      > div:first-child {
+        @apply pr-[25px] overflow-hidden;
+
+        > h3 {
+          @apply header  truncate ;
+          font-size: 1.125rem !important;
+          line-height: 1.75rem !important;
+          margin-bottom: -0.25rem !important;
+        }
+
+        > small {
+          @apply text-gray-400 text-xs
+        }
+      }
+
+      > div:last-child {
+        @apply pl-[20px] border-l ml-auto;
+      }
+
+   }
  }
