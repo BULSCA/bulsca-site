@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getHomeUni() {
+        return $this->hasOne(University::class, 'id', 'home_uni')->first();
+    }
 }

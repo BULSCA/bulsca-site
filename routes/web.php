@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\SeasonController;use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\DashboardController;
 
 use App\Models\League;
 use App\Models\Season;
@@ -19,12 +22,13 @@ use App\Models\Season;
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 })->name('home');
 
 Route::get('/competitions', function () {
-    return view('competitions.index', ['season' => Season::orderBy('to','desc')->first()]);
+    return view('competitions.index', ['season' => Season::where('from', '<=', now())->orderBy('to','desc')->first()]);
 })->name('comps');
 
 Route::get('/competitions/championships', [ChampionshipController::class, 'index'])->name('champs');
@@ -49,3 +53,15 @@ Route::get('/resources', function () {
 })->name('resources');
 Route::get('/resources/governance', [ResourceController::class, 'governance'])->name('governance');
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
+Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
+
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
+Route::get('/dashboard/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->name('lc-manage');
+Route::post('/dashboard/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->name('lc-result-upload');
+Route::get('/dashboard/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->name('lc-result-remove');
+
+
+require __DIR__.'/auth.php';

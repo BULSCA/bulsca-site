@@ -234,6 +234,9 @@
     @apply text-xl
 
   }
+  &.header-smallish {
+    @apply text-2xl;
+  }
 
    &.header-bold {
      @apply font-bold
@@ -242,6 +245,8 @@
    &.header-white {
      @apply text-white
    }
+
+
  }
 
  .image-link {
@@ -291,3 +296,34 @@
 
    }
  }
+
+ 
+
+ .bg-bulsca-patterned {
+   @apply bg-bulsca;
+
+   background-image: url(/storage/logo/b-tile.png);
+   background-size: 200px 200px;
+   background-repeat: round;
+ }
+
+
+ div.form-input {
+
+    @apply flex flex-col;
+
+   label {
+
+   }
+
+   input {
+    @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4
+   }
+ }
+
+ input.checkbox { 
+   @apply rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+ }
+
+
+ 

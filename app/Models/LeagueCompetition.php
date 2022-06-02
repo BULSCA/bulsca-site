@@ -24,6 +24,10 @@ class LeagueCompetition extends Model
         return $this->hasOne(Season::class, 'id', 'season');
     }
 
+    public function getResultsResource() {
+        return $this->hasOne(Resource::class, 'id', 'results_resource');
+    }
+
 
     
 }

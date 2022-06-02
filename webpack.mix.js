@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 require('laravel-mix-blade-reload');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,9 +12,9 @@ require('laravel-mix-blade-reload');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/css/app.scss', 'public/css').options({
-        postCss: [require("tailwindcss")],
-    }).bladeReload();
+ mix.js('resources/js/app.js', 'public/js')
+ .sass('resources/css/app.scss', 'public/css').options({
+     postCss: [require("tailwindcss")],
+ }).bladeReload();
 
 mix.browserSync('127.0.0.1:8000')

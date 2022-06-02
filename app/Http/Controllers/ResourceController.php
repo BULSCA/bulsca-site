@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+
 ;
 
 class ResourceController extends Controller
@@ -56,8 +61,55 @@ class ResourceController extends Controller
         return view('resources.governance', ['res' => $res]);
     }
 
-    public function get($id) {
+    public function get(Request $req, $id) {
+
+        $resource = Resource::find($id);
+
+        if ($req->has('dl')) {
+            return Storage::download($resource->location);
+        }
+
+
+        $fileContents = Storage::get($resource->location); 
+        $type = File::mimeType(Storage::path($resource->location));
+
+        $response = Response::make($fileContents, 200);
+        $response->header("Content-Type", $type);
+        $response->header("Content-Disposition", "filename=" . $resource->name . "." . pathinfo($resource->location)['extension'] . "");
+        return $response;
+    }
+
+    
+
+    public function upload(Request $request){
         
+
+        
+        $path = $request->file('fupload')->store('ress');
+
+        
+
+        $res = new Resource();
+        $res->location = $path;
+        $res->name = $request->input('name', 'file');
+        $res->save();
+
+        return $res->id;
+
+
+    }
+
+    static function storeResource(Request $request, $postFileName, $where, $fileName = 'file') {
+        $path = $request->file($postFileName)->store($where || 'ress');
+
+        
+
+        $res = new Resource();
+        $res->location = $path;
+        $res->name = $request->input('name', $fileName);
+        $res->save();
+
+        return $res->id;
     }
 
 }

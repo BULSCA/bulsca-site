@@ -36,6 +36,23 @@ Championships 2022 | Competitions |
     </div>
 </div>
 
+<div class="container-responsive">
+  <form action="/resources/upload" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-input">
+                <label for="upload-name">File Name</label>
+                <input id="upload-name" class="input" name="name" required type="text"  placeholder="File">
+            </div>
+            <div class="form-input">
+                <label for="upload-file">File</label>
+                <input id="upload-file" class="input" name="fupload" required type="file" >
+            </div>
+            <button class="btn">Upload</button>
+  </form>
+</div>
+
+
+
 
 
 

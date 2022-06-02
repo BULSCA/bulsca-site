@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="overflow-x-hidden">
+  <body class="overflow-x-hidden flex flex-col min-h-screen">
   <div class="fixed w-screen z-50 transition-all duration-100" id="navbar">
   <div class="nav-wrapper transition-all duration-100">
       <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
@@ -45,7 +45,17 @@
           </li>
           <li><a href="{{ route('resources') }}">Resources</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Account</a></li>      
+          <li class="group">
+            <a href="{{ route('dashboard') }}">Account</a>
+            @auth
+            <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
+              <ul>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
+              </ul>
+            </div>
+            @endauth
+          </li>      
         </ul>
       </nav>
     </div>
@@ -128,7 +138,7 @@
       </div>
     </div>
  </div>
- <footer class="bg-black w-full flex flex-col items-center justify-center">
+ <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
     <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
 
       <img src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12" alt="">
