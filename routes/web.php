@@ -59,9 +59,9 @@ Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('u
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
-Route::get('/dashboard/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->name('lc-manage');
-Route::post('/dashboard/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->name('lc-result-upload');
-Route::get('/dashboard/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->name('lc-result-remove');
+Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->name('lc-manage');
+Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->name('lc-result-upload');
+Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->name('lc-result-remove');
 
 
 require __DIR__.'/auth.php';

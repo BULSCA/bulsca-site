@@ -20,6 +20,10 @@ class CompetitionController extends Controller
         
         $lc = LeagueCompetition::find($cid)->load('hostUni', 'currentSeason');
 
+        if ($lc->host != auth()->user()->getHomeUni()->id || !auth()->user()->isUniAdmin()) {
+            return redirect()->route('lc-view', $cid);
+        }
+
         return view('dashboard.competitions.manage', ['comp' => $lc]);
     }
 

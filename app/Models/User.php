@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -44,6 +45,11 @@ class User extends Authenticatable
 
 
     public function getHomeUni() {
-        return $this->hasOne(University::class, 'id', 'home_uni')->first();
+        return University::find(DB::table('user_universities')->where('user', $this->id)->value('uni'));
+        
+    }
+
+    public function isUniAdmin() {
+        return (bool) DB::table('user_universities')->where('user', 1)->value('admin');
     }
 }
