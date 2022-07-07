@@ -1,7 +1,7 @@
 <?php 
 namespace App\Services;
 
-use App\Models\LeagueCompetition;
+use App\Models\Competition;
 
 class CompetitionService {
 
@@ -13,7 +13,7 @@ class CompetitionService {
 
         if (!$hostUni) return [];
 
-        $comps = LeagueCompetition::where('host', $hostUni->id);
+        $comps = Competition::where('host', $hostUni->id);
 
         if ($futureOnly) {
             $comps->where('when', '>=', now());
@@ -23,7 +23,7 @@ class CompetitionService {
     }
 
     static function upcoming() {
-        return LeagueCompetition::where('when', '>=', now())->orderBy('when')->get();
+        return Competition::where('when', '>=', now())->orderBy('when')->get();
     }
 
     static function checkCompetitionsForAlerts($competitions) {

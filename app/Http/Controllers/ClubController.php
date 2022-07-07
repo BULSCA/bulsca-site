@@ -28,11 +28,19 @@ class ClubController extends Controller
     public function edit($cid) {
         $club = $this->convertSlugToClub(($cid));
 
+        if (!$club->currentUserIsClubAdmin()) {
+            return redirect()->route('view-club', ['cid' => Str::lower($club->name) . "." . $club->id ]);
+        }
+
         return view('get-involved.edit-club', ['club' => $club]);
     }
 
     public function update(Request $req, $cid) {
         $club = $this->convertSlugToClub(($cid));
+
+        if (!$club->currentUserIsClubAdmin()) {
+            return redirect()->route('view-club', ['cid' => Str::lower($club->name) . "." . $club->id ]);
+        }
 
         $page = $club->getPage()->first();
 

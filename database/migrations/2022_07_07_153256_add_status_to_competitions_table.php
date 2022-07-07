@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('league_competitions', function (Blueprint $table) {
-            $table->foreignUuid('results_resource')->nullable()->references('id')->on('resources')->onUpdate('CASCADE')->onDelete('CASCADE');
+        Schema::table('competitions', function (Blueprint $table) {
+            $table->char('status', 40)->default('incomplete_setup');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('league_competitions', function (Blueprint $table) {
-            $table->dropColumn('results_resource');
+        Schema::table('competitions', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };

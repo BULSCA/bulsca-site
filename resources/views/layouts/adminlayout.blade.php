@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="overflow-x-hidden flex flex-col min-h-screen">
-  <div class="fixed w-screen z-50 transition-all duration-100" id="navbar">
+  <div class=" w-screen z-50 transition-all duration-100 nav-scrolled-blue" id="navbar">
   <div class="nav-wrapper transition-all duration-100">
       <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
          British Universities Lifesaving Clubs' Association
@@ -35,7 +35,7 @@
             </div>
           </li>
           <li class="group {{ Request::is('get-involved*') ? 'nav-active' : ''}}">
-            <a href="{{ route('get-involved') }}" class=" overflow-hidden overflow-ellipsis whitespace-nowrap">Get Involved</a>
+            <a href="{{ route('get-involved') }}">Get Involved</a>
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
                 <li><a href="{{ route('clubs') }}">Clubs</a></li>
@@ -47,14 +47,12 @@
           <li><a href="#">About</a></li>
           <li class="group">
             <a href="{{ route('dashboard') }}">Account</a>
-            @auth
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
               </ul>
             </div>
-            @endauth
           </li>      
         </ul>
       </nav>
@@ -112,32 +110,12 @@
     </nav>
   </div>
 
-
+  
 
     @yield('content')
 
 
-  <div class=" container-responsive  ">
-    <div class="grid md:grid-cols-2 grid-cols-1">
-      <div class="flex flex-col">
-        <h2 class="header">Join the mailing list</h2>
-        <form action="#" class="flex flex-col  overflow-hidden">
-          <input type="text" class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none" placeholder="swimming@bulsca.co.uk" >
-          <small class="my-2 mb-3">
-            By clicking below I acknowledge that BULSCA will send me emails about relevant events and news, and that I can opt out any time <a href="#" class="underline">here</a>
-          </small>
-          <button class="btn">Sign me up!</button>
-        </form>
 
-        <br>
-        <br>
-
-      </div>
-      <div class="flex justify-center items-center">
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBULSCA%2F&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="340" height="271" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-      </div>
-    </div>
- </div>
  <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
     <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
 
@@ -153,38 +131,14 @@
   </body>
 
   <script>
-    let h1 = document.getElementById("head1")
-    let h2 = document.getElementById("head2")
-    let nav = document.getElementById("navbar")
-    let toggle = true
 
-    const runner = () => {
-      if (toggle) {
-        h1.classList.add('opacity-0')
-        h2.classList.remove('opacity-0')
-      } else {
-        h1.classList.remove('opacity-0')
-        h2.classList.add('opacity-0')
-      }
-      toggle = !toggle
-    }
 
     window.onload = function() {
       initMobileNav()
-      if (h1 == undefined || h2 ==undefined) return
 
-      setInterval(runner, 10000)
       
     }
 
-    window.onscroll = () => {
-      console.log('h')
-      if (window.scrollY > 50) {
-        nav.classList.add('nav-scrolled')
-      } else {
-        nav.classList.remove('nav-scrolled')
-      }
-    }
 
     function initMobileNav() {
       let mn = document.getElementById('mobile-nav');

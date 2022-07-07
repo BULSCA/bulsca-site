@@ -41,7 +41,7 @@ class CompetitionUniPlaceCrudController extends CrudController
     {
         //CRUD::column('id');
         CRUD::column('season_uni')->type('select')->model('App\Models\SeasonUni')->attribute('uni')->entity('getUni');
-        CRUD::column('league_comp')->type('select')->model('App\Models\LeagueCompetition')->attribute('id')->entity('getComp');
+        CRUD::column('league_comp')->type('select')->model('App\Models\Competition')->attribute('id')->entity('getComp');
         CRUD::column('overal_pos');
         
         CRUD::column('a_pos');
@@ -68,7 +68,7 @@ class CompetitionUniPlaceCrudController extends CrudController
         CRUD::setValidation(CompetitionUniPlaceRequest::class);
 
         CRUD::field('season_uni')->type('select')->model('App\Models\SeasonUni')->attribute('currentUni');
-        CRUD::field('league_comp')->type('select')->model('App\Models\LeagueCompetition')->attribute('hostUni');
+        CRUD::field('league_comp')->type('select')->model('App\Models\Competition')->attribute('hostUni');
 
         CRUD::field('a_pos');
         CRUD::field('b_pos');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LeagueCompetition;
+use App\Models\Competition;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -11,14 +11,14 @@ class CompetitionController extends Controller
 
 
     public function view($cid){
-        $lc = LeagueCompetition::find($cid)->load('hostUni', 'currentSeason');
+        $lc = Competition::find($cid)->load('hostUni', 'currentSeason');
 
         return view('dashboard.competitions.view', ['comp' => $lc]);
     }
 
     public function manage($cid){
         
-        $lc = LeagueCompetition::find($cid)->load('hostUni', 'currentSeason');
+        $lc = Competition::find($cid)->load('hostUni', 'currentSeason');
 
         if ($lc->host != auth()->user()->getHomeUni()->id || !auth()->user()->isUniAdmin()) {
             return redirect()->route('lc-view', $cid);
@@ -29,7 +29,7 @@ class CompetitionController extends Controller
 
     public function resultsUpload(Request $request, $cid) {
 
-        $lc = LeagueCompetition::find($cid)->load('hostUni');
+        $lc = Competition::find($cid)->load('hostUni');
 
         $fileName = $lc->hostUni->name . " " .  $lc->when->format('Y') . " Results";
 
@@ -44,7 +44,7 @@ class CompetitionController extends Controller
     }
 
     public function resultsRemove($cid) {
-        $lc = LeagueCompetition::find($cid);
+        $lc = Competition::find($cid);
         $lc->results_resource = null;
         $lc->save();
         return redirect()->route('lc-manage', ['cid' => $cid]);

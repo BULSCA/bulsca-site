@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('league_competitions', function (Blueprint $table) {
+        Schema::table('competitions', function (Blueprint $table) {
             $table->string('short', 420)->nullable();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('league_competitions', function (Blueprint $table) {
+        Schema::table('competitions', function (Blueprint $table) {
             $table->dropColumn('short');
         });
     }

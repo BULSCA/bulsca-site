@@ -25,9 +25,15 @@
     
   </div>
 
-  <div class="mx-2 md:mx-[20%] my-[2%] flex flex-col items-center">
-    <a href="{{ url()->current() }}/edit" class="btn btn-thinner">Edit</a>
-  </div>
+
+
+  @if ($club->currentUserIsClubAdmin())
+    <div class="mx-2 md:mx-[20%] my-[2%] flex flex-col items-center">
+      <a href="{{ url()->current() }}/edit" class="btn btn-thinner">Edit</a>
+    </div>  
+  @endif
+
+
 
   <div class="mx-2 md:mx-[20%] my-[2%] flex flex-col items-center">
       {!! $club->getPage()->first()->content ?? '' !!}

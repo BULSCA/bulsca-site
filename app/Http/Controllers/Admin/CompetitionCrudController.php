@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\LeagueCompetitionRequest;
+use App\Http\Requests\CompetitionRequest;
+use App\Models\CompetitionStatus;
 use App\Models\University;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class LeagueCompetitionCrudController
+ * Class CompetitionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class LeagueCompetitionCrudController extends CrudController
+class CompetitionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,7 +28,7 @@ class LeagueCompetitionCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\LeagueCompetition::class);
+        CRUD::setModel(\App\Models\Competition::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/league-competition');
         CRUD::setEntityNameStrings('league competition', 'league competitions');
     }
@@ -43,6 +44,7 @@ class LeagueCompetitionCrudController extends CrudController
         CRUD::column('id');
         CRUD::column('season')->type('select')->model('App\Models\Season')->attribute('name')->entity('currentSeason');
         CRUD::column('host')->type('select')->model('App\Models\University')->attribute('name')->entity('hostUni');
+      
         CRUD::column('when');
         CRUD::column('short');
         CRUD::column('results');
@@ -64,12 +66,13 @@ class LeagueCompetitionCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(LeagueCompetitionRequest::class);
+        CRUD::setValidation(CompetitionRequest::class);
 
         //CRUD::field('id');
         CRUD::field('season')->type('select')->model('App\Models\Season')->attribute('name');
         CRUD::field('host')->type('select')->model('App\Models\University')->attribute('name');
         CRUD::field('when');
+        CRUD::field('status')->type('select_from_array')->options(['incomplete_setup' => 'incomplete_setup', 'ready' => 'ready', 'finished' => 'finished', 'awaiting_results' => 'awaiting_results'])->default('incomplete_setup');
         CRUD::field('short');
         CRUD::field('results');
         CRUD::field('created_at')->default(date("Y-m-d H:i:s"));

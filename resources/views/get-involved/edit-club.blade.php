@@ -32,7 +32,7 @@
             
         </div>
         <br>
-        <textarea name="content" id="editor" class="h-[52vh]">{!! $club->getPage()->first()->content ?? '' !!}</textarea>
+        <textarea hidden name="content" id="editor" class="h-[52vh]">{!! $club->getPage()->first()->content ?? '' !!}</textarea>
         <br>
         
     </form>

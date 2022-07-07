@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('league_competitions', function (Blueprint $table) {
+        Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('host')->nullable()->references('id')->on('universities')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('league')->nullable()->references('id')->on('leagues')->onUpdate('cascade')->onDelete('set null');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('league_competitions');
+        Schema::dropIfExists('competitions');
     }
 };

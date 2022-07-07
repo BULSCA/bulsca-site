@@ -17,6 +17,6 @@ class CompetitionUniPlace extends Model
     }
 
     public function getComp() {
-        return $this->hasOne(LeagueCompetition::class, 'id', 'league_comp');
+        return $this->hasOne(Competition::class, 'id', 'league_comp');
     }
 }

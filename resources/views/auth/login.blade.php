@@ -40,11 +40,11 @@ Login |
             @csrf
             <div class="form-input">
                 <label for="login-email">Email</label>
-                <input id="login-email" class="input" name="email" required type="text" autofocus placeholder="official@bulsca.co.uk">
+                <input id="login-email" class="input" name="email" required type="text" value="{{old('email')}}"  @if(!old('email')) autofocus @endif placeholder="official@bulsca.co.uk">
             </div>
             <div class="form-input">
                 <label for="login-password">Password</label>
-                <input id="login-password" class="input" name="password" required type="password">
+                <input id="login-password" class="input" name="password" @if(old('email')) autofocus @endif required type="password">
             </div>
             <div class="form-checkbox">
                 <input id="login-remember" name="remember" type="checkbox">

@@ -17,11 +17,12 @@ class Season extends Model
 
     protected $casts = [
         'from' => 'date',
-        'to' => 'date'
+        'to' => 'date',
+        
     ];
 
     public function competitions() {
-        return $this->hasMany(LeagueCompetition::class, 'season');
+        return $this->hasMany(Competition::class, 'season');
     }
 
     public function unis() {
@@ -44,7 +45,7 @@ class Season extends Model
         WHERE SU.season=1 ORDER BY SeasonUni,LC.when;
         */
 
-        $res = DB::select(DB::raw('SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS Points FROM competition_uni_places AS CUP INNER JOIN season_unis SU ON CUP.season_uni=SU.id INNER JOIN universities U ON SU.uni=U.id INNER JOIN league_competitions LC ON LC.id = CUP.league_comp INNER JOIN universities UU ON LC.host = UU.id WHERE SU.season=? ORDER BY SeasonUni,LC.when'), [1]);
+        $res = DB::select(DB::raw('SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS Points FROM competition_uni_places AS CUP INNER JOIN season_unis SU ON CUP.season_uni=SU.id INNER JOIN universities U ON SU.uni=U.id INNER JOIN competitions LC ON LC.id = CUP.league_comp INNER JOIN universities UU ON LC.host = UU.id WHERE SU.season=? ORDER BY SeasonUni,LC.when'), [1]);
         
 
         $finalUnis = [];
@@ -72,6 +73,19 @@ class Season extends Model
 
     public function getBLeagueResults() {
     
+    }
+
+
+
+    static function current() {
+
+        $s = Season::where('from', '>', now())->where('to', '<', now())->first();
+
+        if (!$s) {
+            $s = Season::orderBy('from','DESC')->first();
+        }
+
+        return $s;
     }
 
 }

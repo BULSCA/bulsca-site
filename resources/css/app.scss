@@ -9,7 +9,9 @@
   }
   
   .nav-scrolled {
-    @apply bg-bulsca_red
+    @apply bg-bulsca_red;
+
+  
   }
   
   .nav-scrolled > .nav-wrapper {
@@ -21,6 +23,19 @@
     @apply md:text-2xl
     
     
+  }
+
+  .nav-scrolled-blue {
+    @apply bg-bulsca;
+
+    > .nav-wrapper {
+      @apply my-3;
+
+      > .nav-brand {
+        max-width: 500px;
+        @apply md:text-2xl
+      }
+    }
   }
   
   .nav-brand {
@@ -323,6 +338,35 @@
 
  input.checkbox { 
    @apply rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+ }
+
+ .competition-status {
+  @apply w-6 h-6 rounded-full border-4 border-gray-400 bg-white;
+
+
+  &.competition-status-finished {
+    @apply border-green-500 bg-green-500 ;
+
+    &:after {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7' /%3E%3C/svg%3E");;
+    }
+  }
+
+  &.competition-status-alert {
+    @apply border-red-500 bg-red-500 flex items-center justify-center font-bold text-lg text-white text-center;
+
+    &:after {
+      content: '!';
+    }
+  }
+
+  &.competition-status-results {
+    @apply border-yellow-500 bg-yellow-500;
+    &:after {
+
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' /%3E%3C/svg%3E");
+    }
+  }
  }
 
 
