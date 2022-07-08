@@ -50,4 +50,6 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
+ 
+
 }

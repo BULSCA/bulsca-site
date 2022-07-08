@@ -69,6 +69,24 @@ enum CompetitionStatus: string {
         };
     }
 
+    public function toBadgeCSS(): string {
+        return match($this){
+            CompetitionStatus::READY => 'success',
+            CompetitionStatus::FINISHED => 'success',
+            CompetitionStatus::AWAITING_RESULTS => 'warning',
+            CompetitionStatus::INCOMPLETE_SETUP => 'alert'
+        };
+    }
+
+    public function toBadgeMessage(): string {
+        return match($this){
+            CompetitionStatus::READY => 'Ready to go',
+            CompetitionStatus::FINISHED => 'Complete',
+            CompetitionStatus::AWAITING_RESULTS => 'Waiting for Results',
+            CompetitionStatus::INCOMPLETE_SETUP => 'Incomplete Setup'
+        };
+    }
+
 
 
 

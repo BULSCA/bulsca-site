@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Season;
+use Illuminate\Support\Facades\Validator;
 
 class SeasonController extends Controller
 {
@@ -26,6 +27,39 @@ class SeasonController extends Controller
         $comps = $season->competitions()->orderBy('when')->get();
 
         return view('competitions.league', ['season' => $season, 'comps' => $comps]);
+    }
+
+    public function update(Request $request, Season $season) {
+
+        $validated = Validator::make($request->all(), [
+            'name' => 'required|min:8',
+            'from' => 'required|date',
+            'to' => 'required|date|after:from'
+        ],[
+            'after' => 'The season must end after the start date!'
+        ])->validate();
+
+
+    //     $validated = $request->validate([
+    //         'name' => 'required|min:8',
+    //         'from' => 'required|date',
+    //         'to' => 'required|date|after:from'
+    //     ],
+    //     [
+    //         'name' => 'ro'
+    //     ]
+    // );
+
+
+  
+
+        $season->name = $validated['name'];
+        $season->from = $validated['from'];
+        $season->to = $validated['to'];
+
+        $season->save();
+
+        return redirect()->back();
     }
 
     /*

@@ -9,7 +9,7 @@ Admin |
 
 <div class="container">
     <div class="grid grid-cols-5 gap-6">
-        <div class="rounded-md border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
+        <a href="{{ route('admin.season.view', $currentSeason->id) }}" class="rounded-md no-underline border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
             <div class="flex flex-col ">
                 <small class="text-base">Current Season</small>
                 <p class=" text-4xl font-bold ">{{ $currentSeason->name }}</p>
@@ -19,7 +19,7 @@ Admin |
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
-        </div>
+        </a>
         <div class="rounded-md border-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-purple-600 ">
             <div class="flex flex-col ">
                 <p class=" text-4xl font-bold ">{{ $count['competition'] }}</p>
@@ -58,7 +58,7 @@ Admin |
     <br>
     <hr>
     <br>
-    <h1 class="header">Season Status</h1>
+    <h1 class="header">Current Season <a href="{{ route('admin.seasons') }}" class="text-base text-gray-400 hover:text-gray-700">(Previous Seasons)</a></h1>
 
     <div class="flex flex-row items-center  ">
         @foreach ($currentSeason->competitions()->get() as $comp)
@@ -95,6 +95,9 @@ Admin |
         @endforeach
 
     </div>
+    <br>
+
+    <a href="{{ route('admin.season.view', $currentSeason->id) }}">View more about this season</a>
 
 </div>
 

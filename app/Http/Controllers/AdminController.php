@@ -25,4 +25,12 @@ class AdminController extends Controller
 
 
     }
+
+    public function viewSeasons() {
+        return view('admin.seasons.index', ['seasons' => Season::orderBy('from', 'desc')->paginate(10)]);
+    }
+
+    public function viewSeason(Season $season) {
+        return view('admin.seasons.view', ['season' => $season]);
+    }
 }

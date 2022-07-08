@@ -50,6 +50,9 @@
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                @hasanyrole('admin|super_admin')
+                  <li><a href="{{ route('admin') }}">Admin</a></li>
+                @endhasanyrole
                 <li><a href="{{ route('logout') }}">Logout</a></li>
               </ul>
             </div>
