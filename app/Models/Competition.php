@@ -41,6 +41,10 @@ class Competition extends Model
         }
     }
 
+    public function getName() {
+        return $this->hostUni->name . " " . $this->when->format('Y');
+    }
+
 
     
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Competition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CompetitionController extends Controller
 {
@@ -48,6 +49,29 @@ class CompetitionController extends Controller
         $lc->results_resource = null;
         $lc->save();
         return redirect()->route('lc-manage', ['cid' => $cid]);
+    }
+
+    public function update(Request $request, Competition $competition) {
+
+        $comp = $competition;
+
+
+
+        $validated = Validator::make($request->all(), [
+         
+            'when' => 'required|date',
+         
+        ])->validate();
+
+
+
+  
+
+        $comp->when = $validated['when'];
+
+        $comp->save();
+
+        return redirect()->back();
     }
 
  

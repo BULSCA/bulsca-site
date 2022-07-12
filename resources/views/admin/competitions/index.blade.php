@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-Seasons | Admin | 
+Competitions | Admin | 
 @endsection
 
 
@@ -11,25 +11,25 @@ Seasons | Admin |
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>
-        <p>Seasons</p>
+        <p>Competitions</p>
 
 
     </div>
 
-    <h1 class="header">Seasons</h1>
+    <h1 class="header">Competitions</h1>
 
     <div class="grid grid-cols-2 gap-4">
-        @foreach ($seasons as $season)
-        <a href="{{ route('admin.season.view', $season) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
+        @foreach ($competitions as $comp)
+        <a href="{{ route('admin.competition.view', $comp) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
                 <h1 class="header header-bold">
-                    {{ $season->name }}
+                    {{ $comp->getName() }}
                 </h1>
-                <small class="ml-auto mb-4 text-black font-normal ">{{ $season->from->format('d/m/Y') }} - {{ $season->to->format('d/m/Y') }}</small>
+                <small class="ml-auto mb-4 text-black font-normal ">{{ $comp->when->format('d/m/Y') }}</small>
             </div>
             <hr class="-mx-6 mb-4">
             <div>
-                <x-badge>Competitions: {{ $season->competitions->count() }}</x-badge>
+                <x-badge>League: {{ $comp->currentSeason->name }}</x-badge>
                 
             </div>
         </a>
@@ -37,7 +37,7 @@ Seasons | Admin |
         @endforeach
     </div>
 
-    {{ $seasons->links() }}
+    {{ $competitions->links() }}
 
    
 

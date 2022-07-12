@@ -51,6 +51,8 @@ class User extends Authenticatable
         
     }
 
+
+
     public function isUniAdmin() {
         return (bool) DB::table('user_universities')->where('user', 1)->value('admin');
     }

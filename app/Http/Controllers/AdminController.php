@@ -33,4 +33,24 @@ class AdminController extends Controller
     public function viewSeason(Season $season) {
         return view('admin.seasons.view', ['season' => $season]);
     }
+
+    public function viewCompetitions() {
+        return view('admin.competitions.index', ['competitions' => Competition::orderBy('when', 'desc')->paginate(10)]);
+    }
+
+    public function viewCompetition(Competition $competition) {
+        return view('admin.competitions.view', ['competition' => $competition]);
+    }
+
+    public function viewUniversities() {
+        return view('admin.universities.index', ['universities' => University::orderBy('name')->paginate(10)]);
+    }
+
+    public function viewUniversity(University $university) {
+        return view('admin.universities.view', ['university' => $university]);
+    }
+
+    public function viewUsers() {
+        return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);
+    }
 }

@@ -91,7 +91,7 @@
 
     <div class="grid grid-cols-3 gap-4">
         @foreach ($season->competitions()->orderBy('when')->get() as $comp)
-            <a href="#" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
+            <a href="{{ route('admin.competition.view', $comp) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
                 <div class="flex items-center justify-center">
                     <h1 class="header header-bold">
                         {{ $comp->hostUni->name }}
@@ -101,7 +101,7 @@
                 <hr class="-mx-6 mb-4">
                 <div>
                     <x-badge>{{ $comp->when->format('d/m/Y') }}</x-badge>
-                    <x-badge style='{{ $comp->status->toBadgeCSS() }}'>{{ $comp->status->toBadgeMessage() }}</x-badge>
+                    <x-badge style="{{ $comp->status->toBadgeCSS() }}">{{ $comp->status->toBadgeMessage() }}</x-badge>
                 </div>
             </a>
 
