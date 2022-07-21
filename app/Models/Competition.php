@@ -45,6 +45,10 @@ class Competition extends Model
         return $this->hostUni->name . " " . $this->when->format('Y');
     }
 
+    public function getInfo() {
+        return $this->hasOne(CompetitionInfo::class, 'competition', 'id');
+    }
+
 
     
 }

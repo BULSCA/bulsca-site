@@ -36,7 +36,7 @@ Championships 2022 | Competitions |
     </div>
 </div>
 
-<div class="container-responsive">
+<div class="container-responsive hidden">
   <form action="/resources/upload" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-input">

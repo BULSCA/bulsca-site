@@ -20,13 +20,79 @@
     <h1 class="header" style="margin-bottom: 0 !important;">{{ $competition->getName() }} </h1>
     <a href="#" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason->name }}</a>
 
-    <p>
-        The aim is for alot of information to show her about the competition:
-        <br>
-        Location, Times, Max teams, pool details, venue details, costs, max people, social (loc price, etc), food (type, price)
-        <br><br>
-        Also show all the universities associated with the competition and if they have paid, numbers per uni, teams, etc
+    <h2 class="header header-small">{{ $competition->when->format('D dS M Y') }}</h2>
+
+    <p class="my-4">
+        
+        {{ $competition->getInfo && $competition->getInfo->desc ?: 'No description available yet'}}
     </p>
+
+
+    <div class="grid grid-cols-4 gap-4">
+        <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
+            <div class="flex items-center justify-center">
+                <h1 class="header header-smallish header-bold" >
+                    Isolation
+                </h1>
+                <small class="ml-auto  text-black font-normal "></small>
+                
+            </div>
+            <hr class="-mx-6 mb-4">
+            <h2 class="header header-small">
+                Times
+            </h2>
+            <p class="mb-4">
+                <span class="font-semibold">Open:</span> {{ $competition->getInfo && $competition->getInfo->isolation_information['times']['open'] ?: 'N/A'}} <br>
+                <span class="font-semibold">Close:</span> {{ $competition->getInfo && $competition->getInfo->isolation_information['times']['close'] ?: 'N/A' }}
+            </p>
+            <h2 class="header header-small">
+                Location
+                
+            </h2>
+
+            @if ($competition->getInfo)
+                <p>
+                    {{ $competition->getInfo->isolation_information['location'] ?: 'N/A' }}
+                </p>
+                <iframe  class="w-full h-44"  id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->isolation_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            @else
+                    N/A
+            @endif
+ 
+        
+        </div>
+
+        <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
+            <div class="flex items-center justify-center">
+                <h1 class="header header-smallish header-bold" >
+                    Pool
+                </h1>
+                <small class="ml-auto  text-black font-normal "></small>
+                
+            </div>
+            <hr class="-mx-6 mb-4">
+            <h2 class="header header-small">
+                Times
+            </h2>
+            <p class="mb-4">
+                <span class="font-semibold">Start:</span> {{ $competition->getInfo && $competition->getInfo->pool_information['times']['start'] ?: 'N/A'}} <br>
+                <span class="font-semibold">Finish:</span> {{ $competition->getInfo && $competition->getInfo->pool_information['times']['finish'] ?: 'N/A' }}
+            </p>
+            <h2 class="header header-small">
+                Location
+                
+            </h2>
+            @if ($competition->getInfo)
+                <p>
+                    {{ $competition->getInfo->pool_information['location'] ?: 'N/A'}}
+                </p>
+                <iframe  class="w-full h-44"  id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->pool_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            @else
+                    N/A
+            @endif
+        
+        </div>
+    </div>
 
     <hr class="my-8">
 

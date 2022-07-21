@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="container-boast">
-    <h1 class="text-white text-3xl font-bold uppercase text-center md:text-left">Champs 2022 Kindly sponsored by <span class=" underline underline-offset-3 ">Ben Barker</span> </h1>
+    <h1 class="text-white text-3xl font-bold uppercase text-center md:text-left">Lorem ipsum, dolor sit <span class=" underline underline-offset-3 ">amet</span>, consectetur adipisicing elit. </h1>
     <button class="btn md:ml-auto flex flex-row items-center mt-8 md:mt-0">
       Find out more
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
