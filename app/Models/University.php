@@ -24,6 +24,9 @@ class University extends Model
     }
 
     public function isUserAdmin(User $user) {
+
+        if ($user == null) return false;
+
         return (bool) DB::table('user_universities')->where('user', $user->id)->where('uni', $this->id)->value('admin');
     }
 }
