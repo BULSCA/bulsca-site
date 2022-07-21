@@ -69,6 +69,10 @@ class ResourceController extends Controller
             return Storage::download($resource->location);
         }
 
+        if (!$resource->location) {
+            abort(404);
+        }
+
 
         $fileContents = Storage::get($resource->location); 
         $type = File::mimeType(Storage::path($resource->location));
