@@ -45,6 +45,8 @@ class Season extends Model
         WHERE SU.season=1 ORDER BY SeasonUni,LC.when;
         */
 
+        return [];
+
         $res = DB::select(DB::raw('SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS Points FROM competition_uni_places AS CUP INNER JOIN season_unis SU ON CUP.season_uni=SU.id INNER JOIN universities U ON SU.uni=U.id INNER JOIN competitions LC ON LC.id = CUP.league_comp INNER JOIN universities UU ON LC.host = UU.id WHERE SU.season=? ORDER BY SeasonUni,LC.when'), [1]);
         
 
