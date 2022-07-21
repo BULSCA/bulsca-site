@@ -20,6 +20,9 @@ class University extends Model
     }
 
     public function currentUserIsClubAdmin() {
+
+        if (!auth()->user()) return false;
+
         return (bool) $this->isUserAdmin(auth()->user());
     }
 
