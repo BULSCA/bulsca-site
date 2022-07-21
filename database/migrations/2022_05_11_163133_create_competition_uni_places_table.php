@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             
             $table->foreignId('season_uni')->references('id')->on('season_unis')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('league_comp')->references('id')->on('league_competitions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('league_comp')->references('id')->on('competitions')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('overal_pos');
             $table->integer('a_pos')->nullable();
             $table->integer('b_pos')->nullable();
