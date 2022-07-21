@@ -69,7 +69,7 @@ class ResourceController extends Controller
             return Storage::download($resource->location);
         }
 
-        if (!$resource->location) {
+        if (!$resource) {
             abort(404);
         }
 
