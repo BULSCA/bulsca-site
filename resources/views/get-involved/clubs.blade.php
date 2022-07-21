@@ -18,14 +18,14 @@
     
   </div>
 
-<div class="container ">
+<div class="container-responsive ">
 <h1 class="header">Active Clubs </h1>
     <p>
         The following are all the actively competing clubs in BULSCA, click on one to find out more!
     </p>
 </div>
 
-  <div class=" container ">
+  <div class=" container-responsive ">
 
     <div class=" grid md:grid-cols-3 grid-cols-1 text-center">
 

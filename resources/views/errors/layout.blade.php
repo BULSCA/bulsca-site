@@ -20,7 +20,7 @@
 
 
 @section('content')
-<div class="container py-16">
+<div class="container-responsive py-16">
   <div class="text-center">
     <div class=" text-5xl text-bulsca_red ">
       {{ $error_number }}

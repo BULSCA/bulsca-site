@@ -23,7 +23,7 @@ Championships 2022 | Competitions |
   </div>
 
   
-<div class="container">
+<div class="container-responsive">
     <div class="image-link-group">
        
         <div class=" image-link " style="background-image: url(/storage/photos/DSC_0014.jpg);">
@@ -36,7 +36,7 @@ Championships 2022 | Competitions |
     </div>
 </div>
 
-  <div class="container">
+  <div class="container-responsive">
       <h2 class="header">The Championships</h2>
       <p>
       The BULSCA Student Championships is the highlight of the year, where clubs come together and compete in a two day competition.
@@ -50,7 +50,7 @@ Championships 2022 | Competitions |
       </p>
   </div>
 
-  <div class="container">
+  <div class="container-responsive">
       <h2 class="header">Saturday</h2>
       <p>
           When everyone comes crawling back to show off just how good at swimming they truely are!
@@ -83,7 +83,7 @@ Championships 2022 | Competitions |
       
   </div>
 
-  <div class="container">
+  <div class="container-responsive">
 
         <div>
             <h2 class="header">Sunday</h2>

@@ -18,7 +18,7 @@
     
   </div>
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <div class=" image-link-group">
       <div class=" image-link" style="background-image: url(/storage/photos/DSC_0410.jpg);">
         <a href="{{ route('clubs') }}" class=" " >Clubs</a>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <h1 class="header">Me? </h1>
     <p>
       BULSCA runs purely through student clubs and volunteers.

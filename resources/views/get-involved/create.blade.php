@@ -19,7 +19,7 @@
   </div>
 
 
-  <div class=" container ">
+  <div class=" container-responsive ">
     <h1 class="header">Getting started </h1>
     <p>
     If you are a current university student looking to set up a new lifesaving club, then contact the Club Recruitment Officer, Josh, at <a href="mailto:clubrecruitment@bulsca.co.uk">clubrecruitment@bulsca.co.uk</a>

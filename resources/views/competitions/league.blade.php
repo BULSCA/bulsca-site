@@ -22,7 +22,7 @@
 
 
 
-<div class=" container ">
+<div class=" container-responsive ">
 <h2 class="pb-3 header header-larger header-bold">Competition Calender </h2>
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
