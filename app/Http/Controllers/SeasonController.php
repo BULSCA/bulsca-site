@@ -13,7 +13,8 @@ class SeasonController extends Controller
 
     public function currentSeason() {
 
-        $season = Season::where('from', '<=', now())->orderBy('to','desc')->first();
+        //$season = Season::where('from', '<=', now())->orderBy('to','desc')->first();
+        $season = Season::current();
         $comps = $season->competitions()->orderBy('when')->with('hostUni')->get();
 
         return view('competitions.league', ['season' => $season, 'comps' => $comps]);

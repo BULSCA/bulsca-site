@@ -28,7 +28,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/competitions', function () {
-    return view('competitions.index', ['season' => Season::where('from', '<=', now())->orderBy('to','desc')->first()]);
+    return view('competitions.index', ['season' => Season::current()]);
 })->name('comps');
 
 Route::get('/competitions/championships', [ChampionshipController::class, 'index'])->name('champs');
