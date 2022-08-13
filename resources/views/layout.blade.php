@@ -141,6 +141,9 @@
       </div>
     </div>
  </div>
+
+
+
  <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
     <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
 

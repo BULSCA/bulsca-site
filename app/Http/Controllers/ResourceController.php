@@ -89,7 +89,7 @@ class ResourceController extends Controller
         
 
         
-        $path = $request->file('fupload')->store('ress');
+        $path = $request->file('fupload')->store('resources');
 
         
 
@@ -104,7 +104,11 @@ class ResourceController extends Controller
     }
 
     static function storeResource(Request $request, $postFileName, $where, $fileName = 'file') {
-        $path = $request->file($postFileName)->store($where || 'ress');
+        $path = $request->file($postFileName)->store($where);
+
+        if ($fileName == "self") {
+            $fileName = $request->file($postFileName)->getClientOriginalName();
+        }
 
         
 
@@ -113,7 +117,21 @@ class ResourceController extends Controller
         $res->name = $request->input('name', $fileName);
         $res->save();
 
-        return $res->id;
+        return $res;
+    }
+
+    public function delete(Request $request) {
+        $validated = $request->validate([
+            'id' => "required"
+        ]);
+
+        $res = Resource::findOrFail($validated['id']);
+
+        Storage::delete($res->location);
+
+        $res->delete();
+
+        return redirect()->back();
     }
 
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\DynamicResourcePageController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\UniversityController;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +36,13 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
     // USERS
 
     Route::get('/users', [AdminController::class, 'viewUsers'])->name('admin.users');
+
+    Route::get('/resources', [AdminController::class, 'viewResources'])->name('admin.resources');
+    Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->name('admin.resource.upload');
+    Route::delete('/resources/delete', [ResourceController::class, 'delete'])->name('admin.resource.delete');
+    Route::post('/resources/section', [DynamicResourcePageController::class, 'createNewSection'])->name('admin.resources.section.create');
+    Route::delete('/resources/section', [DynamicResourcePageController::class, 'deleteSection'])->name('admin.resources.section.delete');
+    Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
+
 
 });

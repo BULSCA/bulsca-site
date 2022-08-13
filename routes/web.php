@@ -7,7 +7,7 @@ use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\DynamicResourcePageController;
 use App\Models\League;
 use App\Models\Season;
 
@@ -48,10 +48,8 @@ Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
 Route::Post('/get-involved/clubs/{cid}/edit', [ClubController::class, 'update'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('update-club');
 
-Route::get('/resources', function () {
-    return view('resources.index');
-})->name('resources');
-Route::get('/resources/governance', [ResourceController::class, 'governance'])->name('governance');
+Route::get('/resources', [DynamicResourcePageController::class, 'index'])->name('resources');
+Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])->name('resources.page.view');
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
 

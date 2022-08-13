@@ -332,7 +332,11 @@
    }
 
    input {
-    @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4
+    @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4;
+
+    &.file {
+      @apply file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold  file:text-black hover:file:bg-gray-200 file:cursor-pointer cursor-pointer;
+    }
    }
  }
 
@@ -424,4 +428,12 @@
         @apply border-red-500;
       }
     }
+ }
+
+ .icon {
+  @apply h-6 w-6;
+
+  &.cross {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12' /%3E%3C/svg%3E");
+  }
  }

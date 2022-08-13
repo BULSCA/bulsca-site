@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\ResourcePage;
 use App\Models\Season;
 use App\Models\University;
 use App\Models\User;
@@ -52,5 +53,13 @@ class AdminController extends Controller
 
     public function viewUsers() {
         return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);
+    }
+
+    public function viewResources() {
+        return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('name')->get()]);
+    }
+
+    public function viewResourcePage(ResourcePage $resourcePage) {
+        return view('admin.resources.page', ['rp' => $resourcePage]);
     }
 }

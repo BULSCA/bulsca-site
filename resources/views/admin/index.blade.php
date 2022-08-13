@@ -99,6 +99,11 @@ Admin |
 
     <a href="{{ route('admin.season.view', $currentSeason->id) }}">View more about this season</a>
 
+    <br>
+    <br>
+
+    <a href="{{ route('admin.resources') }}" >View Resources</a>
+
 </div>
 
 

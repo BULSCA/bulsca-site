@@ -36,7 +36,7 @@ class CompetitionController extends Controller
 
         $fileId = ResourceController::storeResource($request, 'results', 'resources/competition-results', $fileName);
 
-        $lc->results_resource = $fileId;
+        $lc->results_resource = $fileId->id;
 
         $lc->save();
 

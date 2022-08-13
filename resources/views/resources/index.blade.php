@@ -25,10 +25,14 @@ Championships 2022 | Competitions |
   
 <div class="container-responsive">
     <div class="image-link-group">
+
+        @foreach ($pages as $page)
+          <div class=" image-link " style="background-image: url(/storage/photos/DSC_0014.jpg);">
+              <a href="{{ route('resources.page.view', Str::lower($page->name)) }}" class=" " >{{ $page->name }}</a>
+          </div>
+        @endforeach
        
-        <div class=" image-link " style="background-image: url(/storage/photos/DSC_0014.jpg);">
-            <a href="{{ route('governance') }}" class=" " >Governance</a>
-        </div>
+     
         <div class=" image-link " style="background-image: url(/storage/photos/DSC_0348.jpg);">
             <a href="#" class=" " >Meetings</a>
         </div>
