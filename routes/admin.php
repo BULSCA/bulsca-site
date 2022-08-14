@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
     Route::delete('/resources/delete', [ResourceController::class, 'delete'])->name('admin.resource.delete');
     Route::post('/resources/section', [DynamicResourcePageController::class, 'createNewSection'])->name('admin.resources.section.create');
     Route::delete('/resources/section', [DynamicResourcePageController::class, 'deleteSection'])->name('admin.resources.section.delete');
+    Route::post('/resources/page', [DynamicResourcePageController::class, 'createNewPage'])->name('admin.resources.page.create');
+    Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->name('admin.resources.page.delete');
     Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
 
 

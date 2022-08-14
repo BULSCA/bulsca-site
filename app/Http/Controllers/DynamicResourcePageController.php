@@ -61,11 +61,39 @@ class DynamicResourcePageController extends Controller
         return redirect()->back();
     }
 
+    public function createNewPage(Request $request) {
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
+
+        $rp = new ResourcePage();
+        $rp->name = $validated['name'];
+      
+
+        $rp->save();
+
+        return redirect()->back();
+
+    }
+
+    public function deletePage(Request $request) {
+        $p = ResourcePage::findOrFail($request->input('id', -1));
+
+        $p->delete();
+
+        return redirect()->route('admin.resources');
+    }
+
     public function index(){
         return view('resources.index', ['pages' => ResourcePage::orderBy('name')->get()]);
     }
 
     public function view($page) {
+
+        $page = Str::replace('-', ' ', $page);
+
         $p = ResourcePage::where('name','like', $page)->first();
 
         if (!$p) {

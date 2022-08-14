@@ -136,6 +136,10 @@
     &.btn-save {
       @apply hover:bg-green-700 hover:border-green-700
     }
+
+    &.btn-danger {
+      @apply hover:bg-red-600 hover:border-red-600
+    }
   }
   
   
@@ -277,7 +281,7 @@
  }
 
  .image-link-group {
-   @apply grid md:grid-cols-2 md:gap-32 grid-cols-1 gap-8 text-center
+   @apply grid md:grid-cols-2 md:gap-28 md:gap-y-10 grid-cols-1 gap-8 text-center
  }
 
  a {

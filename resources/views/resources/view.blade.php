@@ -25,7 +25,7 @@
   
 
   <div class="container-responsive">
-  @foreach ($p->getSections as $sec)
+  @forelse ($p->getSections as $sec)
 
   
       <h3 class="header" style="margin-bottom: 1rem">{{ $sec->name }}</h3>
@@ -43,8 +43,12 @@
       </div>
       <br><hr><br>
 
-            
-  @endforeach
+  @empty
+  <p class="text-center">
+    There doesn't appear to be anything here right now!
+  </p>      
+
+  @endforelse
   </div>
 
 

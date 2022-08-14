@@ -107,6 +107,19 @@ Resources | Admin |
                 </form>
     </div>
 
+    <br>
+    <hr>
+    <br>
+    <div>
+        <h2 class="header">Delete Page</h2>
+        <form action="{{ route('admin.resources.page.delete') }}" onsubmit="return confirm('Are you sure?')" method="post">
+            <input type="hidden" name="id" value="{{ $rp->id }}" class="hidden">
+            @csrf
+            {{ method_field('DELETE') }}
+            <button class="btn btn-thinner btn-danger">Delete</button>
+        </form>
+    </div>
+
 
 
 

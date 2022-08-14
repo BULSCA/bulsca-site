@@ -32,9 +32,29 @@ Resources | Admin |
             </div>
         
         </a>
+
             
         @endforeach
     </div>
+
+    
+    <div class="py-6" >
+        <h2 class="header header-smallish">Add New Page</h2>
+        
+        <form action="{{ route('admin.resources.page.create' ) }}" method="POST" class="flex flex-col" enctype="multipart/form-data">
+            @csrf
+                    
+
+                     
+                    
+                        <div class="form-input">
+                            <label for="new-section">Page</label>
+                            <input id="new-section" class="input" name="name" required type="text" >
+                        </div>
+                        <button class="ml-auto btn btn-thinner">Create</button>
+                </form>
+    </div>
+  
 
     Also list all resources here!
 
