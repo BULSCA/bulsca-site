@@ -73,12 +73,12 @@ Resources | Admin |
                         <input type="hidden" name="section" value="{{ $sec->id }}" class="hidden">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="form-input">
-                                <label for="upload-file">File</label>
-                                <input id="upload-file" class="input file" name="resource" required type="file" onchange="updateFName(this.files)" >
+                                <label for="upload-file-{{ $sec->id }}">File</label>
+                                <input id="upload-file-{{ $sec->id }}" class="input file" name="resource" required type="file" onchange="updateFName(this.files)" >
                             </div>
                             <div class="form-input">
-                                <label for="upload-name">Name</label>
-                                <input id="upload-name" class="input " style="padding-bottom: 0.87rem; padding-top:0.87rem" name="name" required type="text" >
+                                <label for="upload-name-{{ $sec->id }}">Name</label>
+                                <input id="upload-name-{{ $sec->id }}" class="input " style="padding-bottom: 0.87rem; padding-top:0.87rem" name="name" required type="text" >
                             </div>
                         </div>
                         <button class="btn btn-thinner">Upload</button>
@@ -86,7 +86,7 @@ Resources | Admin |
                 <script>
                     function updateFName(e) {
                         
-                        document.getElementById('upload-name').value = e[0].name.split('.').slice(0, -1).join('.').replaceAll('_', " ").replaceAll('-', " ")
+                        document.getElementById('upload-name-{{ $sec->id }}').value = e[0].name.split('.').slice(0, -1).join('.').replaceAll('_', " ").replaceAll('-', " ")
 
                        
 
