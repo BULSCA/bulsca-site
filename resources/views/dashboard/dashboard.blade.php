@@ -18,7 +18,7 @@ nav-scrolled
     <small class="">
       @if (auth()->user()->getHomeUni())
         Associated with {{ auth()->user()->getHomeUni()->name }} University
-        @if (auth()->user()->isUniAdmin())
+        @if (auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
           <small>(Admin)</small>
         
           
@@ -30,7 +30,7 @@ nav-scrolled
 
     <hr class="my-5">
 
-    @if (auth()->user()->isUniAdmin())
+    @if (auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
       
     
     <h1 class="header header-smallish">

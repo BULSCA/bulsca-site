@@ -53,7 +53,7 @@ class User extends Authenticatable
 
 
 
-    public function isUniAdmin() {
-        return (bool) DB::table('user_universities')->where('user', 1)->value('admin');
+    public function isUniAdmin($uni) {
+        return (bool) DB::table('user_universities')->where('user', $this->id)->where('uni', $uni)->value('admin');
     }
 }
