@@ -7,7 +7,36 @@
   \*****************************/
 /***/ (() => {
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ToggleContent = /*#__PURE__*/_createClass(function ToggleContent(element) {
+  var _this = this;
+
+  _classCallCheck(this, ToggleContent);
+
+  this.header = element.querySelector('[toggle-header]');
+  this.content = element.querySelector('[toggle-content]');
+  this.open = true;
+  clazz = this;
+
+  this.header.onclick = function (e) {
+    console.log("g");
+
+    _this.content.classList.toggle('collapsed');
+  };
+});
+
+function start() {
+  document.querySelectorAll('[toggle]').forEach(function (e) {
+    return new ToggleContent(e);
+  });
+}
+
+window.onload = start();
 
 /***/ }),
 
