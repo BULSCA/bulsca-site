@@ -86,7 +86,7 @@ Resources | Admin |
                 <script>
                     function updateFName(e) {
                         
-                        document.getElementById('upload-name').value = e[0].name.split('.').slice(0, -1).join('.')
+                        document.getElementById('upload-name').value = e[0].name.split('.').slice(0, -1).join('.').replaceAll('_', " ").replaceAll('-', " ")
 
                        
 
