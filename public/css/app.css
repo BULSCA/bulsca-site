@@ -680,6 +680,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-3 {
   margin-right: 0.75rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
 .block {
   display: block;
 }
@@ -845,6 +851,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .table-auto {
   table-layout: auto;
 }
+.border-collapse {
+  border-collapse: collapse;
+}
 .origin-top-left {
   transform-origin: top left;
 }
@@ -910,6 +919,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .flex-col {
   flex-direction: column;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
 }
 .items-start {
   align-items: flex-start;
@@ -1163,6 +1175,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-0 {
   padding: 0px;
 }
+.p-5 {
+  padding: 1.25rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1339,6 +1357,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .capitalize {
   text-transform: capitalize;
+}
+.italic {
+  font-style: italic;
 }
 .leading-5 {
   line-height: 1.25rem;
