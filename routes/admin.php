@@ -46,5 +46,7 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
     Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->name('admin.resources.page.delete');
     Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
 
+    
+
 
 });

@@ -43,7 +43,7 @@
           </div>
 
           <div class="aspect-square  overflow-hidden flex items-center justify-center ">
-            <img src="/storage/clubs/logos/{{ $club->id }}.png" class=" " alt="">
+            <img src="{{ $club->image_path ? route('image', $club->image_path) : '/storage/logo/blogo.png' }}" class=" " alt="">
           </div>
           
       </a>

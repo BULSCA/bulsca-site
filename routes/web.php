@@ -8,8 +8,11 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DynamicResourcePageController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UniversityController;
 use App\Models\League;
 use App\Models\Season;
+use App\Services\ImageService;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +63,11 @@ Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name(
 Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->name('lc-manage');
 Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->name('lc-result-upload');
 Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->name('lc-result-remove');
+
+Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
+Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
+
+Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
 
 
 require __DIR__.'/auth.php';

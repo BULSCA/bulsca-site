@@ -104,6 +104,15 @@ Admin |
 
     <a href="{{ route('admin.resources') }}" >View Resources</a>
 
+    <form action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-input">
+            <label for="upload-file">Photo</label>
+            <input id="upload-file" class="input file" name="image" required type="file"  >
+        </div>
+        <button class="btn btn-thinner">Upload</button>
+    </form>
+
 </div>
 
 
