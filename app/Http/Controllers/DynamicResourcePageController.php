@@ -6,6 +6,7 @@ use App\Models\ResourcePage;
 use App\Models\ResourcePageSection;
 use App\Models\ResourcePageSectionResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class DynamicResourcePageController extends Controller
@@ -96,9 +97,13 @@ class DynamicResourcePageController extends Controller
 
     public function view($page) {
 
+        $defPage = $page;
+
         $page = Str::replace('-', ' ', $page);
 
-        $p = ResourcePage::where('name','like', $page)->first();
+        $p = Cache::rememberForever('resource-page-' . $defPage, function() use ($page) {
+            return ResourcePage::where('name','like', $page)->first()->load('getSections');
+        });
 
         if (!$p) {
             $data['title'] = '404';

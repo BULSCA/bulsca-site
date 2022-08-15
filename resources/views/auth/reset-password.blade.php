@@ -16,32 +16,32 @@
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            <div class="form-input">
+                <label for="email">Email</label>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <input id="email" class="input" type="email" name="email" :value="old('email', $request->email)" required autofocus />
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+            <div class="form-input">
+                <label for="password">Password</label>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
+                <input id="password" class="input" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+            <div class="form-input">
+                <label for="password_confirmation">Confirm Password</label>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
+                <input id="password_confirmation" class="input"
                                     type="password"
                                     name="password_confirmation" required />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+                <button class="btn btn-thinner">
                     {{ __('Reset Password') }}
-                </x-button>
+                </button>
             </div>
         </form>
     </x-auth-card>

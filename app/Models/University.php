@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class University extends Model
 {
@@ -31,5 +32,9 @@ class University extends Model
         if ($user == null) return false;
 
         return (bool) DB::table('user_universities')->where('user', $user->id)->where('uni', $this->id)->value('admin');
+    }
+
+    public function getAsSlug() {
+        return Str::lower($this->name) . "." . $this->id;
     }
 }

@@ -51,6 +51,8 @@ Login |
                 <label for="login-remember">Remember Me</label>
             </div>
 
+            <a href="{{ route('password.request') }}"><small>Forgot Password?</small></a>
+
             <button class="ml-auto btn btn-thinner">
                 Login
             </button>

@@ -674,6 +674,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mr-2 {
   margin-right: -0.5rem;
 }
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+.mr-3 {
+  margin-right: 0.75rem;
+}
 .block {
   display: block;
 }
@@ -737,6 +743,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-16 {
   height: 4rem;
 }
+.h-48 {
+  height: 12rem;
+}
+.h-10 {
+  height: 2.5rem;
+}
 .h-7 {
   height: 1.75rem;
 }
@@ -746,17 +758,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-20 {
   height: 5rem;
 }
-.h-10 {
-  height: 2.5rem;
-}
 .h-24 {
   height: 6rem;
 }
-.h-32 {
-  height: 8rem;
-}
-.h-48 {
-  height: 12rem;
+.h-36 {
+  height: 9rem;
 }
 .min-h-full {
   min-height: 100%;
@@ -800,23 +806,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-auto {
   width: auto;
 }
+.w-48 {
+  width: 12rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
 .w-7 {
   width: 1.75rem;
 }
 .w-20 {
   width: 5rem;
 }
-.w-48 {
-  width: 12rem;
-}
 .w-24 {
   width: 6rem;
 }
-.w-32 {
-  width: 8rem;
-}
-.w-10 {
-  width: 2.5rem;
+.w-36 {
+  width: 9rem;
 }
 .max-w-xl {
   max-width: 36rem;
@@ -970,6 +976,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -984,11 +995,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
-.space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1007,6 +1013,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .whitespace-nowrap {
   white-space: nowrap;
+}
+.break-all {
+  word-break: break-all;
 }
 .rounded-md {
   border-radius: 0.375rem;
@@ -1123,17 +1132,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
+.bg-bulsca_red {
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 13 6 / var(--tw-bg-opacity));
+}
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
-.bg-opacity-0 {
-  --tw-bg-opacity: 0;
-}
-.bg-opacity-40 {
-  --tw-bg-opacity: 0.4;
-}
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
+}
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
 }
 .fill-current {
   fill: currentColor;
@@ -1250,6 +1263,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-4 {
   padding-top: 1rem;
+}
+.pt-0 {
+  padding-top: 0px;
 }
 .text-left {
   text-align: left;
@@ -2505,10 +2521,6 @@ input.checkbox:focus {
   --tw-bg-opacity: 0.1;
 }
 
-.hover\:flex:hover {
-  display: flex;
-}
-
 .hover\:border-bulsca:hover {
   --tw-border-opacity: 1;
   border-color: rgb(7 6 96 / var(--tw-border-opacity));
@@ -2742,14 +2754,6 @@ input.checkbox:focus {
   height: auto;
 }
 
-.group:hover .group-hover\:bg-opacity-25 {
-  --tw-bg-opacity: 0.25;
-}
-
-.group:hover .group-hover\:bg-opacity-50 {
-  --tw-bg-opacity: 0.5;
-}
-
 .group:focus .group-focus\:h-auto {
   height: auto;
 }
@@ -2940,10 +2944,6 @@ input.checkbox:focus {
 
   .md\:block {
     display: block;
-  }
-
-  .md\:flex {
-    display: flex;
   }
 
   .md\:hidden {

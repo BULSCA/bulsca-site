@@ -63,6 +63,8 @@ nav-scrolled
 
       </div>
       <small>Click to change University Logo</small>
+      <br>
+      <a href="{{ route('edit-club', auth()->user()->getHomeUni()->getAsSlug()) }}">Edit Club Page</a>
 
     </div>
 
