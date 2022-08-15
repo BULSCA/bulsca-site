@@ -14,7 +14,7 @@ class ResourcePageSection extends Model
 
         $resIds = ResourcePageSectionResource::where('section', $this->id)->get('resource');
 
-        return Resource::whereIn('id', $resIds)->get();
+        return Resource::whereIn('id', $resIds)->orderBy('name')->get();
     }
 
 
