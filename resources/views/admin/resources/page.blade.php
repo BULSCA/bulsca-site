@@ -71,12 +71,27 @@ Resources | Admin |
                             <input id="upload-name" class="input" name="name" required type="text"  placeholder="File">
                         </div> -->
                         <input type="hidden" name="section" value="{{ $sec->id }}" class="hidden">
-                        <div class="form-input">
-                            <label for="upload-file">File</label>
-                            <input id="upload-file" class="input file" name="resource" required type="file" >
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-input">
+                                <label for="upload-file">File</label>
+                                <input id="upload-file" class="input file" name="resource" required type="file" onchange="updateFName(this.files)" >
+                            </div>
+                            <div class="form-input">
+                                <label for="upload-name">Name</label>
+                                <input id="upload-name" class="input " style="padding-bottom: 0.87rem; padding-top:0.87rem" name="name" required type="text" >
+                            </div>
                         </div>
                         <button class="btn btn-thinner">Upload</button>
                 </form>
+                <script>
+                    function updateFName(e) {
+                        
+                        document.getElementById('upload-name').value = e[0].name.split('.').slice(0, -1).join('.')
+
+                       
+
+                    }
+                </script>
             </div>
             
         

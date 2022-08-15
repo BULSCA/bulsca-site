@@ -15,12 +15,16 @@ class DynamicResourcePageController extends Controller
 
         $validated = $request->validate([
             'resource' => 'file|required',
-            'section' => 'required'
+            'section' => 'required',
+            'name' => 'required'
         ]);
 
-        $storeName = Str::replace("_", " ", $request->file('resource')->getClientOriginalName());
 
-        $storedRes = ResourceController::storeResource($request, 'resource', 'resources/resources', $storeName);
+
+
+    
+
+        $storedRes = ResourceController::storeResource($request, 'resource', 'resources/resources', $validated['name']);
 
         $rps = ResourcePageSection::findOrFail($validated['section']);
         $rpsr = new ResourcePageSectionResource();
