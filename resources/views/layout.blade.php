@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="/storage/logo/blogo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>@yield('title') BULSCA</title>
+    <title> @yield('title') BULSCA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -152,7 +152,7 @@
 
     </div>
     <small class="text-white pb-4">
-      Made with ☕ by Noah
+      <a class="text-white font-normal no-underline hover:underline" href="{{ route('contact') }}">Contact</a> | <a class="text-white font-normal no-underline hover:underline" href="{{ route('privacy') }}">Privacy</a> | <a class="text-white font-normal no-underline hover:underline" href="{{ route('tos') }}">Terms of Service</a>
     </small>
  </footer>
 

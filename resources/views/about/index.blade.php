@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+About | 
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
@@ -16,6 +20,23 @@
     </div>
 
     
+  </div>
+
+  <div class="container-responsive">
+    <h1 class="header header-large">
+        BULSCA
+    </h1>
+    <p>
+        The British Universities Life Saving Clubs' Association (BULSCA) acts as the governing body for, and oversees competitive lifesaving between, university clubs. Our competitions test lifesaving athletes on their prioritisation, rescue skills, fitness, first aid knowledge and ability to adapt and show initiative in an emergency. Swimming speed and endurance, while helpful, do not necessarily make a good lifesaver!
+        <br><br>
+        Lifesaving competition happens locally – between clubs, and amongst RLSS UK Branches, regionally, inter-university (the BULSCA League competitions), up to nationally (the RLSS UK National Lifesaving Championships / RLSS UK National Speed Championships) and internationally (the <a href="http://www.ilsf.org/content/lifesaving-world-championships-rescue-series" rel="noopener noreferrer">Lifesaving World Championships – Rescue Series</a>). Events occur in swimming pools, in lakes or still water sites, or on beaches at the sea!
+        <br><br>
+        Through the use of Simulated Emergency Response Competitions (SERCs), sometimes called initiatives, competitors are tested to treat or rescue as many casualties, as effectively as they can, within the allotted time. Marks are awarded for speed of treatment/rescue, quality of treatment/rescue, casualty care, aftercare, as well as ensuring emergency assistance is en route.
+        <br><br>
+        Competitors demonstrate their fitness and lifesaving skill through a line (rope) throw relay, swim and tow relay, and other speed events dictated by the <a href="http://www.rlss.org.uk/" rel="noopener noreferrer">RLSS UK</a> or <a href="http://www.ilsf.org/content/competitive-lifesaving" rel="noopener noreferrer">International Life Saving Federation</a> rulebooks.
+        <br><br>
+        As an organisation, BULSCA is well-placed to form a link between its members and lifesaving organisations, promoting student interests and accessing support from the <a href="http://www.rlss.org.uk/" rel="noopener noreferrer">Royal Life Saving Society UK</a>, <a href="http://www.slsgb.org.uk/" rel="noopener noreferrer">Surf Life Saving GB</a> and the <a href="http://rnli.org/" rel="noopener noreferrer">Royal National Lifeboat Institution</a>.
+    </p>
   </div>
 
     <div class="container-responsive ">

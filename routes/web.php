@@ -57,6 +57,10 @@ Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('vi
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
 
 Route::get('/about', function() { return view('about.index'); })->name('about');
+Route::get('/contact', function() { return view('contact'); })->name('contact');
+Route::get('/privacy', function() { return view('legal.privacy'); })->name('privacy');
+Route::get('/terms-of-service', function() { return view('legal.cookies'); })->name('tos');
+Route::get('/cookies', function() { return view('legal.cookies'); })->name('cookies');
 
 
 

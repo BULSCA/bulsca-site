@@ -1,7 +1,7 @@
 @extends('layouts.dashlayout')
 
 @section('title')
-Dashboard | 
+{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }} | Competitions | 
 @endsection
 
 @section('nav-extra')

@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+Clubs | 
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">

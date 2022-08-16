@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+Get Involved | 
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">

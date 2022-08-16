@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+{{$season->name}} | Competitions |  
+@endsection
+
 @section('content')
 
 
