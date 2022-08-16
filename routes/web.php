@@ -56,6 +56,8 @@ Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])-
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
 
+Route::get('/about', function() { return view('about.index'); })->name('about');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');

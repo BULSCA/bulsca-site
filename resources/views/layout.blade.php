@@ -44,7 +44,7 @@
             </div>
           </li>
           <li><a href="{{ route('resources') }}">Resources</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
           <li class="group">
             <a href="{{ route('dashboard') }}">Account</a>
             @auth
@@ -109,7 +109,7 @@
             </div>
           </li>
           <li><a href="{{ route('resources') }}">Resources</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
           <li><a href="#">Account</a></li>      
         </ul>
     </nav>
