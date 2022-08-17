@@ -24,9 +24,9 @@ nav-scrolled
     </h2>
     <form action="{{ route('password.change') }}" class="grid md:grid-cols-3 grid-cols-1 gap-4" method="post">
         @csrf
-        <x-form-input id="old_password" title="Old Password"></x-form-input>
-        <x-form-input id="new_password" title="New Password"></x-form-input>
-        <x-form-input id="new_password_conf" title="New Password Confirmation"></x-form-input>
+        <x-form-input id="old_password" type="password" title="Old Password"></x-form-input>
+        <x-form-input id="new_password" type="password" title="New Password"></x-form-input>
+        <x-form-input id="new_password_conf" type="password" title="New Password Confirmation"></x-form-input>
 
         <div class="col-start-3 flex">
             <button submit class="btn btn-thinner ml-auto">Save</button>
