@@ -43,6 +43,7 @@ class WelcomeUserInvite extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject("Welcome")
             ->greeting("Hello {$this->user->name},")
             ->line("You're BULSCA account is ready and can be accessed using the following credentials:")
             ->line("Email: {$this->user->email}")

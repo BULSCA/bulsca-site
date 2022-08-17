@@ -62,6 +62,11 @@ class AdminController extends Controller
         return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);
     }
 
+    public function viewUserCreate()
+    {
+        return view('admin.users.create', ['unis' => University::all()]);
+    }
+
     public function viewResources()
     {
         return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('name')->get(), 'resources' => Resource::orderBy('name')->paginate(9)]);

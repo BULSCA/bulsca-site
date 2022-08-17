@@ -6,9 +6,10 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'admin'], function() {
+Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'admin'], function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
@@ -36,6 +37,8 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
     // USERS
 
     Route::get('/users', [AdminController::class, 'viewUsers'])->name('admin.users');
+    Route::get('/users/create', [AdminController::class, 'viewUserCreate'])->name('admin.users.create');
+    Route::post('/users/create', [UserController::class, 'createUser'])->name('admin.users.create');
 
     Route::get('/resources', [AdminController::class, 'viewResources'])->name('admin.resources');
     Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->name('admin.resource.upload');
@@ -45,8 +48,4 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
     Route::post('/resources/page', [DynamicResourcePageController::class, 'createNewPage'])->name('admin.resources.page.create');
     Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->name('admin.resources.page.delete');
     Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
-
-    
-
-
 });

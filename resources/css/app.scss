@@ -335,7 +335,7 @@
 
    }
 
-   input {
+   input, select {
     @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4;
 
     &.file {

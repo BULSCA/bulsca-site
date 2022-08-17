@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/storage/logo/blogo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>@yield('title') BULSCA</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="overflow-x-hidden flex flex-col min-h-screen">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/storage/logo/blogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <title>@yield('title') BULSCA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="overflow-x-hidden flex flex-col min-h-screen">
   <div class=" w-screen z-50 transition-all duration-100 nav-scrolled-blue" id="navbar">
-  <div class="nav-wrapper transition-all duration-100">
+    <div class="nav-wrapper transition-all duration-100">
       <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
-         British Universities Lifesaving Clubs' Association
+        British Universities Lifesaving Clubs' Association
       </a>
 
       <div class="md:hidden block text-white font-bold ">
@@ -51,12 +53,12 @@
               <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 @hasanyrole('admin|super_admin')
-                  <li><a href="{{ route('admin') }}">Admin</a></li>
+                <li><a href="{{ route('admin') }}">Admin</a></li>
                 @endhasanyrole
                 <li><a href="{{ route('logout') }}">Logout</a></li>
               </ul>
             </div>
-          </li>      
+          </li>
         </ul>
       </nav>
     </div>
@@ -65,61 +67,61 @@
   <div id="mobile-nav" class="mobile-nav">
     <div>
       <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
-          British Universities Lifesaving Clubs' Association
-        </a>
-        <div class="md:hidden block text-white font-bold ">
-          <svg id="mobile-nav-closer" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </div>
+        British Universities Lifesaving Clubs' Association
+      </a>
+      <div class="md:hidden block text-white font-bold ">
+        <svg id="mobile-nav-closer" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </div>
     </div>
     <nav>
-    <ul class="">
-          <li class="group {{ Request::is('competitions*') ? 'mobile-nav-active' : ''}}">
-            <div class="mobile-nav-link">
-              <a href="{{ route('comps') }}">Competitions</a>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-
-            </div>
-            
-            <div class="mobile-dropdown">
-              <ul>
-                <li><a href="{{ route('league') }}">League</a></li>
-                <li><a href="{{ route('champs') }}">Champs</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="group {{ Request::is('get-involved*') ? 'mobile-nav-active' : ''}}">
+      <ul class="">
+        <li class="group {{ Request::is('competitions*') ? 'mobile-nav-active' : ''}}">
           <div class="mobile-nav-link">
-              <a href="{{ route('get-involved') }}">Get Involved</a>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
+            <a href="{{ route('comps') }}">Competitions</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
 
-            </div>
-            <div class="mobile-dropdown">
-              <ul>
-                <li><a href="{{ route('clubs') }}">Clubs</a></li>
-                <li><a href="{{ route('create-club') }}">Create a Club</a></li>
-              </ul>
-            </div>
-          </li>
-          <li><a href="{{ route('resources') }}">Resources</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Account</a></li>      
-        </ul>
+          </div>
+
+          <div class="mobile-dropdown">
+            <ul>
+              <li><a href="{{ route('league') }}">League</a></li>
+              <li><a href="{{ route('champs') }}">Champs</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="group {{ Request::is('get-involved*') ? 'mobile-nav-active' : ''}}">
+          <div class="mobile-nav-link">
+            <a href="{{ route('get-involved') }}">Get Involved</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+
+          </div>
+          <div class="mobile-dropdown">
+            <ul>
+              <li><a href="{{ route('clubs') }}">Clubs</a></li>
+              <li><a href="{{ route('create-club') }}">Create a Club</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{ route('resources') }}">Resources</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
     </nav>
   </div>
 
-  
-
-    @yield('content')
 
 
+  @yield('content')
 
- <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
+
+
+  <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
     <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
 
       <img src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12" alt="">
@@ -129,33 +131,35 @@
     <small class="text-white pb-4">
       Made with ☕ by Noah
     </small>
- </footer>
+  </footer>
 
-  </body>
+  @if(session('message'))
+  <x-notification-sliver>{{ session('message') }}</x-notification-sliver>
+  @endif
+</body>
 
-  <script>
+<script>
+  window.onload = function() {
+    initMobileNav()
 
 
-    window.onload = function() {
-      initMobileNav()
+  }
 
-      
+
+  function initMobileNav() {
+    let mn = document.getElementById('mobile-nav');
+    let mno = document.getElementById('mobile-nav-opener');
+    let mnc = document.getElementById('mobile-nav-closer');
+
+
+    mno.onclick = () => {
+      mn.classList.add('open')
     }
 
-
-    function initMobileNav() {
-      let mn = document.getElementById('mobile-nav');
-      let mno = document.getElementById('mobile-nav-opener');
-      let mnc = document.getElementById('mobile-nav-closer');
-
-
-      mno.onclick = () => {
-        mn.classList.add('open')
-      }
-
-      mnc.onclick = () => {
-        mn.classList.remove('open')
-      }
+    mnc.onclick = () => {
+      mn.classList.remove('open')
     }
-  </script>
+  }
+</script>
+
 </html>
