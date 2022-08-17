@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-Resources | Admin | 
+Resources | Admin |
 @endsection
 
 
@@ -20,9 +20,9 @@ Resources | Admin |
         <h1 class="header">Resource Pages</h1>
 
     </div>
-    
+
     <div class="grid grid-cols-2 gap-4">
-    @foreach ($resourcePages as $rp)
+        @foreach ($resourcePages as $rp)
         <a href="{{ route('admin.resources.page.view', $rp) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
                 <h1 class="header header-bold" style="margin-bottom: 0 !important">
@@ -30,39 +30,43 @@ Resources | Admin |
                 </h1>
                 <small class="ml-auto  text-black font-normal ">{{ $rp->getSections->count() }} Section{{ $rp->getSections->count() > 1 ? "s" : "" }}</small>
             </div>
-        
+
         </a>
 
-            
+
         @endforeach
     </div>
 
-    
-    <div class="py-6" >
+
+    <div class="py-6">
         <h2 class="header header-smallish">Add New Page</h2>
-        
+
         <form action="{{ route('admin.resources.page.create' ) }}" method="POST" class="flex flex-col" enctype="multipart/form-data">
             @csrf
-                    
 
-                     
-                    
-                        <div class="form-input">
-                            <label for="new-section">Page</label>
-                            <input id="new-section" class="input" name="name" required type="text" >
-                        </div>
-                        <button class="ml-auto btn btn-thinner">Create</button>
-                </form>
+
+
+
+            <div class="form-input">
+                <label for="new-section">Page</label>
+                <input id="new-section" class="input" name="name" required type="text">
+            </div>
+            <button class="ml-auto btn btn-thinner">Create</button>
+        </form>
     </div>
-  
 
-    Also list all resources here!
+</div>
 
+<div class="container">
+    <h1 class="header">All Resources</h1>
+    <div class="grid grid-cols-3 gap-4">
+        @foreach ($resources as $res)
+        <x-resource-download :file="$res" />
 
-
-
-   
-
+        @endforeach
+    </div>
+    <br>
+    {{ $resources->links() }}
 </div>
 
 

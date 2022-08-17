@@ -75,6 +75,10 @@ Route::get('/cookies', function () {
     return view('legal.cookies');
 })->name('cookies');
 
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings')->middleware('auth');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');

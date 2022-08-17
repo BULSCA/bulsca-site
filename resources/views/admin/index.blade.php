@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-Admin | 
+Admin |
 @endsection
 
 
@@ -14,7 +14,7 @@ Admin |
                 <small class="text-base">Current Season</small>
                 <p class=" text-4xl font-bold ">{{ $currentSeason->name }}</p>
                 <small class="text-base">{{ $currentSeason->competitions->count() }} Competitions</small>
-                
+
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -24,7 +24,7 @@ Admin |
             <div class="flex flex-col ">
                 <p class=" text-4xl font-bold ">{{ $count['competition'] }}</p>
                 <small class="text-base">Competitions</small>
-                
+
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -34,7 +34,7 @@ Admin |
             <div class="flex flex-col ">
                 <p class=" text-4xl font-bold ">{{ $count['uni'] }}</p>
                 <small class="text-base">Universities</small>
-                
+
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -46,7 +46,7 @@ Admin |
             <div class="flex flex-col ">
                 <p class=" text-4xl font-bold ">{{ $count['user'] }}</p>
                 <small class="text-base">Users</small>
-                
+
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -62,36 +62,36 @@ Admin |
 
     <div class="flex flex-row items-center  ">
         @foreach ($currentSeason->competitions()->get() as $comp)
-            <div class="flex-1 flex flex-col items-center justify-center">
+        <div class="flex-1 flex flex-col items-center justify-center">
 
-                <div class="mb-4">
-                    <a href="{{ route('admin.competition.view', $comp) }}" class="text-xl font-normal no-underline text-black hover:font-semibold hover:underline">{{ $comp->hostUni->name }}</a>
-                </div>
+            <div class="mb-4">
+                <a href="{{ route('admin.competition.view', $comp) }}" class="text-xl font-normal no-underline text-black hover:font-semibold hover:underline">{{ $comp->hostUni->name }}</a>
+            </div>
 
-                <div class="relative border-t border-gray-300 w-full " >
-                    <div class="absolute flex w-full bottom-full top-full group items-center justify-center">
-                        <span class="competition-status {{ $comp->status->toCSSStatus() }}"></span>
+            <div class="relative border-t border-gray-300 w-full ">
+                <div class="absolute flex w-full bottom-full top-full group items-center justify-center">
+                    <span class="competition-status {{ $comp->status->toCSSStatus() }}"></span>
 
-                        <div class="absolute  w-full hidden group-hover:flex items-center justify-center">
-                            <div class="bg-white rounded-md p-2 border-2">
-                                <p class="text-xs">{{ $comp->status->toStatusMessage() }}</p>
-                            </div>
+                    <div class="absolute  w-full hidden group-hover:flex items-center justify-center">
+                        <div class="bg-white rounded-md p-2 border-2">
+                            <p class="text-xs">{{ $comp->status->toStatusMessage() }}</p>
                         </div>
                     </div>
-
-              
-
                 </div>
-
-                <div class="mt-4">
-                    <p class="text-sm">{{ $comp->when->format('d/m/Y') }}</p>
-                </div>
-
-
 
 
 
             </div>
+
+            <div class="mt-4">
+                <p class="text-sm">{{ $comp->when->format('d/m/Y') }}</p>
+            </div>
+
+
+
+
+
+        </div>
         @endforeach
 
     </div>
@@ -102,16 +102,9 @@ Admin |
     <br>
     <br>
 
-    <a href="{{ route('admin.resources') }}" >View Resources</a>
+    <a href="{{ route('admin.resources') }}">View Resources</a>
 
-    <form action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="form-input">
-            <label for="upload-file">Photo</label>
-            <input id="upload-file" class="input file" name="image" required type="file"  >
-        </div>
-        <button class="btn btn-thinner">Upload</button>
-    </form>
+
 
 </div>
 

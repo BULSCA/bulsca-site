@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\Resource;
 use App\Models\ResourcePage;
 use App\Models\Season;
 use App\Models\University;
@@ -11,7 +12,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
 
         $uniCount = University::count();
@@ -23,43 +25,50 @@ class AdminController extends Controller
         ];
 
         return view('admin.index', ['count' => $count, 'currentSeason' => Season::current()]);
-
-
     }
 
-    public function viewSeasons() {
+    public function viewSeasons()
+    {
         return view('admin.seasons.index', ['seasons' => Season::orderBy('from', 'desc')->paginate(10)]);
     }
 
-    public function viewSeason(Season $season) {
+    public function viewSeason(Season $season)
+    {
         return view('admin.seasons.view', ['season' => $season]);
     }
 
-    public function viewCompetitions() {
+    public function viewCompetitions()
+    {
         return view('admin.competitions.index', ['competitions' => Competition::orderBy('when', 'desc')->paginate(10)]);
     }
 
-    public function viewCompetition(Competition $competition) {
+    public function viewCompetition(Competition $competition)
+    {
         return view('admin.competitions.view', ['competition' => $competition]);
     }
 
-    public function viewUniversities() {
+    public function viewUniversities()
+    {
         return view('admin.universities.index', ['universities' => University::orderBy('name')->paginate(10)]);
     }
 
-    public function viewUniversity(University $university) {
+    public function viewUniversity(University $university)
+    {
         return view('admin.universities.view', ['university' => $university]);
     }
 
-    public function viewUsers() {
+    public function viewUsers()
+    {
         return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);
     }
 
-    public function viewResources() {
-        return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('name')->get()]);
+    public function viewResources()
+    {
+        return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('name')->get(), 'resources' => Resource::orderBy('name')->paginate(9)]);
     }
 
-    public function viewResourcePage(ResourcePage $resourcePage) {
+    public function viewResourcePage(ResourcePage $resourcePage)
+    {
         return view('admin.resources.page', ['rp' => $resourcePage]);
     }
 }
