@@ -42,6 +42,9 @@ Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeas
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
+Route::Get('/get-involved/committee', function () {
+    return view('get-involved.committee');
+})->name('get-involved.committee');
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
 Route::Get('/get-involved/clubs/create', function () {
@@ -56,11 +59,21 @@ Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])-
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
 
-Route::get('/about', function() { return view('about.index'); })->name('about');
-Route::get('/contact', function() { return view('contact'); })->name('contact');
-Route::get('/privacy', function() { return view('legal.privacy'); })->name('privacy');
-Route::get('/terms-of-service', function() { return view('legal.cookies'); })->name('tos');
-Route::get('/cookies', function() { return view('legal.cookies'); })->name('cookies');
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+Route::get('/privacy', function () {
+    return view('legal.privacy');
+})->name('privacy');
+Route::get('/terms-of-service', function () {
+    return view('legal.cookies');
+})->name('tos');
+Route::get('/cookies', function () {
+    return view('legal.cookies');
+})->name('cookies');
 
 
 
@@ -76,5 +89,10 @@ Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')-
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
 
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+
+
+Route::get('/editor', function () {
+    return view('editor');
+});
