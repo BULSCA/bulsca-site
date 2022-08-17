@@ -8,10 +8,10 @@
 
   <div class="h-full w-full overflow-hidden relative">
     <div class="absolute top-0 right-0 w-full h-full head-bg flex items-center justify-center transition-opacity   duration-1000" id="head1">
-      <img src="./storage/logo/blogo.png" class="md:w-[12.5%] w-[50%] h-auto" alt="">
+      <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto" alt="">
     </div>
     <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity opacity-0 duration-1000 z-20" id="head2">
-      <img src="./storage/logo/blogo.png" class="md:w-[12.5%] w-[50%] h-auto" alt="">
+      <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto" alt="">
     </div>
   </div>
 
@@ -59,5 +59,17 @@
     </svg>
   </a>
 </div>
+
+<script>
+  let clk = 0;
+
+  function ee(target) {
+    clk++;
+
+    if (clk < 2) return;
+    target.src = "https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-1/89133349_2788611911222752_6862972772499324928_n.jpg?stp=dst-jpg_p200x200&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Z9BSXnigZCcAX_9ozYA&_nc_ht=scontent-mad1-1.xx&oh=00_AT--a8zn5YY8ZGnwBJ8A0MEUxQV9fRNRpolc1qrYczW83w&oe=6324671E"
+
+  }
+</script>
 
 @endsection

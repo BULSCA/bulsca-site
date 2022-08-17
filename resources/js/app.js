@@ -23,6 +23,10 @@ class ToggleContent {
 
 function start() {
     document.querySelectorAll('[toggle]').forEach(e => new ToggleContent(e))
+
 }
 
 window.onload = start()
+
+
+
