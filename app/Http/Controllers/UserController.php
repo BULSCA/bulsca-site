@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostUserCreateRequest;
 use App\Models\User;
 use App\Notifications\WelcomeUserInvite;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Mockery\Undefined;
 
 class UserController extends Controller
 {
@@ -19,6 +21,8 @@ class UserController extends Controller
 
         $validated = $request->validated();
 
+
+
         $user = new User();
 
         $user->name = $validated['user_name'];
@@ -28,11 +32,21 @@ class UserController extends Controller
         $user->password = Hash::make($password);
 
         $user->save();
-        $user->notify(new WelcomeUserInvite($user, $password));
+
+        try {
+            $user->notify(new WelcomeUserInvite($user, $password));
+        } catch (Exception $e) {
+            // Ignore failed mail for now
+        }
 
 
         if ($validated['user_university'] != 'null') {
-            DB::table('user_universities')->insert(['uni' => $validated['user_university'], 'user' => $user->id]);
+
+            if (array_key_exists('user_university_admin', $validated)) {
+                DB::table('user_universities')->insert(['uni' => $validated['user_university'], 'user' => $user->id, 'admin' => true]);
+            } else {
+                DB::table('user_universities')->insert(['uni' => $validated['user_university'], 'user' => $user->id]);
+            }
         }
 
         return redirect()->route('admin.users')->with('message', 'User created');

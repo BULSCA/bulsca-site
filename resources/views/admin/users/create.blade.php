@@ -33,6 +33,7 @@ Create | Users | Admin |
         <br>
 
         <x-form-select id="user_university" title="University" :options=" $unis "></x-form-select>
+        <x-form-input id="user_university_admin" required="false" title="Uni Admin?" type="checkbox"></x-form-input>
 
         <br>
         <button class="btn btn-thinner ml-auto">Create</button>

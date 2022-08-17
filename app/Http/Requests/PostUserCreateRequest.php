@@ -27,6 +27,7 @@ class PostUserCreateRequest extends FormRequest
             'user_name' => 'required',
             'user_email' => 'email|required|unique:users,email',
             'user_university' => '',
+            'user_university_admin' => ''
         ];
     }
 }

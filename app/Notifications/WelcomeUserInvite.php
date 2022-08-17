@@ -48,7 +48,7 @@ class WelcomeUserInvite extends Notification
             ->line("You're BULSCA account is ready and can be accessed using the following credentials:")
             ->line("Email: {$this->user->email}")
             ->line("Password: {$this->password}")
-            ->action('Login', url('/settings'))
+            ->action('Login', url('/dashboard'))
             ->line('Please change your password once logged in!');
     }
 
