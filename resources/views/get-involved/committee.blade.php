@@ -22,6 +22,47 @@ Committee | Get Involved |
 
 </div>
 
+
+@if ($time)
+<div class="container-responsive mb-5">
+  <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
+    <div class="flex flex-col items-center justify-center basis-1/5 py-4 rounded-lg animate-pulse ">
+      <div class="rounded-full w-56 h-56 overflow-hidden flex items-center justify-center">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t1.6435-9/56711145_844469509222706_903012072210563072_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=ad2b24&_nc_ohc=UfZPhcG2zQsAX9gik-F&tn=bfxGmV1Mpk9jg-Ca&_nc_ht=scontent-man2-1.xx&oh=00_AT-BS7XAczFfC8IS_siZsueb3kG2wBq6md3QrjD5KgUmRA&oe=632580DC" alt="">
+      </div>
+      <h3 class="header py-4 px-3 border-b border-gray-400">
+        Ben Barker
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Lord of Lifesaving
+      </p>
+    </div>
+    <div class="flex flex-col items-center justify-center basis-1/5 py-4 rounded-lg animate-pulse ">
+      <div class="rounded-full w-56 h-56 overflow-hidden">
+        <img src="/storage/photos/adaml.jpg" alt="">
+      </div>
+      <h3 class="header  py-4 px-3 border-b border-gray-400">
+        Adam Lane
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Legend
+      </p>
+    </div>
+    <div class="flex flex-col items-center justify-center basis-1/5 py-4 rounded-lg animate-pulse ">
+      <div class="rounded-full w-56 h-56 overflow-hidden">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t1.6435-9/202898952_3055688511422840_6374224258213301214_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=56tYeKtdrpQAX9uAwaC&_nc_ht=scontent-man2-1.xx&oh=00_AT9byXWqXXhDLPtAEDNEnWeD1ST2MYiLoxN-DhPzQtRcRw&oe=632322AA" alt="">
+      </div>
+      <h3 class="header header py-4 px-3 border-b border-gray-400">
+        Noah Hollowell
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Get Data Managed
+      </p>
+    </div>
+  </div>
+</div>
+@endif
+
 <div class="container-responsive">
   <div class="flex flex-wrap gap-2 gap-y-20 justify-center  ">
 

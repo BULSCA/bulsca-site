@@ -13,6 +13,7 @@ use App\Http\Controllers\UniversityController;
 use App\Models\League;
 use App\Models\Season;
 use App\Services\ImageService;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,15 @@ Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
 Route::Get('/get-involved/committee', function () {
-    return view('get-involved.committee');
+
+    $currentTime = Carbon::now()->timezone('Europe/London')->setHours(24)->setDate(0, 0, 0);
+
+    $fourThirty = Carbon::now()->timezone('Europe/London')->setHours(24)->setMinutes(0)->setSeconds(0)->setDate(0, 0, 0);
+    $fourThirtyFive = Carbon::now()->timezone('Europe/London')->setHours(24)->setMinutes(5)->setSeconds(0)->setDate(0, 0, 0);
+
+    $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
+
+    return view('get-involved.committee', ['time' => $isBetween]);
 })->name('get-involved.committee');
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
