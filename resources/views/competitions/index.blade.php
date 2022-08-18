@@ -35,7 +35,7 @@ Competitions |
       <a href="{{ route('league') }}" class=" ">{{ $season->name }}</a>
     </div>
     <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">
-      <a href="{{ route('champs') }}" class="">Champs 2022</a>
+      <a href="{{ route('champs') }}" class="">Champs {{ $season->to->format('Y') }}</a>
     </div>
 
 
