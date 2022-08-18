@@ -64,9 +64,9 @@ Committee | Get Involved |
 @endif
 
 <div class="container-responsive">
-  <div class="flex flex-wrap gap-2 gap-y-20 justify-center  ">
+  <div class="md:flex md:flex-wrap gap-2 gap-y-20 justify-center grid grid-cols-1  ">
 
-    @for ($i=0; $i< 9; $i++) <div class="flex flex-col items-center justify-center basis-1/5 ">
+    @for ($i=0; $i< 9; $i++) <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden">
         <img src="/storage/logo/blogo.png" alt="">
       </div>

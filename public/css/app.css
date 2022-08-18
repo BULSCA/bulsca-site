@@ -802,8 +802,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .shrink-0 {
   flex-shrink: 0;
 }
+.flex-grow {
+  flex-grow: 1;
+}
 .basis-1\/5 {
   flex-basis: 20%;
+}
+.basis-1 {
+  flex-basis: 0.25rem;
+}
+.basis-2 {
+  flex-basis: 0.5rem;
+}
+.basis-4 {
+  flex-basis: 1rem;
 }
 .origin-top-left {
   transform-origin: top left;
@@ -2994,12 +3006,20 @@ input.checkbox:focus {
     display: block;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:hidden {
     display: none;
   }
 
   .md\:w-\[12\.5\%\] {
     width: 12.5%;
+  }
+
+  .md\:basis-1\/5 {
+    flex-basis: 20%;
   }
 
   .md\:grid-cols-2 {
@@ -3012,6 +3032,10 @@ input.checkbox:focus {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:flex-wrap {
+    flex-wrap: wrap;
   }
 
   .md\:gap-32 {
