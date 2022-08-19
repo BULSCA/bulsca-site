@@ -51,7 +51,7 @@ Latest |
     </div>
 
     <div class="flex flex-col">
-        @foreach ($articles as $article)
+        @forelse ($articles as $article)
         <a href="{{ route('article.view', $article->getSlug()) }}" class="no-underline py-8 first-of-type:pt-0 border-b group">
             <article class="flex flex-col">
                 <h1 class="header">{{ $article->title }}</h1>
@@ -63,7 +63,9 @@ Latest |
             </article>
 
         </a>
-        @endforeach
+        @empty
+        <p>There aren't any articles right now. Please check back <strong>later!</strong></p>
+        @endforelse
         <br>
 
         {{ $articles->links() }}
