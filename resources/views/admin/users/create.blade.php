@@ -20,7 +20,7 @@ Create | Users | Admin |
 
     <h1 class="header">Create User</h1>
 
-    <form action="{{ route('admin.users.create') }}" method="POST" class="flex flex-col">
+    <form action="{{ route('admin.users.create.post') }}" method="POST" class="flex flex-col">
         @csrf
         <div class="grid grid-cols-3 gap-4">
             <x-form-input id="user_name" title="Name"></x-form-input>

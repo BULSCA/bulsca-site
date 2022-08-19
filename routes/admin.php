@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'a
 
     Route::get('/users', [AdminController::class, 'viewUsers'])->name('admin.users');
     Route::get('/users/create', [AdminController::class, 'viewUserCreate'])->name('admin.users.create');
-    Route::post('/users/create', [UserController::class, 'createUser'])->name('admin.users.create');
+    Route::post('/users/create', [UserController::class, 'createUser'])->name('admin.users.create.post');
 
     Route::get('/resources', [AdminController::class, 'viewResources'])->name('admin.resources');
     Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->name('admin.resource.upload');
