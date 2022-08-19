@@ -14,10 +14,10 @@ nav-scrolled
 
 <div class="container-responsive">
   <h2 style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Competitions</span></h2class=>
-    <h2 style='margin-bottom: -.25em !important'><span class="text-bulsca_red font-bold">{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}</span></h2class=>
-      <small class="">
-        {{ $comp->when->format('d/m/Y @ h:m A') }}
-      </small>
+    <h2 style='margin-bottom: -.25em !important'><span class="text-bulsca_red font-bold">{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}</span></h2>
+    <small class="">
+      {{ $comp->when->format('d/m/Y @ h:m A') }}
+    </small>
 
 
 
