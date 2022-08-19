@@ -132,12 +132,15 @@
     <div class="grid md:grid-cols-2 grid-cols-1">
       <div class="flex flex-col">
         <h2 class="header">Join the mailing list</h2>
-        <form action="#" class="flex flex-col  overflow-hidden">
-          <input type="text" class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none" placeholder="swimming@bulsca.co.uk">
+        <form action="https://bulsca.us15.list-manage.com/subscribe/post?u=1b1c9887c1e5ff377f6979e66&amp;id=94c67a5f8d&amp;f_id=00738de0f0" method="post" class="flex flex-col  overflow-hidden">
+
+          <input type="text" class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none" name="EMAIL" placeholder="swimming@bulsca.co.uk">
+          <input type="text" name="b_1b1c9887c1e5ff377f6979e66_94c67a5f8d" tabindex="-1" value="" class="hidden" hidden>
+          <input type="checkbox" id="gdpr_3427" name="gdpr[3427]" value="Y" checked class="hidden" hidden>
           <small class="my-2 mb-3">
-            By clicking below I acknowledge that BULSCA will send me emails about relevant events and news, and that I can opt out any time <a href="#" class="underline">here</a>
+            By clicking below I acknowledge that BULSCA will send me emails about relevant events and news. You may opt out anytime by clicking <strong>unsubscribe</strong> in any email!
           </small>
-          <button class="btn">Sign me up!</button>
+          <button submit class="btn">Sign me up!</button>
         </form>
 
         <br>
