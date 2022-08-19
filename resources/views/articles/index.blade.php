@@ -24,6 +24,12 @@ Latest |
 
 <div class="container-responsive">
 
+    @hasanyrole('admin|super_admin')
+    <div class="flex flex-col ">
+        <a href="{{ route('article.create') }}" class=" ml-auto btn btn-thinner">Add Article</a>
+    </div>
+    @endhasanyrole
+
     <div class="flex flex-col pb-8">
         @foreach ($pinned as $article)
         <a href="{{ route('article.view', $article->getSlug()) }}" class="no-underline py-8 first-of-type:pt-0 border-b group">
