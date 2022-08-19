@@ -38,9 +38,9 @@ Clubs |
 
 
       <div class="col-span-2  flex flex-col items-start justify-center ">
-        <h1 class="header ">
+        <h3 class="">
           {{ $club->name }}
-        </h1>
+        </h3>
         <small>
           Something else here
         </small>
