@@ -32,7 +32,7 @@
   <div class="grid grid-cols-1 md:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
     @foreach ($comps as $comp)
     <div class="flex flex-col ">
-      <a href="{{ route('lc-view', $comp->id) }}" class="header header-bold hover:text-bulsca_red">
+      <a href="{{ route('lc-view', Str::lower($comp->hostUni->name) . '-' . $comp->when->format('Y') . '.' . $comp->id) }}" class="header header-bold hover:text-bulsca_red">
         {{ $comp->hostUni->name }}
       </a>
 

@@ -27,7 +27,9 @@
 
       <nav class="ml-auto mr-10 md:block hidden">
         <ul class="flex space-x-12 nav-list">
+          <li><a href="{{ route('latest') }}">Latest</a></li>
           <li class="group {{ Request::is('competitions*') ? 'nav-active' : ''}}">
+
             <a href="{{ route('comps') }}">Competitions</a>
             <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
               <ul>
@@ -81,6 +83,7 @@
     </div>
     <nav>
       <ul class="">
+        <li><a href="{{ route('latest') }}">Latest</a></li>
         <li class="group {{ Request::is('competitions*') ? 'mobile-nav-active' : ''}}">
           <div class="mobile-nav-link">
             <a href="{{ route('comps') }}">Competitions</a>
@@ -162,6 +165,9 @@
   </footer>
 
 
+  @if(session('message'))
+  <x-notification-sliver>{{ session('message') }}</x-notification-sliver>
+  @endif
 
 </body>
 

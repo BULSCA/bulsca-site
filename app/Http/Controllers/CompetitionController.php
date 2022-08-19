@@ -11,14 +11,22 @@ class CompetitionController extends Controller
     //
 
 
-    public function view($cid){
-        $lc = Competition::find($cid)->load('hostUni', 'currentSeason');
+    public function view($cid)
+    {
+
+        $arr = explode(".", $cid);
+        $id = $arr[count($arr) - 1];
+
+
+
+        $lc = Competition::findOrFail($id)->load('hostUni', 'currentSeason');
 
         return view('dashboard.competitions.view', ['comp' => $lc]);
     }
 
-    public function manage($cid){
-        
+    public function manage($cid)
+    {
+
         $lc = Competition::find($cid)->load('hostUni', 'currentSeason');
 
         if ($lc->host != auth()->user()->getHomeUni()->id || !auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id)) {
@@ -28,7 +36,8 @@ class CompetitionController extends Controller
         return view('dashboard.competitions.manage', ['comp' => $lc]);
     }
 
-    public function resultsUpload(Request $request, $cid) {
+    public function resultsUpload(Request $request, $cid)
+    {
 
         $lc = Competition::find($cid)->load('hostUni');
 
@@ -41,31 +50,32 @@ class CompetitionController extends Controller
         $lc->save();
 
         return redirect()->route('lc-manage', ['cid' => $cid]);
-
     }
 
-    public function resultsRemove($cid) {
+    public function resultsRemove($cid)
+    {
         $lc = Competition::find($cid);
         $lc->results_resource = null;
         $lc->save();
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-    public function update(Request $request, Competition $competition) {
+    public function update(Request $request, Competition $competition)
+    {
 
         $comp = $competition;
 
 
 
         $validated = Validator::make($request->all(), [
-         
+
             'when' => 'required|date',
-         
+
         ])->validate();
 
 
 
-  
+
 
         $comp->when = $validated['when'];
 
@@ -73,7 +83,4 @@ class CompetitionController extends Controller
 
         return redirect()->back();
     }
-
- 
-
 }
