@@ -508,11 +508,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
-.col-start-3 {
-  grid-column-start: 3;
-}
 .col-start-4 {
   grid-column-start: 4;
+}
+.col-start-3 {
+  grid-column-start: 3;
 }
 .row-start-2 {
   grid-row-start: 2;
@@ -548,13 +548,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
-.-mx-6 {
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
-}
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.-mx-6 {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 }
 .my-4 {
   margin-top: 1rem;
@@ -2038,7 +2038,7 @@ h5:not(.header) {
 
   .image-link-group {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7rem;
+    gap: 5rem;
     row-gap: 2.5rem;
   }
 }
@@ -2455,6 +2455,18 @@ input.checkbox:focus {
 .toggle div.collapsed {
   overflow: hidden;
   height: 0px;
+}
+
+figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+figure.image-style-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .file\:mr-4::-webkit-file-upload-button {
