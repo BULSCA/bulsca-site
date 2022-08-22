@@ -889,11 +889,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .flex-row {
   flex-direction: row;
@@ -2458,15 +2458,12 @@ input.checkbox:focus {
 }
 
 figure {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-self: center;
 }
 
 figure.image-style-side {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-self: flex-end;
 }
 
 .file\:mr-4::-webkit-file-upload-button {

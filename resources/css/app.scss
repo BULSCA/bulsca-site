@@ -477,11 +477,11 @@
  }
 
   figure {
-    @apply flex items-center justify-center;
+    @apply justify-self-center self-center;
   }
 
   figure.image-style-side {
-    @apply flex items-center justify-end
+    @apply self-end
   }
 
  
