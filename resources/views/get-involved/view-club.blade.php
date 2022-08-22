@@ -35,7 +35,7 @@
 
 
 
-<div class="mx-2 md:mx-[20%] my-[2%]">
+<div class="mx-2 md:mx-[20%] my-[2%] flex flex-col">
   {!! $club->getPage()->first()->content ?? '' !!}
 </div>
 
