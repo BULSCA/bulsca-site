@@ -25,19 +25,22 @@
 
 </div>
 
-
-
-@if ($club->currentUserIsClubAdmin())
-<div class="mx-2 md:mx-[20%] my-[2%] flex flex-col items-center">
-  <a href="{{ url()->current() }}/edit" class="btn btn-thinner">Edit</a>
-</div>
-@endif
+<div class="container-responsive flex flex-col space-y-4">
 
 
 
-<div class="mx-2 md:mx-[20%] my-[2%] flex flex-col">
+
+
+  <a href="{{ route('latest') }}" class=" underline ">Back</a>
   {!! $club->getPage()->first()->content ?? '' !!}
+  @if ($club->currentUserIsClubAdmin())
+  <br>
+  <a href="{{ url()->current() }}/edit" class="btn btn-thinner ml-auto">Edit</a>
+
+  @endif
 </div>
+
+
 
 
 @endsection

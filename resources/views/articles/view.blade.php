@@ -24,7 +24,7 @@
 
 <div class="container-responsive flex flex-col space-y-4">
 
-    <a href="#" onclick="history.back()" class=" underline ">Back</a>
+    <a href="{{ route('latest') }}" class=" underline ">Back</a>
     <article class="flex flex-col">
         <div class="flex flex-row items-center">
 
