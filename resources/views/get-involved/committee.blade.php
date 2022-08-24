@@ -66,20 +66,95 @@ Committee | Get Involved |
 <div class="container-responsive">
   <div class="md:flex md:flex-wrap gap-2 gap-y-20 justify-center grid grid-cols-1  ">
 
-    @for ($i=0; $i< 9; $i++) <div class="flex flex-col items-center justify-center md:basis-1/5 ">
-      <div class="rounded-full w-44 h-44 overflow-hidden">
-        <img src="/storage/logo/blogo.png" alt="">
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Name Here
+        Ell Murray
       </h3>
       <p class=" text-gray-600 font-semibold">
-        Position
+        Chair
       </p>
-  </div>
-  @endfor
+    </div>
 
-</div>
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Michael Kirkham
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Secretary
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/photos/committee/treasurer.jpeg" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Dylan Nicole
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Treasurer
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Mia Green
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Club Development
+      </p>
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Lauren Hill
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Communications Officer
+      </p>
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/photos/committee/data_manager.jpg" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Noah Hollowell
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Data Manager
+      </p>
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Chloe Warr
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        ....
+      </p>
+    </div>
+
+
+  </div>
 </div>
 
 
