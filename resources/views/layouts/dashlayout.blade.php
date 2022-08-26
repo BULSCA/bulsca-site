@@ -56,9 +56,9 @@
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('settings') }}">Settings</a></li>
 
-                @hasanyrole('admin|super_admin')
+                @can('admin')
                 <li><a href="{{ route('admin') }}">Admin</a></li>
-                @endhasanyrole
+                @endcan
                 <li><a href="{{ route('logout') }}">Logout</a></li>
               </ul>
             </div>

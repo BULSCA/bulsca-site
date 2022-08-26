@@ -9,16 +9,19 @@ use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth', 'role:admin|super_admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
     // SEASONS 
 
-    Route::get('/seasons', [AdminController::class, 'viewSeasons'])->name('admin.seasons');
-    Route::get('/season/{season}', [AdminController::class, 'viewSeason'])->name('admin.season.view');
+    Route::get('/seasons', [AdminController::class, 'viewSeasons'])->middleware('can:admin.seasons')->name('admin.seasons');
+    Route::get('/seasons/create', [AdminController::class, 'viewSeasonCreate'])->middleware('can:admin.seasons.manage')->name('admin.seasons.create');
+    Route::get('/season/{season}', [AdminController::class, 'viewSeason'])->middleware('can:admin.seasons')->name('admin.season.view');
 
-    Route::post('/season/{season}/edit', [SeasonController::class, 'update'])->name('admin.season.edit');
+    Route::post('/season/{season}/edit', [SeasonController::class, 'update'])->middleware('can:admin.seasons.manage')->name('admin.season.edit');
+    Route::post('/seasons/create', [SeasonController::class, 'create'])->middleware('can:admin.seasons.manage')->name('admin.seasons.create.post');
+    Route::delete('/seasons/delete', [SeasonController::class, 'delete'])->middleware('can:admin.seasons.delete')->name('admin.seasons.delete');
 
     // COMPETITIONS
 

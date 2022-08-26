@@ -445,9 +445,15 @@
       @apply block mb-2 text-base font-semibold text-gray-900 ;
     }
 
+    
+
     > input {
       @apply  border border-gray-300 text-gray-900 text-base rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ;
+
+      
     }
+
+
 
     > small {
       @apply text-red-500 pl-2
@@ -459,6 +465,10 @@
       }
     }
  }
+
+ input:read-only {
+  @apply cursor-not-allowed bg-gray-300;
+}
 
  .icon {
   @apply h-6 w-6;

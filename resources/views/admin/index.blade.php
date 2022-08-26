@@ -7,7 +7,7 @@ Admin |
 
 @section('content')
 
-<div class="container">
+<div class="container-responsive">
     <div class="grid grid-cols-5 gap-6">
         <a href="{{ route('admin.season.view', $currentSeason->id) }}" class="rounded-md no-underline border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
             <div class="flex flex-col ">

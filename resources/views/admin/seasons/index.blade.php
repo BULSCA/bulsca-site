@@ -1,13 +1,13 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-Seasons | Admin | 
+Seasons | Admin |
 @endsection
 
 
 @section('content')
 
-<div class="container">
+<div class="container-responsive">
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>
@@ -16,7 +16,10 @@ Seasons | Admin |
 
     </div>
 
-    <h1 class="header">Seasons</h1>
+    <div class="flex items-center justify-center">
+        <h1 class="header">Seasons</h1>
+        <a href="{{ route('admin.seasons.create') }}" class="ml-auto btn btn-thinner">Create</a>
+    </div>
 
     <div class="grid grid-cols-2 gap-4">
         @foreach ($seasons as $season)
@@ -30,16 +33,16 @@ Seasons | Admin |
             <hr class="-mx-6 mb-4">
             <div>
                 <x-badge>Competitions: {{ $season->competitions->count() }}</x-badge>
-                
+
             </div>
         </a>
-            
+
         @endforeach
     </div>
 
     {{ $seasons->links() }}
 
-   
+
 
 </div>
 

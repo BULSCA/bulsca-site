@@ -8,6 +8,7 @@ use App\Models\ResourcePage;
 use App\Models\Season;
 use App\Models\University;
 use App\Models\User;
+use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -37,6 +38,11 @@ class AdminController extends Controller
         return view('admin.seasons.view', ['season' => $season]);
     }
 
+    public function viewSeasonCreate()
+    {
+        return view('admin.seasons.create');
+    }
+
     public function viewCompetitions()
     {
         return view('admin.competitions.index', ['competitions' => Competition::orderBy('when', 'desc')->paginate(10)]);
@@ -64,7 +70,7 @@ class AdminController extends Controller
 
     public function viewUserCreate()
     {
-        return view('admin.users.create', ['unis' => University::all()]);
+        return view('admin.users.create', ['unis' => University::all(), 'roles' => Role::where('name', '!=', 'super_admin')->get()]);
     }
 
     public function viewResources()

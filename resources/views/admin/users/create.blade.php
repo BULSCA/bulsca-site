@@ -7,7 +7,7 @@ Create | Users | Admin |
 
 @section('content')
 
-<div class="container">
+<div class="container-responsive">
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>
@@ -34,6 +34,18 @@ Create | Users | Admin |
 
         <x-form-select id="user_university" title="University" :options=" $unis "></x-form-select>
         <x-form-input id="user_university_admin" required="false" title="Uni Admin?" type="checkbox"></x-form-input>
+
+        <h4>Roles</h4>
+        <div class="grid grid-cols-3 gap-4">
+
+            @foreach ($roles as $role)
+            <div class="flex items-center">
+                <label for="role-{{$role->id}}" class="mr-4">{{Str::headline(Str::replace('_', ' ', $role->name))}}</label>
+                <input type="checkbox" name="role-{{$role->id}}" id="role-{{$role->id}}">
+            </div>
+
+            @endforeach
+        </div>
 
         <br>
         <button class="btn btn-thinner ml-auto">Create</button>

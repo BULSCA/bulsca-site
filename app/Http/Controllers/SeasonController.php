@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateNewSeason;
 use Illuminate\Http\Request;
 use App\Models\Season;
 use Illuminate\Support\Facades\Validator;
 
 class SeasonController extends Controller
 {
-    
 
 
-    public function currentSeason() {
+
+    public function currentSeason()
+    {
 
         //$season = Season::where('from', '<=', now())->orderBy('to','desc')->first();
         $season = Season::current();
@@ -20,7 +22,8 @@ class SeasonController extends Controller
         return view('competitions.league', ['season' => $season, 'comps' => $comps]);
     }
 
-    public function previousSeason($sid) {
+    public function previousSeason($sid)
+    {
 
         $slugParts = explode('-', $sid);
 
@@ -30,29 +33,30 @@ class SeasonController extends Controller
         return view('competitions.league', ['season' => $season, 'comps' => $comps]);
     }
 
-    public function update(Request $request, Season $season) {
+    public function update(Request $request, Season $season)
+    {
 
         $validated = Validator::make($request->all(), [
             'name' => 'required|min:8',
             'from' => 'required|date',
             'to' => 'required|date|after:from'
-        ],[
+        ], [
             'after' => 'The season must end after the start date!'
         ])->validate();
 
 
-    //     $validated = $request->validate([
-    //         'name' => 'required|min:8',
-    //         'from' => 'required|date',
-    //         'to' => 'required|date|after:from'
-    //     ],
-    //     [
-    //         'name' => 'ro'
-    //     ]
-    // );
+        //     $validated = $request->validate([
+        //         'name' => 'required|min:8',
+        //         'from' => 'required|date',
+        //         'to' => 'required|date|after:from'
+        //     ],
+        //     [
+        //         'name' => 'ro'
+        //     ]
+        // );
 
 
-  
+
 
         $season->name = $validated['name'];
         $season->from = $validated['from'];
@@ -61,6 +65,30 @@ class SeasonController extends Controller
         $season->save();
 
         return redirect()->back();
+    }
+
+    public function create(CreateNewSeason $request)
+    {
+        $validated = $request->validated();
+
+        $season = new Season();
+
+        $season->name = $validated['name'];
+        $season->from = $validated['from'];
+        $season->to = $validated['to'];
+
+        $season->save();
+
+        return redirect()->route('admin.season.view', $season)->with('message', 'Season created!');
+    }
+
+    public function delete(Request $request)
+    {
+        $season = Season::findOrFail($request->input('id', -1));
+
+        $season->delete();
+
+        return redirect()->route('admin.seasons')->with('message', 'Season Deleted!');
     }
 
     /*
@@ -75,9 +103,4 @@ class SeasonController extends Controller
         WHERE SU.id=SEASON-UNI-ID-HERE ORDER BY LC.when;
 
     */
-
-
-
-
-
 }
