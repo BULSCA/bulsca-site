@@ -517,8 +517,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .row-start-2 {
   grid-row-start: 2;
 }
+.row-start-1 {
+  grid-row-start: 1;
+}
 .m-4 {
   margin: 1rem;
+}
+.m-2 {
+  margin: 0.5rem;
 }
 .my-5 {
   margin-top: 1.25rem;
@@ -1053,6 +1059,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-l-4 {
   border-left-width: 4px;
 }
+.border-dashed {
+  border-style: dashed;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1131,6 +1140,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
@@ -2806,6 +2823,11 @@ figure.image-style-side {
 
 .group:hover .group-hover\:h-auto {
   height: auto;
+}
+
+.group:hover .group-hover\:bg-gray-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
 .group:hover .group-hover\:text-bulsca_red {

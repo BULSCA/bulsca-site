@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateNewCompetition;
 use App\Models\Competition;
+use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -82,5 +84,30 @@ class CompetitionController extends Controller
         $comp->save();
 
         return redirect()->back();
+    }
+
+    public function create(CreateNewCompetition $request)
+    {
+        $validated = $request->validated();
+
+        $comp = new Competition();
+        $comp->host = $validated['host'];
+        $comp->season = $validated['season'];
+        $comp->when = $validated['when'];
+
+        $comp->save();
+
+        return redirect()->route('admin.competition.view', $comp)->with('message', 'Competition created!');
+    }
+
+    public function delete(Request $request)
+    {
+        $comp = Competition::findOrFail($request->input('id', -1));
+
+        $season = $comp->season;
+
+        $comp->delete();
+
+        return redirect()->route('admin.season.view', $season)->with('message', 'Competition Deleted!');
     }
 }

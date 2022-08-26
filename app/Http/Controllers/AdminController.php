@@ -53,6 +53,11 @@ class AdminController extends Controller
         return view('admin.competitions.view', ['competition' => $competition]);
     }
 
+    public function viewCompetitionCreate(Season $season)
+    {
+        return view('admin.competitions.create', ['season' => $season, 'unis' => University::orderBy('name')->get()]);
+    }
+
     public function viewUniversities()
     {
         return view('admin.universities.index', ['universities' => University::orderBy('name')->paginate(10)]);

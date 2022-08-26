@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-{{ $competition->getName() }} | Competitions | Admin | 
+{{ $competition->getName() }} | Competitions | Admin |
 @endsection
 
 
@@ -18,24 +18,24 @@
     </div>
 
     <h1 class="header" style="margin-bottom: 0 !important;">{{ $competition->getName() }} </h1>
-    <a href="#" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason->name }}</a>
+    <a href="{{ route('admin.season.view', $competition->currentSeason) }}" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason->name }}</a>
 
     <h2 class="header header-small">{{ $competition->when->format('D dS M Y') }}</h2>
 
     <p class="my-4">
-        
+
         {{ $competition->getInfo && $competition->getInfo->desc ?: 'No description available yet'}}
     </p>
 
 
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-4 gap-4 hidden">
         <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
-                <h1 class="header header-smallish header-bold" >
+                <h1 class="header header-smallish header-bold">
                     Isolation
                 </h1>
                 <small class="ml-auto  text-black font-normal "></small>
-                
+
             </div>
             <hr class="-mx-6 mb-4">
             <h2 class="header header-small">
@@ -47,28 +47,28 @@
             </p>
             <h2 class="header header-small">
                 Location
-                
+
             </h2>
 
             @if ($competition->getInfo)
-                <p>
-                    {{ $competition->getInfo->isolation_information['location'] ?: 'N/A' }}
-                </p>
-                <iframe  class="w-full h-44"  id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->isolation_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <p>
+                {{ $competition->getInfo->isolation_information['location'] ?: 'N/A' }}
+            </p>
+            <iframe class="w-full h-44" id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->isolation_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             @else
-                    N/A
+            N/A
             @endif
- 
-        
+
+
         </div>
 
         <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
-                <h1 class="header header-smallish header-bold" >
+                <h1 class="header header-smallish header-bold">
                     Pool
                 </h1>
                 <small class="ml-auto  text-black font-normal "></small>
-                
+
             </div>
             <hr class="-mx-6 mb-4">
             <h2 class="header header-small">
@@ -80,17 +80,17 @@
             </p>
             <h2 class="header header-small">
                 Location
-                
+
             </h2>
             @if ($competition->getInfo)
-                <p>
-                    {{ $competition->getInfo->pool_information['location'] ?: 'N/A'}}
-                </p>
-                <iframe  class="w-full h-44"  id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->pool_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <p>
+                {{ $competition->getInfo->pool_information['location'] ?: 'N/A'}}
+            </p>
+            <iframe class="w-full h-44" id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->pool_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             @else
-                    N/A
+            N/A
             @endif
-        
+
         </div>
     </div>
 
@@ -98,20 +98,36 @@
 
 
 
-  
-    
+
+
 
     <div>
         <h1 class="header">Competition Details</h1>
-        <form action="{{ route('admin.competition.edit', $competition) }}" method="POST" class="grid grid-cols-4 gap-4">
+        <form action="@can('admin.competitions.manage'){{ route('admin.competition.edit', $competition) }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
             @csrf
 
-            <x-form-input id='when' type="datetime-local" title='When' defaultValue='{{ $competition->when }}' />
-         
+            <x-form-input deny="{{ auth()->user()->cannot('admin.competitions.manage') }}" id='when' type="datetime-local" title='When' defaultValue='{{ $competition->when }}' />
 
 
+            @can('admin.competitions.manage')
             <button type="submit" class="btn btn-thinner btn-save row-start-2 col-start-4">Save</button>
+            @endcan
         </form>
+    </div>
+
+    <div>
+        <h2>Delete</h2>
+        @can('admin.competitions.delete')
+        <p>This <strong>CANNOT</strong> be undone!</p>
+        <form action="{{ route('admin.competitions.delete') }}" onsubmit="return confirm('Are you sure? This cannot be undone!')" class="flex" method="post">
+            @csrf
+            {{ method_field('DELETE') }}
+            <input type="hidden" class="hidden" name="id" value="{{ $competition->id }}"></input>
+            <button class="btn btn-thinner btn-danger ml-auto">Delete</button>
+        </form>
+        @else
+        <p>You aren't able to delete this competition, please contact the Data Manager!</p>
+        @endcan
     </div>
 
 </div>

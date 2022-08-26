@@ -106,6 +106,12 @@
         </a>
 
         @endforeach
+        <a href="{{ route('admin.competition.create', $season->id) }}" class="px-6 py-4 rounded-md border border-dashed hover:border-bulsca transition no-underline flex items-center justify-center group">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-12 h-12 text-white  p-2 bg-gray-400 rounded-full group-hover:bg-gray-600 transition-colors">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5" />
+            </svg>
+
+        </a>
     </div>
 
     @if ($season->competitions->count() != 0)
