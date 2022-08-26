@@ -11,8 +11,9 @@ use Illuminate\Support\Str;
 
 class DynamicResourcePageController extends Controller
 {
-    
-    public function adminUpload(Request $request) {
+
+    public function adminUpload(Request $request)
+    {
 
         $validated = $request->validate([
             'resource' => 'file|required',
@@ -23,7 +24,7 @@ class DynamicResourcePageController extends Controller
 
 
 
-    
+
 
         $storedRes = ResourceController::storeResource($request, 'resource', 'resources/resources', $validated['name']);
 
@@ -36,11 +37,16 @@ class DynamicResourcePageController extends Controller
 
         $rpsr->save();
 
-        return redirect()->back();
+        $sec = ResourcePageSection::find($rps->id);
+        $page = ResourcePage::find($sec->page);
 
+        Cache::forget('resource-page-' . Str::replace(' ', '-', Str::lower($page->name)));
+
+        return redirect()->back();
     }
 
-    public function createNewSection(Request $request) {
+    public function createNewSection(Request $request)
+    {
 
         $validated = $request->validate([
             'name' => 'required',
@@ -55,18 +61,23 @@ class DynamicResourcePageController extends Controller
         $rps->save();
 
         return redirect()->back();
-
     }
 
-    public function deleteSection(Request $request) {
+    public function deleteSection(Request $request)
+    {
         $sec = ResourcePageSection::findOrFail($request->input('id', -1));
+
+        $page = ResourcePage::find($sec->page);
+
+        Cache::forget('resource-page-' . Str::replace(' ', '-', Str::lower($page->name)));
 
         $sec->delete();
 
         return redirect()->back();
     }
 
-    public function createNewPage(Request $request) {
+    public function createNewPage(Request $request)
+    {
 
         $validated = $request->validate([
             'name' => 'required',
@@ -75,15 +86,15 @@ class DynamicResourcePageController extends Controller
 
         $rp = new ResourcePage();
         $rp->name = $validated['name'];
-      
+
 
         $rp->save();
 
         return redirect()->back();
-
     }
 
-    public function deletePage(Request $request) {
+    public function deletePage(Request $request)
+    {
         $p = ResourcePage::findOrFail($request->input('id', -1));
 
         $p->delete();
@@ -91,27 +102,28 @@ class DynamicResourcePageController extends Controller
         return redirect()->route('admin.resources');
     }
 
-    public function index(){
+    public function index()
+    {
         return view('resources.index', ['pages' => ResourcePage::orderBy('name')->get()]);
     }
 
-    public function view($page) {
+    public function view($page)
+    {
 
         $defPage = $page;
 
         $page = Str::replace('-', ' ', $page);
 
-        $p = Cache::rememberForever('resource-page-' . $defPage, function() use ($page) {
-            return ResourcePage::where('name','like', $page)->first()->load('getSections');
+        $p = Cache::rememberForever('resource-page-' . $defPage, function () use ($page) {
+            return ResourcePage::where('name', 'like', $page)->first()->load('getSections');
         });
 
         if (!$p) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
-            return response()->view('errors.404',$data,404);
+            return response()->view('errors.404', $data, 404);
         }
 
         return view('resources.view', ['p' => $p]);
     }
-
 }

@@ -466,7 +466,7 @@
     }
  }
 
- input:read-only {
+ input:read-only:not([type=file]) {
   @apply cursor-not-allowed bg-gray-300;
 }
 
