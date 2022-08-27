@@ -16,9 +16,9 @@ Seasons | Admin |
 
     </div>
 
-    <div class="flex items-center justify-center">
+    <div class="flex items-center  mb-2">
         <h1 class="header">Seasons</h1>
-        <a href="{{ route('admin.seasons.create') }}" class="ml-auto btn btn-thinner">Create</a>
+        @can('admin.seasons.manage')<a href="{{ route('admin.seasons.create') }}" class="ml-auto btn btn-thinner">Create</a>@endcan
     </div>
 
     <div class="grid grid-cols-2 gap-4">

@@ -44,11 +44,11 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     // USERS
 
-    Route::get('/users', [AdminController::class, 'viewUsers'])->name('admin.users');
-    Route::get('/user/{user}', [AdminController::class, 'viewUser'])->name('admin.user');
-    Route::get('/users/create', [AdminController::class, 'viewUserCreate'])->name('admin.users.create');
-    Route::post('/users/create', [UserController::class, 'createUser'])->name('admin.users.create.post');
-    Route::post('/users/edit', [UserController::class, 'editUser'])->name('admin.users.edit');
+    Route::get('/users', [AdminController::class, 'viewUsers'])->middleware('can:admin.users')->name('admin.users');
+    Route::get('/user/{user}', [AdminController::class, 'viewUser'])->middleware('can:admin.users')->name('admin.user');
+    Route::get('/users/create', [AdminController::class, 'viewUserCreate'])->middleware('can:admin.users.manage')->name('admin.users.create');
+    Route::post('/users/create', [UserController::class, 'createUser'])->middleware('can:admin.users.manage')->name('admin.users.create.post');
+    Route::post('/users/edit', [UserController::class, 'editUser'])->middleware('can:admin.users.manage')->name('admin.users.edit');
 
     Route::get('/resources', [AdminController::class, 'viewResources'])->name('admin.resources');
     Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->name('admin.resource.upload');

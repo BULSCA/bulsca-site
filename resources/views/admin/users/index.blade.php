@@ -16,7 +16,10 @@ Users | Admin |
 
     </div>
 
-    <h1 class="header">Users</h1>
+    <div class="flex items-center  mb-2">
+        <h1 class="header">Users</h1>
+        @can('admin.users.manage')<a href="{{ route('admin.users.create') }}" class="ml-auto btn btn-thinner">Add User</a>@endcan
+    </div>
 
     <div class="grid grid-cols-2 gap-4">
         @foreach ($users as $user)
@@ -43,9 +46,6 @@ Users | Admin |
 
     <br>
 
-    <div class="flex">
-        <a href="{{ route('admin.users.create') }}" class="ml-auto"><button class="btn btn-thinner">Add User</button></a>
-    </div>
 
 
 

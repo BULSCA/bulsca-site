@@ -11,7 +11,7 @@ class FormSelect extends Component
      *
      * @return void
      */
-    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $options = [])
+    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $options = [], $deny = false)
     {
         $this->id = $id;
         $this->title = $title;
@@ -19,6 +19,7 @@ class FormSelect extends Component
         $this->defaultValue = $defaultValue;
         $this->extraCss = $extraCss;
         $this->options = $options;
+        $this->deny = $deny;
     }
 
     /**
@@ -28,6 +29,6 @@ class FormSelect extends Component
      */
     public function render()
     {
-        return view('components.form-select', ['id' => $this->id, 'title' => $this->title, 'type' => $this->type, 'defaultValue' => $this->defaultValue, 'css' => $this->extraCss, 'options' => $this->options]);
+        return view('components.form-select', ['id' => $this->id, 'title' => $this->title, 'type' => $this->type, 'defaultValue' => $this->defaultValue, 'css' => $this->extraCss, 'options' => $this->options, 'deny' => $this->deny]);
     }
 }

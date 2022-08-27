@@ -32,13 +32,13 @@
     <br>
     <h3>Edit</h3>
 
-    <form action="{{ route('admin.users.edit') }}" method="POST" class="flex flex-col">
+    <form action="@can('admin.users.manage'){{ route('admin.users.edit') }}@endcan" method="POST" class="flex flex-col">
         @csrf
         <input type="hidden" class="hidden" name="user_id" value="{{ $user->id }}">
         <div class="grid grid-cols-3 gap-4">
-            <x-form-input id="user_name" defaultValue="{{ $user->name }}" title="Name"></x-form-input>
-            <x-form-input id="user_email" defaultValue="{{ $user->email }}" title=" Email"></x-form-input>
-            <x-form-select id="user_university" defaultValue="{{ $user->getHomeUni()->id }}" title=" University" :options=" $unis "></x-form-select>
+            <x-form-input id="user_name" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->name }}" title="Name"></x-form-input>
+            <x-form-input id="user_email" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->email }}" title=" Email"></x-form-input>
+            <x-form-select id="user_university" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->getHomeUni()->id }}" title=" University" :options=" $unis "></x-form-select>
 
         </div>
 
@@ -50,7 +50,7 @@
             <label for="user_university_admin" class="mr-4">
                 Uni Admin?
             </label>
-            <input type="checkbox" {{$user->getHomeUni() && $user->getHomeUni()->isUserAdmin($user) ? 'checked' : ''}} name="user_university_admin" id="user_university_admin">
+            <input type="checkbox" @cannot('admin.users.manage') readonly @endcannot {{$user->getHomeUni() && $user->getHomeUni()->isUserAdmin($user) ? 'checked' : ''}} name="user_university_admin" id="user_university_admin">
         </div>
         <br>
 
@@ -65,14 +65,16 @@
                 <label for="role-{{$role->id}}" class="mr-4">
                     <x-badge style="{{in_array($role->name, $user->getRoleNames()->toArray()) ? 'success' : 'info' }}">{{Str::headline(Str::replace('_', ' ', $role->name))}}</x-badge>
                 </label>
-                <input type="checkbox" @if(in_array($role->name, $user->getRoleNames()->toArray())) checked @endif name="role-{{$role->id}}" id="role-{{$role->id}}">
+                <input type="checkbox" @cannot('admin.users.manage') readonly @endcannot @if(in_array($role->name, $user->getRoleNames()->toArray())) checked @endif name="role-{{$role->id}}" id="role-{{$role->id}}">
             </div>
 
             @endforeach
         </div>
 
         <br>
+        @can('admin.users.manage')
         <button class="btn btn-thinner ml-auto">Update</button>
+        @endcan
     </form>
 
 

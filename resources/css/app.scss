@@ -477,6 +477,15 @@
   @apply cursor-not-allowed bg-gray-300;
 }
 
+select:read-only {
+  @apply cursor-not-allowed bg-gray-300 pointer-events-none relative;
+
+  &::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full cursor-not-allowed;
+  }
+}
+
  .icon {
   @apply h-6 w-6;
 
