@@ -477,7 +477,7 @@
   @apply cursor-not-allowed bg-gray-300;
 }
 
-select:read-only {
+select.read-only {
   @apply cursor-not-allowed bg-gray-300 pointer-events-none relative;
 
   &::before {

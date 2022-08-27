@@ -36,8 +36,7 @@ Create | Users | Admin |
         <x-form-input id="user_university_admin" required="false" title="Uni Admin?" type="checkbox"></x-form-input>
 
         <h4>Roles</h4>
-        <p>Not currently editable!</p>
-        <div class="grid grid-cols-3 gap-4 hidden">
+        <div class="grid grid-cols-3 gap-4 ">
 
             @foreach ($roles as $role)
             <div class="flex items-center">

@@ -76,7 +76,7 @@ Resources | Admin |
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="form-input">
                                 <label for="upload-file-{{ $sec->id }}">File</label>
-                                <input id="upload-file-{{ $sec->id }}" class="input file" name="resource" required type="file" onchange="updateFName(this.files)">
+                                <input id="upload-file-{{ $sec->id }}" class="input file" name="resource" required type="file" onchange="updateFName(this.files, {{ $sec->id }})">
                             </div>
                             <div class="form-input">
                                 <label for="upload-name-{{ $sec->id }}">Name</label>
@@ -86,9 +86,9 @@ Resources | Admin |
                         <button class="btn btn-thinner">Upload</button>
                     </form>
                     <script>
-                        function updateFName(e) {
+                        function updateFName(e, target) {
 
-                            document.getElementById('upload-name-{{ $sec->id }}').value = e[0].name.split('.').slice(0, -1).join('.').replaceAll('_', " ").replaceAll('-', " ")
+                            document.getElementById(`upload-name-${target}`).value = e[0].name.split('.').slice(0, -1).join('.').replaceAll('_', " ").replaceAll('-', " ")
 
 
 

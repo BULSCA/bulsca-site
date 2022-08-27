@@ -38,7 +38,7 @@
         <div class="grid grid-cols-3 gap-4">
             <x-form-input id="user_name" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->name }}" title="Name"></x-form-input>
             <x-form-input id="user_email" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->email }}" title=" Email"></x-form-input>
-            <x-form-select id="user_university" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->getHomeUni()->id }}" title=" University" :options=" $unis "></x-form-select>
+            <x-form-select id="user_university" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->getHomeUni() ? $user->getHomeUni()->id : 'null' }}" title=" University" :options=" $unis "></x-form-select>
 
         </div>
 
@@ -57,8 +57,8 @@
 
 
         <h4>Roles</h4>
-        <p>Not currently editable!</p>
-        <div class="grid grid-cols-3 gap-4 hidden">
+
+        <div class="grid grid-cols-3 gap-4">
 
             @foreach ($roles as $role)
             <div class="flex items-center">

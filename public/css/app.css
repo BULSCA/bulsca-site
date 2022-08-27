@@ -528,13 +528,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
 .-mx-6 {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
+}
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .my-6 {
   margin-top: 1.5rem;
@@ -2436,31 +2436,14 @@ input:read-only:not([type=file]):not([type=checkbox]) {
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
-select:-moz-read-only {
+select.read-only {
   pointer-events: none;
   position: relative;
   cursor: not-allowed;
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
-
-select:read-only {
-  pointer-events: none;
-  position: relative;
-  cursor: not-allowed;
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-select:-moz-read-only::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  cursor: not-allowed;
-}
-select:read-only::before {
+select.read-only::before {
   content: "";
   position: absolute;
   top: 0px;

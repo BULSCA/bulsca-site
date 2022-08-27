@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Mockery\Undefined;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -50,7 +51,19 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->route('admin.users')->with('message', 'User created');
+        // Roles check handling
+        $availableRoles = Role::where('name', '!=', 'super_admin')->get();
+
+        foreach ($availableRoles as $availableRole) {
+            $name = "role-{$availableRole->id}";
+
+            if ($request->input($name, false)) {
+                // If it exists then checkbox was submitted (thus it was checked!) so add role
+                $user->assignRole($availableRole);
+            }
+        }
+
+        return redirect()->route('admin.user', $user)->with('message', 'User created');
     }
 
     public function editUser(EditUserRequest $request)
@@ -70,10 +83,37 @@ class UserController extends Controller
 
         if ($validated['user_university'] != 'null') {
 
+            $exists = DB::table('user_universities')->where('user', $user->id)->where('uni', $validated['user_university'])->exists();
+
             if (array_key_exists('user_university_admin', $validated)) {
-                DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => true]);
+
+                if ($exists) {
+                    DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => true]);
+                } else {
+                    DB::table('user_universities')->insert(['user' => $user->id, 'uni' => $validated['user_university'], 'admin' => true]);
+                }
             } else {
-                DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => false]);
+                if ($exists) {
+                    DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => false]);
+                } else {
+                    DB::table('user_universities')->insert(['user' => $user->id, 'uni' => $validated['user_university'], 'admin' => false]);
+                }
+            }
+        } else {
+            DB::table('user_universities')->where('user', $user->id)->delete();
+        }
+
+        // Roles check handling
+        $availableRoles = Role::where('name', '!=', 'super_admin')->get();
+
+        foreach ($availableRoles as $availableRole) {
+            $name = "role-{$availableRole->id}";
+
+            if ($request->input($name, false)) {
+                // If it exists then checkbox was submitted (thus it was checked!) so add role
+                $user->assignRole($availableRole);
+            } else {
+                $user->removeRole($availableRole);
             }
         }
 
