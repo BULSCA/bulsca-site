@@ -25,9 +25,9 @@ Resources | Admin |
         @foreach ($resourcePages as $rp)
         <a href="{{ route('admin.resources.page.view', $rp) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
-                <h1 class="header header-bold" style="margin-bottom: 0 !important">
+                <h3 class="header header-bold" style="margin-bottom: 0 !important">
                     {{ $rp->name }}
-                </h1>
+                </h3>
                 <small class="ml-auto  text-black font-normal ">{{ $rp->getSections->count() }} Section{{ $rp->getSections->count() > 1 ? "s" : "" }}</small>
             </div>
 

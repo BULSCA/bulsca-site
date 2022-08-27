@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\PostUserCreateRequest;
 use App\Models\User;
 use App\Notifications\WelcomeUserInvite;
@@ -50,5 +51,32 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.users')->with('message', 'User created');
+    }
+
+    public function editUser(EditUserRequest $request)
+    {
+        $validated = $request->validated();
+
+        $user = User::findOrFail($validated['user_id']);
+
+
+        $user->name = $validated['user_name'];
+        $user->email = $validated['user_email'];
+
+
+        $user->save();
+
+
+
+        if ($validated['user_university'] != 'null') {
+
+            if (array_key_exists('user_university_admin', $validated)) {
+                DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => true]);
+            } else {
+                DB::table('user_universities')->where('user', $user->id)->update(['uni' => $validated['user_university'], 'admin' => false]);
+            }
+        }
+
+        return redirect()->back()->with('message', 'User updated');
     }
 }

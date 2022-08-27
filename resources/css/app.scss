@@ -473,7 +473,7 @@
     }
  }
 
- input:read-only:not([type=file]) {
+ input:read-only:not([type=file]):not([type=checkbox]) {
   @apply cursor-not-allowed bg-gray-300;
 }
 

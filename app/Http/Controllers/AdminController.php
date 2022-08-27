@@ -73,6 +73,11 @@ class AdminController extends Controller
         return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);
     }
 
+    public function viewUser(User $user)
+    {
+        return view('admin.users.view', ['user' => $user, 'unis' => University::orderBy('name')->get(), 'roles' => Role::where('name', '!=', 'super_admin')->get()]);
+    }
+
     public function viewUserCreate()
     {
         return view('admin.users.create', ['unis' => University::all(), 'roles' => Role::where('name', '!=', 'super_admin')->get()]);
