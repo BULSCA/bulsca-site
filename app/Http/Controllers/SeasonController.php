@@ -33,6 +33,11 @@ class SeasonController extends Controller
         return view('competitions.league', ['season' => $season, 'comps' => $comps]);
     }
 
+    public function previous()
+    {
+        return view('competitions.previous-leagues', ['seasons' => Season::orderBy('from', 'DESC')->paginate(6)]);
+    }
+
     public function update(Request $request, Season $season)
     {
 

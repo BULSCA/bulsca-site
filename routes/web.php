@@ -40,6 +40,7 @@ Route::get('/competitions/championships', [ChampionshipController::class, 'index
 
 Route::get('/competitions/league', [SeasonController::class, 'currentSeason'])->name('league');
 Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');
+Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous'])->name('league.previous');
 
 Route::Get('/get-involved', function () {
     return view('get-involved.index');

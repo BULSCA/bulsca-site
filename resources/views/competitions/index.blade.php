@@ -40,6 +40,10 @@ Competitions |
 
 
   </div>
+  <br>
+  <div class="image-link" style="">
+    <a href="{{ route('league.previous') }}">Previous Leagues</a>
+  </div>
 </div>
 
 
