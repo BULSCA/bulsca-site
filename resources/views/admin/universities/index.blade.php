@@ -26,9 +26,9 @@ Universities | Admin |
                     <div class=" h-10 w-10 flex items-center justify-center">
                         <img src="{{ $uni->image_path ? route('image', $uni->image_path) : '/storage/logo/blogo.png' }}" alt="">
                     </div>
-                    <h1 class="header header-bold" style="margin-bottom: 0 !important">
+                    <h3 class="header header-bold" style="margin-bottom: 0 !important">
                         {{ $uni->name }}
-                    </h1>
+                    </h3>
                 </div>
                 <small class="ml-auto  text-black font-normal ">Club Page</small>
             </div>

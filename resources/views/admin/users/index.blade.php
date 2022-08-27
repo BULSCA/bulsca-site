@@ -22,9 +22,9 @@ Users | Admin |
         @foreach ($users as $user)
         <a href="#" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
-                <h1 class="header header-bold">
+                <h3 class="header header-bold">
                     {{ $user->name }}
-                </h1>
+                </h3>
                 <small class="ml-auto  text-black font-normal "></small>
 
             </div>

@@ -17,10 +17,11 @@
 
     </div>
 
-    <h1 class="header" style="margin-bottom: 0 !important;">{{ $competition->getName() }} </h1>
     <a href="{{ route('admin.season.view', $competition->currentSeason) }}" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason->name }}</a>
+    <h1 class="header -mt-1" style="margin-bottom: 0 !important;">{{ $competition->getName() }} </h1>
+    <small class="text-bulsca_red no-underline text-sm font-semibold">{{ $competition->when->format('D dS M Y') }} </small>
 
-    <h2 class="header header-small">{{ $competition->when->format('D dS M Y') }}</h2>
+
 
     <p class="my-4">
 

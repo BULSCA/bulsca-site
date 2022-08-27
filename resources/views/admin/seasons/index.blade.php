@@ -25,9 +25,9 @@ Seasons | Admin |
         @foreach ($seasons as $season)
         <a href="{{ route('admin.season.view', $season) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
-                <h1 class="header header-bold">
+                <h3 class="header header-bold">
                     {{ $season->name }}
-                </h1>
+                </h3>
                 <small class="ml-auto mb-4 text-black font-normal ">{{ $season->from->format('d/m/Y') }} - {{ $season->to->format('d/m/Y') }}</small>
             </div>
             <hr class="-mx-6 mb-4">
