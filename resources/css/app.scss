@@ -297,17 +297,21 @@
  .image-link {
   
 
-   @apply h-52 bg-bulsca flex items-center justify-center bg-image transition-all;
+   @apply h-52 bg-contain bg-gradient-to-tr from-bulsca to-bulsca_red flex items-center justify-center bg-image transition-all relative;
    
 
    > a {
-    @apply text-white text-2xl font-semibold uppercase w-full h-full flex items-center justify-center transition-all no-underline;
+    @apply text-white text-2xl font-semibold uppercase w-full h-full flex items-center justify-center transition-all no-underline z-40;
     background-color: rgba(0,0,0,0.3);
     &:hover {
       background-color: rgba(0,0,0,0.4);
     }
    }
+
+   
  }
+
+
 
  .image-link-group {
    @apply grid md:grid-cols-2  md:gap-20 md:gap-y-10 grid-cols-1 gap-8 text-center

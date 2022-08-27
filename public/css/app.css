@@ -2001,12 +2001,16 @@ h5:not(.header) {
 }
 
 .image-link {
+  position: relative;
   display: flex;
   height: 13rem;
   align-items: center;
   justify-content: center;
-  --tw-bg-opacity: 1;
-  background-color: rgb(7 6 96 / var(--tw-bg-opacity));
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  --tw-gradient-from: #070660;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(7 6 96 / 0));
+  --tw-gradient-to: #9e0d06;
+  background-size: contain;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -2015,6 +2019,7 @@ h5:not(.header) {
   background-position: center;
 }
 .image-link > a {
+  z-index: 40;
   display: flex;
   height: 100%;
   width: 100%;

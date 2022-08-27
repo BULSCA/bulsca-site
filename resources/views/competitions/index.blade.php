@@ -41,7 +41,7 @@ Competitions |
 
   </div>
   <br>
-  <div class="image-link" style="">
+  <div class="image-link bulsca" style="">
     <a href="{{ route('league.previous') }}">Previous Leagues</a>
   </div>
 </div>
