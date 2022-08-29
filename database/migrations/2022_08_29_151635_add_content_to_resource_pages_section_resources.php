@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('resource_page_section_resources', function (Blueprint $table) {
             $table->longText('content');
+            $table->text('name');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('resource_page_section_resources', function (Blueprint $table) {
             $table->dropColumn('content');
+            $table->dropColumn('name');
         });
     }
 };

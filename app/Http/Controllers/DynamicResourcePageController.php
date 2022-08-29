@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ResourceSearch;
 use App\Models\ResourcePage;
 use App\Models\ResourcePageSection;
 use App\Models\ResourcePageSectionResource;
@@ -31,10 +32,19 @@ class DynamicResourcePageController extends Controller
         $rps = ResourcePageSection::findOrFail($validated['section']);
         $rpsr = new ResourcePageSectionResource();
 
+
+        $content = "";
+
+        if ($request->file('resource')->extension() == "pdf") {
+            $fullTarget = storage_path('app') . '/' . $storedRes->location;
+            $content = shell_exec("pdftotext {$fullTarget} -");
+        }
+
         $rpsr->section = $rps->id;
         $rpsr->resource = $storedRes->id;
+        $rpsr->name = $storedRes->name;
         $rpsr->short = "";
-        $rpsr->content = "";
+        $rpsr->content = $content;
 
         $rpsr->save();
 
@@ -126,5 +136,16 @@ class DynamicResourcePageController extends Controller
         }
 
         return view('resources.view', ['p' => $p]);
+    }
+
+    public function search($search)
+    {
+
+
+
+
+        $found = ResourcePageSectionResource::where('name', 'LIKE', "%{$search}%")->orWhere('content', 'LIKE', "%{$search}%")->get(['name', 'resource']);
+
+        return response()->json($found);
     }
 }

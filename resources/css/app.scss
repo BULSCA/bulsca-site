@@ -176,7 +176,11 @@
  }
 
  .container-responsive {
-    @apply px-2 md:px-[20%] md:py-[2%] py-[10%]  flex-1
+    @apply px-2 md:px-[20%] md:py-[2%] py-[10%]  flex-1;
+
+    &.no-bottom {
+      @apply pb-0;
+    }
  }
 
  .container-boast {
@@ -510,5 +514,38 @@ select.read-only {
     @apply self-end
   }
 
- 
+div.form-search {
+
+  @apply flex flex-col relative;
+
+  > input {
+    @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca ;
+
+    
+  }
+
+  > input:hover + div, input:focus + div{
+    display: flex
+  }
+
+  > .results {
+    @apply absolute z-50 bg-white border rounded-md p-4 top-10 rounded-tl-none rounded-tr-none left-0 w-full  flex-col hidden  ;
+
+
+
+    &:hover {
+      @apply flex;
+    }
+
+    > .result {
+      @apply no-underline font-normal border-b py-4 last:border-b-0 last:pb-0;
+      > p:first-child {
+        @apply text-base font-bold;
+      }
+      > p:last-child {
+        @apply text-sm text-gray-400 no-underline;
+      }
+    }
+  }
+}
 

@@ -60,20 +60,30 @@ class AddResources extends Command
 
             $target = 'resources/resources/' . Str::random(40) . '.' . $fileInfo->getExtension();
 
+            $fullTarget = storage_path('app') . '/' . $target;
 
-
-            copy($fileInfo->getPathname(), storage_path('app') . '/' . $target);
+            copy($fileInfo->getPathname(), $fullTarget);
 
             $resource = new Resource();
             $resource->name = Str::replace('-', ' ', Str::replace('_', ' ', pathinfo($fileInfo->getPathname(), PATHINFO_FILENAME)));
             $resource->location = $target;
             $resource->save();
 
+            $contents = "";
+
+            if ($fileInfo->getExtension() == 'pdf') {
+                $contents = shell_exec("pdftotext {$fullTarget} -");
+            }
+            if ($fileInfo->getExtension() == 'txt') {
+                $contents = file_get_contents($fullTarget);
+            }
+
             $rpsr = new ResourcePageSectionResource();
             $rpsr->section = $section->id;
             $rpsr->resource = $resource->id;
+            $rpsr->name = $resource->name;
             $rpsr->short = "";
-            $rpsr->content = "";
+            $rpsr->content = $contents;
             $rpsr->save();
         }
 

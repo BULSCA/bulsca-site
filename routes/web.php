@@ -69,6 +69,7 @@ Route::get('/resources', [DynamicResourcePageController::class, 'index'])->name(
 Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])->name('resources.page.view');
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
+Route::get('/resources/search/{search}', [DynamicResourcePageController::class, 'search'])->middleware('throttle:10000,1')->name('resource-search');
 
 Route::get('/about', function () {
     return view('about.index');
