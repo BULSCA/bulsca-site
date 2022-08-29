@@ -34,6 +34,7 @@ class DynamicResourcePageController extends Controller
         $rpsr->section = $rps->id;
         $rpsr->resource = $storedRes->id;
         $rpsr->short = "";
+        $rpsr->content = "";
 
         $rpsr->save();
 
