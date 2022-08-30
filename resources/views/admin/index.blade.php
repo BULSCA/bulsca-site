@@ -25,7 +25,7 @@ Admin |
         </a>
         @endcan
         @else
-        <a href="{{ route('admin.season.create') }}" class="rounded-md no-underline border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
+        <a href="{{ route('admin.seasons.create') }}" class="rounded-md no-underline border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
             <div class="flex flex-col ">
                 <small class="text-base">No Seasons </small>
                 <p class=" text-4xl font-bold ">Create Season</p>
