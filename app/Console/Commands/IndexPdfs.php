@@ -36,12 +36,12 @@ class IndexPdfs extends Command
             if (pathinfo($resource->location, PATHINFO_EXTENSION) == 'pdf') {
                 $fullTarget = storage_path('app') . '/' . $resource->location;
                 $content = "";
-                $pres->name = $resource->name;
-                //$content = shell_exec("pdftotext {$fullTarget} -");
+
+                $content = shell_exec("pdftotext {$fullTarget} -");
                 $pres->content = $content;
-                $pres->save();
-            } else {
             }
+            $pres->name = $resource->name;
+            $pres->save();
         }
         return 0;
     }
