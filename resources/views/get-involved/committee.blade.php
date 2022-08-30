@@ -153,6 +153,18 @@ Committee | Get Involved |
       </p>
     </div>
 
+    <div class="flex flex-col items-center justify-center md:basis-1/5 ">
+      <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
+        <img src="/storage/photos/committee/welfare.jpg" class="w-full h-full" alt="">
+      </div>
+      <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
+        Kirsty Reed
+      </h3>
+      <p class=" text-gray-600 font-semibold">
+        Welfare Officer
+      </p>
+    </div>
+
 
   </div>
 </div>

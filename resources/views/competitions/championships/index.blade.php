@@ -73,7 +73,7 @@ Championships {{ $season->to->format('Y') }} | Competitions |
       <h2 class="header header-small">Relay Events</h2>
       <ul class=" list-disc list-inside">
         <li>4 x 50m Obstacles Relay</li>
-        <li>4 x 12.5m Line Throw Relay</li>
+        <li>4 x 10m Line Throw Relay</li>
         <li>4 x 25m Manikin Tow Relay</li>
         <li>4 x 50m Medley</li>
         <li>4 x 50m Pool Lifesaver Relay</li>
