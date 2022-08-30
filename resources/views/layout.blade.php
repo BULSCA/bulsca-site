@@ -178,8 +178,8 @@
   <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
     <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
 
-      <img src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12" alt="">
-      <img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12" alt="">
+      <a href="https://www.facebook.com/BULSCA/" rel="noopener noreferrer" target="_blank"><img src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12" alt=""></a>
+      <a href="https://www.instagram.com/bulsca" rel="noopener noreferrer" target="_blank"><img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12" alt=""></a>
 
     </div>
     <small class="text-white pb-4">
