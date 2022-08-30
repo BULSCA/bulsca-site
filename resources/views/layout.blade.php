@@ -183,7 +183,7 @@
 
     </div>
     <small class="text-white pb-4">
-      <a class="text-white font-normal no-underline hover:underline" href="{{ route('contact') }}">Contact</a> | <a class="text-white font-normal no-underline hover:underline" href="{{ route('privacy') }}">Privacy</a> | <a class="text-white font-normal no-underline hover:underline" href="{{ route('tos') }}">Terms of Service</a>
+      <a class="text-white font-normal no-underline hover:underline" href="{{ route('contact') }}">Contact</a>
     </small>
   </footer>
 
