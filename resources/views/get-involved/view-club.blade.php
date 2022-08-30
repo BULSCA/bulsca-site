@@ -31,7 +31,7 @@
 
   <div class="flex flex-row items-center">
     <a href="{{ route('clubs') }}" class=" underline ">Back</a>
-    @if ($club->currentUserIsClubAdmin() || auth()->user()->can('admin.universities.manage'))
+    @if ($club->currentUserIsClubAdmin() || (auth()->user() && auth()->user()->can('admin.universities.manage')))
 
     <a href="{{ url()->current() }}/edit" class="btn btn-thinner ml-auto">Edit</a>
 
