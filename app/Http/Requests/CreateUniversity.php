@@ -24,7 +24,7 @@ class CreateUniversity extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:universities,name|min:8',
+            'name' => 'required|unique:universities,name|min:2',
             'image' => 'nullable|file'
         ];
     }
