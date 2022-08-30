@@ -29,15 +29,18 @@
 
 
 
+  <div class="flex flex-row items-center">
+    <a href="{{ route('clubs') }}" class=" underline ">Back</a>
+    @if ($club->currentUserIsClubAdmin() || auth()->user()->can('admin.universities.manage'))
+
+    <a href="{{ url()->current() }}/edit" class="btn btn-thinner ml-auto">Edit</a>
+
+    @endif
+  </div>
 
 
-  <a href="{{ route('clubs') }}" class=" underline ">Back</a>
   {!! $club->getPage()->first()->content ?? '' !!}
-  @if ($club->currentUserIsClubAdmin())
-  <br>
-  <a href="{{ url()->current() }}/edit" class="btn btn-thinner ml-auto">Edit</a>
 
-  @endif
 </div>
 
 
