@@ -84,6 +84,7 @@ Admin |
     <br>
     <hr>
     <br>
+    @if($currentSeason)
     <h1 class="header">Current Season <a href="{{ route('admin.seasons') }}" class="text-base text-gray-400 hover:text-gray-700">(Previous Seasons)</a></h1>
 
     <div class="flex flex-row items-center  ">
@@ -122,6 +123,7 @@ Admin |
 
     </div>
     <br>
+    @endif
 
     <a href="{{ route('admin.season.view', $currentSeason->id) }}">View more about this season</a>
 
