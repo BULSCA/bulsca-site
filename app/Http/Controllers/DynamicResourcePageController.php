@@ -144,7 +144,7 @@ class DynamicResourcePageController extends Controller
 
 
 
-        $found = ResourcePageSectionResource::where('name', 'LIKE', "%{$search}%")->orWhere('content', 'LIKE', "%{$search}%")->get(['name', 'resource']);
+        $found = ResourcePageSectionResource::where('name', 'LIKE', "%{$search}%")->orWhere('content', 'LIKE', "%{$search}%")->limit(10)->get(['name', 'resource']);
 
         return response()->json($found);
     }
