@@ -149,7 +149,7 @@ Committee | Get Involved |
         Chloe Warr
       </h3>
       <p class=" text-gray-600 font-semibold">
-        ....
+        Championship Coordinator
       </p>
     </div>
 
