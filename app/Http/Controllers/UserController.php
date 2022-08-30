@@ -83,7 +83,7 @@ class UserController extends Controller
 
         if ($validated['user_university'] != 'null') {
 
-            $exists = DB::table('user_universities')->where('user', $user->id)->where('uni', $validated['user_university'])->exists();
+            $exists = DB::table('user_universities')->where('user', $user->id)->exists();
 
             if (array_key_exists('user_university_admin', $validated)) {
 

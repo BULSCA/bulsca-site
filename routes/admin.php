@@ -37,10 +37,15 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     // UNIVERSITIES
 
-    Route::get('/universities', [AdminController::class, 'viewUniversities'])->name('admin.universities');
-    Route::get('/university/{university}', [AdminController::class, 'viewUniversity'])->name('admin.university.view');
+    Route::get('/universities', [AdminController::class, 'viewUniversities'])->middleware('can:admin.universities')->name('admin.universities');
+    Route::get('/universities/create', [AdminController::class, 'viewUniversityCreate'])->middleware('can:admin.universities.manage')->name('admin.universities.create');
+    Route::post('/universities/create', [UniversityController::class, 'create'])->middleware('can:admin.universities.manage')->name('admin.universities.create.post');
+    Route::get('/university/{university}', [AdminController::class, 'viewUniversity'])->middleware('can:admin.universities')->name('admin.university.view');
 
-    Route::post('/university/{university}/edit', [UniversityController::class, 'update'])->name('admin.university.edit');
+    Route::post('/university/{university}/edit', [UniversityController::class, 'update'])->middleware('can:admin.universities.manage')->name('admin.university.edit');
+    Route::delete('/university/delete', [UniversityController::class, 'delete'])->middleware('can:admin.universities.delete')->name('admin.universities.delete');
+
+
 
     // USERS
 

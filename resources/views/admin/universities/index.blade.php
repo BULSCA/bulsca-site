@@ -16,7 +16,11 @@ Universities | Admin |
 
     </div>
 
-    <h1 class="header">Universities</h1>
+
+    <div class="flex items-center  mb-2">
+        <h1 class="header">Universities</h1>
+        @can('admin.universities.manage')<a href="{{ route('admin.universities.create') }}" class="ml-auto btn btn-thinner">Create</a>@endcan
+    </div>
 
     <div class="grid grid-cols-2 gap-4">
         @foreach ($universities as $uni)
@@ -30,13 +34,14 @@ Universities | Admin |
                         {{ $uni->name }}
                     </h3>
                 </div>
-                <small class="ml-auto  text-black font-normal ">Club Page</small>
+                <small class="ml-auto  text-black font-normal hover:underline " onclick="(e) => {e.stopPropagation(); e.preventDefault(); window.location.href='/'}"></small>
             </div>
 
         </a>
 
         @endforeach
     </div>
+    <br>
 
     {{ $universities->links() }}
 

@@ -47,6 +47,7 @@ class RolesAndPermissionsFiller extends Command
 
         $adminUniversity = Permission::findOrCreate('admin.universities');
         $adminUniversityManage = Permission::findOrCreate('admin.universities.manage');
+        $adminUniversityManageDelete = Permission::findOrCreate('admin.universities.delete');
 
         $adminUsers = Permission::findOrCreate('admin.users');
         $adminUsersManage = Permission::findOrCreate('admin.users.manage');
@@ -57,7 +58,7 @@ class RolesAndPermissionsFiller extends Command
         $article = Permission::findOrCreate('article');
 
         // Give admin all perms for now
-        $baseAdminPerms = [$adminP, $adminSeason, $adminCompetitions, $adminUniversity, $adminUsers, $adminResources, $article, $adminSeasonManage, $adminCompetitionsManage, $adminUniversityManage, $adminUsersManage, $adminResourcesManage, $adminSeasonManageDelete, $adminCompetitionsManageDelete];
+        $baseAdminPerms = [$adminP, $adminSeason, $adminCompetitions, $adminUniversity, $adminUsers, $adminResources, $article, $adminSeasonManage, $adminCompetitionsManage, $adminUniversityManage, $adminUsersManage, $adminResourcesManage, $adminSeasonManageDelete, $adminCompetitionsManageDelete, $adminUniversityManageDelete];
         $admin->syncPermissions($baseAdminPerms);
 
         // Committee can view seasons, comps, unis and users and do article stuff

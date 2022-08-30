@@ -68,6 +68,11 @@ class AdminController extends Controller
         return view('admin.universities.view', ['university' => $university]);
     }
 
+    public function viewUniversityCreate()
+    {
+        return view('admin.universities.create');
+    }
+
     public function viewUsers()
     {
         return view('admin.users.index', ['users' => User::orderBy('name')->paginate(10)]);

@@ -117,7 +117,7 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+        <img src="/storage/photos/committee/communications.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
         Lauren Hill

@@ -28,7 +28,7 @@ nav-scrolled
         <x-form-input id="new_password" type="password" title="New Password"></x-form-input>
         <x-form-input id="new_password_conf" type="password" title="New Password Confirmation"></x-form-input>
 
-        <div class="col-start-3 flex">
+        <div class="md:col-start-3 flex">
             <button submit class="btn btn-thinner ml-auto">Save</button>
         </div>
 
