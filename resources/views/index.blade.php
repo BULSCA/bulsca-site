@@ -51,7 +51,7 @@
   </div>
 </div>
 <div class="container-boast">
-  <h1 class="text-white text-3xl font-bold uppercase text-center md:text-left">Were on Facebook, go have a look!</h1>
+  <h1 class="text-white text-3xl font-bold uppercase text-center md:text-left">We're on Facebook, go have a look!</h1>
   <a href="https://www.facebook.com/BULSCA/" rel="noopener noreferrer" class="btn md:ml-auto flex flex-row items-center mt-8 md:mt-0">
     To Facebook
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

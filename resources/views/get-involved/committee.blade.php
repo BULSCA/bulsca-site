@@ -95,7 +95,7 @@ Committee | Get Involved |
         <img src="/storage/photos/committee/treasurer.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Dylan Nicole
+        Dylan Nicol
       </h3>
       <p class=" text-gray-600 font-semibold">
         Treasurer
