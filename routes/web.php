@@ -107,9 +107,9 @@ Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
-Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->name('lc-manage');
-Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->name('lc-result-upload');
-Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->name('lc-result-remove');
+Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->middleware(['auth'])->name('lc-manage');
+Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->middleware(['auth'])->name('lc-result-upload');
+Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->middleware(['auth'])->name('lc-result-remove');
 
 Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');

@@ -29,6 +29,41 @@
     </p>
 
 
+
+    @if ($competition->getResultsResource()->first())
+    <h3>Results</h3>
+    <div class="flex items-center space-x-4">
+        <x-resource-download :file="$competition->getResultsResource()->first()" />
+        <a href="{{ route('lc-result-remove', $competition) }}?admin=true" class="">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 hover:text-bulsca_red transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </a>
+    </div>
+
+
+
+    <hr class="my-5">
+
+    @else
+    <h4>
+        Upload Results
+    </h4>
+    <form action="{{ route('lc-result-upload', $competition) }}" class="grid grid-cols-1 md:grid-cols-3" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div class="form-input">
+            <label for="upload-file">File</label>
+            <input id="upload-file" class="input file" name="results" required type="file">
+            <input type="hidden" name="admin" value="true">
+        </div>
+        <button class="btn btn-thinner row-start-2 col-start-3">Upload</button>
+    </form>
+    @endif
+
+
+
+
     <div class="grid grid-cols-4 gap-4 hidden">
         <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
@@ -103,7 +138,7 @@
 
 
     <div>
-        <h1 class="header">Competition Details</h1>
+        <h3 class="header">Competition Details</h3>
         <form action="@can('admin.competitions.manage'){{ route('admin.competition.edit', $competition) }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
             @csrf
 
@@ -117,7 +152,7 @@
     </div>
 
     <div>
-        <h2>Delete</h2>
+        <h3>Delete</h3>
         @can('admin.competitions.delete')
         <p>This <strong>CANNOT</strong> be undone!</p>
         <form action="{{ route('admin.competitions.delete') }}" onsubmit="return confirm('Are you sure? This cannot be undone!')" class="flex" method="post">

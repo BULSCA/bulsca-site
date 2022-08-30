@@ -51,14 +51,23 @@ class CompetitionController extends Controller
 
         $lc->save();
 
+        if ($request->input('admin') == "true") {
+            return redirect()->back();
+        }
+
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-    public function resultsRemove($cid)
+    public function resultsRemove(Request $request, $cid)
     {
         $lc = Competition::find($cid);
         $lc->results_resource = null;
         $lc->save();
+
+        if ($request->input('admin') == "true") {
+            return redirect()->back();
+        }
+
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
@@ -80,6 +89,9 @@ class CompetitionController extends Controller
 
 
         $comp->when = $validated['when'];
+
+
+
 
         $comp->save();
 
