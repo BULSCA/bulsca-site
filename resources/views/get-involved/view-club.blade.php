@@ -31,7 +31,7 @@
 
 
 
-  <a href="{{ route('latest') }}" class=" underline ">Back</a>
+  <a href="{{ route('clubs') }}" class=" underline ">Back</a>
   {!! $club->getPage()->first()->content ?? '' !!}
   @if ($club->currentUserIsClubAdmin())
   <br>
