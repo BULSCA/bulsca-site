@@ -25,7 +25,7 @@ Create | Seasons | Admin |
 
 
     <div>
-        <form action="@can('admin.seasons.create.post'){{ route('admin.season.create') }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
+        <form action="@can('admin.seasons.create.post'){{ route('admin.seasons.create') }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
             @csrf
 
             <x-form-input id='name' title='Name' extraCss="col-span-2" />
