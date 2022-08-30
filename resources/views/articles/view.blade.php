@@ -45,7 +45,7 @@
         </p>
 
     </article>
-    @hasanyrole('admin|super_admin')
+    @hasanyrole('admin|super_admin|committee')
     <div class="flex flex-col md:flex-row ml-auto">
         <a href="{{ route('article.edit', $article->getSlug()) }}" class="btn btn-thinner">Edit</a>
     </div>

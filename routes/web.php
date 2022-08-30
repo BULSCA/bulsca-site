@@ -95,11 +95,11 @@ Route::get('/settings', function () {
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
 Route::get('/article/create', function () {
     return view('articles.create');
-})->middleware(['auth', 'role:admin|super_admin'])->name('article.create');
-Route::post('/article/create', [ArticleController::class, 'create'])->middleware(['auth', 'role:admin|super_admin'])->name('article.create.post');
-Route::get('/article/{slug}/edit', [ArticleController::class, 'editView'])->middleware(['auth', 'role:admin|super_admin'])->name('article.edit');
-Route::post('/article/{slug}/edit', [ArticleController::class, 'edit'])->middleware(['auth', 'role:admin|super_admin'])->name('article.edit.post');
-Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])->middleware(['auth', 'role:admin|super_admin'])->name('article.delete');
+})->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
+Route::post('/article/create', [ArticleController::class, 'create'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create.post');
+Route::get('/article/{slug}/edit', [ArticleController::class, 'editView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit');
+Route::post('/article/{slug}/edit', [ArticleController::class, 'edit'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit.post');
+Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.delete');
 Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article.view');
 
 

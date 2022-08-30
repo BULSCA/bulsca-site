@@ -24,7 +24,7 @@ Latest |
 
 <div class="container-responsive">
 
-    @hasanyrole('admin|super_admin')
+    @hasanyrole('admin|super_admin|committee')
     <div class="flex flex-col ">
         <a href="{{ route('article.create') }}" class=" ml-auto btn btn-thinner">Add Article</a>
     </div>
