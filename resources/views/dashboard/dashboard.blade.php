@@ -78,7 +78,7 @@ nav-scrolled
   <h3 class="">
     Your Competitions
   </h3>
-  <div class="grid grid-cols-3 gap-x-4 gap-y-3">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
     @forelse ($myCompetitions as $comp)
     <div class="relative rounded-lg  border   flex justify-between items-center ">
 
@@ -117,7 +117,7 @@ nav-scrolled
   <h3>
     Upcoming Competitions
   </h3>
-  <div class="grid grid-cols-3 gap-x-4 gap-y-3">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
     @forelse ($upcoming as $comp)
     <div class="rounded-lg  border overflow-hidden  flex justify-between items-center ">
       <div class="flex flex-col m-4">

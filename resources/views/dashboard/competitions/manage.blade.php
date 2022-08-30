@@ -23,7 +23,7 @@ nav-scrolled
 
 </div>
 
-<div class="container-responsive">
+<div class="container-responsive overflow-x-hidden">
   <h3>Results</h3>
   @if ($comp->getResultsResource()->first())
   <div class="flex items-center space-x-4">
@@ -43,12 +43,12 @@ nav-scrolled
   <h4>
     Upload/Change Results
   </h4>
-  <form action="manage/upload-results" class="inline-block" method="POST" enctype="multipart/form-data">
+  <form action="manage/upload-results" class="inline-block overflow-x-hidden" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-input">
       <label for="upload-file">File</label>
-      <input id="upload-file" class="input file:mr-4 file:py-2 file:px-0 file:pr-6 file:border-gray-200 file:border-0 file:shadow-none file:border-r cursor-pointer  file:bg-transparent" name="results" required type="file">
+      <input id="upload-file" class="input file" name="results" required type="file">
     </div>
     <button class="btn btn-thinner">Upload</button>
   </form>

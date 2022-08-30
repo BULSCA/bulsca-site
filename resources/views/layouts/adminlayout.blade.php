@@ -107,6 +107,7 @@
             <ul>
               <li><a href="{{ route('clubs') }}">Clubs</a></li>
               <li><a href="{{ route('create-club') }}">Create a Club</a></li>
+              <li><a href="{{  route('get-involved.committee')  }}">Committee</a></li>
             </ul>
           </div>
         </li>
