@@ -42,7 +42,7 @@ Clubs |
           {{ $club->name }}
         </h3>
         <small>
-          Something else here
+          Click to view more
         </small>
       </div>
 
