@@ -549,3 +549,18 @@ div.form-search {
   }
 }
 
+.thumbs-down {
+  @apply text-gray-500 hover:text-red-600 cursor-pointer hover:scale-105;
+  &.active {
+    @apply text-red-600 scale-105;
+  }
+}
+
+.thumbs-up {
+  @apply text-gray-500 hover:text-green-600 cursor-pointer hover:scale-105;
+
+  &.active {
+    @apply text-green-600 scale-105;
+  }
+}
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRatingRequest;
 use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -24,7 +25,12 @@ class ArticleController extends Controller
 
         $id = $exp[count($exp) - 1];
 
-        return view('articles.view', ['article' => Article::findOrFail($id)]);
+        $article = Article::findOrFail($id);
+
+        $article->views = $article->views + 1;
+        $article->save();
+
+        return view('articles.view', ['article' => $article]);
     }
 
     public function create(CreateArticleRequest $request)
@@ -84,5 +90,24 @@ class ArticleController extends Controller
         $a->delete();
 
         return redirect()->route('latest')->with('message', 'Article deleted!');
+    }
+
+    public function ratingChange(ArticleRatingRequest $request)
+    {
+        $validated = $request->validated();
+
+        if (!in_array($validated['type'], ['up', 'down'])) return;
+
+        $article = Article::findOrFail($validated['article']);
+
+        if ($validated['type'] === "up") {
+            $article->thumbs_up = $article->thumbs_up + 1;
+        } else {
+            $article->thumbs_down = $article->thumbs_down + 1;
+        }
+
+        $article->save();
+
+        return response(200);
     }
 }

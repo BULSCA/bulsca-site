@@ -102,6 +102,8 @@ Route::post('/article/{slug}/edit', [ArticleController::class, 'edit'])->middlew
 Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.delete');
 Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article.view');
 
+Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name('article.rating')->middleware('throttle:10,1');
+
 
 
 
