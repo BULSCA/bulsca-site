@@ -4,6 +4,9 @@
 Committee | Get Involved |
 @endsection
 
+@section('meta')The BULSCA Committee have been running since 2002 and are responsible for keeping things in check and ensuring the longevity of the association.
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">

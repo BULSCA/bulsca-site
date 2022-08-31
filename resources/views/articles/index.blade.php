@@ -4,6 +4,10 @@
 Latest |
 @endsection
 
+@section('meta')
+The latest publications from BULSCA all in one place.
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">

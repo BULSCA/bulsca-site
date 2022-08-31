@@ -4,6 +4,10 @@
 Clubs |
 @endsection
 
+@section('meta')
+BULSCA is home to clubs all across Britain, and they all come together to form BULSCA.
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">

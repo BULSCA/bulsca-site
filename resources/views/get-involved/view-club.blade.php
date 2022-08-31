@@ -4,6 +4,10 @@
 {{ $club->name }} | Clubs |
 @endsection
 
+@section('meta')
+{{ Str::of(html_entity_decode(strip_tags($club->getPage()->first()->content)))->squish()->words(40)  }}
+
+@endsection
 
 
 @section('content')

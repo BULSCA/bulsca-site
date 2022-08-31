@@ -2,7 +2,9 @@
 
 @section('content')
 
-
+@section('meta')
+The British Universities Life Saving Clubs' Association (BULSCA) acts as the governing body for, and oversees competitive lifesaving between, university clubs. Our competitions test lifesaving athletes on their prioritisation, rescue skills, fitness, first aid knowledge and ability to adapt and show initiative in an emergency. Swimming speed and endurance, while helpful, do not necessarily make a good lifesaver!
+@endsection
 
 <div class="h-[50vh] w-screen bg-gray-100  overflow-hidden  ">
 
