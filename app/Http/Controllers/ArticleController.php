@@ -24,7 +24,12 @@ class ArticleController extends Controller
 
         $id = $exp[count($exp) - 1];
 
-        return view('articles.view', ['article' => Article::findOrFail($id)]);
+        $article = Article::findOrFail($id);
+
+        $article->views = $article->views + 1;
+        $article->save();
+
+        return view('articles.view', ['article' => $article]);
     }
 
     public function create(CreateArticleRequest $request)
