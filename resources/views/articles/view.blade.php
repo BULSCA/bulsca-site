@@ -4,6 +4,10 @@
 {{ $article->title }} | Articles |
 @endsection
 
+@section('meta')
+{{ Str::of(html_entity_decode(strip_tags($article->content)))->squish()->words() }}
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
