@@ -30,6 +30,7 @@
 </div>
 
 <div class="container-responsive flex flex-col space-y-4">
+  <link rel="stylesheet" href="{{ asset('css/ck_styles.css') }}">
 
 
 
@@ -43,7 +44,9 @@
   </div>
 
 
-  {!! $club->getPage()->first()->content ?? '' !!}
+  <div class="ck-content">
+    {!! $club->getPage()->first()->content ?? '' !!}
+  </div>
 
 </div>
 
