@@ -5,7 +5,7 @@
 @endsection
 
 @section('meta')
-{{ Str::of(html_entity_decode(strip_tags($article->content)))->squish()->words() }}
+{{ Str::of(html_entity_decode(str_replace('  ', ' ', strip_tags(str_replace('<', ' <', $article->content)))))->squish()->limit(170) }}
 @endsection
 
 @section('extra-meta')

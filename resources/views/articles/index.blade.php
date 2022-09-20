@@ -68,7 +68,7 @@ The latest publications from BULSCA all in one place.
 
 
                 <p class=" text-black font-normal">
-                    {{ Str::of(html_entity_decode(strip_tags($article->content)))->squish()->words() }}
+                    {{ Str::of(html_entity_decode(str_replace('  ', ' ', strip_tags(str_replace('<', ' <', $article->content)))))->squish()->words() }}
                 </p>
                 <small class="mt-2 ml-auto group-hover:text-bulsca_red">Click to continue reading</small>
             </article>
@@ -101,7 +101,9 @@ The latest publications from BULSCA all in one place.
                     </small>
                 </div>
                 <p class=" text-black font-normal">
-                    {{ Str::of(html_entity_decode(strip_tags($article->content)))->squish()->words() }}
+                    {{ Str::of(html_entity_decode(str_replace('  ', ' ', strip_tags(str_replace('<', ' <', $article->content)))))->squish()->words() }}
+
+
                 </p>
                 <small class="mt-2 ml-auto group-hover:text-bulsca_red">Click to continue reading</small>
             </article>
