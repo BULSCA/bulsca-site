@@ -8,6 +8,11 @@
 {{ Str::of(html_entity_decode(strip_tags($article->content)))->squish()->words() }}
 @endsection
 
+@section('extra-meta')
+<meta property="article:published_time" content="{{ $article->updated_at->toIso8601String() }}" />
+<meta property="og:type" content="article" />
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
@@ -35,7 +40,7 @@
             <div class="w-full">
                 <h1 class="header header-larger">{{ $article->title }}</h1>
                 <div class="flex flex-row">
-                    <small class="text-gray-500 font-normal">{{ $article->getDateAuthorString() }}</small>
+                    <small class="text-gray-500 font-normal"> <time datetime="{{ $article->updated_at->toIso8601String() }}">{{ $article->getDateAuthorString() }}</time> </small>
                     <small class="text-gray-500 font-normal ml-auto flex flex-row items-center justify-center space-x-2">
 
                         @can('article')
