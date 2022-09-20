@@ -5,8 +5,14 @@
 @endsection
 
 @section('meta')
-{{ Str::of(html_entity_decode(strip_tags($club->getPage()->first()->content)))->squish()->words(40)  }}
 
+{{ Str::of(html_entity_decode(str_replace('  ', ' ', strip_tags(str_replace('<', ' <', $club->getPage()->first()->content)))))->squish()->limit(170) }}
+
+@endsection
+
+@section('extra-meta')
+
+<meta property="og:type" content="article" />
 @endsection
 
 
