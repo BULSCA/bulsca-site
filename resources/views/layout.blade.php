@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <meta name="description" content="@yield('meta')">
-  <meta property="og:title" content="@yield('title')">
+  <meta property="og:title" content="@yield('title') BULSCA">
   <meta name="og:description" content="@yield('meta')">
   <meta property="og:url" content="{{ url()->current() }}">
   @yield('extra-meta')
