@@ -4,6 +4,10 @@
 Welfare |
 @endsection
 
+@section('meta')
+Welcome to the Welfare Section of the BULSCA website where we have information, resources and contact information.
+@endsection
+
 @section('content')
 
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
