@@ -46,6 +46,16 @@
               </ul>
             </div>
           </li>
+          <li class="group {{ Request::is('welfare*') ? 'nav-active' : ''}}">
+            <a href="{{ route('welfare') }}" class=" overflow-hidden overflow-ellipsis whitespace-nowrap">Welfare</a>
+            <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
+              <ul>
+                <li><a href="{{ route('welfare') }}">Home</a></li>
+                <li><a href="{{  route('welfare.help-and-reporting')  }}">Help and Reporting</a></li>
+                <li><a href="{{  route('welfare.inclusion-and-accessibility')  }}">Inclusion and Accessibility</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="{{ route('resources') }}">Resources</a></li>
           <li><a href="#">About</a></li>
           <li class="group">

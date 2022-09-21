@@ -197,10 +197,10 @@
    > nav {
     
 
-     @apply my-6 mx-8 flex items-center;
+     @apply my-6 mx-8 flex items-center overflow-auto ;
 
     > ul {
-      @apply text-xl space-y-3;
+      @apply text-lg space-y-2 ;
 
       > li {
 

@@ -545,6 +545,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -560,10 +564,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -614,11 +614,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-4 {
   margin-right: 1rem;
 }
-.mt-6 {
-  margin-top: 1.5rem;
-}
 .mt-3 {
   margin-top: 0.75rem;
+}
+.mb-7 {
+  margin-bottom: 1.75rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
 }
 .-ml-\[50\%\] {
   margin-left: -50%;
@@ -638,9 +641,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mt-1 {
   margin-top: -0.25rem;
 }
-.mb-7 {
-  margin-bottom: 1.75rem;
-}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -652,6 +652,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .-mr-2 {
   margin-right: -0.5rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
 }
 .block {
   display: block;
@@ -709,6 +712,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-12 {
   height: 3rem;
+}
+.h-\[40rem\] {
+  height: 40rem;
 }
 .h-\[50vh\] {
   height: 50vh;
@@ -778,6 +784,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-12 {
   width: 3rem;
+}
+.w-\[99\%\] {
+  width: 99%;
 }
 .w-\[80\%\] {
   width: 80%;
@@ -978,15 +987,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: calc(3rem * var(--tw-space-x-reverse));
   margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-y-3 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
-}
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -1008,6 +1017,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
+.divide-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(2px * var(--tw-divide-x-reverse));
+  border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
+}
+.divide-x > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(1px * var(--tw-divide-x-reverse));
+  border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1016,11 +1035,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .overflow-x-hidden {
   overflow-x: hidden;
-}
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .overflow-ellipsis {
   text-overflow: ellipsis;
@@ -1265,11 +1279,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+.pl-1 {
+  padding-left: 0.25rem;
+}
+.pr-1 {
+  padding-right: 0.25rem;
+}
 .text-left {
   text-align: left;
 }
 .text-center {
   text-align: center;
+}
+.indent-4 {
+  text-indent: 1rem;
 }
 .indent-8 {
   text-indent: 2rem;
@@ -1902,14 +1925,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
   display: flex;
   align-items: center;
+  overflow: auto;
 }
 .mobile-nav > nav > ul > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
-  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .mobile-nav > nav > ul {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
 }
 .mobile-nav > nav > ul > li.mobile-nav-active {
@@ -3017,6 +3041,10 @@ div.form-search > .results > .result > p:last-child {
 
   .md\:w-\[12\.5\%\] {
     width: 12.5%;
+  }
+
+  .md\:w-\[60\%\] {
+    width: 60%;
   }
 
   .md\:w-1\/4 {
