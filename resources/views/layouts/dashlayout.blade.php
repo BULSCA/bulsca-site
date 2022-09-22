@@ -47,6 +47,16 @@
               </ul>
             </div>
           </li>
+          <li class="group {{ Request::is('welfare*') ? 'nav-active' : ''}}">
+            <a href="{{ route('welfare') }}" class=" overflow-hidden overflow-ellipsis whitespace-nowrap">Welfare</a>
+            <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
+              <ul>
+                <li><a href="{{ route('welfare') }}">Home</a></li>
+                <li><a href="{{  route('welfare.help-and-reporting')  }}">Help and Reporting</a></li>
+                <li><a href="{{  route('welfare.inclusion-and-accessibility')  }}">Inclusion and Accessibility</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="{{ route('resources') }}">Resources</a></li>
           <li><a href="{{ route('about') }}">About</a></li>
           <li class="group">
@@ -114,6 +124,22 @@
             </ul>
           </div>
         </li>
+        <li class="group {{ Request::is('welfare*') ? 'mobile-nav-active' : ''}}">
+          <div class="mobile-nav-link">
+            <a href="{{ route('welfare') }}">Welfare</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+
+          </div>
+          <div class="mobile-dropdown">
+            <ul>
+
+              <li><a href="{{ route('welfare.help-and-reporting') }}">Help and Reporting</a></li>
+              <li><a href="{{  route('welfare.inclusion-and-accessibility')  }}">Inclusion and Accessibility</a></li>
+            </ul>
+          </div>
+        </li>
         <li><a href="{{ route('resources') }}">Resources</a></li>
         <li><a href="{{ route('about') }}">About</a></li>
         <li class="group {{ Request::is('dashboard*') ? 'mobile-nav-active' : ''}}">
@@ -127,7 +153,7 @@
           @auth
           <div class="mobile-dropdown">
             <ul>
-              <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+
               <li><a href="{{ route('settings') }}">Settings</a></li>
               @can('admin')
               <li><a href="{{ route('admin') }}">Admin</a></li>
@@ -154,8 +180,9 @@
       <a href="https://www.instagram.com/bulsca" rel="noopener noreferrer" target="_blank"><img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12" alt=""></a>
 
     </div>
-    <small class="text-white pb-4">
-      Made with ☕ by Noah
+    <small class="text-white pb-4 divide-x ">
+      <a class="text-white font-normal no-underline hover:underline pr-1" href="{{ route('contact') }}">Contact</a>
+      <a class="text-white font-normal no-underline hover:underline pl-2" href="{{ route('welfare') }}">Welfare</a>
     </small>
   </footer>
 

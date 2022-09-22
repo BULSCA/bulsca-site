@@ -105,7 +105,18 @@ Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article
 Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name('article.rating')->middleware('throttle:10,1');
 
 
+// ========= WELFARE =========
+Route::get('/welfare', function () {
+    return view('welfare.index');
+})->name('welfare');
 
+Route::get('/welfare/help-and-reporting', function () {
+    return view('welfare.help-and-reporting');
+})->name('welfare.help-and-reporting');
+
+Route::get('/welfare/inclusion-and-accessibility', function () {
+    return view('welfare.inclusion-and-accessibility');
+})->name('welfare.inclusion-and-accessibility');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
