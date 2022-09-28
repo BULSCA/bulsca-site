@@ -126,7 +126,7 @@ Help and Reporting | Welfare |
     </p>
 </div>
 
-<div class="container responsive">
+<div class="container-responsive">
     <h2>Reporting</h2>
     <p>There are two ways in which you can raise a concern or report a welfare issue to me as the BULSCA Welfare Officer. <strong>The first is to email me</strong> at <a href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a>. This way is by nature not confidential but you can provide as many or as few details as you would like to. This will be followed up and dealt with confidentiality and in line with BULSCA policy and your wishes.
         <br><br>
