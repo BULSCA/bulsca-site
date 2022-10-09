@@ -335,9 +335,9 @@
         @apply pr-[25px] overflow-hidden;
 
         > h3 {
-          @apply header  truncate ;
-          font-size: 1.125rem !important;
-          line-height: 1.75rem !important;
+          @apply text-bulsca md:text-xl font-semibold mb-2  md:truncate text-base md:leading-7 leading-5;
+        
+        
           margin-bottom: -0.25rem !important;
         }
 
