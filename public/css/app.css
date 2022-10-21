@@ -1244,14 +1244,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pb-4 {
   padding-bottom: 1rem;
 }
-.pr-1 {
-  padding-right: 0.25rem;
-}
 .pt-6 {
   padding-top: 1.5rem;
 }
 .pb-3 {
   padding-bottom: 0.75rem;
+}
+.pr-1 {
+  padding-right: 0.25rem;
 }
 .pt-5 {
   padding-top: 1.25rem;
