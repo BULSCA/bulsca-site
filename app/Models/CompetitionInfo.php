@@ -16,7 +16,8 @@ class CompetitionInfo extends Model
         'pool_information' => 'array'
     ];
 
-    public function getCompetition() {
+    public function getCompetition()
+    {
         return $this->hasOne(Competition::class, 'id', 'competition');
     }
 }

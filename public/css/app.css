@@ -659,6 +659,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .inline-block {
   display: inline-block;
 }
+.inline {
+  display: inline;
+}
 .flex {
   display: flex;
 }
@@ -823,6 +826,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+.flex-shrink {
+  flex-shrink: 1;
 }
 .shrink-0 {
   flex-shrink: 0;
@@ -1018,6 +1024,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-divide-x-reverse: 0;
   border-right-width: calc(1px * var(--tw-divide-x-reverse));
   border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
+}
+.self-start {
+  align-self: flex-start;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1244,14 +1253,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pb-4 {
   padding-bottom: 1rem;
 }
+.pr-1 {
+  padding-right: 0.25rem;
+}
 .pt-6 {
   padding-top: 1.5rem;
 }
 .pb-3 {
   padding-bottom: 0.75rem;
-}
-.pr-1 {
-  padding-right: 0.25rem;
 }
 .pt-5 {
   padding-top: 1.25rem;
