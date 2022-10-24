@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateNewCompetition;
+use App\Http\Requests\ManageCompetitionRequest;
 use App\Models\Competition;
+use App\Models\CompetitionInfo;
 use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +25,14 @@ class CompetitionController extends Controller
 
         $lc = Competition::findOrFail($id)->load('hostUni', 'currentSeason');
 
-        return view('dashboard.competitions.view', ['comp' => $lc]);
+        $info = $lc->getInfo;
+        if ($info == null) {
+            $info = new CompetitionInfo();
+            $info->competition = $lc->id;
+            $info->save();
+        }
+
+        return view('dashboard.competitions.view', ['comp' => $lc, 'info' => $info]);
     }
 
     public function manage($cid)
@@ -33,6 +42,14 @@ class CompetitionController extends Controller
 
         if ($lc->host != auth()->user()->getHomeUni()->id || !auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id)) {
             return redirect()->route('lc-view', $cid);
+        }
+
+
+        $info = $lc->getInfo;
+        if ($info == null) {
+            $info = new CompetitionInfo();
+            $info->competition = $lc->id;
+            $info->save();
         }
 
         return view('dashboard.competitions.manage', ['comp' => $lc]);
@@ -71,7 +88,56 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-    public function update(Request $request, Competition $competition)
+
+
+    public function update(ManageCompetitionRequest $request, Competition $cid)
+    {
+        $comp = $cid;
+
+        $info = $comp->getInfo;
+
+        if ($info === null) {
+            $info = new CompetitionInfo();
+            $info->competition = $cid->id;
+        }
+
+        $timetable = [];
+
+        $request->merge(["general_fak_travel" => $request->exists('general_fak_travel'), "general_fak_full" => $request->exists('general_fak_full')]);
+
+        foreach ($request->all() as $key => $value) {
+            if (str_contains($key, "timetable")) {
+                $request->request->remove($key);
+                $timetable[$key] = $value;
+            }
+
+            if (str_contains($key, "cost")) {
+                $request->merge([$key => str_replace("£", "", str_replace(",", "", $value))]);
+            }
+        }
+
+        $data = $request->all();
+
+        $data['teams_limit'] =  $request->input('teams_limit', 0);
+        if ($data['teams_limit'] === null) {
+            $data['teams_limit'] = 0;
+        }
+
+        $info->fill($data);
+
+        $info->timetable = $timetable;
+
+
+        $info->save();
+
+        return redirect()->back();
+    }
+
+
+
+
+
+    public function adminUpdate(Request $request, Competition $competition)
     {
 
         $comp = $competition;

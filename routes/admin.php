@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::get('/competitions', [AdminController::class, 'viewCompetitions'])->middleware('can:admin.competitions')->name('admin.competitions');
     Route::get('/competition/{competition}', [AdminController::class, 'viewCompetition'])->middleware('can:admin.competitions')->name('admin.competition.view');
 
-    Route::post('/competition/{competition}/edit', [CompetitionController::class, 'update'])->middleware('can:admin.competitions.manage')->name('admin.competition.edit');
+    Route::post('/competition/{competition}/edit', [CompetitionController::class, 'adminUpdate'])->middleware('can:admin.competitions.manage')->name('admin.competition.edit');
 
     Route::Get('/competition/create/{season}', [AdminController::class, 'viewCompetitionCreate'])->middleware('can:admin.competitions.manage')->name('admin.competition.create');
     Route::post('/competition/create', [CompetitionController::class, 'create'])->middleware('can:admin.competitions.manage')->name('admin.competition.create.post');

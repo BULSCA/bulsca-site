@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('form_helpers')->nullable();
 
 
-            $table->json('timetable'); // Storing key-value pairs of an item to a timestamp
+            $table->json('timetable')->nullable(); // Storing key-value pairs of an item to a timestamp
 
             $table->text('general_location')->nullable();
             $table->text('general_league_event')->nullable();
@@ -45,7 +45,7 @@ return new class extends Migration
 
             $table->decimal('teams_cost', 9, 2)->default(0);
             $table->integer('teams_limit')->default(0);
-            $table->text('teams_extra');
+            $table->text('teams_extra')->nullable();
 
             $table->decimal('food_cost', 9, 2)->default(0);
             $table->text('food_options')->nullable();
@@ -66,7 +66,7 @@ return new class extends Migration
             $table->text('contact_emergency_email')->nullable();
             $table->text('contact_emergency_phone')->nullable();
 
-            $table->longText('extra_info');
+            $table->longText('extra_info')->nullable();
 
 
 

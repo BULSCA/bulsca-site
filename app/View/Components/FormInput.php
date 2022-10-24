@@ -11,7 +11,7 @@ class FormInput extends Component
      *
      * @return void
      */
-    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $required = true, $deny = false)
+    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $required = true, $deny = false, $defaultObject = null)
     {
         $this->id = $id;
         $this->title = $title;
@@ -20,6 +20,10 @@ class FormInput extends Component
         $this->extraCss = $extraCss;
         $this->required = $required;
         $this->deny = $deny;
+
+        if ($defaultObject != null) {
+            $this->defaultValue = $defaultObject[$id];
+        }
     }
 
     /**

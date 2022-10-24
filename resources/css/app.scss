@@ -586,6 +586,27 @@ div.form-search {
   }
 }
 
+.grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
 .grid-3 {
   @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+
+.grid-4 {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+}
+
+.comp-tt {
+  > tbody > tr {
+    > td:first-of-type {
+      @apply text-right
+    }
+
+    > td:last-of-type {
+      @apply pl-2
+    }
+  }
+
 }

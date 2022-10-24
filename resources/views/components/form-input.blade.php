@@ -1,6 +1,6 @@
 <div class="form-input {{ $css }} @error($id) is-invalid @enderror {{ $type }}">
     <label for="form-link-{{ $id }}" class="">{{ $title }}</label>
-    <input @if ($deny==true ) readonly @endif type="{{ $type }}" @if ($required=='true' ) required @endif id="form-link-{{ $id }}" name="{{ $id }}" value="{{ old($id) ?: $defaultValue }}" class="input">
+    <input @if ($deny==true ) readonly @endif @if($type=="checkbox" && $defaultValue) checked @endif type="{{ $type }}" @if ($required=='true' ) required @endif id="form-link-{{ $id }}" name="{{ $id }}" value="{{ old($id) ?: $defaultValue }}" class="input">
     @error($id)
     <small class="text-red-600">{{ $message }}</small>
     @enderror
