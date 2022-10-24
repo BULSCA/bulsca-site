@@ -16,7 +16,7 @@ class ManageCompetitionRequest extends FormRequest
     {
         $cid = request()->cid;
         $c = Competition::find($cid)->first();
-        return $c->hostUni->isUserAdmin(request()->user());
+        return $cid->hostUni->isUserAdmin(request()->user());
     }
 
     /**
