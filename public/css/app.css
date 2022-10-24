@@ -3098,6 +3098,10 @@ div.form-search > .results > .result > p:last-child {
 }
 @media (min-width: 768px) {
 
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .md\:col-start-3 {
     grid-column-start: 3;
   }
@@ -3177,6 +3181,12 @@ div.form-search > .results > .result > p:last-child {
 
   .md\:gap-y-12 {
     row-gap: 3rem;
+  }
+
+  .md\:space-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:truncate {

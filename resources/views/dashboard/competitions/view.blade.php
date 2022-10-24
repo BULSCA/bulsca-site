@@ -21,7 +21,7 @@ nav-scrolled
 
   <br>
 
-  <div class=" space-x-3">
+  <div class=" md:space-x-3 md:flex-row flex flex-col justify-center">
     <a href="{{ $info->form_entry }}" target="_blank" rel="noopener noreferrer" class="btn btn-thinner inline-flex items-center mt-2">Entry Form <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
       </svg></a>
@@ -198,7 +198,7 @@ nav-scrolled
       </p>
 
     </div>
-    <div class="col-span-2">
+    <div class="md:col-span-2">
       <h4>Other Details</h4>
       {!! $info->extra_info !!}
       <br>
