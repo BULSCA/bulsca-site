@@ -29,7 +29,7 @@
 <div class=" container-responsive ">
   <h2 class="pb-3 header header-larger header-bold">Competition Calender </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
     @foreach ($comps as $comp)
     <div class="flex flex-col ">
       <a href="{{ route('lc-view', Str::lower($comp->hostUni->name) . '-' . $comp->when->format('Y') . '.' . $comp->id) }}" class="header header-bold hover:text-bulsca_red">

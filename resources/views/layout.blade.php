@@ -24,13 +24,13 @@
         British Universities Lifesaving Clubs' Association
       </a>
 
-      <div class="md:hidden block text-white font-bold ">
+      <div class="lg:hidden block text-white font-bold ml-auto ">
         <svg id="mobile-nav-opener" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </div>
 
-      <nav class="ml-auto mr-10 md:block hidden">
+      <nav class="ml-auto mr-10 lg:block hidden">
         <ul class="flex space-x-4 xl:space-x-8 2xl:space-x-12 nav-list">
           <li><a href="{{ route('latest') }}">Latest</a></li>
           <li class="group {{ Request::is('competitions*') ? 'nav-active' : ''}}">
@@ -87,10 +87,10 @@
 
   <div id="mobile-nav" class="mobile-nav">
     <div>
-      <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
+      <a href="/" class="nav-brand xl:text-2xl  2xl:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
         British Universities Lifesaving Clubs' Association
       </a>
-      <div class="md:hidden block text-white font-bold ">
+      <div class="lg:hidden block text-white font-bold ml-auto -mr-1 sm:-mr-4">
         <svg id="mobile-nav-closer" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
