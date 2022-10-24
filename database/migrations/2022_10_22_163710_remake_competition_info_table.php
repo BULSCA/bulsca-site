@@ -19,41 +19,55 @@ return new class extends Migration
             $table->foreignId('competition')->references('id')->on('competitions')->onUpdate('CASCADE')->onDelete('CASCADE');
 
 
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->text('form_entry')->nullable();
+            $table->text('form_judges')->nullable();
+            $table->text('form_helpers')->nullable();
 
-            $table->text('organiser')->nullable();
 
+            $table->json('timetable'); // Storing key-value pairs of an item to a timestamp
 
-            $table->integer('teams')->default(0);
-            $table->decimal('team_cost', 9, 2)->default(0);
+            $table->text('general_location')->nullable();
+            $table->text('general_league_event')->nullable();
+            $table->text('general_required_kit')->nullable();
+            $table->boolean('general_fak_full')->default(false);
+            $table->boolean('general_fak_travel')->default(false);
+            $table->text('general_official_headref')->nullable();
+            $table->text('general_official_wetserc')->nullable();
+            $table->text('general_official_dryserc')->nullable();
+
+            $table->text('pool_location')->nullable();
+            $table->decimal('pool_length')->nullable();
+            $table->integer('pool_lanes')->nullable();
+            $table->text('pool_extra')->nullable();
 
             $table->text('registration_location')->nullable();
-            $table->text('pool_location')->nullable();
-            $table->text('food_social_location')->nullable();
-            $table->text('accommodation_location')->nullable();
+            $table->text('registration_extra')->nullable();
 
+            $table->decimal('teams_cost', 9, 2)->default(0);
+            $table->integer('teams_limit')->default(0);
+            $table->text('teams_extra');
+
+            $table->decimal('food_cost', 9, 2)->default(0);
+            $table->text('food_options')->nullable();
+
+            $table->text('social_location')->nullable();
+            $table->decimal('social_cost', 9, 2)->default(0);
             $table->text('social_theme')->nullable();
 
-            $table->text('food_info')->nullable();
-            $table->decimal('food_price', 9, 2)->default(0);
+            $table->text('accom_location')->nullable();
+            $table->decimal('accom_cost', 9, 2)->default(0);
+            $table->text('accom_extra')->nullable();
 
-            $table->decimal('accommodation_price', 9, 2)->default(0);
+            $table->text('contact_organiser_name')->nullable();
+            $table->text('contact_organiser_email')->nullable();
+            $table->text('contact_organiser_phone')->nullable();
 
-            $table->text("league_event")->nullable();
+            $table->text('contact_emergency_name')->nullable();
+            $table->text('contact_emergency_email')->nullable();
+            $table->text('contact_emergency_phone')->nullable();
 
+            $table->longText('extra_info');
 
-
-            $table->decimal("pool_length", 9, 2)->default(25);
-            $table->integer("pool_lanes")->default(8);
-
-            $table->boolean("full_fa_kit")->default(true);
-            $table->boolean("travel_fa_kit")->default(true);
-
-            $table->json('timetable')->nullable();
-            $table->json('contact_info')->nullable();
-            $table->json('official_info')->nullable();
-            $table->text('extra_info')->nullable();
 
 
 

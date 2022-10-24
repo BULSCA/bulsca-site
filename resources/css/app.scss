@@ -379,6 +379,15 @@
       @apply file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold  file:text-black hover:file:bg-gray-200 file:cursor-pointer cursor-pointer;
     }
    }
+
+   &.checkbox {
+    @apply flex-row items-center space-x-6;
+
+    > input {
+      @apply mb-[0.1rem]
+    }
+
+   }
  }
 
  input.checkbox { 
@@ -447,6 +456,19 @@
   &.badge-success {
     @apply bg-green-100 text-green-800 dark:bg-green-200 dark:text-green-900
   }
+ }
+
+ .alert {
+  @apply flex flex-col py-3 px-4 bg-red-100 bg-opacity-50 rounded-md border border-bulsca_red;
+
+  > h1, h2, h3, h4, h5 {
+    @apply text-red-600 font-bold;
+  }
+
+  > p {
+    @apply text-red-700 ;
+  }
+  
  }
 
  .form-group {
@@ -564,3 +586,6 @@ div.form-search {
   }
 }
 
+.grid-3 {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
