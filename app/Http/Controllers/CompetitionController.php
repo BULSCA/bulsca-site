@@ -50,6 +50,7 @@ class CompetitionController extends Controller
             $info = new CompetitionInfo();
             $info->competition = $lc->id;
             $info->save();
+            $lc = Competition::find($cid)->load('hostUni', 'currentSeason');
         }
 
         return view('dashboard.competitions.manage', ['comp' => $lc]);
