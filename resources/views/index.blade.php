@@ -22,7 +22,7 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
 
 
 <div class=" container-responsive ">
-  <div class=" grid md:grid-cols-3 grid-cols-1 overflow-hidden md:gap-32 text-center">
+  <div class=" grid xl:grid-cols-3 grid-cols-1 overflow-hidden md:gap-32 text-center">
     <div class="flex flex-col items-center space-y-3 w-full">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
@@ -53,7 +53,7 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
   </div>
 </div>
 <div class="container-boast">
-  <h1 class="text-white text-3xl font-bold uppercase text-center md:text-left">We're on Facebook, go have a look!</h1>
+  <p class="text-white 2xl:text-5xl text-4xl font-bold uppercase text-center md:text-left">We're on Facebook, go have a look!</p>
   <a href="https://www.facebook.com/BULSCA/" rel="noopener noreferrer" class="btn md:ml-auto flex flex-row items-center mt-8 md:mt-0">
     To Facebook
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

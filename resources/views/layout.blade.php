@@ -20,7 +20,7 @@
 <body class="overflow-x-hidden flex flex-col min-h-screen">
   <div class="fixed w-screen z-50 transition-all duration-100" id="navbar">
     <div class="nav-wrapper transition-all duration-100">
-      <a href="/" class="nav-brand md:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
+      <a href="/" class="nav-brand xl:text-2xl  2xl:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
         British Universities Lifesaving Clubs' Association
       </a>
 
@@ -31,7 +31,7 @@
       </div>
 
       <nav class="ml-auto mr-10 md:block hidden">
-        <ul class="flex space-x-12 nav-list">
+        <ul class="flex space-x-4 xl:space-x-8 2xl:space-x-12 nav-list">
           <li><a href="{{ route('latest') }}">Latest</a></li>
           <li class="group {{ Request::is('competitions*') ? 'nav-active' : ''}}">
 

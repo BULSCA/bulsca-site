@@ -176,7 +176,7 @@
  }
 
  .container-responsive {
-    @apply px-2 md:px-[20%] md:py-[2%] py-[10%]  flex-1;
+    @apply px-2  md:px-[10%] 2xl:px-[20%] md:py-[2%] py-[10%]  flex-1;
 
     &.no-bottom {
       @apply pb-0;
