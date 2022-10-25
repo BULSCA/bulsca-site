@@ -36,7 +36,7 @@ Login |
     </div>
     @endif
 
-    <form action="{{ route('login') }}" class="flex flex-col w-[80%] md:w-1/4" method="post">
+    <form action="{{ route('login') }}" class="flex flex-col w-[80%] lg:w-[50%] 2xl:w-1/3" method="post">
       @csrf
       <div class="form-input">
         <label for="login-email">Email</label>

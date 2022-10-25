@@ -13,13 +13,20 @@ nav-scrolled
 
 
 <div class="container-responsive">
-  <h2 style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Competition Management</span></h2>
-  <h2 style='margin-bottom: -.05em !important'><span class="text-bulsca_red font-bold">{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}</span></h2>
-  <small class="">
-    {{ $comp->when->format('d/m/Y @ h:m A') }}
-  </small>
+  <div class="flex items-center ">
+    <div class="flex flex-col">
+      <h2 style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Competitions</span></h2>
+      <h2 style='margin-bottom: -.15em !important'><span class="text-bulsca_red font-bold">{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}</span></h2>
+      <small class="">
+        {{ $comp->when->format('d/m/Y @ h:m A') }}
+      </small>
+    </div>
+    @if ($comp->hostUni->currentUserIsClubAdmin())
+    <a href="{{ route('lc-manage', $comp->id) }}" class="btn btn-thinner ml-auto">Manage</a>
+    @endif
+  </div>
 
-  <br>
+
 
   <div class=" md:space-x-3 md:flex-row flex flex-col justify-center md:justify-start">
     <a href="{{ $info->form_entry }}" target="_blank" rel="noopener noreferrer" class="btn btn-thinner inline-flex items-center mt-2">Entry Form <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
