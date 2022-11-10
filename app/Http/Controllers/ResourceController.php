@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
-
-;
+use Illuminate\Support\Str;
 
 class ResourceController extends Controller
 {
-    
-    public function governance() {
+
+    public function governance()
+    {
 
         $cmr = new ResourcePack('Competition Manual and Rules');
         $cmr->add('BULSCA COVID-19 Guidance (Sept 2021)');
@@ -24,7 +24,7 @@ class ResourceController extends Controller
         $cmr->add('CM 2021 - Part 3 - Disqualification and Penalty Codes');
         $cmr->add('CM 2021 - Part 4 - Forms');
         $cmr->add('RLSS Nationals Rules 2018');
-        
+
         $og = new ResourcePack('Other Governance');
         $og->add('Constitution v2.5');
         $og->add('Judges Panel Guidelines V2.2');
@@ -61,7 +61,8 @@ class ResourceController extends Controller
         return view('resources.governance', ['res' => $res]);
     }
 
-    public function get(Request $req, $id) {
+    public function get(Request $req, $id)
+    {
 
         $resource = Resource::find($id);
 
@@ -74,7 +75,7 @@ class ResourceController extends Controller
         }
 
 
-        $fileContents = Storage::get($resource->location); 
+        $fileContents = Storage::get($resource->location);
         $type = File::mimeType(Storage::path($resource->location));
 
         $response = Response::make($fileContents, 200);
@@ -83,15 +84,16 @@ class ResourceController extends Controller
         return $response;
     }
 
-    
 
-    public function upload(Request $request){
-        
 
-        
+    public function upload(Request $request)
+    {
+
+
+
         $path = $request->file('fupload')->store('resources');
 
-        
+
 
         $res = new Resource();
         $res->location = $path;
@@ -99,18 +101,23 @@ class ResourceController extends Controller
         $res->save();
 
         return $res->id;
-
-
     }
 
-    static function storeResource(Request $request, $postFileName, $where, $fileName = 'file') {
-        $path = $request->file($postFileName)->store($where);
+    static function storeResource(Request $request, $postFileName, $where, $fileName = 'file')
+    {
+        //die($request->file($postFileName)->getClientOriginalName());
+        //$path = $request->file($postFileName)->store($where);
+
+
 
         if ($fileName == "self") {
             $fileName = $request->file($postFileName)->getClientOriginalName();
         }
 
-        
+        $storeName = Str::random(40) . "." . $request->file($postFileName)->getClientOriginalExtension();
+        $path = Storage::putFileAs($where, $request->file($postFileName), $storeName);
+
+
 
         $res = new Resource();
         $res->location = $path;
@@ -120,7 +127,8 @@ class ResourceController extends Controller
         return $res;
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         $validated = $request->validate([
             'id' => "required"
         ]);
@@ -133,22 +141,23 @@ class ResourceController extends Controller
 
         return redirect()->back();
     }
-
 }
 
 
-class ResourcePack {
+class ResourcePack
+{
 
     private $resources = [];
     private $name;
     private $count = 1;
 
-    public function __construct($name) {
+    public function __construct($name)
+    {
         $this->name = $name;
-
     }
 
-    public function add($name) {
+    public function add($name)
+    {
         array_push($this->resources, [
             'name' => $name,
             'id' => $this->count
@@ -156,13 +165,11 @@ class ResourcePack {
         $this->count++;
     }
 
-    public function bundle() {
+    public function bundle()
+    {
         return [
             'name' => $this->name,
             'resources' => $this->resources
         ];
     }
-
-
-
 }

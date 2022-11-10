@@ -65,6 +65,9 @@ Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
 Route::Post('/get-involved/clubs/{cid}/edit', [ClubController::class, 'update'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('update-club');
 
+Route::get('/resources/forms', function () {
+    return view('resources.forms');
+})->name('resources.forms');
 Route::get('/resources', [DynamicResourcePageController::class, 'index'])->name('resources');
 Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])->name('resources.page.view');
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
