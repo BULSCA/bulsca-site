@@ -135,6 +135,67 @@
             @endcan
         </form>
     </div>
+
+    <hr class="my-8">
+    <div>
+        <h1 class="header">Season Results</h1>
+        <p class="mb-4">Enter the position each university came at each competition in each league. Leave blank (or enter 0) if they didn't compete!
+            <br>
+            A - A League, B - B League, O - Overall
+        </p>
+        <form action="{{ route('admin.season.results', $season) }}" method="POST">
+            @csrf
+            <div class="table-wrapper relative">
+                <table class=" table-auto" style="position: relative;">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            @foreach ($season->competitions()->orderBy('when')->get() as $comp)
+                            <th>{{ $comp->hostUni->name }} Comp ({{ $comp->id }})</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (App\Models\University::orderBy('name')->get() as $uni)
+                        <tr>
+                            <th>{{ $uni->name }} ({{ $uni->id }}) </th>
+
+                            @foreach ($season->competitions()->orderBy('when')->get() as $comp)
+                            <td class="">
+                                <div class="flex space-x-2 items-center">
+                                    <p>A</p>
+                                    <input type="number" class="table-input" value="{{ App\Models\LeaguePlace::where(['uni' => $uni->id, 'comp' => $comp->id, 'league' => 'a'])->first()?->pos }}" name="res_a_{{$uni->id}}_{{$comp->id}}" id="">
+                                </div>
+                                <div class="flex space-x-2 items-center my-2">
+                                    <p>B</p>
+                                    <input type="number" class="table-input" value="{{ App\Models\LeaguePlace::where(['uni' => $uni->id, 'comp' => $comp->id, 'league' => 'b'])->first()?->pos }}" name="res_b_{{$uni->id}}_{{$comp->id}}" id="">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <p>O</p>
+                                    <input type="number" class="table-input" value="{{ App\Models\LeaguePlace::where(['uni' => $uni->id, 'comp' => $comp->id, 'league' => 'o'])->first()?->pos }}" name="res_o_{{$uni->id}}_{{$comp->id}}" id="">
+                                </div>
+
+
+
+                            </td>
+                            @endforeach
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+            <div class="flex">
+                <button type="submit" class="btn btn-thinner ml-auto">Save</button>
+            </div>
+        </form>
+
+    </div>
+    <hr class="my-8">
+
+
     <div>
         <h2>Delete</h2>
         @can('admin.seasons.delete')

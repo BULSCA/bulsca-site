@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LeaguePlace extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['uni', 'comp', 'league', 'pos'];
 }

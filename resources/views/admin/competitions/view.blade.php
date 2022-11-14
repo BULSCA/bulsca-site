@@ -22,12 +22,7 @@
     <small class="text-bulsca_red no-underline text-sm font-semibold">{{ $competition->when->format('D dS M Y') }} </small>
 
 
-
-    <p class="my-4">
-
-        {{ $competition->getInfo && $competition->getInfo->desc ?: 'No description available yet'}}
-    </p>
-
+    <br><br>
 
 
     @if ($competition->getResultsResource()->first())
@@ -43,7 +38,7 @@
 
 
 
-    <hr class="my-5">
+
 
     @else
     <h4>
@@ -64,71 +59,7 @@
 
 
 
-    <div class="grid grid-cols-4 gap-4 hidden">
-        <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
-            <div class="flex items-center justify-center">
-                <h1 class="header header-smallish header-bold">
-                    Isolation
-                </h1>
-                <small class="ml-auto  text-black font-normal "></small>
 
-            </div>
-            <hr class="-mx-6 mb-4">
-            <h2 class="header header-small">
-                Times
-            </h2>
-            <p class="mb-4">
-                <span class="font-semibold">Open:</span> {{ $competition->getInfo && $competition->getInfo->isolation_information['times']['open'] ?: 'N/A'}} <br>
-                <span class="font-semibold">Close:</span> {{ $competition->getInfo && $competition->getInfo->isolation_information['times']['close'] ?: 'N/A' }}
-            </p>
-            <h2 class="header header-small">
-                Location
-
-            </h2>
-
-            @if ($competition->getInfo)
-            <p>
-                {{ $competition->getInfo->isolation_information['location'] ?: 'N/A' }}
-            </p>
-            <iframe class="w-full h-44" id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->isolation_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            @else
-            N/A
-            @endif
-
-
-        </div>
-
-        <div class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
-            <div class="flex items-center justify-center">
-                <h1 class="header header-smallish header-bold">
-                    Pool
-                </h1>
-                <small class="ml-auto  text-black font-normal "></small>
-
-            </div>
-            <hr class="-mx-6 mb-4">
-            <h2 class="header header-small">
-                Times
-            </h2>
-            <p class="mb-4">
-                <span class="font-semibold">Start:</span> {{ $competition->getInfo && $competition->getInfo->pool_information['times']['start'] ?: 'N/A'}} <br>
-                <span class="font-semibold">Finish:</span> {{ $competition->getInfo && $competition->getInfo->pool_information['times']['finish'] ?: 'N/A' }}
-            </p>
-            <h2 class="header header-small">
-                Location
-
-            </h2>
-            @if ($competition->getInfo)
-            <p>
-                {{ $competition->getInfo->pool_information['location'] ?: 'N/A'}}
-            </p>
-            <iframe class="w-full h-44" id="gmap_canvas" src="https://maps.google.com/maps?q={{ $competition->getInfo->pool_information['location'] }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            @else
-            N/A
-            @endif
-
-        </div>
-    </div>
 
     <hr class="my-8">
 
@@ -139,6 +70,7 @@
 
     <div>
         <h3 class="header">Competition Details</h3>
+        <p class="mb-2">See the competition page <a href="{{ route('lc-view', $competition) }}">here</a> for more info.</p>
         <form action="@can('admin.competitions.manage'){{ route('admin.competition.edit', $competition) }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
             @csrf
 

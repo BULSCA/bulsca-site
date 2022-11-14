@@ -363,6 +363,9 @@
    background-repeat: round;
  }
 
+ .table-input {
+  @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca;
+ }
 
  div.form-input {
 
@@ -609,4 +612,40 @@ div.form-search {
     }
   }
 
+}
+
+.table-wrapper {
+  @apply overflow-x-auto relative max-h-[60vh];
+
+  > table {
+    @apply w-full text-sm text-left text-gray-500 relative;
+    > thead {
+      @apply text-xs text-gray-700 uppercase bg-gray-50 sticky top-0 z-10;
+      > tr > th {
+        @apply py-3 px-6 ;
+      }
+    }
+
+    > tbody > tr {
+      @apply bg-white border-b hover:bg-gray-200 ;
+
+      > th {
+        @apply py-4 px-6 font-medium text-gray-900 whitespace-nowrap ;
+      }
+
+      &:nth-child(2n) {
+        @apply bg-gray-50 border-b hover:bg-gray-200;
+
+        > th {
+          @apply py-4 px-6 font-medium text-gray-900 whitespace-nowrap 
+        }
+
+        
+      }
+
+      > td {
+        @apply py-4 px-6;
+      }
+    }
+  }
 }

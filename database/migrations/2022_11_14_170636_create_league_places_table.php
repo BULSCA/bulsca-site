@@ -19,9 +19,8 @@ return new class extends Migration
 
             $table->foreignId('uni')->references('id')->on('universities')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('comp')->references('id')->on('competitions')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('overal_pos');
-            $table->integer('a_pos')->nullable();
-            $table->integer('b_pos')->nullable();
+            $table->char('league');
+            $table->integer('pos')->nullable();
 
             $table->timestamps();
         });

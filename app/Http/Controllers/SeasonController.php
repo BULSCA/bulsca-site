@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateNewSeason;
+use App\Models\Competition;
+use App\Models\LeaguePlace;
 use Illuminate\Http\Request;
 use App\Models\Season;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SeasonController extends Controller
 {
@@ -108,4 +111,28 @@ class SeasonController extends Controller
         WHERE SU.id=SEASON-UNI-ID-HERE ORDER BY LC.when;
 
     */
+
+    public function resultsHandler(Request $request, Season $season)
+    {
+        // format is res.league.uni.comp e.g. res.a.1.1
+
+        foreach ($request->all() as $key => $val) {
+            if (Str::startsWith($key, 'res')) {
+
+
+                $parts = explode("_", $key);
+                $league = $parts[1];
+                $uni = $parts[2];
+                $comp = $parts[3];
+
+                //echo "League: " . $league . ", Uni: " . $uni . ", Comp: " . $comp . ", Pos: " . $val . "<br>";
+
+
+
+
+                LeaguePlace::updateOrCreate(['uni' => $uni, 'comp' => $comp, 'league' => $league], ['pos' => $val ? $val : 0]);
+            }
+        }
+        return redirect()->back();
+    }
 }

@@ -842,6 +842,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .basis-1\/5 {
   flex-basis: 20%;
 }
+.table-auto {
+  table-layout: auto;
+}
 .origin-top-left {
   transform-origin: top left;
 }
@@ -2175,6 +2178,27 @@ div.file-link > a > div:last-child {
   background-repeat: round;
 }
 
+.table-input {
+  border-radius: 0.375rem;
+  border-width: 2px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.table-input:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(7 6 96 / var(--tw-border-opacity));
+}
+
+.table-input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(7 6 96 / var(--tw-border-opacity));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 div.form-input {
   display: flex;
   flex-direction: column;
@@ -2700,6 +2724,84 @@ div.form-search > .results > .result > p:last-child {
 }
 .comp-tt > tbody > tr > td:last-of-type {
   padding-left: 0.5rem;
+}
+
+.table-wrapper {
+  position: relative;
+  max-height: 60vh;
+  overflow-x: auto;
+}
+.table-wrapper > table {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.table-wrapper > table > thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+.table-wrapper > table > thead > tr > th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.table-wrapper > table > tbody > tr {
+  border-bottom-width: 1px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.table-wrapper > table > tbody > tr:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.table-wrapper > table > tbody > tr > th {
+  white-space: nowrap;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.table-wrapper > table > tbody > tr:nth-child(2n) {
+  border-bottom-width: 1px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.table-wrapper > table > tbody > tr:nth-child(2n):hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.table-wrapper > table > tbody > tr:nth-child(2n) > th {
+  white-space: nowrap;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.table-wrapper > table > tbody > tr > td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .even\:bg-bulsca:nth-child(even) {
   --tw-bg-opacity: 1;
