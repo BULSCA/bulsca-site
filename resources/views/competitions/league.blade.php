@@ -76,11 +76,22 @@
   @endphp
 
   <div class="grid-2 text-white">
-    <div>
+    <div class="flex flex-col">
       <h4 class="text-white">A-League</h4>
+      @php
+      $pts = 0
+      @endphp
       <div class="podium grid-2">
 
         @foreach ($data['data'] as $row)
+        @if ($row['points'] == 0)
+
+        @continue
+
+        @endif
+        @php
+        $pts += $row['points']
+        @endphp
         @if ($loop->index > 2)
         @break
         @endif
@@ -94,13 +105,29 @@
 
         @endforeach
       </div>
+      @if ($pts == 0)
+      <div class="flex flex-grow justify-center items-center self-stretch">
+        <p><strong>No data</strong></p>
+      </div>
+      @endif
     </div>
 
-    <div>
+    <div class="flex flex-col">
       <h4 class="text-white">B-League</h4>
       <div class="podium grid-2">
+        @php
+        $pts = 0
+        @endphp
 
         @foreach ($bdata['data'] as $row)
+        @if ($row['points'] == 0)
+
+        @continue
+
+        @endif
+        @php
+        $pts += $row['points']
+        @endphp
         @if ($loop->index > 2)
         @break
         @endif
@@ -113,7 +140,13 @@
         </div>
 
         @endforeach
+
       </div>
+      @if ($pts == 0)
+      <div class="flex flex-grow justify-center items-center self-stretch">
+        <p><strong>No data</strong></p>
+      </div>
+      @endif
     </div>
 
 
@@ -149,10 +182,15 @@
         </tr>
       </thead>
       <tbody>
+        @php
+        $pts = 0
+        @endphp
 
-
-        @foreach ($data['data'] as $row)
+        @foreach($data['data'] as $row)
         @if ($row['points'] == 0) @continue; @endif
+        @php
+        $pts += $row['points']
+        @endphp
         <tr>
           <th>{{ $row['team'] }}</th>
           <td>@th( $loop->index + 1 )</td>
@@ -170,7 +208,15 @@
           @endforeach
         </tr>
 
+
+
         @endforeach
+        @if ($pts == 0)
+        <tr>
+          <td colspan="100" class="text-center">No data</td>
+        </tr>
+
+        @endif
 
 
       </tbody>
@@ -193,9 +239,16 @@
         </tr>
       </thead>
       <tbody>
+        @php
+        $pts = 0
+        @endphp
 
         @foreach ($bdata['data'] as $row)
         @if ($row['points'] == 0) @continue; @endif
+
+        @php
+        $pts += $row['points']
+        @endphp
 
 
         <tr>
@@ -216,6 +269,12 @@
         </tr>
 
         @endforeach
+        @if ($pts == 0)
+        <tr>
+          <td colspan="100" class="text-center">No data</td>
+        </tr>
+
+        @endif
 
 
       </tbody>
