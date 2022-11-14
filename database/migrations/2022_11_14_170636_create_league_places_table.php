@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('competition_uni_places', function (Blueprint $table) {
+        Schema::create('league_places', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignId('season_uni')->references('id')->on('season_unis')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('league_comp')->references('id')->on('competitions')->onUpdate('cascade')->onDelete('cascade');
+
+
+            $table->foreignId('uni')->references('id')->on('universities')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('comp')->references('id')->on('competitions')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('overal_pos');
             $table->integer('a_pos')->nullable();
             $table->integer('b_pos')->nullable();
+
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competition_uni_places');
+        Schema::dropIfExists('league_places');
     }
 };

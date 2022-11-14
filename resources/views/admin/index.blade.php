@@ -88,7 +88,7 @@ Admin |
     <h1 class="header">Current Season <a href="{{ route('admin.seasons') }}" class="text-base text-gray-400 hover:text-gray-700">(Previous Seasons)</a></h1>
 
     <div class="flex flex-row items-center  ">
-        @foreach ($currentSeason->competitions()->get() as $comp)
+        @foreach ($currentSeason->competitions()->orderBy('when')->get() as $comp)
         <div class="flex-1 flex flex-col items-center justify-center">
 
             <div class="mb-4">
