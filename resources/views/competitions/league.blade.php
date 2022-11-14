@@ -213,7 +213,7 @@
         @endforeach
         @if ($pts == 0)
         <tr>
-          <td colspan="100" class="text-center">No data</td>
+          <td colspan="100" class="md:text-center">No data</td>
         </tr>
 
         @endif
@@ -271,7 +271,7 @@
         @endforeach
         @if ($pts == 0)
         <tr>
-          <td colspan="100" class="text-center">No data</td>
+          <td colspan="100" class="md:text-center">No data</td>
         </tr>
 
         @endif
