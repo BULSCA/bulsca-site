@@ -67,30 +67,164 @@
 
 </div>
 
-
-
 <div class="px-2 md:px-[20%] py-[2%] bg-bulsca flex flex-col space-y-4">
-  <details>
-    <summary class="text-white text-3xl font-bold uppercase mb-2 cursor-pointer">A-League Results</summary>
+  @php
+  $data = $season->getLeagueResults('a')
+  @endphp
+  @php
+  $bdata = $season->getLeagueResults('b')
+  @endphp
 
-    <p class="text-white font-semibold indent-8">
-      A-League results are currently unavailable!
-    </p>
-  </details>
+  <div class="grid-2 text-white">
+    <div>
+      <h4 class="text-white">A-League</h4>
+      <div class="podium grid-2">
+
+        @foreach ($data['data'] as $row)
+        @if ($loop->index > 2)
+        @break
+        @endif
+        <div class="flex flex-col items-center space-y-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+          </svg>
+
+          <span>{{ $row['team'] }}</span> @th($loop->index + 1)
+        </div>
+
+        @endforeach
+      </div>
+    </div>
+
+    <div>
+      <h4 class="text-white">B-League</h4>
+      <div class="podium grid-2">
+
+        @foreach ($bdata['data'] as $row)
+        @if ($loop->index > 2)
+        @break
+        @endif
+        <div class="flex flex-col items-center space-y-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+          </svg>
+
+          <span>{{ $row['team'] }}</span> @th($loop->index + 1)
+        </div>
+
+        @endforeach
+      </div>
+    </div>
 
 
 
-  <details>
-    <summary class="text-white text-3xl font-bold uppercase mb-2 cursor-pointer">B-League Results</summary>
+  </div>
 
-    <p class="text-white font-semibold indent-8">
-      B-League results are currently unavailable!
-    </p>
 
-  </details>
+
+
+
+
+
+
+
+
+
 
 
 </div>
+
+<div class=" container-responsive ">
+  <h2 class="pb-3 header header-larger header-bold">A-League Results </h2>
+
+
+  <div class="table-wrapper relative">
+    <table class=" table-auto" style="position: relative;">
+      <thead>
+        <tr>
+          @foreach ($data['cols'] as $col)
+          <th>{{ $col }}</th>
+
+          @endforeach
+        </tr>
+      </thead>
+      <tbody>
+
+
+        @foreach ($data['data'] as $row)
+        @if ($row['points'] == 0) @continue; @endif
+        <tr>
+          <th>{{ $row['team'] }}</th>
+          <td>@th( $loop->index + 1 )</td>
+          <td>{{ $row['points'] }}</td>
+
+          @foreach ($data['comps'] as $comp)
+
+          <td>@if ($row['positionPoints'][$comp] != 0)
+            {{max(11 - $row['positionPoints'][$comp], 0)}} (@th($row['positionPoints'][$comp]))
+            @endif
+          </td>
+
+
+
+          @endforeach
+        </tr>
+
+        @endforeach
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class=" container-responsive ">
+  <h2 class="pb-3 header header-larger header-bold">B-League Results </h2>
+
+
+  <div class="table-wrapper relative">
+    <table class=" table-auto" style="position: relative;">
+      <thead>
+        <tr>
+          @foreach ($bdata['cols'] as $col)
+          <th>{{ $col }}</th>
+
+          @endforeach
+        </tr>
+      </thead>
+      <tbody>
+
+        @foreach ($bdata['data'] as $row)
+        @if ($row['points'] == 0) @continue; @endif
+
+
+        <tr>
+          <th>{{ $row['team'] }}</th>
+          <td>@th( $loop->index + 1 )</td>
+          <td>{{ $row['points'] }}</td>
+
+          @foreach ($bdata['comps'] as $comp)
+
+          <td>@if ($row['positionPoints'][$comp] != 0)
+            {{max(11 - $row['positionPoints'][$comp], 0)}} (@th($row['positionPoints'][$comp]))
+            @endif
+          </td>
+
+
+
+          @endforeach
+        </tr>
+
+        @endforeach
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 
 
 

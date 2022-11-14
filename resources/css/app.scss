@@ -649,3 +649,38 @@ div.form-search {
     }
   }
 }
+
+.podium {
+  
+  > div {
+    @apply text-center text-lg flex flex-col mb-4 md:mb-0;
+    &:first-child {
+      @apply md:col-span-2 col-span-1 text-2xl mt-4 md:mt-0;
+
+      > svg {
+        @apply w-16 h-16;
+        color: #FFD700;
+
+      }
+
+      > span {
+        @apply text-4xl font-bold;
+      }
+    }
+
+    &:nth-child(2) > svg {
+      color: #C0C0C0;
+    }
+
+    &:nth-child(3) > svg {
+      color: #CD7F32;
+    }
+
+    > span {
+      @apply text-2xl font-semibold;
+    }
+  }
+  
+
+
+}
