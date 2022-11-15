@@ -43,7 +43,7 @@ class CompetitionController extends Controller
 
         $lc = Competition::find($id)->load('hostUni', 'currentSeason');
 
-        if ($lc->host != auth()->user()->getHomeUni()->id || !auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id)) {
+        if (!$lc->hostUni->currentUserIsClubAdmin()) {
             return redirect()->route('lc-view', $cid);
         }
 
