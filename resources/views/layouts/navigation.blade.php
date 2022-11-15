@@ -18,7 +18,7 @@
                     <a href="{{ route('comps') }}">Competitions</a>
                     <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
                         <ul>
-                            <li><a href="{{ route('league') }}">League</a></li>
+                            <li><a href="{{ route('league') }}">Current League</a></li>
                             <li><a href="{{ route('champs') }}">Champs</a></li>
                         </ul>
                     </div>
