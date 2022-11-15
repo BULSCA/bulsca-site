@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Season;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class SeasonController extends Controller
 {
@@ -116,6 +117,7 @@ class SeasonController extends Controller
     {
         // format is res.league.uni.comp e.g. res.a.1.1
 
+
         foreach ($request->all() as $key => $val) {
             if (Str::startsWith($key, 'res')) {
 
@@ -133,6 +135,12 @@ class SeasonController extends Controller
                 LeaguePlace::updateOrCreate(['uni' => $uni, 'comp' => $comp, 'league' => $league], ['pos' => $val ? $val : 0]);
             }
         }
+
+
+        Cache::forget('league-results.' . $season->id . ".a");
+        Cache::forget('league-results.' . $season->id . ".b");
+        Cache::forget('league-results.' . $season->id . ".o");
+
         return redirect()->back();
     }
 }

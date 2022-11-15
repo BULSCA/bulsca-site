@@ -108,55 +108,59 @@ class Season extends Model
     public function getLeagueResults($league)
     {
 
-        $compOrderData = $this->competitions()->with('hostUni')->orderBy('when')->get();
 
-        $compOrder = [];
+        return Cache::rememberForever('league-results.' . $this->id . '.' . $league, function () use ($league) {
 
-        foreach ($compOrderData as $cod) {
-            array_push($compOrder, $cod->hostUni->name);
-        }
+            $compOrderData = $this->competitions()->with('hostUni')->orderBy('when')->get();
 
-        $data = DB::select(DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0,GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name"), [$this->id, $league]);
+            $compOrder = [];
 
+            foreach ($compOrderData as $cod) {
+                array_push($compOrder, $cod->hostUni->name);
+            }
 
-        $readyData = [];
-
-
-        foreach ($data as $row) {
+            $data = DB::select(DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0,GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name"), [$this->id, $league]);
 
 
-            $uniData = array_key_exists($row->team, $readyData) ? $readyData[$row->team] : [];
-            $positionPoints = array_key_exists("positionPoints", $uniData) ? $uniData['positionPoints'] : [];
-            $points = array_key_exists("points", $uniData) ? $uniData['points'] : 0;
-
-            $points += $row->points;
+            $readyData = [];
 
 
-            $positionPoints[$row->host] = $row->pos;
+            foreach ($data as $row) {
 
 
+                $uniData = array_key_exists($row->team, $readyData) ? $readyData[$row->team] : [];
+                $positionPoints = array_key_exists("positionPoints", $uniData) ? $uniData['positionPoints'] : [];
+                $points = array_key_exists("points", $uniData) ? $uniData['points'] : 0;
 
-            $uniData['team'] = $row->team;
-            $uniData['points'] = $points;
-            $uniData['positionPoints'] = $positionPoints;
+                $points += $row->points;
 
-            $readyData[$row->team] = $uniData;
-        }
 
-        // We now need to process the data to sort the rows
+                $positionPoints[$row->host] = $row->pos;
 
 
 
+                $uniData['team'] = $row->team;
+                $uniData['points'] = $points;
+                $uniData['positionPoints'] = $positionPoints;
 
-        usort($readyData, [Season::class, "cmp"]);
+                $readyData[$row->team] = $uniData;
+            }
+
+            // We now need to process the data to sort the rows
 
 
 
 
-        $cols = ["Team", "Position", "Points", ...$compOrder];
+            usort($readyData, [Season::class, "cmp"]);
 
 
-        return ['data' => $readyData, 'cols' => $cols, 'comps' => $compOrder];
+
+
+            $cols = ["Team", "Position", "Points", ...$compOrder];
+
+
+            return ['data' => $readyData, 'cols' => $cols, 'comps' => $compOrder];
+        });
     }
 }
 
