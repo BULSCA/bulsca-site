@@ -15,7 +15,7 @@ nav-scrolled
 <div class="container-responsive">
   <div class="flex items-center ">
     <div class="flex flex-col">
-      <h2 style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Competitions</span></h2>
+      <h2 style='margin-bottom: -.25em !important'><a href="{{ route('prev_season', $comp->currentSeason->getDateSlug()) }}" class="no-underline hover:underline" style="font-size: 0.5em !important">Competitions</a></h2>
       <h2 style='margin-bottom: -.15em !important'><span class="text-bulsca_red font-bold">{{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}</span></h2>
       <small class="">
         {{ $comp->when->format('d/m/Y @ h:m A') }}
