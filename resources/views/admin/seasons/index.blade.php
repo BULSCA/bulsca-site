@@ -21,7 +21,7 @@ Seasons | Admin |
         @can('admin.seasons.manage')<a href="{{ route('admin.seasons.create') }}" class="ml-auto btn btn-thinner">Create</a>@endcan
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid-2 gap-4">
         @foreach ($seasons as $season)
         <a href="{{ route('admin.season.view', $season) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">

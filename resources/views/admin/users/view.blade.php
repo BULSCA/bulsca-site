@@ -35,7 +35,7 @@
     <form action="@can('admin.users.manage'){{ route('admin.users.edit') }}@endcan" method="POST" class="flex flex-col">
         @csrf
         <input type="hidden" class="hidden" name="user_id" value="{{ $user->id }}">
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <x-form-input id="user_name" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->name }}" title="Name"></x-form-input>
             <x-form-input id="user_email" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->email }}" title=" Email"></x-form-input>
             <x-form-select id="user_university" deny="{{ auth()->user()->cannot('admin.users.manage') }}" defaultValue="{{ $user->getHomeUni() ? $user->getHomeUni()->id : 'null' }}" title=" University" :options=" $unis "></x-form-select>

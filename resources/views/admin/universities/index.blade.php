@@ -22,7 +22,7 @@ Universities | Admin |
         @can('admin.universities.manage')<a href="{{ route('admin.universities.create') }}" class="ml-auto btn btn-thinner">Create</a>@endcan
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid-2 gap-4">
         @foreach ($universities as $uni)
         <a href="{{ route('admin.university.view', $uni) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">

@@ -17,7 +17,7 @@
 
     </div>
 
-    <a href="{{ route('admin.season.view', $competition->currentSeason) }}" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason->name }}</a>
+    <a href="{{ route('admin.season.view', $competition->currentSeason ?: 0) }}" class="text-gray-500 no-underline text-sm font-normal hover:underline hover:text-gray-800 hover:font-semibold">{{ $competition->currentSeason?->name }}</a>
     <h1 class="header -mt-1" style="margin-bottom: 0 !important;">{{ $competition->getName() }} </h1>
     <small class="text-bulsca_red no-underline text-sm font-semibold">{{ $competition->when->format('D dS M Y') }} </small>
 

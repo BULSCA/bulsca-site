@@ -8,7 +8,7 @@ Admin |
 @section('content')
 
 <div class="container-responsive">
-    <div class="grid grid-cols-5 gap-6">
+    <div class="grid md:grid-cols-5 grid-cols-1 gap-6">
 
         @if($currentSeason)
         @can('admin.seasons')

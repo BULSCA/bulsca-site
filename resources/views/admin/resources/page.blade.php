@@ -48,7 +48,7 @@ Resources | Admin |
 
                 <div class="px-6 py-4">
                     <h3 class="header header-small">Resources</h3>
-                    <div class="grid grid-cols-3 gap-x-4 gap-y-2">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2">
                         @forelse ( $sec->getResources() as $res )
                         <div class="flex flex-row items-center justify-center">
                             <p>{{ $res->name }}</p>

@@ -21,7 +21,7 @@ Resources | Admin |
 
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach ($resourcePages as $rp)
         <a href="{{ route('admin.resources.page.view', $rp) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">
@@ -59,7 +59,7 @@ Resources | Admin |
 
 <div class="container">
     <h1 class="header">All Resources</h1>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @foreach ($resources as $res)
         <x-resource-download :file="$res" />
 

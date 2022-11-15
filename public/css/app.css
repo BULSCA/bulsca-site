@@ -3231,6 +3231,10 @@ div.form-search > .results > .result > p:last-child {
     grid-column-start: 3;
   }
 
+  .md\:col-start-4 {
+    grid-column-start: 4;
+  }
+
   .md\:mx-\[20\%\] {
     margin-left: 20%;
     margin-right: 20%;
@@ -3282,6 +3286,10 @@ div.form-search > .results > .result > p:last-child {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:flex-row {

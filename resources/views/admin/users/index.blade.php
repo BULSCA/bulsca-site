@@ -21,7 +21,7 @@ Users | Admin |
         @can('admin.users.manage')<a href="{{ route('admin.users.create') }}" class="ml-auto btn btn-thinner">Add User</a>@endcan
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid-2 gap-4">
         @foreach ($users as $user)
         <a href="{{ route('admin.user', $user) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex items-center justify-center">

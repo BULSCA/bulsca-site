@@ -121,17 +121,17 @@
 
     <div>
         <h1 class="header">Season Details</h1>
-        <form action="@can('admin.seasons.manage'){{ route('admin.season.edit', $season) }}@endcan" method="POST" class="grid grid-cols-4 gap-4">
+        <form action="@can('admin.seasons.manage'){{ route('admin.season.edit', $season) }}@endcan" method="POST" class="grid grid-cols-1 md:grid-cols-4 gap-4">
             @csrf
 
-            <x-form-input deny="{{ auth()->user()->cannot('admin.seasons.manage') }}" id='name' title='Name' extraCss="col-span-2" defaultValue='{{ $season->name }}' />
+            <x-form-input deny="{{ auth()->user()->cannot('admin.seasons.manage') }}" id='name' title='Name' extraCss="md:col-span-2" defaultValue='{{ $season->name }}' />
             <x-form-input deny="{{ auth()->user()->cannot('admin.seasons.manage') }}" id='from' type="datetime-local" title='From' defaultValue='{{ $season->from }}' />
             <x-form-input deny="{{ auth()->user()->cannot('admin.seasons.manage') }}" id='to' type="datetime-local" title='To' defaultValue='{{ $season->to }}' />
 
 
 
             @can('admin.seasons.manage')
-            <button type="submit" class="btn btn-thinner btn-save col-start-4">Save</button>
+            <button type="submit" class="btn btn-thinner btn-save md:col-start-4">Save</button>
             @endcan
         </form>
     </div>
