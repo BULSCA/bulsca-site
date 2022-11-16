@@ -127,6 +127,8 @@ Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'
 Route::post('/competitions/{cid}/manage', [CompetitionController::class, 'update'])->middleware(['auth'])->name('lc-manage-update');
 Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController::class, 'resultsUpload'])->middleware(['auth'])->name('lc-result-upload');
 Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->middleware(['auth'])->name('lc-result-remove');
+Route::post('/competitions/{cid}/manage/upload-pack', [CompetitionController::class, 'packUpload'])->middleware(['auth'])->name('lc-pack-upload');
+Route::get('/competitions/{cid}/manage/remove-pack', [CompetitionController::class, 'packRemove'])->middleware(['auth'])->name('lc-pack-remove');
 
 Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');

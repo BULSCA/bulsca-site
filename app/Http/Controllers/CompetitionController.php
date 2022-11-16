@@ -92,6 +92,40 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
+    public function packUpload(Request $request, $cid)
+    {
+
+        $lc = Competition::find($cid)->load('hostUni');
+
+        $fileName = $lc->hostUni->name . " " .  $lc->when->format('Y') . " Info Pack";
+
+        $fileId = ResourceController::storeResource($request, 'results', 'resources/competition-packs', $fileName);
+
+        $lc->pack_resource = $fileId->id;
+
+        $lc->save();
+
+        if ($request->input('admin') == "true") {
+            return redirect()->back();
+        }
+
+        return redirect()->route('lc-manage', ['cid' => $cid]);
+    }
+
+    public function packRemove(Request $request, $cid)
+    {
+        $lc = Competition::find($cid);
+        $lc->pack_resource = null;
+        $lc->save();
+
+        if ($request->input('admin') == "true") {
+            return redirect()->back();
+        }
+
+        return redirect()->route('lc-manage', ['cid' => $cid]);
+    }
+
+
 
 
     public function update(ManageCompetitionRequest $request, Competition $cid)

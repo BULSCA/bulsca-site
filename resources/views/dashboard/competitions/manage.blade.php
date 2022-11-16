@@ -230,23 +230,53 @@ nav-scrolled
 
 <hr>
 <p class="text-center my-4 text-lg">
-  <strong>The results form below is seperate to the above!</stro>
+  <strong>The results and info pack forms below are seperate to the above!</stro>
 </p>
 <hr>
 
-<div class="container-responsive overflow-x-hidden">
-  <h3>Results</h3>
-  @if ($comp->getResultsResource()->first())
+
+<div class="container-responsive overflow-hidden" id="info-pack">
+  <h3>Info Pack</h3>
+  @if ($comp->getPackResource()->first())
   <div class="flex items-center space-x-4">
-    <x-resource-download :file="$comp->getResultsResource()->first()" />
-    <a href="manage/remove-results" class="">
+    <x-resource-download :file="$comp->getPackResource()->first()" />
+    <a href="manage/remove-pack#info-pack" class="">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 hover:text-bulsca_red transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </a>
   </div>
 
+  <hr class="my-5">
 
+  @endif
+  <h4>
+    Upload/Change Info Pack
+  </h4>
+  <form action="manage/upload-pack#info-pack" class="inline-block overflow-hidden" method="POST" enctype="multipart/form-data">
+    @csrf
+
+    <div class="form-input">
+      <label for="upload-file">File</label>
+      <input id="upload-file" class="input file" name="results" required type="file">
+    </div>
+    <button class="btn btn-thinner">Upload</button>
+  </form>
+
+
+</div>
+
+<div class="container-responsive overflow-hidden" id="results">
+  <h3>Results</h3>
+  @if ($comp->getResultsResource()->first())
+  <div class="flex items-center space-x-4">
+    <x-resource-download :file="$comp->getResultsResource()->first()" />
+    <a href="manage/remove-results#results" class="">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 hover:text-bulsca_red transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </a>
+  </div>
 
   <hr class="my-5">
 
@@ -254,7 +284,7 @@ nav-scrolled
   <h4>
     Upload/Change Results
   </h4>
-  <form action="manage/upload-results" class="inline-block overflow-x-hidden" method="POST" enctype="multipart/form-data">
+  <form action="manage/upload-results#results" class="inline-block overflow-hidden" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-input">

@@ -382,19 +382,41 @@ nav-scrolled
 </div>
 
 <div class="container-responsive">
-  <h3>Results</h3>
-  @if ($comp->getResultsResource()->first())
-  <div class="flex items-center space-x-4">
-    <x-resource-download :file="$comp->getResultsResource()->first()" />
 
+  <div class="grid-3">
+    <div>
+      <h3>Info Pack</h3>
+      @if ($comp->getPackResource()->first())
+      <div class="flex items-center space-x-4">
+        <x-resource-download :file="$comp->getPackResource()->first()" />
+
+      </div>
+
+
+
+      @else
+      <p>The info pack isn't currently available!</p>
+
+      @endif
+    </div>
+    <div>
+      <h3>Results</h3>
+      @if ($comp->getResultsResource()->first())
+      <div class="flex items-center space-x-4">
+        <x-resource-download :file="$comp->getResultsResource()->first()" />
+
+      </div>
+
+
+
+      @else
+      <p>Results aren't currently available!</p>
+
+      @endif
+    </div>
   </div>
 
 
-
-  @else
-  <p>Results aren't currently available!</p>
-
-  @endif
 
 
 
