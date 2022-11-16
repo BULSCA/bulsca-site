@@ -23,6 +23,7 @@
 
 
 </div>
+<x-alert-banner />
 
 
 

@@ -19,6 +19,7 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
 
 
 </div>
+<x-alert-banner />
 
 
 <div class=" container-responsive ">

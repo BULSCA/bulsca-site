@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DynamicResourcePageController;
+use App\Http\Controllers\GlobalNotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\UniversityController;
@@ -64,4 +65,6 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/resources/page', [DynamicResourcePageController::class, 'createNewPage'])->name('admin.resources.page.create');
     Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->name('admin.resources.page.delete');
     Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
+
+    Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 });

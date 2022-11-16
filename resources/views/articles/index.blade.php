@@ -25,6 +25,7 @@ The latest publications from BULSCA all in one place.
 
 
 </div>
+<x-alert-banner />
 
 <div class="container-responsive">
 

@@ -21,6 +21,7 @@ Competitions |
 
 
 </div>
+<x-alert-banner />
 
 <!-- <a href="#" class="notification-stripe ns-red">
     Southampton results are now available!

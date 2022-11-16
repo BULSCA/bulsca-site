@@ -6,7 +6,11 @@ Admin |
 
 
 @section('content')
-
+<style>
+    .ck-editor__editable_inline {
+        min-height: 50px !important;
+    }
+</style>
 <div class="container-responsive">
     <div class="grid md:grid-cols-5 grid-cols-1 gap-6">
 
@@ -135,8 +139,75 @@ Admin |
     <a href="{{ route('admin.resources') }}">View Resources</a>
     @endcan
 
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div>
+        <h3>Global Banner</h3>
+        <p>Enter nothing to remove the banner</p>
+        <form action="{{ route('globalnotifs.banner') }}" method="POST" class="flex flex-col">
+            @csrf
+            <textarea hidden name="content" id="editor" class="md:col-span-3" rows="2" class="max-h-4 h-4">{{ App\Models\GlobalNotification::getBanner()?->content }}</textarea>
+
+            <button type="submit" class="ml-auto btn btn-thinner btn-save mt-4">Save</button>
+        </form>
+        <br>
+        <h4>Preview:</h4>
+        <x-alert-banner />
+
+    </div>
+
 
 </div>
+
+<script src="/storage/ckeditor.js"></script>
+
+<script>
+    const watchdog = new CKSource.EditorWatchdog();
+
+    window.watchdog = watchdog;
+
+    watchdog.setCreator((element, config) => {
+
+        return CKSource.Editor
+            .create(element, config)
+            .then(editor => {
+
+                editor.config.height = 10;
+
+
+                return editor;
+            })
+    });
+
+    watchdog.setDestructor(editor => {
+
+
+
+        return editor.destroy();
+    });
+
+    watchdog.on('error', handleError);
+
+    watchdog
+        .create(document.querySelector('#editor'), {
+
+            licenseKey: '',
+            removePlugins: ['Heading', 'CKBox', 'ImageToolbar', 'Indent', 'List', 'MediaEmbed', 'Table', 'TextTransformation', 'BlockQuote', 'Alignment', 'HorizontalLine', 'HTMLEmbed', 'GeneralHTMLSupport']
+
+
+        })
+        .catch(handleError);
+
+    function handleError(error) {
+        console.error('Oops, something went wrong!');
+        console.error('Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:');
+        console.warn('Build id: 6ejwh9b4xfpx-l949vrtw2lll');
+        console.error(error);
+    }
+</script>
+
 
 
 @endsection
