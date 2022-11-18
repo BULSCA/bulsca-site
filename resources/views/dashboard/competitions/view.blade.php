@@ -399,7 +399,7 @@ nav-scrolled
 
       @endif
     </div>
-    <div>
+    <div id="results">
       <h3>Results</h3>
       @if ($comp->getResultsResource()->first())
       <div class="flex items-center space-x-4">
