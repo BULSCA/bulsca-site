@@ -84,19 +84,27 @@ Resources |
   </div>
 </div>
 
-<div class="container-responsive hidden">
-  <form action="/resources/upload" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-input">
-      <label for="upload-name">File Name</label>
-      <input id="upload-name" class="input" name="name" required type="text" placeholder="File">
+<div class="container-responsive">
+  <h1 class="">Forms</h1>
+
+
+  <div class="grid-3">
+    <div class="file-link mt-2" title='Club Support Fund Application'>
+      <a href='https://docs.google.com/forms/d/e/1FAIpQLSfJzTHAYDHY9tJ7vENXKWBeqGSP0Qg9CBjxF-CWAhUnx1uTJA/viewform' rel="noopener noreferrer" target='_blank'>
+        <div>
+          <h3>Club Support Fund Application</h3>
+
+        </div>
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+
+        </div>
+      </a>
     </div>
-    <div class="form-input">
-      <label for="upload-file">File</label>
-      <input id="upload-file" class="input" name="fupload" required type="file">
-    </div>
-    <button class="btn">Upload</button>
-  </form>
+  </div>
 </div>
 
 
