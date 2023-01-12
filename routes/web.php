@@ -37,6 +37,9 @@ Route::get('/competitions', function () {
 })->name('comps');
 
 Route::get('/competitions/championships', [ChampionshipController::class, 'index'])->name('champs');
+Route::get('/competitions/championships/2023', function () {
+    return view('competitions.championships.info-2023');
+})->name('champs.2023');
 
 Route::get('/competitions/league', [SeasonController::class, 'currentSeason'])->name('league');
 Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');

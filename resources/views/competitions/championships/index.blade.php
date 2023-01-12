@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Championships {{ $season->to->format('Y') }} | Competitions |
+Championships | Competitions |
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@ Championships {{ $season->to->format('Y') }} | Competitions |
     <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
       <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
       <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-        <h2 class="md:text-6xl text-4xl font-bold text-white">Championships </h2>
-        <p class="text-white"><strong>{{ $season->to->format('Y') }}</strong>: The <strong>BIG</strong> one!</p>
+        <h2 class="md:text-6xl text-4xl font-bold text-white">Championships</h2>
+        <p class="text-white"></p>
       </div>
     </div>
 
@@ -26,11 +26,12 @@ Championships {{ $season->to->format('Y') }} | Competitions |
 <div class="container-responsive">
   <div class="image-link-group">
 
-    <div class=" image-link  " style="background-image: url(/storage/photos/DSC_0014.jpg);">
-      <a href="#" class=" cursor-not-allowed">Dates & Deadlines</a>
+    <div class=" image-link " style="background-image: url(/storage/photos/DSC_0014.jpg);">
+      <a href="{{ route('champs.2023') }}" class=" ">Champs 2023 Info</a>
     </div>
-    <div class=" image-link " style="background-image: url(/storage/photos/DSC_0348.jpg);">
-      <a href="#" class=" cursor-not-allowed">Results</a>
+
+    <div class=" image-link disabled" style="background-image: url(/storage/photos/DSC_0348.jpg);">
+      <a href="#" class=" ">Champs 2023 Entries</a>
     </div>
 
   </div>

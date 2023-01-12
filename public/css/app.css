@@ -659,6 +659,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mt-3 {
   margin-top: -0.75rem;
 }
+.-mb-1 {
+  margin-bottom: -0.25rem;
+}
 .-mt-1 {
   margin-top: -0.25rem;
 }
@@ -912,9 +915,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .cursor-pointer {
   cursor: pointer;
-}
-.cursor-not-allowed {
-  cursor: not-allowed;
 }
 .list-inside {
   list-style-position: inside;
@@ -1779,6 +1779,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
+.btn.disabled {
+  cursor: not-allowed;
+}
+.btn.disabled:hover {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(7 6 96 / var(--tw-text-opacity));
+}
 
 .bg-image {
   background-repeat: no-repeat;
@@ -2086,6 +2100,12 @@ h5:not(.header) {
 }
 .image-link > a:hover {
   background-color: rgba(0, 0, 0, 0.4);
+}
+.image-link.disabled > a {
+  cursor: not-allowed;
+}
+.image-link.disabled > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .image-link-group {
