@@ -45,7 +45,20 @@
                     </div>
                 </li>
                 <li><a href="{{ route('resources') }}">Resources</a></li>
-                <li><a href="{{ route('about') }}">About</a></li>
+
+
+
+                <li class="group {{ Request::is('about*') ? 'nav-active' : ''}}">
+                    <a href="{{ route('about') }}" class=" overflow-hidden overflow-ellipsis whitespace-nowrap">About</a>
+                    <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
+                        <ul>
+                            <li><a href="{{ route('about.records') }}">Records</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
                 <li class="group">
                     <a href="{{ route('dashboard') }}">Account</a>
                     @auth
@@ -134,7 +147,26 @@
 
 
             <li><a href="{{ route('resources') }}">Resources</a></li>
+
+            <li class="group {{ Request::is('about*') ? 'mobile-nav-active' : ''}}">
+                <div class="mobile-nav-link">
+                    <a href="{{ route('about') }}">About</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+
+                </div>
+                <div class="mobile-dropdown">
+                    <ul>
+
+                        <li><a href="{{ route('about.records') }}">Records</a></li>
+
+                    </ul>
+                </div>
+            </li>
+
             <li><a href="{{ route('about') }}">About</a></li>
+
             <li class="group {{ Request::is('dashboard*') ? 'mobile-nav-active' : ''}}">
                 <div class="mobile-nav-link">
                     <a href="{{ route('dashboard') }}">Account</a>

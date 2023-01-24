@@ -80,6 +80,9 @@ Route::get('/resources/search/{search}', [DynamicResourcePageController::class, 
 Route::get('/about', function () {
     return view('about.index');
 })->name('about');
+Route::get('/about/records', function () {
+    return view('about.records');
+})->name('about.records');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
