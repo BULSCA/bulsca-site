@@ -56,13 +56,37 @@ Inclusion and Accessibility | Welfare |
     </p>
     <br>
     <br>
-    <h3>Previous Adjustments</h3>
-    <ul class=" list-disc list-inside indent-4">
-        <li>Heat lane allocations can be chosen to place specific swimmers near the starting referee or the edge of the pool</li>
-        <li>Starting in the water</li>
-        <li>Visual cues for starting races</li>
-        <li>Large print or easy-read font for the printed SERC brief</li>
-    </ul>
+
+    <div class="grid-2">
+        <div>
+            <h3>Previous Adjustments</h3>
+            <ul class=" list-disc list-inside indent-4">
+                <li>Heat lane allocations can be chosen to place specific swimmers near the starting referee or the edge of the pool</li>
+                <li>Starting in the water</li>
+                <li>Visual cues for starting races</li>
+                <li>Large print or easy-read font for the printed SERC brief</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Diversity and Inclusions Policy</h3>
+            <div class="file-link" title='Diversity and Inclusions Policy'>
+                <a href='{{ route("view-resource", "c1f8e739-5c93-4d5a-9341-f5a27632c12b") }}' target='_blank'>
+                    <div>
+                        <h3>Diversity and Inclusions Policy</h3>
+                        <small>Click to download</small>
+                    </div>
+
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 
