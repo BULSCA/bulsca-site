@@ -25,7 +25,7 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
   <div class="flex flex-col items-center lg:items-start">
     <p class="text-white  text-4xl lg:text-5xl font-bold">Champs 2023</p>
     <p class="text-white font-semibold text-lg">Signup's are now open!</p>
-    <a href="{{ route('champs.2023') }}" class="btn btn-thinner  mt-4">Find out more!</a>
+    <a href="{{ route('champs.2023') }}" class="btn btn-thinner  mt-4 hover:border-bulsca">Find out more!</a>
   </div>
 </div>
 
