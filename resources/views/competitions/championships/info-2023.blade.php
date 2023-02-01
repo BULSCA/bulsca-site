@@ -33,6 +33,44 @@ Championships 2023 | Competitions |
     </div>
     <small>18-19th March 2023 at K2 Crawley</small>
 
+    <br>
+
+    <div class="grid-3">
+        <div>
+            <h2 class="">Costs</h2>
+            <p>
+                <strong>£55</strong> per competitor in a Squad,
+                <br>
+                <br>
+                <strong>OR</strong>
+                <br>
+                <br>
+                <strong>£15</strong> per individual event, <br><strong>£30</strong> per relay (4x£7.50)
+            </p>
+        </div>
+        <div>
+            <h2 class="-mb-1">Accommodation</h2>
+            <small class="">(available Friday and Saturday night)</small>
+            <p class="mt-1">
+                <strong>£5</strong> per person per night.
+                <br>
+            </p>
+        </div>
+        <div>
+            <h2 class="">Merch</h2>
+            <ul class=" list-inside list-disc">
+                <li>T-Shirt <strong class="ml-auto">£20</strong></li>
+                <li>Swimming Hat <strong>£7.50</strong></li>
+                <li>Tote Bag <strong>£7.50</strong></li>
+            </ul>
+        </div>
+
+    </div>
+    <br>
+    <p class="text-center font-bold">
+        More information will be available shortly!
+    </p>
+    <br>
 
 
     <hr>
@@ -54,12 +92,8 @@ Championships 2023 | Competitions |
                 </svg></a></div>
     </div>
     <br>
-    <br>
-    <hr>
-    <br>
-    <p class="text-center font-bold">
-        More information will be available shortly!
-    </p>
+
+
 
 
 </div>
