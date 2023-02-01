@@ -30,8 +30,8 @@ Championships | Competitions |
       <a href="{{ route('champs.2023') }}" class=" ">Champs 2023 Info</a>
     </div>
 
-    <div class=" image-link disabled" style="background-image: url(/storage/photos/DSC_0348.jpg);">
-      <a href="#" class=" ">Champs 2023 Entries</a>
+    <div class=" image-link " style="background-image: url(/storage/photos/DSC_0348.jpg);">
+      <a href="{{ route('champs.2023') }}#entries" class=" ">Champs 2023 Entries</a>
     </div>
 
   </div>
