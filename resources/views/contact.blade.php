@@ -81,6 +81,10 @@ Contact |
     The league email forwards to the Chair, Secretary and Data Manager and is for league related matters. The League email can be contacted at <a href="mailto:league@bulsca.co.uk">league@bulsca.co.uk</a>
   </p>
   <br><br>
+  <h2 class="header header-smallish">Judges Panel</h2>
+  <p>
+    The Judges Panel is responsible for moderating SERCs and competition details among other duties. The Judges Panel can be contacted at <a href="mailto:bulscajudgespanel@bulsca.co.uk">bulscajudgespanel@bulsca.co.uk</a> or <a href="mailto:bjp@bulsca.co.uk">bjp@bulsca.co.uk</a></p>
+  <br><br>
   <h2 class="header header-smallish">no-reply</h2>
   <p>
     You wont get much out of no-reply. They've been seen only a few times. Some say that they occasionally have tea with the Bob's.
