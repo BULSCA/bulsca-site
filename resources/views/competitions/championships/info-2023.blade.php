@@ -45,7 +45,7 @@ Championships 2023 | Competitions |
                 <strong>OR</strong>
                 <br>
                 <br>
-                <strong>£15</strong> per individual event, <br><strong>£30</strong> per relay (4x£7.50)
+                <strong>£7.50</strong> per individual event, <br><strong>£20</strong> per relay (4x£5)
             </p>
         </div>
         <div>
