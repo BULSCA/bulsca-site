@@ -58,11 +58,16 @@ Championships 2023 | Competitions |
         </div>
         <div>
             <h2 class="">Merch</h2>
+            <strong>Order merch now!</strong>
+
+
             <ul class=" list-inside list-disc">
                 <li>T-Shirt <strong class="ml-auto">£20</strong></li>
                 <li>Swimming Hat <strong>£7.50</strong></li>
-                <li>Tote Bag <strong>£7.50</strong></li>
+
             </ul>
+            <br>
+            <a class="btn btn-thinner" href="https://forms.gle/xjKy4XixfVSJxwjd6">Order Now</a>
         </div>
 
     </div>
