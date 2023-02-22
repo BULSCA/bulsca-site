@@ -67,7 +67,7 @@ Championships 2023 | Competitions |
 
             </ul>
             <br>
-            <a class="btn btn-thinner" href="https://forms.gle/xjKy4XixfVSJxwjd6">Order Now</a>
+            <a class="btn btn-thinner" href="https://forms.gle/xjKy4XixfVSJxwjd6" target="_blank" rel="noopener noreferrer">Order Now</a>
         </div>
 
     </div>
