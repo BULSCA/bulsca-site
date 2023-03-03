@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BigUpload;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
@@ -140,6 +141,9 @@ Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['aut
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
+
+Route::post('/large-upload', [BigUpload::class, 'upload']);
+Route::get('/large-upload', [BigUpload::class, 'view']);
 
 
 require __DIR__ . '/auth.php';

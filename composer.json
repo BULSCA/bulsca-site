@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.7",
         "league/glide": "^2.2",
         "league/glide-laravel": "^1.0",
+        "pion/laravel-chunk-upload": "^1.5",
         "propaganistas/laravel-phone": "^4.3",
         "spatie/laravel-permission": "^5.5"
     },
