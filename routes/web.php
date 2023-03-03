@@ -142,9 +142,6 @@ Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')-
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
 
-Route::post('/large-upload', [BigUpload::class, 'upload']);
-Route::get('/large-upload', [BigUpload::class, 'view']);
-
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
