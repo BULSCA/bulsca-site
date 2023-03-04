@@ -24,7 +24,7 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
   <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%]  w-[30%] h-auto" alt="">
   <div class="flex flex-col items-center lg:items-start">
     <p class="text-white  text-4xl lg:text-5xl font-bold">Champs 2023</p>
-    <p class="text-white font-semibold text-lg">Signup's are now open!</p>
+    <p class="text-white font-semibold text-lg"><span id="countdown"></span></p>
     <a href="{{ route('champs.2023') }}" class="btn btn-thinner  mt-4 hover:border-bulsca">Find out more!</a>
   </div>
 </div>
@@ -83,6 +83,17 @@ The British Universities Life Saving Clubs' Association (BULSCA) acts as the gov
     target.src = "https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-1/89133349_2788611911222752_6862972772499324928_n.jpg?stp=dst-jpg_p200x200&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Z9BSXnigZCcAX_9ozYA&_nc_ht=scontent-mad1-1.xx&oh=00_AT--a8zn5YY8ZGnwBJ8A0MEUxQV9fRNRpolc1qrYczW83w&oe=6324671E"
 
   }
+
+  function daysUntil(date) {
+    const now = new Date();
+    const target = new Date('2023-03-18T00:00:00Z');
+    const nowUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const targetUtc = Date.UTC(target.getFullYear(), target.getMonth(), target.getDate());
+    const diffInDays = Math.floor((targetUtc - nowUtc) / (1000 * 60 * 60 * 24));
+    document.getElementById('countdown').textContent = diffInDays > 0 ? `${diffInDays} days to go!` : "";
+  }
+
+  daysUntil('2023-03-18');
 </script>
 
 @endsection
