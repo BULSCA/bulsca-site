@@ -58,7 +58,7 @@ Championships 2023 | Competitions |
         </div>
         <div>
             <h2 class="">Merch</h2>
-            <strong>Order merch now!</strong>
+            <strong>Merch orders are now closed!</strong>
 
 
             <ul class=" list-inside list-disc">
@@ -67,25 +67,42 @@ Championships 2023 | Competitions |
 
             </ul>
             <br>
-            <a class="btn btn-thinner" href="https://forms.gle/xjKy4XixfVSJxwjd6" target="_blank" rel="noopener noreferrer">Order Now</a>
+
         </div>
 
     </div>
     <br>
-    <div class="file-link" title='BULSCA Championships Rules 2023'>
-        <a href='{{ route("view-resource", "3790de53-b1d8-494e-9063-d82b9750fa5e") }}' target='_blank'>
-            <div>
-                <h3>BULSCA Championships Rules 2023</h3>
-                <small>Click to download</small>
-            </div>
+    <div class="grid-3">
+        <div class="file-link" title='Entry Pack'>
+            <a href='{{ route("view-resource", "1eba40c0-7aa9-457c-946a-f2c56b36c330") }}' target='_blank'>
+                <div>
+                    <h3>BULSCA Championships Rules 2023</h3>
+                    <small>Click to download</small>
+                </div>
 
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                </svg>
-            </div>
-        </a>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="file-link" title='BULSCA Championships Rules 2023'>
+            <a href='{{ route("view-resource", "3790de53-b1d8-494e-9063-d82b9750fa5e") }}' target='_blank'>
+                <div>
+                    <h3>BULSCA Championships Rules 2023</h3>
+                    <small>Click to download</small>
+                </div>
+
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                    </svg>
+                </div>
+            </a>
+        </div>
     </div>
+
     <p class="text-center font-bold">
 
         <br>
