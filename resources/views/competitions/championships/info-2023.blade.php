@@ -76,7 +76,7 @@ Championships 2023 | Competitions |
         <div class="file-link" title='Entry Pack'>
             <a href='{{ route("view-resource", "1eba40c0-7aa9-457c-946a-f2c56b36c330") }}' target='_blank'>
                 <div>
-                    <h3>BULSCA Championships Rules 2023</h3>
+                    <h3>Entry Pack 2023</h3>
                     <small>Click to download</small>
                 </div>
 
