@@ -73,7 +73,21 @@ Championships 2023 | Competitions |
     </div>
     <br>
     <div class="grid-3">
-        <div class="file-link" title='Entry Pack'>
+        <div class="file-link" title='Info Pack 2023'>
+            <a href='{{ route("view-resource", "f646b5b5-4e3a-41ad-975e-9d92047a3cf6") }}' target='_blank'>
+                <div>
+                    <h3>Info Pack 2023</h3>
+                    <small>Click to download</small>
+                </div>
+
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="file-link" title='Entry Pack 2023'>
             <a href='{{ route("view-resource", "1eba40c0-7aa9-457c-946a-f2c56b36c330") }}' target='_blank'>
                 <div>
                     <h3>Entry Pack 2023</h3>
@@ -110,6 +124,7 @@ Championships 2023 | Competitions |
 
         <hr>
         <br>
+
     <h2 id="entries" class="">Entries</h2>
     <br>
     <div class="grid-3">
