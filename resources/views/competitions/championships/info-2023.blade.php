@@ -22,14 +22,20 @@ Championships 2023 | Competitions |
 
 </div>
 
+
 <div class="container-responsive space-y-2">
 
     <div class="flex flex-col lg:flex-row justify-between lg:items-center -mb-1">
         <p class="font-semibold text-bulsca text-4xl lg:text-5xl">Championships 2023</p>
-        <a href="#entries" class="btn btn-thinner inline-flex items-center mt-2">Entry Forms <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6 ml-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
-        </a>
+        <div class="flex flex-col md:flex-row md:items-center justify-center md:space-x-3">
+            <a href="https://forms.gle/iDABW9BkdnBNVJx26" class="btn btn-thinner inline-flex items-center mt-2">Online Registration <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg></a>
+            <a href="#entries" class="btn btn-thinner inline-flex items-center mt-2">Entry Forms <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6 ml-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+            </a>
+        </div>
     </div>
     <small>18-19th March 2023 at K2 Crawley</small>
 
@@ -72,6 +78,12 @@ Championships 2023 | Competitions |
 
     </div>
     <br>
+
+
+
+
+    <br>
+    <br>
     <div class="grid-3">
         <div class="file-link" title='Info Pack 2023'>
             <a href='{{ route("view-resource", "f646b5b5-4e3a-41ad-975e-9d92047a3cf6") }}' target='_blank'>
@@ -87,6 +99,8 @@ Championships 2023 | Competitions |
                 </div>
             </a>
         </div>
+
+
         <div class="file-link" title='Entry Pack 2023'>
             <a href='{{ route("view-resource", "1eba40c0-7aa9-457c-946a-f2c56b36c330") }}' target='_blank'>
                 <div>

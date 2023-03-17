@@ -3415,6 +3415,10 @@ div.form-search > .results > .result > p:last-child {
     flex-wrap: wrap;
   }
 
+  .md\:items-center {
+    align-items: center;
+  }
+
   .md\:justify-start {
     justify-content: flex-start;
   }
