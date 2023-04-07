@@ -2914,6 +2914,10 @@ div.form-search > .results > .result > p:last-child {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.ck ul, .ck ol {
+  list-style-position: inside;
+}
+
 .even\:bg-bulsca:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(7 6 96 / var(--tw-bg-opacity));

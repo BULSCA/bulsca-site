@@ -61,7 +61,7 @@
 
 
 
-<script src="/storage/ckeditor.js"></script>
+<!-- <script src="/storage/ckeditor.js"></script>
 
 <script>
     const watchdog = new CKSource.EditorWatchdog();
@@ -105,7 +105,7 @@
         console.warn('Build id: 6ejwh9b4xfpx-l949vrtw2lll');
         console.error(error);
     }
-</script>
+</script> -->
 
 
 

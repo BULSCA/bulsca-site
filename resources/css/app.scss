@@ -705,3 +705,9 @@ div.form-search {
 .ab a {
   @apply text-white;
 }
+
+.ck {
+  ul, ol {
+    @apply list-inside;
+  }
+}
