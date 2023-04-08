@@ -122,7 +122,9 @@
       mn.classList.remove('open')
     }
   }
+
+  initMobileNav();
 </script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?{{ config('version.hash') }}"></script>
 
 </html>
