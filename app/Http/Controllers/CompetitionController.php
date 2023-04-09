@@ -99,6 +99,9 @@ class CompetitionController extends Controller
     public function resultsRemove(Request $request, $cid)
     {
         $lc = Competition::find($cid);
+
+        if ($lc->results_resource) $lc->results_resource = null;
+
         $lc->results_type = ResultType::NONE;
         $lc->save();
 
