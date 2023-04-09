@@ -6,28 +6,19 @@
 The British Universities Life Saving Clubs' Association (BULSCA) acts as the governing body for, and oversees competitive lifesaving between, university clubs. Our competitions test lifesaving athletes on their prioritisation, rescue skills, fitness, first aid knowledge and ability to adapt and show initiative in an emergency. Swimming speed and endurance, while helpful, do not necessarily make a good lifesaver!
 @endsection
 
-<!-- <div class="h-[50vh] w-screen bg-gray-100  overflow-hidden  ">
+<div class="h-[50vh] w-screen bg-gray-100  overflow-hidden  ">
 
   <div class="h-full w-full overflow-hidden relative">
-    <div class="absolute top-0 right-0 w-full h-full head-bg flex items-center justify-center transition-opacity   duration-1000" id="head1">
+    <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000" id="head1">
       <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto" alt="">
     </div>
-    <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity opacity-0 duration-1000 z-20" id="head2">
-      <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto" alt="">
-    </div>
+
   </div>
 
 
-</div> -->
-
-<div class="lg:h-[50vh] h-[70vh] w-screen bg-gradient-to-br from-bulsca to-bulsca_red   overflow-hidden flex flex-col lg:flex-row items-center justify-center lg:space-x-8 space-y-4 lg:space-y-0">
-  <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%]  w-[30%] h-auto" alt="">
-  <div class="flex flex-col items-center lg:items-start">
-    <p class="text-white  text-4xl lg:text-5xl font-bold">Champs 2023</p>
-    <p class="text-white font-semibold text-lg"><span id="countdown"></span></p>
-    <a href="{{ route('champs.2023') }}" class="btn btn-thinner  mt-4 hover:border-bulsca">Find out more!</a>
-  </div>
 </div>
+
+
 
 <x-alert-banner />
 
