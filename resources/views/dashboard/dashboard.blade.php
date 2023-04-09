@@ -82,16 +82,6 @@ nav-scrolled
     @forelse ($myCompetitions as $comp)
     <div class="relative rounded-lg  border   flex justify-between items-center ">
 
-      @if ($comp->alert)
-      <div class="absolute top-0  left-0" title="{{ $comp->alert_message }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 -ml-[50%] -mt-[50%] rounded-full overflow-hidden w-7 h-7" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-        </svg>
-
-      </div>
-
-      @endif
-
       <div class="flex flex-col m-4">
         <h4>
           {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
