@@ -120,7 +120,7 @@ class FileLink extends Plugin {
 
                 const a = viewElement._children[0];
                
-                const title = a._children[0]._children[0]._children[0]._textData
+                const title = a._children[0]._children[0]._children[0]._textData.replace(/(<([^>]+)>)/gi, "")
               
         
                 return modelWriter.createElement( 'fileLink', { title: title, href: a.getAttribute('href') } );
@@ -146,7 +146,7 @@ class FileLink extends Plugin {
         const formView = new FormView( editor.locale );
 
         this.listenTo( formView, 'submit', () => {
-            const title = formView.titleInp.fieldView.element.value
+            const title = formView.titleInp.fieldView.element.value.replace(/(<([^>]+)>)/gi, "")
             const href = formView.hrefInp.fieldView.element.value
 
             editor.execute('afl', { title: title, href: href});
@@ -367,13 +367,15 @@ class FileLinkCommand extends Command {
         const selection = model.document.selection;
         const firstRange = selection.getFirstRange();
 
-        
+        const element = firstRange.getContainedElement();
 
 
-        if (!selection.isCollapsed){
+        if (!selection.isCollapsed && element && element.hasAttribute('title')){
 
-            const element = firstRange.getContainedElement();
+            
     
+     
+
             this.value = { title: element.getAttribute('title'), href: element.getAttribute('href')}
            
         } else {
