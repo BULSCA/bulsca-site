@@ -88,7 +88,7 @@ class FileLink extends Plugin {
                 const href = modelElement.getAttribute('href')
 
                 const d = writer.createContainerElement('div', {class: 'file-link'}, [
-                    writer.createContainerElement('a', { href: href}, [
+                    writer.createContainerElement('a', { href: href, target: "_blank"}, [
                         writer.createContainerElement('div', null, [ writer.createUIElement("h3", null, function(dd) {
                             const de = this.toDomElement(dd);
                             de.innerHTML = title
