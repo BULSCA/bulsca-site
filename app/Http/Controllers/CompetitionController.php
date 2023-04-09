@@ -6,6 +6,7 @@ use App\Http\Requests\CreateNewCompetition;
 use App\Http\Requests\ManageCompetitionRequest;
 use App\Models\Competition;
 use App\Models\CompetitionInfo;
+use App\Models\ResultType;
 use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,13 +63,29 @@ class CompetitionController extends Controller
     public function resultsUpload(Request $request, $cid)
     {
 
+        if (!$request->hasFile('results') && $request->input('result-link', "") == "") return redirect()->back();
+
         $lc = Competition::find($cid)->load('hostUni');
+
+
+        if ($request->input('result-link', "") != "") {
+            $lc->setResults(ResultType::LINK, $request->input('result-link', ""));
+            $lc->save();
+            if ($request->input('admin') == "true") {
+                return redirect()->back();
+            }
+
+            return redirect()->route('lc-manage', ['cid' => $cid]);
+        }
+
 
         $fileName = $lc->hostUni->name . " " .  $lc->when->format('Y') . " Results";
 
         $fileId = ResourceController::storeResource($request, 'results', 'resources/competition-results', $fileName);
 
-        $lc->results_resource = $fileId->id;
+        //$lc->results_resource = $fileId->id;
+
+        $lc->setResults(ResultType::RESOURCE, $fileId->id);
 
         $lc->save();
 
@@ -82,7 +99,7 @@ class CompetitionController extends Controller
     public function resultsRemove(Request $request, $cid)
     {
         $lc = Competition::find($cid);
-        $lc->results_resource = null;
+        $lc->results_type = ResultType::NONE;
         $lc->save();
 
         if ($request->input('admin') == "true") {

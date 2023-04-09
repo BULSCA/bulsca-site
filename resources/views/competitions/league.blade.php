@@ -46,8 +46,8 @@
         {{ $comp->short }}
 
       </p>
-      @if ( $comp->getResultsResource()->first() )
-      <a href="{{ $comp->getResultsResource()->first()->getURL() }}" target="_blank" class="font-semibold text-gray-600 hover:text-black flex mt-auto ">
+      @if ( $comp->hasResults() )
+      <a href="{{ $comp->getResults()['link'] }}" target="_blank" class="font-semibold text-gray-600 hover:text-black flex mt-auto ">
         View Results
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />

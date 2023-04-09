@@ -401,9 +401,9 @@ nav-scrolled
     </div>
     <div id="results">
       <h3>Results</h3>
-      @if ($comp->getResultsResource()->first())
+      @if ($comp->hasResults())
       <div class="flex items-center space-x-4">
-        <x-resource-download :file="$comp->getResultsResource()->first()" />
+        <x-resource-download :file="$comp->getResults()" />
 
       </div>
 

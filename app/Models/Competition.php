@@ -39,7 +39,7 @@ class Competition extends Model
 
     public function hasResults()
     {
-        return $this->results_resource ? true : false;
+        return $this->results_type == "NONE" ? false : true;
     }
 
     public function getStatus()
@@ -60,6 +60,34 @@ class Competition extends Model
     {
         return $this->hasOne(CompetitionInfo::class, 'competition', 'id');
     }
+
+    public function setResults(ResultType $type, $link)
+    {
+        $this->results_type = $type;
+        $this->results_link = $link;
+        $this->save();
+    }
+
+    public function getResults()
+    {
+
+        if ($this->results_resource != null) {
+            return $this->getResultsResource()->first();
+        }
+
+        if ($this->results_type == "RESOURCE") {
+            $r = Resource::find($this->results_link);
+            return ["name" => $r->name, "link" => $r->getURL()];
+        }
+        return ["name" => $this->getName() . " Results", "link" => $this->results_link, "type" => "link"];
+    }
+}
+
+enum ResultType: string
+{
+    case RESOURCE = "RESOURCE";
+    case LINK = "LINK";
+    case NONE = "NONE";
 }
 
 enum CompetitionStatus: string

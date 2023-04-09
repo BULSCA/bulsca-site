@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Resource;
 use Illuminate\View\Component;
 
 class ResourceDownload extends Component
@@ -13,11 +14,15 @@ class ResourceDownload extends Component
      */
 
     private $file;
-    
+
 
     public function __construct($file)
     {
-        $this->file = $file;
+        if ($file instanceof Resource) {
+            $this->file = ['name' => $file->name, 'link' => $file->getURL()];
+        } else {
+            $this->file = $file;
+        }
     }
 
     /**
