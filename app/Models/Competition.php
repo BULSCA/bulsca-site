@@ -73,7 +73,8 @@ class Competition extends Model
     {
 
         if ($this->results_resource != null) {
-            return $this->getResultsResource()->first();
+            $r = $this->getResultsResource()->first();
+            return ["name" => $r->name, "link" => $r->getURL()];
         }
 
         if ($this->results_type == "RESOURCE") {
