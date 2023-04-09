@@ -39,6 +39,7 @@ class Competition extends Model
 
     public function hasResults()
     {
+        if ($this->results_resource != null) return true;
         return $this->results_type == "NONE" ? false : true;
     }
 
