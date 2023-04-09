@@ -30,6 +30,9 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
 import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
+import FileLink from './FileLink';
+
+
 
 
 ClassicEditor.builtinPlugins = [
@@ -66,8 +69,10 @@ ClassicEditor.builtinPlugins = [
     AutoImage,
     Table, TableToolbar,
     HorizontalLine,
-    TextTransformation
-                                                        // <--- ADDED
+    TextTransformation,
+    // CUSTOM //
+    FileLink,
+     
 ];
 
 // Editor configuration.
@@ -97,6 +102,9 @@ ClassicEditor.defaultConfig = {
             'insertTable',
             'blockQuote',
             'horizontalLine',
+            '|',
+            'filelink',
+            '|',
             'undo',
             'redo'
         ]

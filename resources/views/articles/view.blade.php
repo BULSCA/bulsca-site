@@ -66,9 +66,9 @@
         </div>
 
         <hr class="mt-3 mb-3">
-        <p>
+        <div class="ck-content w-full">
             {!! $article->content !!}
-        </p>
+        </div>
         <hr class="mt-3 mb-3">
         <x-article-rating :articleId="$article->id"></x-article-rating>
 
