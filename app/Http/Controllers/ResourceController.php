@@ -66,7 +66,7 @@ class ResourceController extends Controller
 
         $resource = Resource::find($id);
 
-        if ($req->has('dl')) {
+        if ($req->has('dl') || pathinfo($resource->location)['extension'] == "zip") {
             return Storage::download($resource->location);
         }
 
