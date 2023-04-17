@@ -26,14 +26,43 @@
             <x-form-input id="name" title="Resource Name" :defaultObject="$resource"></x-form-input>
             <button class="btn btn-thinner btn-save row-start-2 col-start-4">Save</button>
         </form>
-        <br>
 
+        @if ($resource->getPageResource)
+        <br>
+        <hr>
+        <br>
+        <h3>Move</h3>
+        <p>Move this resource to a different section</p>
+        <form action="{{ route('admin.resource.move', $resource) }}" onsubmit="return confirm('Are you sure?')" method=" POST">
+            @csrf
+            <div class="form-input">
+                <label for="section-select">Section</label>
+                <select name="section" id="section-select" style="padding-top: 0.65em; padding-bottom: 0.65em;">
+                    @foreach (App\Models\ResourcePage::all() as $page)
+                    <optgroup label="{{ $page->name }}">
+                        @foreach ($page->getSections as $section)
+                        <option value="{{ $section->id }}" @if($resource->getPageResource->section == $section->id) selected @endif>{{ $section->name }}</option>
+
+                        @endforeach
+                    </optgroup>
+
+                    @endforeach
+                </select>
+            </div>
+            <div class="flex">
+                <button class="btn btn-thinner btn-danger ml-auto">Move</button>
+            </div>
+        </form>
+
+        @endif
+
+        <br>
         <hr>
         <br>
         <h3>Re-upload</h3>
         <p>Reupload the file or another file without changing the shared link.</p>
 
-        <form action="{{ route('admin.resource.re-upload', $resource) }}" method="POST" enctype="multipart/form-data">
+        <form action=" {{ route('admin.resource.re-upload', $resource) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
 

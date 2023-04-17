@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ResourceSearch;
+use App\Models\Resource;
 use App\Models\ResourcePage;
 use App\Models\ResourcePageSection;
 use App\Models\ResourcePageSectionResource;
@@ -147,5 +148,19 @@ class DynamicResourcePageController extends Controller
         $found = ResourcePageSectionResource::where('name', 'LIKE', "%{$search}%")->orWhere('content', 'LIKE', "%{$search}%")->limit(10)->get(['name', 'resource']);
 
         return response()->json($found);
+    }
+
+    public function move(Request $request,  Resource $resource)
+    {
+
+        $rprsr = $resource->getPageResource;
+
+        if ($rprsr == null) return redirect()->back();
+
+
+        $rprsr->section = $request->input('section');
+        $rprsr->save();
+
+        return redirect()->back();
     }
 }

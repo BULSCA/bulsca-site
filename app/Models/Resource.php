@@ -11,7 +11,13 @@ class Resource extends Model
     use HasFactory, Uuids;
 
 
-    public function getURL() {
+    public function getURL()
+    {
         return '/resources/view/' . $this->id;
+    }
+
+    public function getPageResource()
+    {
+        return $this->hasOne(ResourcePageSectionResource::class, 'resource', 'id');
     }
 }

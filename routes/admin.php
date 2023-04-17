@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::get('/resources/resource/{resource}', [ResourceController::class, 'editResource'])->name('admin.resources.edit');
     Route::post('/resources/resource/{resource}', [ResourceController::class, 'editResourcePost'])->name('admin.resources.editPost');
     Route::post('/resources/resource/{resource}/re-upload', [ResourceController::class, 'reupload'])->name('admin.resource.re-upload');
+    Route::post('/resources/resource/{resource}/move', [DynamicResourcePageController::class, 'move'])->name('admin.resource.move');
 
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 });
