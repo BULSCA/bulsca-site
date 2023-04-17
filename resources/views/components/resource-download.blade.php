@@ -1,5 +1,5 @@
 <div class="file-link" title='{{ $file["name"] }}'>
-    <a href='{{ $file["link"] }}' target='_blank'>
+    <a href='{{ $file["link"] }}' target='_blank' @can('admin.resources.manage') oncontextmenu="if (event.shiftKey) {event.preventDefault(); location.href = '{{ route('admin.resources.edit', basename($file['link'])) }}'}" @endcan>
         <div>
             <h3>{{ $file['name'] }}</h3>
             <small>Click to download</small>

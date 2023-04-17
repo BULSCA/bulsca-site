@@ -69,7 +69,11 @@
   </div>
 </div>
 
+
 <div class="container-responsive">
+  @can('admin.resources.manage')
+  <p class="mb-4 font-bold">Shift-right click a resource to edit it</p>
+  @endcan
   @forelse ($p->getSections as $sec)
 
 
