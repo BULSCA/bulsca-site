@@ -80,11 +80,48 @@
 
 <div class="px-2 md:px-[20%] py-[2%] bg-bulsca flex flex-col space-y-4">
   @php
-  $data = $season->getLeagueResults('a')
+  $data = $season->getLeagueResults('a');
+  $bdata = $season->getLeagueResults('b');
+  $odata = $season->getLeagueResults('o');
   @endphp
-  @php
-  $bdata = $season->getLeagueResults('b')
-  @endphp
+
+  <div class="text-white mb-16 md:mt-0 mt-4">
+    <div class="flex flex-col">
+      <h3 class="text-white">Overall</h3>
+      @php
+      $pts = 0
+      @endphp
+      <div class="podium grid-2">
+
+        @foreach ($odata['data'] as $row)
+        @if ($row['points'] == 0)
+
+        @continue
+
+        @endif
+        @php
+        $pts += $row['points']
+        @endphp
+        @if ($loop->index > 2)
+        @break
+        @endif
+        <div class="flex flex-col items-center space-y-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+          </svg>
+
+          <span>{{ $row['team'] }}</span> @th($loop->index + 1)
+        </div>
+
+        @endforeach
+      </div>
+      @if ($pts == 0)
+      <div class="flex flex-grow justify-center items-center self-stretch">
+        <p><strong>No data</strong></p>
+      </div>
+      @endif
+    </div>
+  </div>
 
   <div class="grid-2 text-white">
     <div class="flex flex-col">
@@ -176,6 +213,63 @@
 
 
 
+</div>
+
+<div class=" container-responsive ">
+  <h2 class="pb-3 header header-larger header-bold">Overall Results </h2>
+
+
+  <div class="table-wrapper relative">
+    <table class=" table-auto" style="position: relative;">
+      <thead>
+        <tr>
+          @foreach ($odata['cols'] as $col)
+          <th>{{ $col }}</th>
+
+          @endforeach
+        </tr>
+      </thead>
+      <tbody>
+        @php
+        $pts = 0
+        @endphp
+
+        @foreach($odata['data'] as $row)
+        @if ($row['points'] == 0) @continue; @endif
+        @php
+        $pts += $row['points']
+        @endphp
+        <tr>
+          <th>{{ $row['team'] }}</th>
+          <td>@th( $loop->index + 1 )</td>
+          <td>{{ $row['points'] }}</td>
+
+          @foreach ($odata['comps'] as $comp)
+
+          <td>@if ($row['positionPoints'][$comp] != 0)
+            {{max(11 - $row['positionPoints'][$comp], 0)}} (@th($row['positionPoints'][$comp]))
+            @endif
+          </td>
+
+
+
+          @endforeach
+        </tr>
+
+
+
+        @endforeach
+        @if ($pts == 0)
+        <tr>
+          <td colspan="100" class="md:text-center">No data</td>
+        </tr>
+
+        @endif
+
+
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div class=" container-responsive ">
