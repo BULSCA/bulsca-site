@@ -139,6 +139,35 @@ class ResourceController extends Controller
 
         $res->delete();
 
+        if ($request->input('redirect')) return redirect()->route($request->input('redirect'));
+
+        return redirect()->back();
+    }
+
+    public function editResource(Resource $resource)
+    {
+        return view('admin.resources.edit', ['resource' => $resource]);
+    }
+
+    public function editResourcePost(Request $request, Resource $resource)
+    {
+
+        $resource->name = $request->input('name', $resource->name);
+        $resource->save();
+
+        return redirect()->back();
+    }
+
+    public function reupload(Request $request, Resource $resource)
+    {
+        Storage::delete($resource->location);
+        $storeName = Str::random(40) . "." . $request->file("resource")->getClientOriginalExtension();
+        $path = Storage::putFileAs("resources/resources", $request->file("resource"), $storeName);
+
+        $resource->location = $path;
+        $resource->name = $request->input('name', $resource->name);
+        $resource->save();
+
         return redirect()->back();
     }
 }
