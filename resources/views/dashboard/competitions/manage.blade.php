@@ -215,6 +215,11 @@ nav-scrolled
     <br>
     <br>
 
+    <x-form-input id="comp_short" title="Competition Short" required="false" :defaultValue="$comp->short"></x-form-input>
+
+    <br>
+    <br>
+
     <button class="btn btn-thinner btn-save" type="submit">Save</button>
 
   </form>

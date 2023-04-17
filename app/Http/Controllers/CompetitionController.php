@@ -161,6 +161,13 @@ class CompetitionController extends Controller
 
         $timetable = [];
 
+
+        $cid->short = $request->input('comp_short', $cid->short);
+        $cid->save();
+        $request->request->remove('comp_short');
+
+
+
         $request->merge(["general_fak_travel" => $request->exists('general_fak_travel'), "general_fak_full" => $request->exists('general_fak_full')]);
 
         foreach ($request->all() as $key => $value) {
