@@ -26,7 +26,7 @@ Resources | Admin |
 
 
     <div class="grid grid-cols-1 gap-4">
-        @foreach ($rp->getSections as $sec)
+        @foreach ($rp->getSections()->orderBy('ordering')->get() as $sec)
         <div toggle class="toggle  rounded-md border hover:border-bulsca transition no-underline">
             <div toggle-header class=" px-6 py-4 flex items-center justify-center border-b">
                 <h2 class="header header-bold" style="margin-bottom: 0 !important">
@@ -34,6 +34,16 @@ Resources | Admin |
                 </h2>
                 <div class="ml-auto flex flex-row items-center justify-center space-x-4">
                     <small class="text-black font-normal ">{{ $sec->getResources()->count() }} Items</small>
+                    <form action="{{ route('admin.resources.section.changeOrder', $sec) }}" method="post" class="h-6">
+                        @csrf
+                        <input type="hidden" name="direction" value="true">
+                        <button class="icon chevron-up hover:scale-125 rounded-md hover:bg-gray-200 transition-all" onclick=" return changeOrder(true); "></button>
+                    </form>
+                    <form action="{{ route('admin.resources.section.changeOrder', $sec) }}" method="post" class="h-6">
+                        @csrf
+                        <input type="hidden" name="direction" value="false">
+                        <button class="icon chevron-down hover:scale-125 rounded-md hover:bg-gray-200 transition-all"></button>
+                    </form>
                     <form action="{{ route('admin.resources.section.delete') }}" onsubmit="return confirm('Are you sure?')" class="flex items-center justify-center" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}

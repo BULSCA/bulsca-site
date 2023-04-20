@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\ResourcePage;
+use App\Models\ResourcePageSection;
 use Illuminate\Console\Command;
 
 class FixOrdering extends Command
@@ -28,11 +29,23 @@ class FixOrdering extends Command
      */
     public function handle()
     {
+
+        ResourcePage::query()->update(['ordering' => null]);
+        ResourcePageSection::query()->update(['ordering' => null]);
+
         $indx = 0;
         foreach (ResourcePage::all() as $page) {
             $page->ordering = $indx;
             $page->save();
             $indx++;
+
+
+            $secIndx = 0;
+            foreach ($page->getSections as $sec) {
+                $sec->ordering = $secIndx;
+                $sec->save();
+                $secIndx++;
+            }
         }
     }
 }

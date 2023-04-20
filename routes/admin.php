@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
 
     Route::post('/resources/{page}/changeOrder', [DynamicResourcePageController::class, 'changePageOrder'])->name('admin.resources.page.changeOrder');
+    Route::post('/resources/section/{section}/changeOrder', [DynamicResourcePageController::class, 'changeSectionOrder'])->name('admin.resources.section.changeOrder');
 
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 });

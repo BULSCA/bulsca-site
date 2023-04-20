@@ -71,6 +71,7 @@ class DynamicResourcePageController extends Controller
         $rps->page = $validated['page'];
 
         $rps->save();
+        $rps->orderSelf();
 
         return redirect()->back();
     }
@@ -101,6 +102,7 @@ class DynamicResourcePageController extends Controller
 
 
         $rp->save();
+        $rp->orderSelf();
 
         return redirect()->back();
     }
@@ -168,24 +170,14 @@ class DynamicResourcePageController extends Controller
     public function changePageOrder(Request $request, ResourcePage $page)
     {
         $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $page->reorder($direction);
+        return redirect()->back();
+    }
 
-        $currentPageOrderIndex = $page->ordering;
-
-
-        $pageToSwapWith = ResourcePage::where('ordering', $currentPageOrderIndex + ($direction ? -1 : +1))->first();
-
-        if ($pageToSwapWith == null) return redirect()->back(); // If no page it means its either the first or last item (or both)
-
-        $targetOrder = $pageToSwapWith->ordering;
-        $pageToSwapWith->ordering = null;
-        $pageToSwapWith->save();
-
-        $page->ordering = $targetOrder;
-        $page->save();
-
-        $pageToSwapWith->ordering = $currentPageOrderIndex;
-        $pageToSwapWith->save();
-
+    public function changeSectionOrder(Request $request, ResourcePageSection $section)
+    {
+        $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $section->reorder($direction);
         return redirect()->back();
     }
 }
