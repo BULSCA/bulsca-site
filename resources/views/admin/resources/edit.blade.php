@@ -33,7 +33,7 @@
         <br>
         <h3>Move</h3>
         <p>Move this resource to a different section</p>
-        <form action="{{ route('admin.resource.move', $resource) }}" onsubmit="return confirm('Are you sure?')" method=" POST">
+        <form action="{{ route('admin.resource.move', $resource) }}" onsubmit="return confirm('Are you sure?')" method="POST">
             @csrf
             <div class="form-input">
                 <label for="section-select">Section</label>
