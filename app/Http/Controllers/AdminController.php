@@ -90,7 +90,7 @@ class AdminController extends Controller
 
     public function viewResources()
     {
-        return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('name')->get(), 'resources' => Resource::orderBy('name')->paginate(9)]);
+        return view('admin.resources.index', ['resourcePages' => ResourcePage::orderBy('ordering')->get(), 'resources' => Resource::orderBy('name')->paginate(9)]);
     }
 
     public function viewResourcePage(ResourcePage $resourcePage)

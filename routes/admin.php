@@ -57,19 +57,22 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/users/create', [UserController::class, 'createUser'])->middleware('can:admin.users.manage')->name('admin.users.create.post');
     Route::post('/users/edit', [UserController::class, 'editUser'])->middleware('can:admin.users.manage')->name('admin.users.edit');
 
-    Route::get('/resources', [AdminController::class, 'viewResources'])->name('admin.resources');
-    Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->name('admin.resource.upload');
-    Route::delete('/resources/delete', [ResourceController::class, 'delete'])->name('admin.resource.delete');
-    Route::post('/resources/section', [DynamicResourcePageController::class, 'createNewSection'])->name('admin.resources.section.create');
-    Route::delete('/resources/section', [DynamicResourcePageController::class, 'deleteSection'])->name('admin.resources.section.delete');
-    Route::post('/resources/page', [DynamicResourcePageController::class, 'createNewPage'])->name('admin.resources.page.create');
-    Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->name('admin.resources.page.delete');
-    Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->name('admin.resources.page.view');
+    Route::get('/resources', [AdminController::class, 'viewResources'])->middleware('can:admin.resources')->name('admin.resources');
+    Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->middleware('can:admin.resources.manage')->name('admin.resource.upload');
+    Route::delete('/resources/delete', [ResourceController::class, 'delete'])->middleware('can:admin.resources.manage')->name('admin.resource.delete');
+    Route::post('/resources/section', [DynamicResourcePageController::class, 'createNewSection'])->middleware('can:admin.resources.manage')->name('admin.resources.section.create');
+    Route::delete('/resources/section', [DynamicResourcePageController::class, 'deleteSection'])->middleware('can:admin.resources.manage')->name('admin.resources.section.delete');
+    Route::post('/resources/page', [DynamicResourcePageController::class, 'createNewPage'])->middleware('can:admin.resources.manage')->name('admin.resources.page.create');
+    Route::delete('/resources/page', [DynamicResourcePageController::class, 'deletePage'])->middleware('can:admin.resources.manage')->name('admin.resources.page.delete');
+    Route::get('/resources/{resourcePage}', [AdminController::class, 'viewResourcePage'])->middleware('can:admin.resources')->name('admin.resources.page.view');
 
-    Route::get('/resources/resource/{resource}', [ResourceController::class, 'editResource'])->name('admin.resources.edit');
-    Route::post('/resources/resource/{resource}', [ResourceController::class, 'editResourcePost'])->name('admin.resources.editPost');
-    Route::post('/resources/resource/{resource}/re-upload', [ResourceController::class, 'reupload'])->name('admin.resource.re-upload');
-    Route::post('/resources/resource/{resource}/move', [DynamicResourcePageController::class, 'move'])->name('admin.resource.move');
+    Route::get('/resources/resource/{resource}', [ResourceController::class, 'editResource'])->middleware('can:admin.resources.manage')->name('admin.resources.edit');
+    Route::post('/resources/resource/{resource}', [ResourceController::class, 'editResourcePost'])->middleware('can:admin.resources.manage')->name('admin.resources.editPost');
+    Route::post('/resources/resource/{resource}/re-upload', [ResourceController::class, 'reupload'])->middleware('can:admin.resources.manage')->name('admin.resource.re-upload');
+    Route::post('/resources/resource/{resource}/move', [DynamicResourcePageController::class, 'move'])->middleware('can:admin.resources.manage')->name('admin.resource.move');
+
+
+    Route::post('/resources/{page}/changeOrder', [DynamicResourcePageController::class, 'changePageOrder'])->name('admin.resources.page.changeOrder');
 
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 });

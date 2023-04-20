@@ -28,7 +28,21 @@ Resources | Admin |
                 <h3 class="header header-bold" style="margin-bottom: 0 !important">
                     {{ $rp->name }}
                 </h3>
-                <small class="ml-auto  text-black font-normal ">{{ $rp->getSections->count() }} Section{{ $rp->getSections->count() > 1 ? "s" : "" }}</small>
+                <small class="ml-auto  text-black font-normal mr-6 ">{{ $rp->getSections->count() }} Section{{ $rp->getSections->count() > 1 ? "s" : "" }}</small>
+                <div class="flex flex-col items-center justify-center">
+                    <form action="{{ route('admin.resources.page.changeOrder', $rp) }}" method="post" class="h-6">
+                        @csrf
+                        <input type="hidden" name="direction" value="true">
+                        <button class="icon chevron-up hover:scale-125 rounded-md hover:bg-gray-200 transition-all" onclick=" return changeOrder(true); "></button>
+                    </form>
+                    <form action="{{ route('admin.resources.page.changeOrder', $rp) }}" method="post" class="h-6">
+                        @csrf
+                        <input type="hidden" name="direction" value="false">
+                        <button class="icon chevron-down hover:scale-125 rounded-md hover:bg-gray-200 transition-all"></button>
+                    </form>
+
+
+                </div>
             </div>
 
         </a>
@@ -36,6 +50,8 @@ Resources | Admin |
 
         @endforeach
     </div>
+
+
 
 
     <div class="py-6">

@@ -74,7 +74,7 @@
   @can('admin.resources.manage')
   <p class="mb-4 font-bold">Shift-right click a resource to edit it</p>
   @endcan
-  @forelse ($p->getSections as $sec)
+  @forelse ($p->getSections()->orderBy('ordering')->get() as $sec)
 
 
   <h3 class="header" style="margin-bottom: 1rem">{{ $sec->name }}</h3>
