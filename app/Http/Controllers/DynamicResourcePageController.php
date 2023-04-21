@@ -158,11 +158,15 @@ class DynamicResourcePageController extends Controller
 
         $rprsr = $resource->getPageResource;
 
+
+
         if ($rprsr == null) return redirect()->back();
 
+        $rprsr->ordering = null;
 
         $rprsr->section = $request->input('section');
         $rprsr->save();
+        $rprsr->orderSelf();
 
         return redirect()->back();
     }
