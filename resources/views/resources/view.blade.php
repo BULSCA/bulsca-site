@@ -81,8 +81,8 @@
 
 
   <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
-    @forelse ($sec->getResources() as $r)
-    <x-resource-download :file="$r" />
+    @forelse ($sec->getRPSR as $r)
+    <x-resource-download :file="$r->getResource()->first()" />
 
     @empty
     <small>No resources found!</small>

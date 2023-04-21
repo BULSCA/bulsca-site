@@ -180,4 +180,11 @@ class DynamicResourcePageController extends Controller
         $section->reorder($direction);
         return redirect()->back();
     }
+
+    public function changeResourceOrder(Request $request, ResourcePageSectionResource $resource)
+    {
+        $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $resource->reorder($direction);
+        return redirect()->back();
+    }
 }

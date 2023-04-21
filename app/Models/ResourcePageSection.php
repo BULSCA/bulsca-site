@@ -21,8 +21,13 @@ class ResourcePageSection extends Model
     public function getResources()
     {
 
-        $resIds = ResourcePageSectionResource::where('section', $this->id)->get('resource');
+        $resIds = ResourcePageSectionResource::where('section', $this->id)->orderBy('ordering')->get('resource');
 
-        return Resource::whereIn('id', $resIds)->orderBy('name')->get();
+        return Resource::whereIn('id', $resIds)->get();
+    }
+
+    public function getRPSR()
+    {
+        return $this->hasMany(ResourcePageSectionResource::class, 'section', 'id')->orderBy('ordering');
     }
 }
