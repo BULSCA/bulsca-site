@@ -79,12 +79,6 @@ Resources | Admin |
                                 <button class="icon chevron-down hover:scale-125 rounded-md hover:bg-gray-200 transition-all md:-rotate-90"></button>
                             </form>
 
-                            <form action="{{ route('admin.resource.delete') }}" onsubmit="return confirm('Are you sure?')" method="post" class="flex items-center justify-center ">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <input type="hidden" class="hidden" name="id" value="{{ $res->id }}"></input>
-                                <button submit class="icon cross"></button>
-                            </form>
                         </div>
                         @empty
                         <small class=" font-normal">None found</small>

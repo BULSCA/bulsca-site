@@ -110,8 +110,8 @@
     <hr>
     <br>
     <br>
-    <a href="{{ route('view-resource', $resource) }}" target="_blank" class="w-full flex justify-end">Open in a new tab</a>
-    <iframe src="{{ route('view-resource', $resource) }}" class="w-full h-[90vh]" frameborder="0"></iframe>
+    <a href="{{ route('view-resource', $resource) }}" target="_blank" class="w-full flex justify-end">View resource</a>
+
 
 
 

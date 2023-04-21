@@ -48,6 +48,7 @@ class DynamicResourcePageController extends Controller
         $rpsr->content = $content;
 
         $rpsr->save();
+        $rpsr->orderSelf();
 
         $sec = ResourcePageSection::find($rps->id);
         $page = ResourcePage::find($sec->page);
