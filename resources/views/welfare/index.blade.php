@@ -26,12 +26,7 @@ Welcome to the Welfare Section of the BULSCA website where we have information, 
 
 </div>
 
-<a href="{{ route('welfare.help-and-reporting') }}#report-now" class="notification-stripe ns-red">
-    Need to report a welfare concern? Click here now!
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-    </svg>
-</a>
+
 
 <div class=" container-responsive ">
     <div class="grid md:grid-cols-2 grid-cols-1">
@@ -44,7 +39,7 @@ Welcome to the Welfare Section of the BULSCA website where we have information, 
             <p>
                 to the Welfare Section of the BULSCA website where we have information, resources and contact information.
                 <br><br>
-                My name is Kirsty (She/Her) and I am the BULSCA Welfare Officer for the 2022/23 year. I am in my second year at the University of Warwick and have been involved in lifesaving since I was in primary school.
+                The BULSCA Welfare and Inclusion Officer is an appointed person responsible for competition access, welfare and inclusion. This year's Welfare and Inclusion Officer is Kirsty (She/Her). She can be contacted at <a href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a>
 
             </p>
         </div>

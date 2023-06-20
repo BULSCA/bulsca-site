@@ -755,9 +755,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-20 {
   height: 5rem;
 }
-.h-\[90vh\] {
-  height: 90vh;
-}
 .h-36 {
   height: 9rem;
 }
@@ -3424,11 +3421,6 @@ div.form-search > .results > .result > p:last-child {
 
   .md\:basis-1\/5 {
     flex-basis: 20%;
-  }
-
-  .md\:rotate-90 {
-    --tw-rotate: 90deg;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .md\:-rotate-90 {

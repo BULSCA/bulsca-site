@@ -86,8 +86,11 @@ class Season extends Model
     static function current()
     {
 
+
         $s = Season::where('from', '<', now())->orderBy('from', 'desc')->first(); // This will show the current season until the next season starts, thus a new season can be made, but not automatically shown
         //$s = Season::where('from', '>', now())->where('to', '<', now())->first();
+
+
 
         if (!$s) {
             $s = Season::orderBy('from', 'DESC')->first();

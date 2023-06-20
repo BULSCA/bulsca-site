@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "backpack/generators": "^3.1",
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.9",
         "laravel/sail": "^1.0.1",
