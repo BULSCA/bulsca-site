@@ -127,7 +127,7 @@ Help and Reporting | Welfare |
         <br><br>
         Alternatively, suppose you would simply like to draw the Welfare Officer’s attention to an issue or incident without providing any personal details. In that case, you can do so using the reporting form below. <a href="https://docs.google.com/forms/d/e/1FAIpQLScDnXdmT9k1Xfa95ufxWe0AYQi1rdAw6nPOE2MUiQpsizXheA/viewform">Anonymous Welfare Reporting Form</a>
         <br><br>
-        <i>Please note there is no ability for me to follow up with you if you use the anonymous welfare reporting form. Instead, the information will simply be used to inform areas of focus for the current and future welfare officers and allow your concerns to be heard. <strong>And</strong> that a report woill not trigger a disiplinary action!</i>
+        <i>Please note there is no ability for me to follow up with you if you use the anonymous welfare reporting form. Instead, the information will simply be used to inform areas of focus for the current and future welfare officers and allow your concerns to be heard. <strong>And</strong> that a report will not trigger a disciplinary action!</i>
     </p>
     <br><br>
     <div class="flex items-center justify-center">

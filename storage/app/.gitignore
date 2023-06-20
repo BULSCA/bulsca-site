@@ -1,3 +1,8 @@
-*
-!public/
-!.gitignore
+
+/1
+/cache
+/chunks
+/img
+/resources
+/ress
+/upload

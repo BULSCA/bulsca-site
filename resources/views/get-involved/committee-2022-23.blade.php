@@ -71,10 +71,10 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/photos/committee/chair.jpg" class="w-full h-full rotate-[-27deg]" alt="">
+        <img src="/storage/photos/committee/chair.jpg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Mia Green
+        Ell Murray
       </h3>
       <p class=" text-gray-600 font-semibold">
         Chair
@@ -86,7 +86,7 @@ Committee | Get Involved |
         <img src="/storage/photos/committee/secretary.jpg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Sarah Benson
+        Michael Kirkham
       </h3>
       <p class=" text-gray-600 font-semibold">
         Secretary
@@ -95,10 +95,10 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/logo/blogo.png" class="w-full h-full" alt="">
+        <img src="/storage/photos/committee/treasurer.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Amelie Harrison
+        Dylan Nicol
       </h3>
       <p class=" text-gray-600 font-semibold">
         Treasurer
@@ -107,10 +107,10 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/photos/committee/club_dev.jpg" class="w-full h-full" alt="">
+        <img src="/storage/photos/committee/club_dev.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Annabel Cruse
+        Mia Green
       </h3>
       <p class=" text-gray-600 font-semibold">
         Club Development
@@ -120,10 +120,10 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/photos/committee/communications.jpg" class="w-full h-full" alt="">
+        <img src="/storage/photos/committee/communications.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Alice Ford
+        Lauren Hill
       </h3>
       <p class=" text-gray-600 font-semibold">
         Communications Officer
@@ -146,10 +146,10 @@ Committee | Get Involved |
 
     <div class="flex flex-col items-center justify-center md:basis-1/5 ">
       <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-        <img src="/storage/photos/committee/champs.jpg" class="w-full h-full" alt="">
+        <img src="/storage/photos/committee/champs.jpeg" class="w-full h-full" alt="">
       </div>
       <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-        Glafki Schellekens
+        Chloe Warr
       </h3>
       <p class=" text-gray-600 font-semibold">
         Championships Coordinator
