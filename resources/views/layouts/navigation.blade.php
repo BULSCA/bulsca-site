@@ -1,6 +1,6 @@
 <div class="fixed w-screen z-50 transition-all duration-100 @yield('nav-style') " id="navbar">
     <div class="nav-wrapper transition-all duration-100">
-        <a href="/" class="nav-brand xl:text-2xl  2xl:text-3xl text-xl pr-2 md:pr-0 capitalize transition-all">
+        <a href="/" class="nav-brand  2xl:text-2xl text-xl pr-2 md:pr-0 capitalize transition-all">
             British Universities Lifesaving Clubs' Association
         </a>
 
