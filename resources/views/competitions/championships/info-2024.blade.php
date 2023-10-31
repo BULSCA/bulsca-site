@@ -24,6 +24,10 @@
 
     <div class="container-responsive space-y-2">
 
+        <div class="md:hidden w-full flex items-center justify-center pb-2 -mt-6">
+            <img src="/storage/photos/champs/2024/champs_2024_light.png" class="w-[90%] " alt="">
+        </div>
+
         <div class="flex flex-col lg:flex-row justify-between lg:items-center -mb-1">
             <p class="font-semibold text-bulsca text-4xl lg:text-5xl">Championships 2024</p>
             <div class="flex flex-col md:flex-row md:items-center justify-center md:space-x-3">

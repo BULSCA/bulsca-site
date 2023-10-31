@@ -677,6 +677,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-3 {
   margin-right: 0.75rem;
 }
+.-mt-4 {
+  margin-top: -1rem;
+}
+.-mt-6 {
+  margin-top: -1.5rem;
+}
 .block {
   display: block;
 }
@@ -1310,6 +1316,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pr-4 {
   padding-right: 1rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -3431,6 +3440,10 @@ div.form-search > .results > .result > p:last-child {
 
   .md\:flex {
     display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-\[12\.5\%\] {
