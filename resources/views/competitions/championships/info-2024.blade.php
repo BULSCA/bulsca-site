@@ -4,6 +4,10 @@
     Championships 2024 | Competitions |
 @endsection
 
+@section('extra-meta')
+    <meta property="og:image" content="{{ asset('storage/photos/champs/2024/champs_2024_light.png') }}">
+@endsection
+
 @section('content')
     <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
 
