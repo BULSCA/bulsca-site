@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UniversityController;
+use App\Models\Competition;
 use App\Models\League;
 use App\Models\Season;
 use App\Services\ImageService;
@@ -30,7 +31,12 @@ use Carbon\Carbon;
 
 
 Route::get('/', function () {
-    return view('index');
+
+    $nearComp = Competition::whereBetween(DB::raw('DATEDIFF(competitions.when, NOW())'), [-1, 7])->orderBy(DB::raw('DATEDIFF(competitions.when, NOW())'), 'desc')->first();
+
+
+
+    return view('index', ['nearComp' => $nearComp]);
 })->name('home');
 
 Route::get('/competitions', function () {
