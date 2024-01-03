@@ -43,7 +43,7 @@
                                 {{ $nearComp->when->format('l jS M Y') }} ({{ $diff }}
                                 day{{ $diff > 1 ? 's' : '' }} to go!)
                             @else
-                                <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-y') }}/{{ $nearComp->hostUni->name }}"
+                                <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
                                     class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
                                     rel="noopener noreferrer" target="_blank">Results</a>
                             @endif
