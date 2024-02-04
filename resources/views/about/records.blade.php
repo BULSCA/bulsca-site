@@ -423,7 +423,7 @@
                     <tr>
                         <td> 4x25m Manikin </td>
                         <td> Loughborough A </td>
-                        <td> 01:21.019	 </td>
+                        <td> 01:21.190	 </td>
                         <td> University of Loughborough </td>
                         <td> Warwick Comp </td>
                         <td> February 2024
