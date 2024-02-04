@@ -423,10 +423,10 @@
                     <tr>
                         <td> 4x25m Manikin </td>
                         <td> Loughborough A </td>
-                        <td> 1:23:130 </td>
+                        <td> 01:21.019	 </td>
                         <td> University of Loughborough </td>
-                        <td> Nottingham Freshers Comp </td>
-                        <td> November 2023
+                        <td> Warwick Comp </td>
+                        <td> February 2024
                         </td>
                     </tr>
 
