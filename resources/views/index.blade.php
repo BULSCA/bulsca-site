@@ -54,7 +54,7 @@
             </div>
         </div>
     @else
-    <div class="h-full w-full overflow-hidden relative">
+    <div class="h-[100dvh] w-full overflow-hidden relative">
         <div class="absolute top-0 right-0 w-full  h-[100dvh] flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
             id="head1">
             <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[40rem] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-4  h-auto"
