@@ -8,7 +8,7 @@
     endurance, while helpful, do not necessarily make a good lifesaver!
 @endsection
 
-<div class=" h-screen w-screen bg-gray-100  overflow-hidden  ">
+<div class=" h-[100dvh] w-screen bg-gray-100  overflow-hidden  ">
 
 
 
