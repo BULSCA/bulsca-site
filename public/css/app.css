@@ -3453,6 +3453,18 @@ div.form-search > .results > .result > p:last-child{
   .md\:w-\[50\%\]{
     width: 50%;
   }
+  .md\:w-\[40\%\]{
+    width: 40%;
+  }
+  .md\:w-\[20\%\]{
+    width: 20%;
+  }
+  .md\:w-\[30\%\]{
+    width: 30%;
+  }
+  .md\:w-\[27\%\]{
+    width: 27%;
+  }
   .md\:basis-1\/5{
     flex-basis: 20%;
   }
