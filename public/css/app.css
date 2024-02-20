@@ -757,6 +757,9 @@ html {
 .min-h-\[120dvh\]{
   min-height: 120dvh;
 }
+.min-h-\[100vh\]{
+  min-height: 100vh;
+}
 .w-5{
   width: 1.25rem;
 }
