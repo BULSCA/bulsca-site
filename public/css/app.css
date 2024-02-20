@@ -754,6 +754,9 @@ html {
 .min-h-\[100dvh\]{
   min-height: 100dvh;
 }
+.min-h-\[120dvh\]{
+  min-height: 120dvh;
+}
 .w-5{
   width: 1.25rem;
 }
@@ -3428,6 +3431,9 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:h-\[100dvh\]{
     height: 100dvh;
+  }
+  .md\:min-h-\[100dvh\]{
+    min-height: 100dvh;
   }
   .md\:w-\[12\.5\%\]{
     width: 12.5%;
