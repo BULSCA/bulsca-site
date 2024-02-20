@@ -733,6 +733,12 @@ html {
 .h-\[100dvh\]{
   height: 100dvh;
 }
+.h-\[110dvh\]{
+  height: 110dvh;
+}
+.h-\[10dvh\]{
+  height: 10dvh;
+}
 .max-h-4{
   max-height: 1rem;
 }
@@ -3413,6 +3419,9 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:hidden{
     display: none;
+  }
+  .md\:h-\[100dvh\]{
+    height: 100dvh;
   }
   .md\:w-\[12\.5\%\]{
     width: 12.5%;
