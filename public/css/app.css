@@ -748,6 +748,12 @@ html {
 .min-h-full{
   min-height: 100%;
 }
+.min-h-\[110dvh\]{
+  min-height: 110dvh;
+}
+.min-h-\[100dvh\]{
+  min-height: 100dvh;
+}
 .w-5{
   width: 1.25rem;
 }
