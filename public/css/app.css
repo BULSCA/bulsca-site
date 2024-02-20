@@ -739,6 +739,9 @@ html {
 .h-\[10dvh\]{
   height: 10dvh;
 }
+.h-\[100vh\]{
+  height: 100vh;
+}
 .max-h-4{
   max-height: 1rem;
 }
