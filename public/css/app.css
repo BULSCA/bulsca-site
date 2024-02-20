@@ -631,6 +631,9 @@ html {
 .-mb-6{
   margin-bottom: -1.5rem;
 }
+.mt-12{
+  margin-top: 3rem;
+}
 .block{
   display: block;
 }
