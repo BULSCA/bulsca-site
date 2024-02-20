@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;700&display=swap');
+
 @layer base {
     html {
       font-family: 'Montserrat', system-ui, sans-serif;
     }
+  }
+
+  .anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
   
   .nav-scrolled {
@@ -150,6 +158,10 @@
     &.btn-blue {
       @apply bg-bulsca text-white border-bulsca;
     }
+
+    &.btn-champs {
+      @apply hover:bg-[#275271] hover:text-[#e7fef0] bg-[#e7fef0] text-[#275271] hover:border-[#e7fef0] rounded-lg;
+    }
   }
   
   
@@ -282,9 +294,15 @@
 
  }
 
+
+
  h1, h2, h3, h4, h5 {
 
       @apply text-bulsca font-semibold mb-2;
+
+      &.h-feature {
+        @apply text-8xl;
+      }
 
  }
 

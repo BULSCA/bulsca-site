@@ -8,7 +8,7 @@
     endurance, while helpful, do not necessarily make a good lifesaver!
 @endsection
 
-<div class="h-[50vh] w-screen bg-gray-100  overflow-hidden  ">
+<div class=" h-screen w-screen bg-gray-100  overflow-hidden  ">
 
 
 
@@ -54,14 +54,48 @@
             </div>
         </div>
     @else
-        <div class="h-full w-full overflow-hidden relative">
+    <div class="h-full w-full overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-full h-full flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
+            id="head1">
+            <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[40rem] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-4  h-auto"
+                alt="">
+                <div class=" py-8 text-center flex flex-col">
+                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-5 anton-regular uppercase " style="letter-spacing: 5px !important; line-height: 1.2em;  ">BULSCA Championships <br>2024</p>
+                    @php
+                        // Calc start values
+                        $now = now();
+                        $champs = \Carbon\Carbon::create(2024, 3, 2, 9, 30, 0);
+                        $diff = $champs->diff($now);
+
+                        $days = $diff->d;
+                        $hours = $diff->h;
+                        $mins = $diff->i;
+                        $secs = $diff->s;
+                    @endphp
+                    <div class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
+                        <div><div class="text-4xl " id="days">{{ $days }}</div><div>Days</div></div>
+                        <div><div class="text-4xl " id="hours">{{ $hours }}</div><div>Hours</div></div>
+                        <div><div class="text-4xl " id="mins">{{ $mins }}</div><div>Minutes</div></div>
+                        <div><div class="text-4xl " id="secs">{{ $secs }}</div><div>Seconds</div></div>
+                        
+                        
+                        
+                        
+                 
+                    </div>
+                    <a href="{{ route('champs.2024') }}" class="btn btn-champs self-center btn-thinner ">Find out more</a>
+                  </div>
+        </div>
+
+    </div>
+        {{-- <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
-        </div>
+        </div> --}}
     @endif
 
 
@@ -148,5 +182,38 @@
     }
 
     daysUntil('2023-03-18');
+</script>
+
+<script>
+    // Set the date we're counting down to
+var countDownDate = new Date("March 2, 2024 09:30:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("mins").innerHTML = minutes;
+    document.getElementById("secs").innerHTML = seconds;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
 </script>
 @endsection

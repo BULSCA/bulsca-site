@@ -12,8 +12,8 @@
     <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
 
         <div class="h-full w-full overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-                <img src="/storage/photos/champs/2024/champs_2024_light.png" class="w-[13%] hidden md:block" alt="">
+            <div class="absolute top-0 right-0 w-full h-full flex items-center justify-center " style="background-color: #275271">
+                <img src="/storage/photos/champs/2024/champs_2024_dark.png" class="w-[13%] hidden md:block" alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8 text-center">
                     <h2 class="md:text-6xl text-4xl font-bold text-white mt-5 lg:mt-0">Championships 2024</h2>
                     <p class="text-white">Presented by Glafki Schellekens </p>
@@ -35,7 +35,7 @@
         <div class="flex flex-col lg:flex-row justify-between lg:items-center -mb-1">
             <p class="font-semibold text-bulsca text-4xl lg:text-5xl">Championships 2024</p>
             <div class="flex flex-col md:flex-row md:items-center justify-center md:space-x-3">
-                <a href="#" class="btn btn-thinner disabled inline-flex items-center mt-2  ">Online
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdySanrYlrH1U2hXnR1UBTp9Qy2mxZW0VyqAI9Kb3sh34HLtw/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-thinner  inline-flex items-center mt-2  ">Online
                     Registration <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -53,14 +53,15 @@
 
         <br>
 
-        <div class="grid-3">
-            <div class=" col-span-3 text-center font-semibold">
-                More infomation available soon!
-            </div>
-            {{-- <div>
+        <div class="  text-center font-semibold text-bulsca_red text-xl py-5">
+            Please see the <a class="link" href="{{ route('view-resource', '0da4949d-e3dd-4954-b19e-bbaa5a07a0bf') }}" target="_blank">Info Pack</a> for full details.
+        </div>
+        <div class="sm:grid  xl:grid-cols-3 sm:grid-cols-2  space-y-3  md:space-y-0">
+          
+            <div>
                 <h2 class="">Costs</h2>
                 <p>
-                    <strong>£55</strong> per competitor in a Squad,
+                    <strong>£65</strong> per competitor in a Squad,
                     <br>
                     <br>
                     <strong>OR</strong>
@@ -73,23 +74,23 @@
                 <h2 class="-mb-1">Accommodation</h2>
                 <small class="">(available Friday and Saturday night)</small>
                 <p class="mt-1">
-                    <strong>£5</strong> per person per night.
+                    <strong>£7</strong> for 2 nights
                     <br>
+                    <strong>£4</strong> for 1 night
                 </p>
             </div>
             <div>
                 <h2 class="">Merch</h2>
-                <strong>Merch orders are now closed!</strong>
 
+                <div class=" list-inside list-disc md:w-[50%] ">
+                    <div class="flex justify-between">T-Shirt <strong class="ml-auto">£16</strong></div>
+                    <div class="flex justify-between">Swimming Hat <strong>£8</strong></div>
+                    <div class="flex justify-between">Lanyard <strong>£2.50</strong></div>
 
-                <ul class=" list-inside list-disc">
-                    <li>T-Shirt <strong class="ml-auto">£20</strong></li>
-                    <li>Swimming Hat <strong>£7.50</strong></li>
-
-                </ul>
+                </div>
                 <br>
 
-            </div> --}}
+            </div>
 
         </div>
         <br>
@@ -99,11 +100,11 @@
 
         <br>
         <br>
-        {{-- <div class="grid-3">
+        <div class="grid-3">
             <div class="file-link" title='Info Pack 2023'>
-                <a href='{{ route('view-resource', 'f646b5b5-4e3a-41ad-975e-9d92047a3cf6') }}' target='_blank'>
+                <a href='{{ route('view-resource', '0da4949d-e3dd-4954-b19e-bbaa5a07a0bf') }}' target='_blank'>
                     <div>
-                        <h3>Info Pack 2023</h3>
+                        <h3>Info Pack 2024</h3>
                         <small>Click to download</small>
                     </div>
 
@@ -118,26 +119,11 @@
             </div>
 
 
-            <div class="file-link" title='Entry Pack 2023'>
-                <a href='{{ route('view-resource', '1eba40c0-7aa9-457c-946a-f2c56b36c330') }}' target='_blank'>
-                    <div>
-                        <h3>Entry Pack 2023</h3>
-                        <small>Click to download</small>
-                    </div>
 
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                        </svg>
-                    </div>
-                </a>
-            </div>
             <div class="file-link" title='BULSCA Championships Rules 2023'>
-                <a href='{{ route('view-resource', '3790de53-b1d8-494e-9063-d82b9750fa5e') }}' target='_blank'>
+                <a href='{{ route('view-resource', 'b17598d4-1ead-4c91-847f-c5bcb709b4a6') }}' target='_blank'>
                     <div>
-                        <h3>BULSCA Championships Rules 2023</h3>
+                        <h3>BULSCA Championships Rules 2024</h3>
                         <small>Click to download</small>
                     </div>
 
@@ -150,7 +136,7 @@
                     </div>
                 </a>
             </div>
-        </div> --}}
+        </div>
 
         {{-- <p class="text-center font-bold">
 
