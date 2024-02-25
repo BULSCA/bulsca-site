@@ -39,6 +39,10 @@ Route::get('/', function () {
     return view('index', ['nearComp' => $nearComp]);
 })->name('home');
 
+Route::get('/freshers', function () {
+    return view('freshers.index');
+})->name('freshers');
+
 Route::get('/competitions', function () {
     return view('competitions.index', ['season' => Season::current()]);
 })->name('comps');

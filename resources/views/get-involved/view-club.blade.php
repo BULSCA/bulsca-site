@@ -19,6 +19,8 @@
 
 @section('content')
 
+
+
 <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
 
   <div class="h-full w-full overflow-hidden relative">
@@ -37,6 +39,10 @@
 </div>
 
 <div class="container-responsive flex flex-col space-y-4">
+
+  <div id="map" style="width: 100%; height: 400px"></div>
+
+
   <link rel="stylesheet" href="{{ asset('css/ck_styles.css') }}">
 
 

@@ -31,6 +31,20 @@ import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
 import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import FileLink from './FileLink';
+import Map from 'ol/Map.js';
+import View from 'ol/View.js';
+import {OSM, Raster as RasterSource, StadiaMaps} from 'ol/source.js';
+
+import VectorSource from 'ol/source/Vector.js';
+import Point from 'ol/geom/Point.js';
+import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import Icon from 'ol/style/Icon.js';
+import Feature from 'ol/Feature.js';
+import {Style, Fill, Stroke, Circle, Text, RegularShape, Icon as IconStyle
+} from 'ol/style.js';
+import ImageLayer from 'ol/layer/Image.js';
+import { map } from 'lodash';
+import { fromLonLat, useGeographic } from 'ol/proj';
 
 
 
@@ -169,8 +183,64 @@ document.querySelectorAll('#editor').forEach(e => {
 })
 
 
+var target = [-174870.005788, 6868640.916334];
 
 
 
+var m = new Map({
+    layers: [
+      new TileLayer({
+        source: new OSM(),
+      
+      }),
+    ],
+    view: new View({
+      center: target,
+      zoom: 10,
+    }),
+    target: 'map',
+  });
 
+  const startMarker = new Feature({
+    type: 'icon',
+    geometry: new Point(target),
+  });
 
+  var markerSize = 20
+  var markerStyle = new Style({
+    fill: new Fill({
+      color: 'white' // Color of the white fill
+    }),
+    stroke: new Stroke({
+      color: 'black', // Color of the marker border
+      width: 1
+    }),
+    image: new Circle({
+      radius: markerSize / 2, // Radius of the circular image marker
+      fill: new Fill({
+        color: 'transparent' // Transparent fill for the circular image marker
+      }),
+      stroke: new Stroke({
+        color: 'black', // Color of the marker border
+        width: 1
+      }),
+      src: 'http://localhost:3000/storage/logo/blogo.png' // Path to your circular image marker
+    })
+  });
+
+  const vectorLayer = new VectorLayer({
+    source: new VectorSource({
+      features: [startMarker],
+    }),
+    style: new Style({
+
+        
+      image: new Icon({
+        fill: new Fill({ color: 'white' }),
+        scale: 0.05,
+        
+        src: 'http://localhost:3000/storage/logo/bulsca-marker.png',
+      }),
+  })});
+
+    m.addLayer(vectorLayer);

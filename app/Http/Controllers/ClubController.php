@@ -53,6 +53,9 @@ class ClubController extends Controller
         }
 
         $page->content = $req->input('content', $page->content);
+        $club->location = $req->input('location', $club->location);
+
+        $club->save();
 
         $page->save();
 

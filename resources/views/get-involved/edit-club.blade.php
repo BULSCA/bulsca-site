@@ -35,6 +35,8 @@
     <textarea hidden name="content" id="editor" class="h-[52vh]">{!! $club->getPage()->first()->content ?? '' !!}</textarea>
     <br>
 
+    <x-form-input id="location" title="Location" defaultValue="{{ $club->location }}"></x-form-input>
+
   </form>
 </div>
 
