@@ -40,7 +40,7 @@
 
 <div class="container-responsive flex flex-col space-y-4">
 
-  <div id="map" style="width: 100%; height: 400px"></div>
+  
 
 
   <link rel="stylesheet" href="{{ asset('css/ck_styles.css') }}">
@@ -60,6 +60,16 @@
   <div class="ck-content">
     {!! $club->getPage()->first()->content ?? '' !!}
   </div>
+
+  @if ($club->location != null)
+  @php
+  $splt = explode(',', $club->location);
+  $lat = $splt[0];
+  $long = $splt[1];
+
+@endphp
+<div id="map" x-long="{{ $lat }}" x-lat="{{ $long }}" style="width: 100%; height: 400px; display: none"></div>
+  @endif
 
 </div>
 

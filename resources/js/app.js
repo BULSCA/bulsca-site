@@ -34,7 +34,7 @@ import FileLink from './FileLink';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import {OSM, Raster as RasterSource, StadiaMaps} from 'ol/source.js';
-
+import {useGeographic} from 'ol/proj.js';
 import VectorSource from 'ol/source/Vector.js';
 import Point from 'ol/geom/Point.js';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
@@ -44,7 +44,8 @@ import {Style, Fill, Stroke, Circle, Text, RegularShape, Icon as IconStyle
 } from 'ol/style.js';
 import ImageLayer from 'ol/layer/Image.js';
 import { map } from 'lodash';
-import { fromLonLat, useGeographic } from 'ol/proj';
+
+useGeographic();
 
 
 
@@ -183,64 +184,68 @@ document.querySelectorAll('#editor').forEach(e => {
 })
 
 
-var target = [-174870.005788, 6868640.916334];
+  var elementMap = document.getElementById('map');
 
+  var target = [elementMap.getAttribute("x-lat"), elementMap.getAttribute("x-long")]; // -174870.005788, 6868640.916334
 
+  document.getElementById('map').style.display = 'block';
 
-var m = new Map({
-    layers: [
-      new TileLayer({
-        source: new OSM(),
-      
+  var m = new Map({
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        
+        }),
+      ],
+      view: new View({
+        center: target,
+        zoom: 10,
       }),
-    ],
-    view: new View({
-      center: target,
-      zoom: 10,
-    }),
-    target: 'map',
-  });
-
-  const startMarker = new Feature({
-    type: 'icon',
-    geometry: new Point(target),
-  });
-
-  var markerSize = 20
-  var markerStyle = new Style({
-    fill: new Fill({
-      color: 'white' // Color of the white fill
-    }),
-    stroke: new Stroke({
-      color: 'black', // Color of the marker border
-      width: 1
-    }),
-    image: new Circle({
-      radius: markerSize / 2, // Radius of the circular image marker
+      target: 'map',
+    });
+  
+    const startMarker = new Feature({
+      type: 'icon',
+      geometry: new Point(target),
+    });
+  
+    var markerSize = 20
+    var markerStyle = new Style({
       fill: new Fill({
-        color: 'transparent' // Transparent fill for the circular image marker
+        color: 'white' // Color of the white fill
       }),
       stroke: new Stroke({
         color: 'black', // Color of the marker border
         width: 1
       }),
-      src: 'http://localhost:3000/storage/logo/blogo.png' // Path to your circular image marker
-    })
-  });
-
-  const vectorLayer = new VectorLayer({
-    source: new VectorSource({
-      features: [startMarker],
-    }),
-    style: new Style({
-
-        
-      image: new Icon({
-        fill: new Fill({ color: 'white' }),
-        scale: 0.05,
-        
-        src: 'http://localhost:3000/storage/logo/bulsca-marker.png',
+      image: new Circle({
+        radius: markerSize / 2, // Radius of the circular image marker
+        fill: new Fill({
+          color: 'transparent' // Transparent fill for the circular image marker
+        }),
+        stroke: new Stroke({
+          color: 'black', // Color of the marker border
+          width: 1
+        }),
+        src: 'http://localhost:3000/storage/logo/blogo.png' // Path to your circular image marker
+      })
+    });
+  
+    const vectorLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [startMarker],
       }),
-  })});
+      style: new Style({
+  
+          
+        image: new Icon({
+          fill: new Fill({ color: 'white' }),
+          scale: 0.05,
+          
+          src: 'http://localhost:3000/storage/logo/bulsca-marker.png',
+        }),
+    })});
+  
+      m.addLayer(vectorLayer);
 
-    m.addLayer(vectorLayer);
+
