@@ -72,7 +72,7 @@
                         $mins = $diff->i;
                         $secs = $diff->s;
                     @endphp
-                    <div class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
+                    <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
                         <div><div class="text-4xl " id="days">{{ $days }}</div><div>Days</div></div>
                         <div><div class="text-4xl " id="hours">{{ $hours }}</div><div>Hours</div></div>
                         <div><div class="text-4xl " id="mins">{{ $mins }}</div><div>Minutes</div></div>
@@ -83,7 +83,7 @@
                         
                  
                     </div>
-                    <a href="{{ route('champs.2024') }}" class="btn btn-champs self-center btn-thinner ">Find out more</a>
+                    <a href="{{ route('champs.2024') }}" id="become-live-champs" class="btn btn-champs self-center btn-thinner ">Find out more</a>
                   </div>
         </div>
 
@@ -212,7 +212,9 @@ var x = setInterval(function() {
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("time-container").style.display = "none";
+    document.getElementById("become-live-champs").innerHTML = "Follow live!";
+    document.getElementById("become-live-champs").href = "https://live.lifesaving.events";
   }
 }, 1000);
 </script>
