@@ -72,7 +72,7 @@
                         $mins = $diff->i;
                         $secs = $diff->s;
                     @endphp
-                    <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
+                    {{-- <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
                         <div><div class="text-4xl " id="days">{{ $days }}</div><div>Days</div></div>
                         <div><div class="text-4xl " id="hours">{{ $hours }}</div><div>Hours</div></div>
                         <div><div class="text-4xl " id="mins">{{ $mins }}</div><div>Minutes</div></div>
@@ -82,8 +82,15 @@
                         
                         
                  
-                    </div>
-                    <a href="{{ route('champs.2024') }}" id="become-live-champs" class="btn btn-champs self-center btn-thinner ">Find out more</a>
+                    </div> --}}
+                   
+                        <a href="https://live.bulsca.co.uk" rel="noreferrer noopener" target="_blank" id="become-live-champs" class="btn btn-champs self-center btn-thinner ">Follow live</a>
+                        <br>
+                        <div class="flex space-x-2 items-center justify-center">
+                            <a href="https://live.lifesaving.events" rel="noreferrer noopener" target="_blank" id="become-live-sat" class="btn btn-champs self-center btn-thinner ">Sat</a>
+                            <a href="https://results.bulsca.co.uk/champs-2023-24.26" rel="noreferrer noopener" target="_blank" id="become-live-sun" class="btn btn-champs self-center btn-thinner btn-champs-d   ">Sun</a>
+                        </div>
+                  
                   </div>
         </div>
 
@@ -184,7 +191,7 @@
     daysUntil('2023-03-18');
 </script>
 
-<script>
+{{-- <script>
     // Set the date we're counting down to
 var countDownDate = new Date("March 2, 2024 09:30:00").getTime();
 
@@ -217,5 +224,12 @@ var x = setInterval(function() {
     document.getElementById("become-live-champs").href = "https://live.lifesaving.events";
   }
 }, 1000);
+</script> --}}
+
+<script>
+    // if time is after 03/03/2024 at 4PM 
+    if (new Date() > new Date('2024-03-03T16:00:00')) {
+        document.getElementById('become-live-sun').classList.remove('btn-champs-d');
+    }
 </script>
 @endsection

@@ -163,6 +163,10 @@
 
     &.btn-champs {
       @apply hover:bg-[#275271] hover:text-[#e7fef0] bg-[#e7fef0] text-[#275271] hover:border-[#e7fef0] rounded-lg;
+
+      &.btn-champs-d {
+        @apply bg-transparent bg-gray-400 cursor-not-allowed border-gray-400 pointer-events-none ;
+      }
     }
   }
   

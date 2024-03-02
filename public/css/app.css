@@ -860,6 +860,9 @@ html {
     max-width: 1536px;
   }
 }
+.pointer-events-none{
+  pointer-events: none;
+}
 .fixed{
   position: fixed;
 }
@@ -2259,6 +2262,15 @@ html {
   background-color: rgb(39 82 113 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(231 254 240 / var(--tw-text-opacity));
+}
+.btn.btn-champs.btn-champs-d{
+  pointer-events: none;
+  cursor: not-allowed;
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+  background-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 
 .bg-image {
