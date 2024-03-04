@@ -84,11 +84,11 @@
                  
                     </div> --}}
                    
-                        <a href="https://live.bulsca.co.uk" rel="noreferrer noopener" target="_blank" id="become-live-champs" class="btn btn-champs self-center btn-thinner ">Follow live</a>
-                        <br>
+                      
+                 
                         <div class="flex space-x-2 items-center justify-center">
-                            <a href="https://live.lifesaving.events" rel="noreferrer noopener" target="_blank" id="become-live-sat" class="btn btn-champs self-center btn-thinner ">Sat</a>
-                            <a href="https://results.bulsca.co.uk/champs-2023-24.26" rel="noreferrer noopener" target="_blank" id="become-live-sun" class="btn btn-champs self-center btn-thinner btn-champs-d   ">Sun</a>
+                            <a href="https://bulsca.lifesaving.events/championships/24/" rel="noreferrer noopener" target="_blank" id="become-live-sat" class="btn btn-champs self-center btn-thinner ">Sat</a>
+                            <a href="https://results.bulsca.co.uk/champs-2023-24.26" rel="noreferrer noopener" target="_blank" id="become-live-sun" class="btn btn-champs self-center btn-thinner  ">Sun</a>
                         </div>
                   
                   </div>
@@ -226,10 +226,5 @@ var x = setInterval(function() {
 }, 1000);
 </script> --}}
 
-<script>
-    // if time is after 03/03/2024 at 4PM 
-    if (new Date() > new Date('2024-03-03T16:00:00')) {
-        document.getElementById('become-live-sun').classList.remove('btn-champs-d');
-    }
-</script>
+
 @endsection
