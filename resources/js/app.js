@@ -227,7 +227,7 @@ document.querySelectorAll('#editor').forEach(e => {
           color: 'black', // Color of the marker border
           width: 1
         }),
-        src: 'http://localhost:3000/storage/logo/blogo.png' // Path to your circular image marker
+        src: '/storage/logo/blogo.png' // Path to your circular image marker
       })
     });
   
