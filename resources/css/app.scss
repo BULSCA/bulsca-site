@@ -424,6 +424,10 @@
     }
    }
 
+   input[type=color] {
+    @apply rounded-md p-0 border-0 overflow-hidden mb-0 ;
+   }
+
    &.checkbox {
     @apply flex-row items-center space-x-6;
 
@@ -543,7 +547,7 @@
     }
  }
 
- input:read-only:not([type=file]):not([type=checkbox]) {
+ input:read-only:not([type=file]):not([type=checkbox]):not([type=color]) {
   @apply cursor-not-allowed bg-gray-300;
 }
 
