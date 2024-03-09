@@ -227,7 +227,7 @@ document.querySelectorAll('#editor').forEach(e => {
           color: 'black', // Color of the marker border
           width: 1
         }),
-        src: '/storage/logo/blogo.png' // Path to your circular image marker
+        src: 'https://bulsca.co.uk/storage/logo/bulsca-marker.png' // Path to your circular image marker
       })
     });
   
