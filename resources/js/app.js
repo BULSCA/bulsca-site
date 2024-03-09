@@ -242,7 +242,7 @@ document.querySelectorAll('#editor').forEach(e => {
           fill: new Fill({ color: 'white' }),
           scale: 0.05,
           
-          src: 'http://localhost:3000/storage/logo/bulsca-marker.png',
+          src: '/storage/logo/bulsca-marker.png',
         }),
     })});
   
