@@ -59,7 +59,7 @@
     </div>
 
     <div class="container-responsive">
-        <h2>Meet the Clubs</h2>
+        <h2>The Clubs</h2>
 
 
         <div class="w-full flex flex-col-reverse md:flex-row ">
