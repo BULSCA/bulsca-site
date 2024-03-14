@@ -329,7 +329,11 @@ if (elementClubMap != null) {
             src: '/storage/logo/bulsca-marker.png',
           }),
         }))
+
+        elementClubMap.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
       }
+
+      
     }
 
     e.onmouseover = apply

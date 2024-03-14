@@ -62,8 +62,8 @@
         <h2>Meet the Clubs</h2>
 
 
-        <div class="w-full flex">
-            <div class="w-[30%]" id="club-cards">
+        <div class="w-full flex flex-col-reverse md:flex-row ">
+            <div class="w-full md:w-[30%]" id="club-cards">
 
                 @foreach (\App\Models\University::orderBy('name')->get() as $club)
                     <div x-club-name="{{ $club->name }}" x-club-loc="{{ $club->location }}"
@@ -78,7 +78,7 @@
                         <h5 class="text-white hmb-0 pointer-events-none">{{ $club->name }}</h5>
 
                         <div class="flex  " style="margin-left: auto !important">
-                            <a href='{{ route('clubs') }}/{{ Str::lower($club->name) . '.' . $club->id }}'
+                            <a href='{{ route('clubs') }}/{{ Str::lower($club->name) . '.' . $club->id }}' target="_blank"
                                 class=" text-white text-xs flex items-center justify-center hover:text-bulsca no-underline ">More <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,7 +95,7 @@
                 @endforeach
 
             </div>
-            <div class="relative flex flex-grow z-20 bg-white">
+            <div class="relative flex flex-grow z-20 bg-white h-[500px] md:h-auto w-full">
                 <div id="club-map" style="width: 100%; height: 100%; "
                     x-locations="{{ \App\Models\University::orderBy('name')->whereNotNull('location')->get(['name', 'id', 'location'])->toJson() }}">
                 </div>

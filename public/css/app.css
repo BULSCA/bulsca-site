@@ -1193,6 +1193,12 @@ html {
 .h-3{
   height: 0.75rem;
 }
+.h-\[400px\]{
+  height: 400px;
+}
+.h-\[500px\]{
+  height: 500px;
+}
 .max-h-4{
   max-height: 1rem;
 }
@@ -1382,6 +1388,9 @@ html {
 }
 .flex-col{
   flex-direction: column;
+}
+.flex-col-reverse{
+  flex-direction: column-reverse;
 }
 .items-start{
   align-items: flex-start;
@@ -3931,6 +3940,9 @@ div.form-search > .results > .result > p:last-child{
   .md\:hidden{
     display: none;
   }
+  .md\:h-auto{
+    height: auto;
+  }
   .md\:w-\[12\.5\%\]{
     width: 12.5%;
   }
@@ -3942,6 +3954,9 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:w-\[60\%\]{
     width: 60%;
+  }
+  .md\:w-\[30\%\]{
+    width: 30%;
   }
   .md\:basis-1\/5{
     flex-basis: 20%;
