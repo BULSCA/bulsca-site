@@ -310,6 +310,11 @@
         @apply text-8xl;
       }
 
+      &.hmb-0 {
+        @apply mb-0;
+      
+      }
+
  }
 
  h1:not(.header) {
@@ -337,6 +342,9 @@
 
    @apply h-52 bg-contain bg-gradient-to-tr from-bulsca to-bulsca_red flex items-center justify-center bg-image transition-all relative;
    
+   &.il-bulsca {
+    @apply from-bulsca to-bulsca;
+   }
 
    > a {
     @apply text-white text-2xl font-semibold uppercase w-full h-full flex items-center justify-center transition-all no-underline z-40;
@@ -775,4 +783,8 @@ div.form-search {
 
 .ck.ck-fl-form .ck-button:nth-of-type(2) {
   grid-area: 3 / 2 / 4 / 3;
+}
+
+.cl-active {
+  @apply bg-bulsca_red scale-x-105;
 }

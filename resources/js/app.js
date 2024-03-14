@@ -186,6 +186,8 @@ document.querySelectorAll('#editor').forEach(e => {
 
   var elementMap = document.getElementById('map');
 
+  if (elementMap != null) {
+    
   var target = [elementMap.getAttribute("x-lat"), elementMap.getAttribute("x-long")]; // -174870.005788, 6868640.916334
 
   document.getElementById('map').style.display = 'block';
@@ -246,6 +248,105 @@ document.querySelectorAll('#editor').forEach(e => {
         }),
     })});
   
-      m.addLayer(vectorLayer);
+      m.addLayer(vectorLayer);    
+  }
 
 
+
+var elementClubMap = document.getElementById('club-map');
+
+if (elementClubMap != null) {
+
+  var mp = new Map({
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        
+        }),
+      ],
+      view: new View({
+        center: [-3.306,54.908],
+        zoom: 5.8,
+      }),
+      target: 'club-map',
+    });
+
+
+  let map_club_bar = document.getElementById('map-club-bar')
+  let locations = JSON.parse(elementClubMap.getAttribute("x-locations"))
+
+  var veclayer_location_map = []
+
+  locations.forEach(location => {
+
+    console.log(location.location.split(',').reverse())
+
+    var locMarker = new Feature({
+      type: 'icon',
+      geometry: new Point(location.location.split(',').reverse()),
+    });
+
+    var vectorLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [locMarker],
+      }),
+      style: new Style({
+  
+          
+        image: new Icon({
+          fill: new Fill({ color: 'white' }),
+          scale: 0.05,
+          
+          src: '/storage/logo/bulsca-marker.png',
+        }),
+    })});
+  
+      mp.addLayer(vectorLayer); 
+
+      veclayer_location_map[location.name] = vectorLayer
+  })
+
+  var allCards = document.getElementById('club-cards').querySelectorAll('[x-club-loc]')
+
+  allCards.forEach(e => {
+
+    function apply(e) {
+      let loc = e.target.getAttribute('x-club-loc').split(',').reverse()
+
+      allCards.forEach(e => e.classList.remove('cl-active'))
+      e.target.classList.toggle('cl-active')
+
+      if (loc.length == 2) {
+        mp.getView().setCenter(loc)
+        mp.getView().setZoom(12.5)
+        map_club_bar.children[0].textContent = e.target.getAttribute('x-club-name')
+        //map_club_bar.style.display = 'flex'
+
+        veclayer_location_map[e.target.getAttribute('x-club-name')].setStyle(new Style({
+          image: new Icon({
+            fill: new Fill({ color: 'white' }),
+            scale: 0.075,
+            src: '/storage/logo/bulsca-marker.png',
+          }),
+        }))
+      }
+    }
+
+    e.onmouseover = apply
+    e.onclick = apply
+
+    e.onmouseleave = (event) => {
+
+      veclayer_location_map[event.target.getAttribute('x-club-name')].setStyle(new Style({
+        image: new Icon({
+          fill: new Fill({ color: 'white' }),
+          scale: 0.05,
+          src: '/storage/logo/bulsca-marker.png',
+        }),
+      }))
+    }
+  })
+
+  }
+  
+ 

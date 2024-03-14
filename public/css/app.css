@@ -860,6 +860,9 @@ html {
     max-width: 1536px;
   }
 }
+.pointer-events-none{
+  pointer-events: none;
+}
 .fixed{
   position: fixed;
 }
@@ -965,6 +968,14 @@ html {
 .my-\[2\%\]{
   margin-top: 2%;
   margin-bottom: 2%;
+}
+.-my-3{
+  margin-top: -0.75rem;
+  margin-bottom: -0.75rem;
+}
+.-my-4{
+  margin-top: -1rem;
+  margin-bottom: -1rem;
 }
 .-mb-1{
   margin-bottom: -0.25rem;
@@ -1083,6 +1094,12 @@ html {
 .mt-auto{
   margin-top: auto;
 }
+.mr-auto{
+  margin-right: auto;
+}
+.ml-\[100\%\]{
+  margin-left: 100%;
+}
 .block{
   display: block;
 }
@@ -1173,6 +1190,9 @@ html {
 .h-screen{
   height: 100vh;
 }
+.h-3{
+  height: 0.75rem;
+}
 .max-h-4{
   max-height: 1rem;
 }
@@ -1233,6 +1253,9 @@ html {
 .w-\[20rem\]{
   width: 20rem;
 }
+.w-\[30\%\]{
+  width: 30%;
+}
 .w-\[50\%\]{
   width: 50%;
 }
@@ -1253,6 +1276,9 @@ html {
 }
 .w-screen{
   width: 100vw;
+}
+.w-3{
+  width: 0.75rem;
 }
 .max-w-6xl{
   max-width: 72rem;
@@ -1425,6 +1451,11 @@ html {
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-y-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1454,6 +1485,9 @@ html {
   --tw-divide-x-reverse: 0;
   border-right-width: calc(2px * var(--tw-divide-x-reverse));
   border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
+}
+.self-end{
+  align-self: flex-end;
 }
 .self-center{
   align-self: center;
@@ -1502,6 +1536,10 @@ html {
 .border-2{
   border-width: 2px;
 }
+.border-y{
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
 .border-b{
   border-bottom-width: 1px;
 }
@@ -1516,6 +1554,9 @@ html {
 }
 .border-t{
   border-top-width: 1px;
+}
+.border-t-2{
+  border-top-width: 2px;
 }
 .border-dashed{
   border-style: dashed;
@@ -1599,6 +1640,10 @@ html {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.bg-bulsca_red{
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 13 6 / var(--tw-bg-opacity));
+}
 .bg-opacity-60{
   --tw-bg-opacity: 0.6;
 }
@@ -1624,6 +1669,10 @@ html {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.px-16{
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1639,6 +1688,10 @@ html {
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.px-5{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 .px-6{
   padding-left: 1.5rem;
@@ -2509,6 +2562,9 @@ h1.h-feature, h2.h-feature, h3.h-feature, h4.h-feature, h5.h-feature{
   font-size: 6rem;
   line-height: 1;
 }
+h1.hmb-0, h2.hmb-0, h3.hmb-0, h4.hmb-0, h5.hmb-0{
+  margin-bottom: 0px;
+}
 
 h1:not(.header){
   font-size: 3rem;
@@ -2553,6 +2609,12 @@ h5:not(.header){
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+.image-link.il-bulsca{
+  --tw-gradient-from: #070660 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(7 6 96 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #070660 var(--tw-gradient-to-position);
 }
 .image-link > a{
   z-index: 40;
@@ -3398,6 +3460,13 @@ div.form-search > .results > .result > p:last-child{
   grid-area: 3/2/4/3;
 }
 
+.cl-active{
+  --tw-scale-x: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 13 6 / var(--tw-bg-opacity));
+}
+
 .even\:bg-bulsca:nth-child(even){
   --tw-bg-opacity: 1;
   background-color: rgb(7 6 96 / var(--tw-bg-opacity));
@@ -3407,13 +3476,32 @@ div.form-search > .results > .result > p:last-child{
   --tw-bg-opacity: 0.1;
 }
 
+.first-of-type\:border-t-0:first-of-type{
+  border-top-width: 0px;
+}
+
 .first-of-type\:pt-0:first-of-type{
   padding-top: 0px;
+}
+
+.last-of-type\:border-b-0:last-of-type{
+  border-bottom-width: 0px;
+}
+
+.hover\:scale-105:hover{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:scale-125:hover{
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-x-105:hover{
+  --tw-scale-x: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -3503,6 +3591,11 @@ div.form-search > .results > .result > p:last-child{
 .hover\:text-gray-900:hover{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.hover\:text-bulsca:hover{
+  --tw-text-opacity: 1;
+  color: rgb(7 6 96 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover{
