@@ -265,7 +265,7 @@ if (elementClubMap != null) {
         }),
       ],
       view: new View({
-        center: [-3.306,53.908],
+        center: [-3.306,51.908],
         zoom: 5.8,
       }),
       target: 'club-map',
