@@ -70,12 +70,12 @@
                         class="bg-bulsca w-full flex items-center space-x-5 px-5 py-3 hover:scale-x-105 border-y last-of-type:border-b-0 first-of-type:border-t-0 hover:bg-bulsca_red cursor-pointer">
 
 
-                        <div class="aspect-square  overflow-hidden flex items-center justify-center pointer-events-none ">
+                        <div class="w-5 aspect-square  overflow-hidden flex items-center justify-center pointer-events-none ">
                             <img src="{{ $club->image_path ? route('image', $club->image_path) : '/storage/logo/blogo.png' }}"
-                                class="w-5  " alt="">
+                                class="w-full  " alt="">
                         </div>
 
-                        <h5 class="text-white hmb-0 pointer-events-none">{{ $club->name }}</h5>
+                        <h5 class="text-white hmb-0 pointer-events-none text-ellipsis overflow-hidden">{{ $club->name }}</h5>
 
                         <div class="flex  " style="margin-left: auto !important">
                             <a href='{{ route('clubs') }}/{{ Str::lower($club->name) . '.' . $club->id }}' target="_blank"
