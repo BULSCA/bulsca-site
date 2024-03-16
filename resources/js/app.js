@@ -284,7 +284,10 @@ if (elementClubMap != null) {
     var locMarker = new Feature({
       type: 'icon',
       geometry: new Point(location.location.split(',').reverse()),
+
+      
     });
+    locMarker.set("name", location.name)
 
     var vectorLayer = new VectorLayer({
       source: new VectorSource({
@@ -317,8 +320,15 @@ if (elementClubMap != null) {
       e.target.classList.toggle('cl-active')
 
       if (loc.length == 2) {
-        mp.getView().setCenter(loc)
-        mp.getView().setZoom(12.5)
+        mp.getView().animate({
+          center: loc,
+          duration: 1000,
+          zoom: 12.5
+        
+        })
+
+        //mp.getView().setCenter(loc)
+        //mp.getView().setZoom(12.5)
         map_club_bar.children[0].textContent = e.target.getAttribute('x-club-name')
         //map_club_bar.style.display = 'flex'
 
@@ -350,6 +360,49 @@ if (elementClubMap != null) {
       }))
     }
   })
+
+  var wasHover = false
+
+  mp.on('click', function (evt) {
+    var feature = mp.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+      return feature;
+    });
+  
+    if (feature) {
+
+      allCards.forEach(e => e.classList.remove('cl-active'))
+      allCards[0].parentNode.querySelector('[x-club-name="' + feature.get('name') + '"]').classList.toggle('cl-active')
+
+      var loc = allCards[0].parentNode.querySelector('[x-club-name="' + feature.get('name') + '"]').getAttribute('x-club-loc').split(',').reverse()
+      mp.getView().animate({
+        center: loc,
+        duration: 1000,
+        zoom: 12.5
+      
+      })
+
+
+    } 
+  })
+
+  mp.on('pointermove', function (evt) {
+    var feature = mp.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+      return feature;
+    });
+  
+    if (feature) {
+      this.getTargetElement().style.cursor = 'pointer';
+      allCards.forEach(e => e.classList.remove('cl-active'))
+      allCards[0].parentNode.querySelector('[x-club-name="' + feature.get('name') + '"]').classList.toggle('cl-active')
+      wasHover = true
+    } else {
+      this.getTargetElement().style.cursor = '';
+      if (wasHover) {
+        allCards.forEach(e => e.classList.remove('cl-active'))
+        wasHover = false
+      }
+    }
+  });
 
   }
   
