@@ -52,56 +52,56 @@
                     </tr>
                     <tr>
                         <td> 200m Obstacles </td>
-                        <td> J.Blaby </td>
-                        <td> 2:03:52 </td>
-                        <td> Loughborough Students </td>
-                        <td> Europeans </td>
-                        <td> September 2019
+                        <td> S.Lawman </td>
+                        <td> 2:01:64 </td>
+                        <td> Leeds Beckett </td>
+                        <td> National Speeds </td>
+                        <td> March 2024
                         </td>
                     </tr>
                     <tr>
                         <td> 50m Manikin Carry </td>
-                        <td> S.Lawman </td>
-                        <td> 0:29:67 </td>
-                        <td> Leeds Beckett </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2024
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 100m Manikin Carry With Fins </td>
-                        <td> S.Lawman </td>
-                        <td> 0:48:51 </td>
-                        <td> Leeds Beckett </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2024
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 100m Manikin Tow (with fins and rescue tube) </td>
-                        <td> S.Lawman </td>
-                        <td> 0:54:77 </td>
-                        <td> Leeds City C </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2022
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 100m Rescue Medley </td>
                         <td> J.Blaby </td>
-                        <td> 1:02:52 </td>
+                        <td> 0:29:97 </td>
                         <td> Loughborough Students </td>
                         <td> Crawley Open </td>
                         <td> November 2019
                         </td>
                     </tr>
                     <tr>
+                        <td> 100m Manikin Carry With Fins </td>
+                        <td> J.Sadberry </td>
+                        <td> 0:47:51 </td>
+                        <td> Swansea University </td>
+                        <td> National Speeds </td>
+                        <td> March 2024
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 100m Manikin Tow (with fins and rescue tube) </td>
+                        <td> J.Sadberry </td>
+                        <td> 0:51:95 </td>
+                        <td> Swansea University </td>
+                        <td> National Speeds </td>
+                        <td> March 2024
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 100m Rescue Medley </td>
+                        <td> S.Lawman </td>
+                        <td> 1:00:99 </td>
+                        <td> Leed Beckett </td>
+                        <td> National Speeds </td>
+                        <td> March 2024
+                        </td>
+                    </tr>
+                    <tr>
                         <td> 200m Superlifesaver </td>
-                        <td> J.Blaby </td>
-                        <td> 2:14:15 </td>
-                        <td> Loughborough Students </td>
-                        <td> Commonwealth </td>
-                        <td> November 2019
+                        <td> S.Lawman </td>
+                        <td> 2:12:26 </td>
+                        <td> Leeds Beckett </td>
+                        <td> National Speeds </td>
+                        <td> March 2024
                         </td>
                     </tr>
                 </tbody>
@@ -129,20 +129,20 @@
                 <tbody>
                     <tr>
                         <td> Individual Line Throw (12.5m) </td>
-                        <td> A.Davies </td>
-                        <td> 0:14:748 </td>
-                        <td> Loughborough Students </td>
+                        <td> K.Stephens </td>
+                        <td> 0:15:53 </td>
+                        <td> University of Plymouth </td>
                         <td> BULSCA Championships </td>
-                        <td> March 2024
+                        <td> February 2020
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Obstacles </td>
-                        <td> E.Robson </td>
-                        <td> 2:19:28 </td>
+                        <td> S.Cummins </td>
+                        <td> 2:22:06 </td>
                         <td> Loughborough Students </td>
-                        <td> Commonwealth Championships </td>
-                        <td> September 2023
+                        <td> BULSCA Championships </td>
+                        <td> March 2022
                         </td>
                     </tr>
                     <tr>
@@ -174,20 +174,20 @@
                     </tr>
                     <tr>
                         <td> 100m Rescue Medley </td>
-                        <td> E.Robson </td>
-                        <td> 1:16:73 </td>
+                        <td> L.Donovan </td>
+                        <td> 1:20:07 </td>
                         <td> Loughborough Students </td>
-                        <td> Welsh Stillwater Championships </td>
-                        <td> January 2024
+                        <td> BULSCA Championships </td>
+                        <td> February 2020
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Superlifesaver </td>
-                        <td> E.Robson </td>
-                        <td> 2:33:40 </td>
-                        <td> Loughborough Students </td>
+                        <td> E.Henderson </td>
+                        <td> 2:35:14 </td>
+                        <td> University of Ulster </td>
                         <td> BULSCA Championships </td>
-                        <td> March 2024
+                        <td> March 2019
                         </td>
                     </tr>
                 </tbody>
@@ -284,20 +284,20 @@
                     </tr>
                     <tr>
                         <td> 4x25m Manikin Relay </td>
-                        <td> A. Comline, A. Davies, N. Sheavills, E. Robson </td>
-                        <td> 1:31:29 </td>
+                        <td> S. Cummins, A. Young, E. Robson, N. Moss </td>
+                        <td> 1:29:95 </td>
                         <td> Loughborough Students </td>
-                        <td> Welsh Stillwater Championships </td>
-                        <td> January 2024
+                        <td> National Speeds </td>
+                        <td> March 2024
                         </td>
                     </tr>
                     <tr>
                         <td> 4x50m Obstacle Relay </td>
-                        <td> A. Comline, S. Cummins, E. Wright, E. Robson </td>
-                        <td> 2:01:11 </td>
+                        <td> S. Cummins, A. Young, E. Wright, E. Robson </td>
+                        <td> 2:01:79 </td>
                         <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
-                        <td> March 2023
+                        <td> March 2022
                         </td>
                     </tr>
                     <tr>
@@ -335,11 +335,11 @@
                 <tbody>
                     <tr>
                         <td> 4x50m Lifesaver Relay </td>
-                        <td> S. Lawman, A. Young, J. Blaby, L. Scammell </td>
-                        <td> 1:59:14 </td>
+                        <td> A. Comline, E. Robson, D. Holmes, B. Ewington </td>
+                        <td> 1:58:11 </td>
                         <td> Loughborough Students </td>
-                        <td> RLSS UK Speeds </td>
-                        <td> March 2019
+                        <td> National Speeds </td>
+                        <td> March 2024
                         </td>
                     </tr>
                     <tr>
