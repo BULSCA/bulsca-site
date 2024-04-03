@@ -130,19 +130,19 @@
                     <tr>
                         <td> Individual Line Throw (12.5m) </td>
                         <td> K.Stephens </td>
-                        <td> 0:15:53 </td>
-                        <td> University of Plymouth </td>
+                        <td> 0:14:748 </td>
+                        <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
-                        <td> February 2020
+                        <td> March 2024
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Obstacles </td>
-                        <td> S.Cummins </td>
-                        <td> 2:22:06 </td>
+                        <td> E.Robson </td>
+                        <td> 2:19:28 </td>
                         <td> Loughborough Students </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2022
+                        <td> Commonwealth Championships </td>
+                        <td> September 2023
                         </td>
                     </tr>
                     <tr>
@@ -174,20 +174,20 @@
                     </tr>
                     <tr>
                         <td> 100m Rescue Medley </td>
-                        <td> L.Donovan </td>
-                        <td> 1:20:07 </td>
+                        <td> E.Robson </td>
+                        <td> 1:16:73 </td>
                         <td> Loughborough Students </td>
-                        <td> BULSCA Championships </td>
-                        <td> February 2020
+                        <td> Welsh Stillwater Championships </td>
+                        <td> January 2024
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Superlifesaver </td>
-                        <td> E.Henderson </td>
-                        <td> 2:35:14 </td>
-                        <td> University of Ulster </td>
+                        <td> E.Robson </td>
+                        <td> 2:33:40 </td>
+                        <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
-                        <td> March 2019
+                        <td> March 2024
                         </td>
                     </tr>
                 </tbody>
@@ -293,11 +293,11 @@
                     </tr>
                     <tr>
                         <td> 4x50m Obstacle Relay </td>
-                        <td> S. Cummins, A. Young, E. Wright, E. Robson </td>
-                        <td> 2:01:79 </td>
+                        <td> A. Comline, S. Cummins, E. Wright, E. Robson </td>
+                        <td> 2:01:11 </td>
                         <td> Loughborough Students </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2022
+                        <td> National Speeds </td>
+                        <td> March 2023
                         </td>
                     </tr>
                     <tr>
