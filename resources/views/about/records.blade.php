@@ -61,11 +61,11 @@
                     </tr>
                     <tr>
                         <td> 50m Manikin Carry </td>
-                        <td> J.Blaby </td>
-                        <td> 0:29:97 </td>
-                        <td> Loughborough Students </td>
-                        <td> Crawley Open </td>
-                        <td> November 2019
+                        <td> S.Lawman </td>
+                        <td> 0:29:67 </td>
+                        <td> Leeds Beckett </td>
+                        <td> BULSCA Championships </td>
+                        <td> March 2024
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +129,7 @@
                 <tbody>
                     <tr>
                         <td> Individual Line Throw (12.5m) </td>
-                        <td> K.Stephens </td>
+                        <td> A.Davies </td>
                         <td> 0:14:748 </td>
                         <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
@@ -284,7 +284,7 @@
                     </tr>
                     <tr>
                         <td> 4x25m Manikin Relay </td>
-                        <td> S. Cummins, A. Young, E. Robson, N. Moss </td>
+                        <td> A. Comline, A. Davies, N. Sheavills, E. Robson </td>
                         <td> 1:29:95 </td>
                         <td> Loughborough Students </td>
                         <td> National Speeds </td>
