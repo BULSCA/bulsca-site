@@ -86,4 +86,15 @@ class UniversityController extends Controller
 
         return redirect()->route('admin.universities')->with('message', 'University deleted!');
     }
+
+    public function getLogo(string $uni_name)
+    {
+        $uni = University::where('name', $uni_name)->first();
+
+        if (!$uni) {
+            abort(404);
+        }
+
+        return response()->redirectTo("img/" . $uni->image_path, 301);
+    }
 }
