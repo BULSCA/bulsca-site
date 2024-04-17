@@ -95,6 +95,6 @@ class UniversityController extends Controller
             abort(404);
         }
 
-        return response()->redirectTo("img/" . $uni->image_path, 301);
+        return response()->redirectTo("img/" . $uni->image_path);
     }
 }
