@@ -89,19 +89,19 @@
                     <tr>
                         <td> 100m Rescue Medley </td>
                         <td> S.Lawman </td>
-                        <td> 1:00:99 </td>
+                        <td> 1:00:90 </td>
                         <td> Leed Beckett </td>
-                        <td> National Speeds </td>
-                        <td> March 2024
+                        <td> SLSGB Stillwater Championships </td>
+                        <td> April 2024
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Superlifesaver </td>
                         <td> S.Lawman </td>
-                        <td> 2:12:26 </td>
+                        <td> 2:11:14 </td>
                         <td> Leeds Beckett </td>
-                        <td> National Speeds </td>
-                        <td> March 2024
+                        <td> SLSGB Stillwater Championships </td>
+                        <td> April 2024
                         </td>
                     </tr>
                 </tbody>
@@ -336,10 +336,10 @@
                     <tr>
                         <td> 4x50m Lifesaver Relay </td>
                         <td> A. Comline, E. Robson, D. Holmes, B. Ewington </td>
-                        <td> 1:58:11 </td>
+                        <td> 1:57:16 </td>
                         <td> Loughborough Students </td>
-                        <td> National Speeds </td>
-                        <td> March 2024
+                        <td> SLSGB Stillwater Championships </td>
+                        <td> April 2024
                         </td>
                     </tr>
                     <tr>
