@@ -54,7 +54,7 @@
             </div>
         </div>
     @else
-    <div class="min-h-[100vh]  w-full overflow-hidden relative">
+    {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
         <div class="absolute top-0 right-0 w-full h-full  flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
             id="head1">
             <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[27%] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-24   h-auto"
@@ -72,7 +72,7 @@
                         $mins = $diff->i;
                         $secs = $diff->s;
                     @endphp
-                    {{-- <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
+                     <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
                         <div><div class="text-4xl " id="days">{{ $days }}</div><div>Days</div></div>
                         <div><div class="text-4xl " id="hours">{{ $hours }}</div><div>Hours</div></div>
                         <div><div class="text-4xl " id="mins">{{ $mins }}</div><div>Minutes</div></div>
@@ -82,7 +82,7 @@
                         
                         
                  
-                    </div> --}}
+                    </div> 
                    
                       
                  
@@ -94,15 +94,15 @@
                   </div>
         </div>
 
-    </div>
-        {{-- <div class="h-full w-full overflow-hidden relative">
+    </div> --}}
+        <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
-        </div> --}}
+        </div>
     @endif
 
 
