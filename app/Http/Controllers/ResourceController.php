@@ -65,23 +65,21 @@ class ResourceController extends Controller
     {
 
         $resource = Resource::find($id);
-
-        if ($req->has('dl') || pathinfo($resource->location)['extension'] == "zip") {
-            return Storage::download($resource->location);
-        }
+        $extension = pathinfo($resource->location)['extension'];
 
         if (!$resource) {
             abort(404);
         }
 
+        if ($req->has('dl')) {
+            return Storage::download($resource->location, $resource->name . '.' . $extension);
+        }
 
-        $fileContents = Storage::get($resource->location);
-        $type = File::mimeType(Storage::path($resource->location));
+        return response()->file(Storage::path($resource->location), ["Content-Disposition" => "filename=" . $resource->name . "." . $extension]);
 
-        $response = Response::make($fileContents, 200);
-        $response->header("Content-Type", $type);
-        $response->header("Content-Disposition", "filename=" . $resource->name . "." . pathinfo($resource->location)['extension'] . "");
-        return $response;
+
+
+
     }
 
 
