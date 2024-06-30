@@ -416,6 +416,42 @@
   @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca;
  }
 
+ div.tag-input {
+  @apply border-2 rounded-md py-2 px-2 focus:outline-none hover:border-bulsca focus:border-bulsca flex flex-col relative ;
+
+  div.fake-input {
+    @apply outline-none w-full text-sm;
+  }
+
+  div.tags {
+    @apply text-xs  text-white flex  space-x-1 max-w-full flex-wrap   ;
+
+
+    span {
+      @apply whitespace-nowrap p-1 px-2  bg-bulsca rounded-lg mb-1 cursor-pointer;
+    }
+
+  }
+
+  div.suggested {
+    @apply absolute z-50 bg-white border rounded-md top-full rounded-tl-none rounded-tr-none left-0 w-full flex-col space-y-1 hidden;
+
+    span {
+      @apply p-1 px-2   cursor-pointer;
+      &:hover {
+        @apply bg-gray-200;
+      }
+    }
+  
+
+   
+  
+  }
+
+
+ }
+
+
  div.form-input {
 
     @apply flex flex-col;
@@ -424,12 +460,17 @@
 
    }
 
-   input, select {
+
+
+   input, select, textarea {
     @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4;
 
     &.file {
       @apply file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold  file:text-black hover:file:bg-gray-200 file:cursor-pointer cursor-pointer;
     }
+
+   
+
    }
 
    input[type=color] {
