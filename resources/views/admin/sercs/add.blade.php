@@ -46,7 +46,15 @@ Add | SERC | Admin |
                 </div>
             </div>
 
-            <div class="row-start-3 col-span-2">
+            <div class="row-start-3 col-span-1">
+                <div class="form-input">
+                    <label for="upload-file">Add Files</label>
+                    <input id="upload-file" class="input file" name="files[]" type="file" multiple="true">
+                    <small id="file-name-list"></small>
+                </div>
+            </div>
+
+            <div class="row-start-4 col-span-2">
                 <x-tag-input></x-tag-input>
             </div>
 

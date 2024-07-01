@@ -35,6 +35,21 @@ class SERCController extends Controller
             $serc->where = $request->where;
             $serc->save();
 
+            $files = $request->file('files');
+            if ($files != null) {
+           
+                foreach ($files as $file) {
+                  
+                   
+                  
+                    $res = ResourceController::storeFile($file, 'sercs/' . $serc->id, 'self');
+                    $res->save();
+
+                    DB::table('serc_resources')->insert(['serc_id' => $serc->id, 'resource_id' => $res->id]);
+
+                }
+            }
+
             $tags = explode(',', $request->tags);
             foreach ($tags as $tag) {
                 if ($tag == '') continue;
@@ -43,7 +58,7 @@ class SERCController extends Controller
                 DB::table('tagged_sercs')->insert(['serc_id' => $serc->id, 'serc_tag_id' => $tag->id]);
             }
     
-            return redirect()->route('admin.sercs');
+            return redirect()->route('admin.sercs.show', ['serc' => $serc]);
     }
 
     public function show(SERC $serc) {
@@ -97,6 +112,14 @@ class SERCController extends Controller
     }
 
     public function delete(SERC $serc) {
+
+
+        $resources = $serc->getResources;
+
+        foreach ($resources as $res) {
+            Storage::delete($res->location);
+            $res->delete();
+        }
 
         $serc->delete();
         return redirect()->route('admin.sercs')->with('message', 'SERC Deleted!');
