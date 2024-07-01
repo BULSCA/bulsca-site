@@ -36,9 +36,9 @@
     </small>
   </footer>
 
-  @if(session('message'))
+ 
   <x-notification-sliver>{{ session('message') }}</x-notification-sliver>
-  @endif
+ 
 </body>
 
 <script>

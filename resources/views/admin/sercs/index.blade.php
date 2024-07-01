@@ -39,10 +39,19 @@ SERCs | Admin |
             <hr class="-mx-6 mb-4">
             <p class=" text-black text-base font-normal  line-clamp-4 mb-3">{{ $serc->description }}</p>
 
-            <div>
+            <div class="overflow-x-auto flex flex-row whitespace-nowrap">
                 
                 <x-badge style="warning">{{ $serc->where }}</x-badge>
                 <x-badge style="warning">{{ $serc->when }}</x-badge>
+
+                @foreach (explode(',',$serc->getTags()) as $tag)
+                @if ($tag == '')
+                @continue
+                    
+                @endif
+                <x-badge style="info">{{ $tag }}</x-badge>
+                
+                @endforeach
 
             </div>
 

@@ -27,7 +27,9 @@ class StoreSERCRequest extends FormRequest
             'name' => 'required',
             'description' => '',
             'when' => 'required|date',
-            'where' => 'required'
+            'where' => 'required',
+            'files' => '',
+            'tags' => '',
         ];
     }
 }

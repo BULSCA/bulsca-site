@@ -46,6 +46,11 @@ Add | SERC | Admin |
                 </div>
             </div>
 
+            <div class="row-start-3 col-span-2">
+                <x-tag-input></x-tag-input>
+            </div>
+
+
 
 
             
@@ -62,6 +67,5 @@ Add | SERC | Admin |
     </div>
 
 </div>
-
-
+<script src="{{ asset('js/TagInput.js') }}"></script>
 @endsection

@@ -375,7 +375,7 @@
  }
 
  div.file-link {
-   @apply  border-2 rounded-md inline-block relative hover:border-gray-400 transition-colors;
+   @apply  border-2 rounded-md inline-block relative hover:border-gray-400 transition-colors bg-white;
    
    > a {
       @apply no-underline p-3 px-5 flex items-center  hover:text-bulsca_red;

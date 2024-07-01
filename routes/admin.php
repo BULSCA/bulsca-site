@@ -82,10 +82,20 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     Route::prefix('sercs')->group(function () {
         Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
+
+        Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
+
         Route::get('add', [SERCController::class, 'add'])->name('admin.sercs.add');
         Route::post('add', [SERCController::class, 'store'])->name('admin.sercs.store');
 
+        Route::post('resources/{serc}', [SERCController::class, 'deleteResource'])->name('admin.sercs.resource.delete');
+
         Route::get('{serc}', [SERCController::class, 'show'])->name('admin.sercs.show');
         Route::post('{serc}', [SERCController::class, 'update'])->name('admin.sercs.update');
+        Route::delete('{serc}', [SERCController::class, 'delete'])->name('admin.sercs.delete');
+
+        
+
+    
     });
 });
