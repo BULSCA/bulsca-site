@@ -37,6 +37,10 @@
             <x-form-input id='when' title='When' type="date" defaultValue="{{ $serc->when }}"  />
             <x-form-input id='where' title='Where' defaultValue="{{ $serc->where }}" />
 
+                
+            <x-form-input id='author' title='Author(s)' required="false" defaultValue="{{ $serc->author }}" />
+            <x-form-input id='no_cas' title='# Casualties' type="number" min="0" required="false"  defaultValue="{{ $serc->casualties }}" />
+
             <div class=" row-start-2 col-span-3">
                 <div class="form-input col-span-2 ">
                     <label for="description">Description</label>

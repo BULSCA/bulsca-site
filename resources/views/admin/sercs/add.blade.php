@@ -37,6 +37,9 @@ Add | SERC | Admin |
             <x-form-input id='when' title='When' type="date"  />
             <x-form-input id='where' title='Where'  />
 
+            <x-form-input id='author' title='Author(s)' required="false" />
+            <x-form-input id='no_cas' title='# Casualties' type="number" min="0" required="false"   />
+
             <div class=" row-start-2 col-span-3">
                 <div class="form-input col-span-2 ">
                     <label for="description">Description</label>
@@ -69,7 +72,7 @@ Add | SERC | Admin |
 
 
 
-            <button type="submit" class="btn btn-thinner btn-save col-start-4 row-start-3">Add</button>
+            <button type="submit" class="btn btn-thinner btn-save col-start-4 row-start-5">Add</button>
 
         </form>
     </div>

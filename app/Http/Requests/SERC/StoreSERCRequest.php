@@ -28,8 +28,18 @@ class StoreSERCRequest extends FormRequest
             'description' => '',
             'when' => 'required|date',
             'where' => 'required',
+            'no_cas' => 'sometimes|nullable|integer|min:1',
+            'author' => 'sometimes|nullable',
             'files' => '',
             'tags' => '',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+
+            'no_cas.min' => '# casualties must be at least 1',
         ];
     }
 }

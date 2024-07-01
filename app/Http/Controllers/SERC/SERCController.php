@@ -33,6 +33,8 @@ class SERCController extends Controller
             $serc->description = $request->description;
             $serc->when = $request->when;
             $serc->where = $request->where;
+            $serc->casualties = $request->no_cas;
+            $serc->author = $request->author;
             $serc->save();
 
             $files = $request->file('files');
@@ -72,6 +74,8 @@ class SERCController extends Controller
             $serc->description = $request->description;
             $serc->when = $request->when;
             $serc->where = $request->where;
+            $serc->casualties = $request->no_cas;
+            $serc->author = $request->author;
             $serc->save();
 
             // Handle files
