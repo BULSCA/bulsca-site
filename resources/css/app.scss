@@ -594,7 +594,7 @@
  }
 
  .badge {
-  @apply text-sm font-medium mr-2 px-2.5 py-1 rounded;
+  @apply text-sm font-medium mr-2 px-2.5 py-1 rounded last-of-type:mr-0;
 
   &.badge-info {
     @apply bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-800
