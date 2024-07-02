@@ -181,7 +181,7 @@
         <br>
 
         <div class="flex md:flex-row flex-col md:space-x-4 ">
-            <div class="min-w-56 w-56">
+            <div class="md:min-w-56 md:w-56 w-full">
                 <h5 class="bg-bulsca p-2 text-white">Filters</h5>
 
                 <div class="flex flex-col space-y-1">
