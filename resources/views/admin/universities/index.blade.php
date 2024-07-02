@@ -7,7 +7,7 @@ Universities | Admin |
 
 @section('content')
 
-<div class="container">
+<div class="container-responsive">
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>

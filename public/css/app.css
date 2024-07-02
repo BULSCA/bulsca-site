@@ -1301,9 +1301,6 @@ html {
 .w-screen{
   width: 100vw;
 }
-.min-w-56{
-  min-width: 14rem;
-}
 .max-w-6xl{
   max-width: 72rem;
 }
@@ -4224,6 +4221,9 @@ div.form-search > .results > .result > p:last-child{
   .md\:h-auto{
     height: auto;
   }
+  .md\:w-56{
+    width: 14rem;
+  }
   .md\:w-\[12\.5\%\]{
     width: 12.5%;
   }
@@ -4238,9 +4238,6 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:w-\[60\%\]{
     width: 60%;
-  }
-  .md\:w-56{
-    width: 14rem;
   }
   .md\:min-w-56{
     min-width: 14rem;

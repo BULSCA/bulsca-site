@@ -7,7 +7,7 @@ Resources | Admin |
 
 @section('content')
 
-<div class="container">
+<div class="container-responsive">
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>
@@ -73,7 +73,7 @@ Resources | Admin |
 
 </div>
 
-<div class="container">
+<div class="container-responsive">
     <h1 class="header">All Resources</h1>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @foreach ($resources as $res)
