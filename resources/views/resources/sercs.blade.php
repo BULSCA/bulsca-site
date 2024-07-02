@@ -237,7 +237,7 @@
                             <input type="text" id="resource-search" class="input " style="padding: 0.25rem 0.5rem !important" x-model="tagSearch"
                                  placeholder="Search tags...">
                         </div>
-                        <div class="flex flex-wrap">
+                        <div class="flex flex-wrap max-h-60 overflow-y-scroll thin-scrollbar">
                             <template x-for="tag in tags">
                                 <span class="badge mb-1 cursor-pointer" @click="toggleTag(tag.id)"
                                     :class="tag.name.toLowerCase().includes(tagSearch.toLowerCase().trim()) ? (filters.tags.includes(tag.id) ? 'badge-active' : 'badge-info') : 'hidden'"

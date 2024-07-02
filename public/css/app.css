@@ -953,6 +953,10 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+.my-1{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .my-2{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -980,10 +984,6 @@ html {
 .my-\[2\%\]{
   margin-top: 2%;
   margin-bottom: 2%;
-}
-.my-1{
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
 }
 .-mb-1{
   margin-bottom: -0.25rem;
@@ -1226,6 +1226,18 @@ html {
 }
 .max-h-4{
   max-height: 1rem;
+}
+.max-h-48{
+  max-height: 12rem;
+}
+.max-h-52{
+  max-height: 13rem;
+}
+.max-h-64{
+  max-height: 16rem;
+}
+.max-h-60{
+  max-height: 15rem;
 }
 .min-h-\[100vh\]{
   min-height: 100vh;
@@ -1546,6 +1558,9 @@ html {
 .overflow-x-hidden{
   overflow-x: hidden;
 }
+.overflow-y-scroll{
+  overflow-y: scroll;
+}
 .overflow-ellipsis{
   text-overflow: ellipsis;
 }
@@ -1709,9 +1724,6 @@ html {
 }
 .p-6{
   padding: 1.5rem;
-}
-.p-1{
-  padding: 0.25rem;
 }
 .px-1{
   padding-left: 0.25rem;
@@ -3681,6 +3693,7 @@ div.form-search > .results > .result > p:last-child{
 .thin-scrollbar::-webkit-scrollbar {
   margin-top: 0;
   height: 2px;
+  width: 2px;
 }
 .thin-scrollbar::-webkit-scrollbar-track {
   background: #f1f1f1;
