@@ -153,11 +153,15 @@ class SERCController extends Controller
         $filterOptions['cas_max'] = SERC::max('casualties');
 
         $filterOptions['whens'] = DB::select("SELECT DISTINCT year(sercs.when) AS years FROM sercs ORDER BY years DESC;");
+        $filterOptions['wheres'] = DB::select("SELECT DISTINCT sercs.where FROM sercs ORDER BY sercs.where;");
+
 
     
         $filterOptions['whens'] = array_map(function($item) {
             return $item->years;
         }, $filterOptions['whens']);
+
+        $filterOptions['tags'] = SERCTag::where("name", "!=", "")->distinct()->get(['id', 'name']);
 
 
         return view('resources.sercs', ['count' => SERC::count(), 'filterOptions' => $filterOptions]);
@@ -166,27 +170,49 @@ class SERCController extends Controller
     public function publicSearch() {
 
         // Two queries - one for searching with no tags as its simple
-        $query = SERC::with('tags:name');
+       
 
-        if (request('cas_min') != null) {
-            $query->where('casualties', '>=', request('cas_min'));
-        }
+        $query = SERC::with('tags:name,id');
 
-        if (request('cas_max') != null) {
-            $query->where('casualties', '<=', request('cas_max'));
-        }
+        if (request('tags') != null) {
+          
+            $sercIds = DB::table('tagged_sercs')->select('serc_id')->whereIn('serc_tag_id', explode(',', request('tags')))->get()->pluck('serc_id')->toArray();
 
-        if (request('when') != 'all') {
-            $query->whereYear('when', request('when'));
-        }
+            $query->whereIn('id', $sercIds);
 
-        if (request('author') != null) {
-            $query->where('author', 'LIKE', '%' . request('author') . '%');
-        }
+        } 
+           
+            if (request('search') != '') {
+                $query->where('name', 'LIKE', '%' . request('search') . '%');
+            }
+
+            if (request('cas_min') != null) {
+                $query->where('casualties', '>=', request('cas_min'));
+            }
+    
+            if (request('cas_max') != null) {
+                $query->where('casualties', '<=', request('cas_max'));
+            }
+    
+            if (request('when') != 'all') {
+                $query->whereYear('when', request('when'));
+            }
+
+            if (request('where') != 'all') {
+                $query->where('where', request('where'));
+            }
+    
+            if (request('author') != null) {
+                $query->where('author', 'LIKE', '%' . request('author') . '%');
+            }
+
+            
+        
+
+    
 
         // Another for searchign when using tags:
         //  SELECT * FROM sercs s INNER JOIN tagged_sercs ts ON ts.serc_id = s.id WHERE serc_tag_id IN (10);
-
 
 
         return response()->json($query->orderBy('when','DESC')->get());

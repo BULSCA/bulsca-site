@@ -1864,6 +1864,21 @@ html {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-\[0\.5rem\]{
+  font-size: 0.5rem;
+}
+.text-\[0\.25rem\]{
+  font-size: 0.25rem;
+}
+.text-\[0\.6rem\]{
+  font-size: 0.6rem;
+}
+.text-\[0\.7rem\]{
+  font-size: 0.7rem;
+}
+.text-\[0\.65rem\]{
+  font-size: 0.65rem;
+}
 .font-bold{
   font-weight: 700;
 }
@@ -2044,6 +2059,9 @@ html {
 }
 .blur{
   --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition{
@@ -3207,6 +3225,12 @@ div.multi-range input[type=range]#fromRange::-moz-range-thumb {
     --tw-text-opacity: 1;
     color: rgb(20 83 45 / var(--tw-text-opacity));
   }
+}
+.badge.badge-active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 6 96 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .alert{

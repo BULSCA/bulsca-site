@@ -35,8 +35,13 @@
 
 
             <x-form-input id='when' title='When' type="date" defaultValue="{{ $serc->when->format('Y-m-d') }}"  />
-            <x-form-input id='where' title='Where' defaultValue="{{ $serc->where }}" />
+            <x-form-input id='where' title='Where' defaultValue="{{ $serc->where }}" dlist="where-dl" />
 
+                <datalist id="where-dl">
+                    @foreach (DB::table('sercs')->select('where')->distinct()->get() as $where)
+                        <option value="{{ $where->where }}"></option>
+                    @endforeach
+                </datalist>
                 
             <x-form-input id='author' title='Author(s)' required="false" defaultValue="{{ $serc->author }}" />
             <x-form-input id='no_cas' title='# Casualties' type="number" min="0"   defaultValue="{{ $serc->casualties }}" />

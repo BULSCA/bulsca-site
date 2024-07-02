@@ -611,6 +611,11 @@
   &.badge-success {
     @apply bg-green-100 text-green-800 dark:bg-green-200 dark:text-green-900
   }
+
+  &.badge-active {
+    @apply bg-bulsca text-white;
+  }
+
  }
 
  .alert {

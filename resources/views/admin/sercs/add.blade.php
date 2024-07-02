@@ -35,7 +35,13 @@ Add | SERC | Admin |
 
 
             <x-form-input id='when' title='When' type="date"  />
-            <x-form-input id='where' title='Where'  />
+            <x-form-input id='where' title='Where' dlist="where-dl"  />
+
+            <datalist id="where-dl">
+                @foreach (DB::table('sercs')->select('where')->distinct()->get() as $where)
+                    <option value="{{ $where->where }}"></option>
+                @endforeach
+            </datalist>
 
             <x-form-input id='author' title='Author(s)' required="false" />
             <x-form-input id='no_cas' title='# Casualties' type="number" min="0"    />

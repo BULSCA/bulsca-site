@@ -30,12 +30,16 @@ SERCs | Resources |
 
 <div class="container-responsive" x-data="{
     sercs: [],
+    tags: {{ $filterOptions['tags'] }},
 
    
 
     filters: {
+        search: '',
         when: 'all',
+        where: 'all',
         author: '',
+        tags: [],
         casualties: {
             from: {{ $filterOptions['cas_min'] }},
             to: {{ $filterOptions['cas_max'] }},
@@ -48,7 +52,12 @@ SERCs | Resources |
     },
 
     searchSercs() {
-        fetch(`{{ route('resources.sercs.search') }}?cas_min=${this.filters.casualties.from}&cas_max=${this.filters.casualties.to}&when=${this.filters.when}&author=${this.filters.author}`).then(response => response.json()).then(data => {
+
+        let queryParams = `?search=${this.filters.search}&cas_min=${this.filters.casualties.from}&cas_max=${this.filters.casualties.to}&when=${this.filters.when}&where=${this.filters.where}&author=${this.filters.author}&tags=${this.filters.tags.join(',')}`
+
+        window.history.pushState({}, '', `{{ route('resources.sercs') }}${queryParams}`)
+
+        fetch(`{{ route('resources.sercs.search') }}${queryParams}`).then(response => response.json()).then(data => {
             this.sercs = data
         })
     },
@@ -96,11 +105,46 @@ SERCs | Resources |
     
     },
 
+    toggleTag(tagId) {
+
+        if (this.filters.tags.includes(tagId)) {
+            this.filters.tags = this.filters.tags.filter(tag => tag !== tagId)
+        } else {
+            this.filters.tags.push(tagId)
+        }
+
+        this.searchSercs()
+
+    },
+
+    parseDefaultURL() {
+        let url = new URL(window.location.href)
+
+        let params = url.searchParams
+
+        this.filters.search = params.get('search') || ''
+        this.filters.when = params.get('when') || 'all'
+        this.filters.where = params.get('where') || 'all'
+        this.filters.author = params.get('author') || ''
+
+        if (params.get('tags')) {
+            params.get('tags').split(',').forEach(tag => {
+                this.filters.tags.push(tag*1)
+            })
+        }
+
+        this.filters.casualties.from = params.get('cas_min') || {{ $filterOptions['cas_min'] }}
+        this.filters.casualties.to = params.get('cas_max') || {{ $filterOptions['cas_max'] }}
+
+        this.searchSercs()
     
-}" x-init="searchSercs()">
+    }
+
+    
+}" x-init="() => {parseDefaultURL()}">
 
 <div class="flex space-x-4">
-    <div class="min-w-56">
+    <div class="min-w-56 w-56">
         <h5 class="bg-bulsca p-2 text-white">Filters</h5>
 
         <div class="flex flex-col space-y-1">
@@ -132,11 +176,51 @@ SERCs | Resources |
                     @endforeach
                 </select>
             </div>
+
+            <div class="form-input text-sm">
+                <label for="filter-year">Where</label>
+                <select id="filter-year" class="input smaller" x-model="filters.where"  @change="searchSercs()">
+                    <option value="all">All</option>
+                    @foreach ($filterOptions['wheres'] as $where)
+                        <option value="{{ $where->where }}">{{ $where->where }}</option>
+                        
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm">Tags</p>
+                    <small class=" text-[0.65rem] text-gray-400">(Click to toggle)</small>
+                </div>
+                <div class="flex flex-wrap">
+                    <template x-for="tag in tags">
+                        <span class="badge mb-1 cursor-pointer" @click="toggleTag(tag.id)" :class="filters.tags.includes(tag.id) ? 'badge-active' : 'badge-info'" x-text="tag.name">Tag</span>
+                    </template>
+                </div>
+                
+            </div>
         </div>
             
         
     </div>
-    <div class="w-full grid-3 flex-grow-0">
+
+   <div class="w-full ">
+        <div class="form-search group col-span-3">
+        <input type="text" id="resource-search" class="input" x-model="filters.search" @input.debounce="searchSercs()" placeholder="Search by name...">
+    </div>
+
+    <br>
+
+    <div class="w-full grid-3 flex-grow-0 items-start">
+
+   
+
+        <template x-if="sercs.length == 0">
+            <div class="col-span-3 flex items-center justify-center">
+                <p>No SERCs found</p>
+            </div>
+        </template>
 
         <template x-for="serc in sercs">
 
@@ -165,7 +249,7 @@ SERCs | Resources |
                     <span class="badge badge-warning" x-text="serc.where">Where</span>
               
                     <template x-for="tag in serc.tags">
-                        <span class="badge badge-info" x-text="tag.name">Tag</span>
+                        <span class="badge" :class="filters.tags.includes(tag.id) ? 'badge-active' : 'badge-info'" x-text="tag.name">Tag</span>
                     </template>
                     
     
@@ -179,6 +263,9 @@ SERCs | Resources |
 
         
     </div>
+   </div>
+
+   
 </div>
 
 
