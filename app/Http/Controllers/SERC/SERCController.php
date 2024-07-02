@@ -144,4 +144,51 @@ class SERCController extends Controller
 
         return;
     }
+
+    public function publicSERCs() {
+
+        $filterOptions = [];
+
+        $filterOptions['cas_min'] = SERC::min('casualties');
+        $filterOptions['cas_max'] = SERC::max('casualties');
+
+        $filterOptions['whens'] = DB::select("SELECT DISTINCT year(sercs.when) AS years FROM sercs ORDER BY years DESC;");
+
+    
+        $filterOptions['whens'] = array_map(function($item) {
+            return $item->years;
+        }, $filterOptions['whens']);
+
+
+        return view('resources.sercs', ['count' => SERC::count(), 'filterOptions' => $filterOptions]);
+    }
+
+    public function publicSearch() {
+
+        // Two queries - one for searching with no tags as its simple
+        $query = SERC::with('tags:name');
+
+        if (request('cas_min') != null) {
+            $query->where('casualties', '>=', request('cas_min'));
+        }
+
+        if (request('cas_max') != null) {
+            $query->where('casualties', '<=', request('cas_max'));
+        }
+
+        if (request('when') != 'all') {
+            $query->whereYear('when', request('when'));
+        }
+
+        if (request('author') != null) {
+            $query->where('author', 'LIKE', '%' . request('author') . '%');
+        }
+
+        // Another for searchign when using tags:
+        //  SELECT * FROM sercs s INNER JOIN tagged_sercs ts ON ts.serc_id = s.id WHERE serc_tag_id IN (10);
+
+
+
+        return response()->json($query->orderBy('when','DESC')->get());
+    }
 }

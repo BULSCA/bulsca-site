@@ -38,7 +38,7 @@ Add | SERC | Admin |
             <x-form-input id='where' title='Where'  />
 
             <x-form-input id='author' title='Author(s)' required="false" />
-            <x-form-input id='no_cas' title='# Casualties' type="number" min="0" required="false"   />
+            <x-form-input id='no_cas' title='# Casualties' type="number" min="0"    />
 
             <div class=" row-start-2 col-span-3">
                 <div class="form-input col-span-2 ">

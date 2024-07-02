@@ -12,4 +12,6 @@ class SERCTag extends Model
     protected $table = 'serc_tags';
 
     protected $fillable = ['name'];
+
+    protected $hidden = ['pivot'];
 }

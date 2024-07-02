@@ -28,7 +28,7 @@ class StoreSERCRequest extends FormRequest
             'description' => '',
             'when' => 'required|date',
             'where' => 'required',
-            'no_cas' => 'sometimes|nullable|integer|min:1',
+            'no_cas' => 'required|integer|min:1',
             'author' => 'sometimes|nullable',
             'files' => '',
             'tags' => '',

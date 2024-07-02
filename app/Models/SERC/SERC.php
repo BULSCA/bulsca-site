@@ -12,6 +12,10 @@ class SERC extends Model
 
     protected $table = 'sercs';
 
+   protected $casts = [
+        'when' => 'datetime',
+    ];
+
     public function getTags() {
         $results = DB::select('SELECT DISTINCT name FROM serc_tags st INNER JOIN tagged_sercs ts ON ts.serc_tag_id = st.id WHERE ts.serc_id = ?', [$this->id]);
 
@@ -24,5 +28,9 @@ class SERC extends Model
 
     public function getResources() {
         return $this->belongsToMany('App\Models\Resource', 'serc_resources', 'serc_id', 'resource_id');
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\Models\SERC\SERCTag', 'tagged_sercs', 'serc_id', 'serc_tag_id');
     }
 }

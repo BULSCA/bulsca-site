@@ -42,7 +42,7 @@ SERCs | Admin |
             <div class="overflow-x-auto flex flex-row whitespace-nowrap">
                 
                 <x-badge style="warning">{{ $serc->where }}</x-badge>
-                <x-badge style="warning">{{ $serc->when }}</x-badge>
+                <x-badge style="warning">{{ $serc->when->format('Y-m-d')  }}</x-badge>
 
                 @foreach (explode(',',$serc->getTags()) as $tag)
                 @if ($tag == '')

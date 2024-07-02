@@ -50,7 +50,7 @@
                     <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
                         <ul>
                             <li><a href="{{ route('resources') }}">All</a></li>
-                            <li><a href="{{ "" }}">SERCs</a></li>
+                            <li><a href="{{ route('resources.sercs') }}">SERCs</a></li>
                             <li><a href="{{  "" }}">Casualty Types</a></li>
                         </ul>
                     </div>
@@ -170,7 +170,7 @@
                     <ul>
 
                         <li><a href="{{ route('resources') }}">All</a></li>
-                            <li><a href="{{ "" }}">SERCs</a></li>
+                            <li><a href="{{ route('resources.sercs') }}">SERCs</a></li>
                             <li><a href="{{  "" }}">Casualty Types</a></li>
 
                     </ul>
