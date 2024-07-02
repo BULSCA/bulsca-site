@@ -872,6 +872,10 @@ html {
 .relative{
   position: relative;
 }
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+}
 .inset-0{
   inset: 0px;
 }
@@ -892,6 +896,15 @@ html {
 }
 .top-full{
   top: 100%;
+}
+.top-10{
+  top: 2.5rem;
+}
+.top-20{
+  top: 5rem;
+}
+.top-24{
+  top: 6rem;
 }
 .z-0{
   z-index: 0;
@@ -1330,6 +1343,9 @@ html {
   flex-grow: 1;
 }
 .flex-grow-0{
+  flex-grow: 0;
+}
+.grow-0{
   flex-grow: 0;
 }
 .basis-1\/5{
@@ -4190,6 +4206,10 @@ div.form-search > .results > .result > p:last-child{
 }
 
 @media (min-width: 768px){
+  .md\:sticky{
+    position: -webkit-sticky;
+    position: sticky;
+  }
   .md\:col-span-2{
     grid-column: span 2 / span 2;
   }

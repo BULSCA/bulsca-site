@@ -180,8 +180,9 @@
         <p>Below you can see and filter through our collection of SERCs. To view more information and download the SERC documents simply click the relevant SERC!</p>
         <br>
 
-        <div class="flex md:flex-row flex-col md:space-x-4 ">
-            <div class="md:min-w-56 md:w-56 w-full">
+        <div class="flex md:flex-row flex-col md:space-x-4 relative ">
+            <div class="md:min-w-56 md:w-56 w-full relative ">
+                <div class="sticky top-24">
                 <h5 class="bg-bulsca p-2 text-white">Filters</h5>
 
                 <div class="flex flex-col space-y-1">
@@ -248,14 +249,17 @@
                     </div>
                 </div>
 
-
+            </div>
             </div>
 
-            <div class="w-full ">
-                <div class="form-search group col-span-3 mb-3">
-                    <input type="text" id="resource-search" class="input" x-model="filters.search"
+            <div class="w-full relative ">
+                <div class="md:sticky top-24">
+                <div class="form-search group col-span-3 mb-3 relative">
+                    
+                    <input type="text" id="resource-search" class="input " x-model="filters.search"
                         @input.debounce="searchSercs()" placeholder="Search by name...">
                 </div>
+            </div>
 
 
                 <div class="w-full grid-3 flex-grow-0 items-start">
