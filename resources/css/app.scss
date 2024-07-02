@@ -375,7 +375,7 @@
  }
 
  div.file-link {
-   @apply  border-2 rounded-md inline-block relative hover:border-gray-400 transition-colors;
+   @apply  border-2 rounded-md inline-block relative hover:border-gray-400 transition-colors bg-white;
    
    > a {
       @apply no-underline p-3 px-5 flex items-center  hover:text-bulsca_red;
@@ -416,6 +416,42 @@
   @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca;
  }
 
+ div.tag-input {
+  @apply border-2 rounded-md py-2 px-2 focus:outline-none hover:border-bulsca focus:border-bulsca flex flex-col relative ;
+
+  div.fake-input {
+    @apply outline-none w-full text-sm;
+  }
+
+  div.tags {
+    @apply text-xs  text-white flex  space-x-1 max-w-full flex-wrap   ;
+
+
+    span {
+      @apply whitespace-nowrap p-1 px-2  bg-bulsca rounded-lg mb-1 cursor-pointer;
+    }
+
+  }
+
+  div.suggested {
+    @apply absolute z-50 bg-white border rounded-md top-full rounded-tl-none rounded-tr-none left-0 w-full flex-col space-y-1 hidden;
+
+    span {
+      @apply p-1 px-2   cursor-pointer;
+      &:hover {
+        @apply bg-gray-200;
+      }
+    }
+  
+
+   
+  
+  }
+
+
+ }
+
+
  div.form-input {
 
     @apply flex flex-col;
@@ -424,12 +460,22 @@
 
    }
 
-   input, select {
+
+
+   input, select, textarea {
     @apply border-2 rounded-md py-2 px-4 focus:outline-none hover:border-bulsca focus:border-bulsca mb-4;
+
+
+    &.smaller {
+      @apply py-1 px-2;
+    }
 
     &.file {
       @apply file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold  file:text-black hover:file:bg-gray-200 file:cursor-pointer cursor-pointer;
     }
+
+   
+
    }
 
    input[type=color] {
@@ -448,6 +494,59 @@
 
  input.checkbox { 
    @apply rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+ }
+
+ div.multi-range {
+  @apply relative min-h-[15px];
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+
+    @apply bg-bulsca w-3 h-3 rounded-full cursor-pointer;
+  }
+  
+  input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    @apply bg-bulsca w-3 h-3 rounded-full cursor-pointer;
+  }
+  
+  input[type=range]::-webkit-slider-thumb:hover {
+    @apply bg-bulsca_red;
+  }
+  
+  input[type=range]::-webkit-slider-thumb:active {
+
+   
+
+    box-shadow: inset 0 0 3px #9e0d06, 0 0 9px #9e0d06;
+    -webkit-box-shadow: inset 0 0 3px #9e0d06, 0 0 9px #9e0d06;
+  }
+
+  input[type=range] {
+
+    appearance: none;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: #C6C6C6;
+    pointer-events: none;
+    
+
+    &#fromRange {
+      height: 0;
+      z-index: 1;
+    }
+
+    &#fromRange::-webkit-slider-thumb {
+      margin-top: 1px;
+    }
+
+    &#fromRange::-moz-range-thumb {
+      margin-top: 1px;
+    }
+  }
  }
 
  .competition-status {
@@ -511,6 +610,19 @@
 
   &.badge-success {
     @apply bg-green-100 text-green-800 dark:bg-green-200 dark:text-green-900
+  }
+
+  &.badge-active {
+    @apply bg-bulsca text-white;
+  }
+
+ }
+
+ .modal {
+  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30 flex items-center justify-center z-50;
+
+  > div {
+    @apply bg-white rounded-lg p-6 md:w-[40rem] 2xl:w-[60rem] w-[90%];
   }
  }
 
@@ -743,6 +855,30 @@ div.form-search {
   }
   
 
+
+}
+
+.thin-scrollbar {
+  &::-webkit-scrollbar {
+    margin-top: 0;
+    height: 2px;
+
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
 }
 

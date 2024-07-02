@@ -44,7 +44,19 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="{{ route('resources') }}">Resources</a></li>
+
+                <li class="group {{ Request::is('resources*') ? 'nav-active' : ''}}">
+                    <a href="{{ route('resources') }}" class=" overflow-hidden overflow-ellipsis whitespace-nowrap">Resources</a>
+                    <div class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
+                        <ul>
+                            <li><a href="{{ route('resources') }}">All</a></li>
+                            <li><a href="{{ route('resources.sercs') }}">SERCs</a></li>
+                            <li><a href="{{  "" }}">Casualty Types</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+       
 
 
 
@@ -90,8 +102,8 @@
             </svg>
         </div>
     </div>
-    <nav>
-        <ul class="">
+    <nav class=" ">
+        <ul class="" id="mobile-nav-collapse">
             <li><a href="{{ route('latest') }}">Latest</a></li>
             <li class="group {{ Request::is('competitions*') ? 'mobile-nav-active' : ''}}">
                 <div class="mobile-nav-link">
@@ -146,7 +158,24 @@
 
 
 
-            <li><a href="{{ route('resources') }}">Resources</a></li>
+            <li class="group {{ Request::is('resources*') ? 'mobile-nav-active' : ''}}">
+                <div class="mobile-nav-link">
+                    <a href="{{ route('resources') }}">Resources</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+
+                </div>
+                <div class="mobile-dropdown">
+                    <ul>
+
+                        <li><a href="{{ route('resources') }}">All</a></li>
+                            <li><a href="{{ route('resources.sercs') }}">SERCs</a></li>
+                            <li><a href="{{  "" }}">Casualty Types</a></li>
+
+                    </ul>
+                </div>
+            </li>
 
             <li class="group {{ Request::is('about*') ? 'mobile-nav-active' : ''}}">
                 <div class="mobile-nav-link">
@@ -191,3 +220,26 @@
         </ul>
     </nav>
 </div>
+
+<script>
+    document.getElementById('mobile-nav-collapse').querySelectorAll('li.group').forEach(collapsable => {
+        
+        let open = false
+
+        collapsable.querySelector('.mobile-dropdown').classList.add('hidden');
+        collapsable.querySelector('svg').classList.add('transition-transform')
+
+        collapsable.querySelector('svg').onclick = () => {
+            collapsable.querySelector('.mobile-dropdown').classList.toggle('hidden');
+
+            if (open) {
+                collapsable.querySelector('svg').style.transform = 'rotate(0deg)';
+                open = false;
+            } else {
+                collapsable.querySelector('svg').style.transform = 'rotate(180deg)';
+                open = true;
+            }
+        }
+
+    });
+</script>

@@ -16,16 +16,18 @@ Admin |
 
         @if($currentSeason)
         @can('admin.seasons')
-        <a href="{{ route('admin.season.view', $currentSeason->id) }}" class="rounded-md no-underline border-2 col-span-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
+        <a href="{{ route('admin.season.view', $currentSeason->id) }}" class="rounded-md no-underline border-2  hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-blue-600 ">
             <div class="flex flex-col ">
-                <small class="text-base">Current Season</small>
+                
                 <p class=" text-4xl font-bold ">{{ $currentSeason->name }}</p>
                 <small class="text-base">{{ $currentSeason->competitions->count() }} Competitions</small>
 
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"  class="h-12 w-12 ml-auto" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+              </svg>
+              
+         
         </a>
         @endcan
         @else
@@ -36,9 +38,11 @@ Admin |
                 <small class="text-base">Click to create</small>
 
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"  class="h-12 w-12 ml-auto" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+              </svg>
+              
+     
         </a>
         @endif
 
@@ -83,13 +87,28 @@ Admin |
         </a>
         @endcan
 
+        @can('admin.sercs')
+        <a href="{{ route('admin.sercs') }}" class="rounded-md no-underline border-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-lime-500 ">
+            <div class="flex flex-col ">
+                <p class=" text-4xl font-bold ">{{ $count['serc'] }}</p>
+                <small class="text-base">SERCs</small>
+
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-12 w-12 ml-auto">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.712 4.33a9.027 9.027 0 0 1 1.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 0 0-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 0 1 0 9.424m-4.138-5.976a3.736 3.736 0 0 0-.88-1.388 3.737 3.737 0 0 0-1.388-.88m2.268 2.268a3.765 3.765 0 0 1 0 2.528m-2.268-4.796a3.765 3.765 0 0 0-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 0 1-1.388.88m2.268-2.268 4.138 3.448m0 0a9.027 9.027 0 0 1-1.306 1.652c-.51.51-1.064.944-1.652 1.306m0 0-3.448-4.138m3.448 4.138a9.014 9.014 0 0 1-9.424 0m5.976-4.138a3.765 3.765 0 0 1-2.528 0m0 0a3.736 3.736 0 0 1-1.388-.88 3.737 3.737 0 0 1-.88-1.388m2.268 2.268L7.288 19.67m0 0a9.024 9.024 0 0 1-1.652-1.306 9.027 9.027 0 0 1-1.306-1.652m0 0 4.138-3.448M4.33 16.712a9.014 9.014 0 0 1 0-9.424m4.138 5.976a3.765 3.765 0 0 1 0-2.528m0 0c.181-.506.475-.982.88-1.388a3.736 3.736 0 0 1 1.388-.88m-2.268 2.268L4.33 7.288m6.406 1.18L7.288 4.33m0 0a9.024 9.024 0 0 0-1.652 1.306A9.025 9.025 0 0 0 4.33 7.288" />
+              </svg>
+              
+    
+        </a>
+        @endcan
+
     </div>
 
     <br>
     <hr>
     <br>
     @if($currentSeason)
-    <h1 class="header">Current Season <a href="{{ route('admin.seasons') }}" class="text-base text-gray-400 hover:text-gray-700">(Previous Seasons)</a></h1>
+    <h1 class="header"><a class=" no-underline hover:underline" href="{{ route('admin.season.view', $currentSeason->id) }}">Current Season</a> <a href="{{ route('admin.seasons') }}" class="text-base text-gray-400 hover:text-gray-700">(Previous Seasons)</a></h1>
 
     <div class="flex flex-row items-center  ">
         @foreach ($currentSeason->competitions()->orderBy('when')->get() as $comp)
@@ -139,6 +158,8 @@ Admin |
     <a href="{{ route('admin.resources') }}">View Resources</a>
     @endcan
 
+    <br>
+    <br>
     <br>
     <br>
     <hr>

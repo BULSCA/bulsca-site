@@ -6,6 +6,7 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\GlobalNotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -77,4 +78,24 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/resources/resource/{resource}/changeOrder', [DynamicResourcePageController::class, 'changeResourceOrder'])->name('admin.resources.resource.changeOrder');
 
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
+
+
+    Route::prefix('sercs')->group(function () {
+        Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
+
+        Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
+
+        Route::get('add', [SERCController::class, 'add'])->name('admin.sercs.add');
+        Route::post('add', [SERCController::class, 'store'])->name('admin.sercs.store');
+
+        Route::post('resources/{serc}', [SERCController::class, 'deleteResource'])->name('admin.sercs.resource.delete');
+
+        Route::get('{serc}', [SERCController::class, 'show'])->name('admin.sercs.show');
+        Route::post('{serc}', [SERCController::class, 'update'])->name('admin.sercs.update');
+        Route::delete('{serc}', [SERCController::class, 'delete'])->name('admin.sercs.delete');
+
+        
+
+    
+    });
 });

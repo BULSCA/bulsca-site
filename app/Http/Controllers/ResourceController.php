@@ -53,6 +53,24 @@ class ResourceController extends Controller
         return $res->id;
     }
 
+    static function storeFile($file, $where, $fileName = 'file')
+    {
+
+        if ($fileName == "self") {
+            $fileName = $file->getClientOriginalName();
+        }
+
+        $storeName = Str::random(40) . "." . $file->getClientOriginalExtension();
+        $path = Storage::putFileAs($where, $file, $storeName);
+
+        $res = new Resource();
+        $res->location = $path;
+        $res->name = $fileName;
+        $res->save();
+
+        return $res;
+    }
+
     static function storeResource(Request $request, $postFileName, $where, $fileName = 'file')
     {
         //die($request->file($postFileName)->getClientOriginalName());

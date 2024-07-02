@@ -6,6 +6,7 @@ use App\Models\Competition;
 use App\Models\Resource;
 use App\Models\ResourcePage;
 use App\Models\Season;
+use App\Models\SERC\SERC;
 use App\Models\University;
 use App\Models\User;
 use Backpack\PermissionManager\app\Models\Role;
@@ -22,7 +23,8 @@ class AdminController extends Controller
         $count = [
             'uni' => University::count(),
             'user' => User::count(),
-            'competition' => Competition::count()
+            'competition' => Competition::count(),
+            'serc' => SERC::count(),
         ];
 
         return view('admin.index', ['count' => $count, 'currentSeason' => Season::current()]);
