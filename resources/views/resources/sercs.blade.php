@@ -25,12 +25,15 @@
 
     </div>
 
-
+    
 
     <div class="container-responsive" x-data="{
         sercs: [],
         tags: {{ $filterOptions['tags'] }},
-    
+
+        activeSerc: null,
+        showModal: false,
+
     
     
         filters: {
@@ -49,16 +52,26 @@
     
     
         },
+
+
+    
+    
     
         searchSercs() {
     
-            let queryParams = `?search=${this.filters.search}&cas_min=${this.filters.casualties.from}&cas_max=${this.filters.casualties.to}&when=${this.filters.when}&where=${this.filters.where}&author=${this.filters.author}&tags=${this.filters.tags.join(',')}`
-    
-            window.history.pushState({}, '', `{{ route('resources.sercs') }}${queryParams}`)
+            this.updateQueryHistory()
+
+            let queryParams = `?search=${this.filters.search}&cas_min=${this.filters.casualties.from}&cas_max=${this.filters.casualties.to}&when=${this.filters.when}&where=${this.filters.where}&author=${this.filters.author}&tags=${this.filters.tags.join(',')}&open=${this.activeSerc ? this.activeSerc.id : ''}`
     
             fetch(`{{ route('resources.sercs.search') }}${queryParams}`).then(response => response.json()).then(data => {
                 this.sercs = data
             })
+        },
+
+        updateQueryHistory() {
+            let queryParams = `?search=${this.filters.search}&cas_min=${this.filters.casualties.from}&cas_max=${this.filters.casualties.to}&when=${this.filters.when}&where=${this.filters.where}&author=${this.filters.author}&tags=${this.filters.tags.join(',')}&open=${this.activeSerc ? this.activeSerc.id : ''}`
+    
+            window.history.pushState({}, '', `{{ route('resources.sercs') }}${queryParams}`)
         },
     
         handleFromRange(event) {
@@ -136,13 +149,38 @@
             this.filters.casualties.to = params.get('cas_max') || {{ $filterOptions['cas_max'] }}
     
             this.searchSercs()
+
+            if (params.get('open')) {
+                let serc = {'id': params.get('open')}
+                this.loadSerc(serc)
+            }
     
+        },
+
+        loadSerc(serc) {
+
+            fetch(`{{ route('resources.sercs.get', '') }}/${serc.id}`).then(response => response.json()).then(data => {
+                this.activeSerc = data
+                this.showModal = true
+                this.updateQueryHistory()
+            })
+
+          
+        },
+
+        closeModal() {
+            this.showModal = false
+            setTimeout(() => {this.activeSerc=null; this.updateQueryHistory()}, 250)
+            
         }
     
     
     }" x-init="() => { parseDefaultURL() }">
 
-        <div class="flex space-x-4">
+        <p>Below you can see and filter through our collection of SERCs. To view more information and download the SERC documents simply click the relevant SERC!</p>
+        <br>
+
+        <div class="flex md:flex-row flex-col md:space-x-4 ">
             <div class="min-w-56 w-56">
                 <h5 class="bg-bulsca p-2 text-white">Filters</h5>
 
@@ -228,8 +266,8 @@
 
                     <template x-for="serc in sercs">
 
-                        <div class="border rounded-md px-3 py-4 ">
-                            <h5 class="mb-0" x-text="serc.name">SERC Name</h5>
+                        <div class="border rounded-md px-3 py-4 cursor-pointer hover:border-black hover:shadow-md group" @click="loadSerc(serc)">
+                            <h5 class="mb-0 line-clamp-1 group-hover:line-clamp-none" x-text="serc.name">SERC Name</h5>
                             <div class="flex justify-between text-gray-400">
                                 <small x-text="serc.author ? serc.author : 'Unknown'">Author Name</small>
 
@@ -280,6 +318,84 @@
 
         </div>
 
+
+        <div class="modal" x-show="showModal" x-transition.opacity style="display: none" >
+            <div @click.outside="closeModal()">
+                <div class="flex items-center justify-between">
+                    <h3 class="mb-0 line-clamp-1 hover:line-clamp-none max-w-[90%]" x-text="activeSerc?.name">SERC Name</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 transition-transform hover:rotate-90 cursor-pointer" @click="closeModal()">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                      </svg>
+                      
+                </div>
+   
+                <div class="flex justify-between text-gray-400">
+                    <small x-text="activeSerc?.author ? activeSerc.author : 'Unknown'">Author Name</small>
+
+                    <div class="flex space-x-2">
+                        <small class="flex items-center justify-center space-x-0" title="# Casualties"><span x-text="activeSerc?.casualties">3</span> <svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                class="size-4">
+                                <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                            </svg>
+
+                        </small>
+                    </div>
+
+
+                </div>
+
+                <p class="mt-1 mb-2 " x-text="activeSerc?.description ? activeSerc.description : 'No description provided'">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, ipsa est! Accusamus odio debitis sint tempora eaque cumque repudiandae veniam, rem porro nisi, quo saepe neque dicta. Voluptas, repudiandae. Modi.Commodi quos beatae expedita unde laborum nesciunt reprehenderit explicabo quia nostrum, non harum eum corporis laboriosam consequatur dolorem consequuntur id quas error excepturi doloribus exercitationem asperiores labore. Consectetur, obcaecati ut.</p>
+
+
+                <div class="overflow-x-auto flex flex-row whitespace-nowrap thin-scrollbar">
+                    <span class="badge badge-warning" x-text="new Date(activeSerc?.when).toLocaleDateString()">When</span>
+                    <span class="badge badge-warning" x-text="activeSerc?.where">Where</span>
+
+                    <template x-for="tag in activeSerc?.tags">
+                        <span class="badge badge-info" x-text="tag.name">Tag</span>
+                    </template>
+
+                    
+                </div>
+                <br>
+                <h5>Files</h5>
+                <div class="grid-2">
+
+                    <template x-if="activeSerc?.resources.length == 0">
+                        <p class="col-span-3">
+                            No resources found!
+                        </p>
+                    </template>
+
+                    <template x-for="resource in activeSerc?.resources">
+                        
+                    <div class="file-link" :title='resource.name'>
+                        <a :href='resource.link' target='_blank' >
+                            <div>
+                                <h3 x-text="resource.name">File Name</h3>
+                                <small>Click to download</small>
+                            </div>
+                    
+                            <div>
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                </svg>
+                    
+                              
+                           
+                    
+                            </div>
+                        </a>
+                    </div>
+                    </template>
+
+                </div>
+
+            </div>
+        </div>
 
 
 

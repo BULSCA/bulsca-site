@@ -100,7 +100,7 @@
   }
 
   window.onscroll = () => {
-    console.log('h')
+
     if (window.scrollY > 50) {
       nav.classList.add('nav-scrolled')
     } else {

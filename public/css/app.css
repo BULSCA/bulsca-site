@@ -1113,6 +1113,12 @@ html {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
+.line-clamp-1{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 .block{
   display: block;
 }
@@ -1143,6 +1149,10 @@ html {
 .size-4{
   width: 1rem;
   height: 1rem;
+}
+.size-6{
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .h-10{
   height: 2.5rem;
@@ -1302,6 +1312,9 @@ html {
 }
 .max-w-xl{
   max-width: 36rem;
+}
+.max-w-\[90\%\]{
+  max-width: 90%;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -1844,6 +1857,9 @@ html {
   font-size: 4.5rem;
   line-height: 1;
 }
+.text-\[0\.65rem\]{
+  font-size: 0.65rem;
+}
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1863,21 +1879,6 @@ html {
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.text-\[0\.5rem\]{
-  font-size: 0.5rem;
-}
-.text-\[0\.25rem\]{
-  font-size: 0.25rem;
-}
-.text-\[0\.6rem\]{
-  font-size: 0.6rem;
-}
-.text-\[0\.7rem\]{
-  font-size: 0.7rem;
-}
-.text-\[0\.65rem\]{
-  font-size: 0.65rem;
 }
 .font-bold{
   font-weight: 700;
@@ -3233,6 +3234,37 @@ div.multi-range input[type=range]#fromRange::-moz-range-thumb {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.modal{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.3;
+}
+.modal > div{
+  width: 90%;
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding: 1.5rem;
+}
+@media (min-width: 768px){
+  .modal > div{
+    width: 40rem;
+  }
+}
+@media (min-width: 1536px){
+  .modal > div{
+    width: 60rem;
+  }
+}
+
 .alert{
   display: flex;
   flex-direction: column;
@@ -3722,6 +3754,18 @@ div.form-search > .results > .result > p:last-child{
   border-bottom-width: 0px;
 }
 
+.hover\:line-clamp-none:hover{
+  overflow: visible;
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-line-clamp: none;
+}
+
+.hover\:rotate-90:hover{
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:scale-125:hover{
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;
@@ -3741,6 +3785,11 @@ div.form-search > .results > .result > p:last-child{
 .hover\:border-gray-300:hover{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.hover\:border-black:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .hover\:bg-bulsca_red:hover{
@@ -3829,6 +3878,12 @@ div.form-search > .results > .result > p:last-child{
 .hover\:underline:hover{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+.hover\:shadow-md:hover{
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .hover\:outline-none:hover{
@@ -3965,6 +4020,13 @@ div.form-search > .results > .result > p:last-child{
 
 .group:focus-within .group-focus-within\:h-auto{
   height: auto;
+}
+
+.group:hover .group-hover\:line-clamp-none{
+  overflow: visible;
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-line-clamp: none;
 }
 
 .group:hover .group-hover\:flex{
@@ -4221,6 +4283,11 @@ div.form-search > .results > .result > p:last-child{
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
     margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+  .md\:space-x-4 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
   .md\:space-y-0 > :not([hidden]) ~ :not([hidden]){
     --tw-space-y-reverse: 0;

@@ -217,4 +217,27 @@ class SERCController extends Controller
 
         return response()->json($query->orderBy('when','DESC')->get());
     }
+
+    public function getSerc(SERC $serc) {
+
+        $resources = [];
+
+        $serc->load('tags');
+
+        foreach ($serc->getResources as $res) {
+            $resources[] = [
+                'name' => $res->name,
+                'link' => $res->getURL(),
+            ];
+        }
+
+        $serc['resources'] = $resources;
+
+       
+        unset($serc['getResources']);
+
+       
+
+        return response()->json($serc);
+    }
 }

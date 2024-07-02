@@ -618,6 +618,14 @@
 
  }
 
+ .modal {
+  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30 flex items-center justify-center z-50;
+
+  > div {
+    @apply bg-white rounded-lg p-6 md:w-[40rem] 2xl:w-[60rem] w-[90%];
+  }
+ }
+
  .alert {
   @apply flex flex-col py-3 px-4 bg-red-100 bg-opacity-50 rounded-md border border-bulsca_red;
 
