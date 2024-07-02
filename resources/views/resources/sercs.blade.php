@@ -34,7 +34,7 @@
         activeSerc: null,
         showModal: false,
 
-    
+        tagSearch: '',
     
         filters: {
             search: '',
@@ -233,10 +233,14 @@
                             <p class="text-sm">Tags</p>
                             <small class=" text-[0.65rem] text-gray-400">(Click to toggle)</small>
                         </div>
+                        <div class="form-search group text-xs my-1">
+                            <input type="text" id="resource-search" class="input " style="padding: 0.25rem 0.5rem !important" x-model="tagSearch"
+                                 placeholder="Search tags...">
+                        </div>
                         <div class="flex flex-wrap">
                             <template x-for="tag in tags">
                                 <span class="badge mb-1 cursor-pointer" @click="toggleTag(tag.id)"
-                                    :class="filters.tags.includes(tag.id) ? 'badge-active' : 'badge-info'"
+                                    :class="tag.name.toLowerCase().includes(tagSearch.toLowerCase().trim()) ? (filters.tags.includes(tag.id) ? 'badge-active' : 'badge-info') : 'hidden'"
                                     x-text="tag.name">Tag</span>
                             </template>
                         </div>

@@ -981,6 +981,10 @@ html {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+.my-1{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .-mb-1{
   margin-bottom: -0.25rem;
 }
@@ -1705,6 +1709,9 @@ html {
 }
 .p-6{
   padding: 1.5rem;
+}
+.p-1{
+  padding: 0.25rem;
 }
 .px-1{
   padding-left: 0.25rem;
