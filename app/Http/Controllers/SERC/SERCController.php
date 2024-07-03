@@ -165,7 +165,7 @@ class SERCController extends Controller
             return $item->years;
         }, $filterOptions['whens']);
 
-        $filterOptions['tags'] = SERCTag::where("name", "!=", "")->distinct()->get(['id', 'name']);
+        $filterOptions['tags'] = SERCTag::where("name", "!=", "")->distinct()->orderBy('name')->get(['id', 'name']);
 
 
         return view('resources.sercs', ['count' => SERC::count(), 'filterOptions' => $filterOptions]);
