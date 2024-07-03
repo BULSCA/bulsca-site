@@ -35,13 +35,13 @@ SERCs | Admin |
    
     </form>
 
-    <div class="grid-4 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  gap-4">
         @foreach ($sercs as $serc)
         <a href="{{ route('admin.sercs.show', $serc) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
             <div class="flex  items-center">
                 
               
-                    <h4 class="header header-bold" >
+                    <h4 class="header header-bold overflow-hidden break-words" >
                         {{ $serc->name }}
                     </h4>
                 
