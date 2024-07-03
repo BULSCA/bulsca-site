@@ -262,7 +262,7 @@
             </div>
 
 
-                <div class="w-full grid-3 flex-grow-0 items-start">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-4 flex-grow-0 items-start">
 
 
 
