@@ -43,7 +43,8 @@
                     @endforeach
                 </datalist>
                 
-            <x-form-input id='author' title='Author(s)' required="false" defaultValue="{{ $serc->author }}" />
+    
+            <x-form-input id='author' title='Author(s)' required="false" :defaultValue="$serc->author" />
             <x-form-input id='no_cas' title='# Casualties' type="number" min="0"   defaultValue="{{ $serc->casualties }}" />
 
             <div class=" row-start-2 col-span-3">
