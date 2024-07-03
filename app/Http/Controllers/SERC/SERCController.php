@@ -17,10 +17,10 @@ class SERCController extends Controller
     public function index() {
 
         if (request('s') != null) {
-            return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::where('name', 'LIKE', '%' . request('s') . '%')->paginate(12)]);
+            return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::where('name', 'LIKE', '%' . request('s') . '%')->orderBy('when','DESC')->paginate(12)]);
         }
 
-        return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::paginate(12)]);
+        return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::orderBy('when','DESC')->paginate(12)]);
 
     }
 
