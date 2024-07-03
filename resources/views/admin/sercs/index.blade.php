@@ -24,6 +24,17 @@ SERCs | Admin |
         @can('admin.sercs.manage')<a href="{{ route('admin.sercs.add') }}" class="ml-auto btn btn-thinner">Add</a>@endcan
     </div>
 
+    <form method="GET" action="" class="w-full relative ">
+        
+        <div class="form-search group w-full mb-3 relative">
+            
+            <input type="text" id="resource-search" name="s" class="input "
+                 placeholder="Search..." value="{{ request('s') }}">
+        </div>
+
+   
+    </form>
+
     <div class="grid-4 gap-4">
         @foreach ($sercs as $serc)
         <a href="{{ route('admin.sercs.show', $serc) }}" class="px-6 py-4 rounded-md border hover:border-bulsca transition no-underline">
@@ -61,7 +72,7 @@ SERCs | Admin |
     </div>
     <br>
 
-    {{ $sercs->links() }}
+    {{ $sercs->appends($_GET)->links() }}
 
 
 

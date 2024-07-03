@@ -894,17 +894,11 @@ html {
 .top-0{
   top: 0px;
 }
-.top-full{
-  top: 100%;
-}
-.top-10{
-  top: 2.5rem;
-}
-.top-20{
-  top: 5rem;
-}
 .top-24{
   top: 6rem;
+}
+.top-full{
+  top: 100%;
 }
 .z-0{
   z-index: 0;
@@ -1343,9 +1337,6 @@ html {
   flex-grow: 1;
 }
 .flex-grow-0{
-  flex-grow: 0;
-}
-.grow-0{
   flex-grow: 0;
 }
 .basis-1\/5{
