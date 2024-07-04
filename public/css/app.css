@@ -3226,7 +3226,7 @@ div.multi-range input[type=range]#fromRange::-moz-range-thumb {
   --tw-bg-opacity: 0.3;
 }
 .modal > div{
-  max-height: 80vh;
+  max-height: 60vh;
   width: 90%;
   overflow-y: auto;
   border-radius: 0.5rem;
