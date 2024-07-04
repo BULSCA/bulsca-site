@@ -329,7 +329,7 @@
 
         <div class="modal" x-show="showModal" x-transition.opacity style="display: none" >
             <div @click.outside="closeModal()">
-                <div class="flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center justify-between ">
                     <h3 class="mb-0 line-clamp-1 hover:line-clamp-none max-w-[90%]" x-text="activeSerc?.name">SERC Name</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 transition-transform hover:rotate-90 cursor-pointer" @click="closeModal()">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -338,7 +338,7 @@
                 </div>
    
                 <div class="flex justify-between text-gray-400 relative">
-                    <small x-text="activeSerc?.author ? activeSerc.author : 'Unknown'" class="sticky top-0 bg-white">Author Name</small>
+                    <small x-text="activeSerc?.author ? activeSerc.author : 'Unknown'" >Author Name</small>
 
                     <div class="flex space-x-2">
                         <small class="flex items-center justify-center space-x-0" title="# Casualties"><span x-text="activeSerc?.casualties">3</span> <svg
