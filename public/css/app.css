@@ -3226,7 +3226,9 @@ div.multi-range input[type=range]#fromRange::-moz-range-thumb {
   --tw-bg-opacity: 0.3;
 }
 .modal > div{
+  max-height: 80vh;
   width: 90%;
+  overflow-y: auto;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -4401,10 +4403,10 @@ div.form-search > .results > .result > p:last-child{
 }
 
 @media (min-width: 2200px){
-  .\33xl\:grid-cols-4{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
   .\33xl\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .\33xl\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
