@@ -1161,6 +1161,10 @@ html {
   width: 1.5rem;
   height: 1.5rem;
 }
+.size-3{
+  width: 0.75rem;
+  height: 0.75rem;
+}
 .h-10{
   height: 2.5rem;
 }
@@ -1321,6 +1325,9 @@ html {
   flex-grow: 1;
 }
 .flex-grow-0{
+  flex-grow: 0;
+}
+.grow-0{
   flex-grow: 0;
 }
 .basis-1\/5{
@@ -1511,6 +1518,11 @@ html {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.space-x-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .divide-x > :not([hidden]) ~ :not([hidden]){
   --tw-divide-x-reverse: 0;

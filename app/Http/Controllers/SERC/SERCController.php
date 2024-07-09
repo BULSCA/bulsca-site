@@ -16,11 +16,25 @@ class SERCController extends Controller
 {
     public function index() {
 
+
+        $sercs = null;
+
+
+
+
+
         if (request('s') != null) {
-            return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::where('name', 'LIKE', '%' . request('s') . '%')->orderBy('when','DESC')->paginate(12)]);
+            $sercs = SERC::where('name', 'LIKE', '%' . request('s') . '%');
+        } 
+
+        if (request('orderByViews')) {
+            $sercs = $sercs == null ? SERC::orderBy('views', 'DESC') : $sercs->orderBy('views', 'DESC');
+            $sercs->orderBy('when','DESC');
+        } else {
+            $sercs = $sercs == null ? SERC::orderBy('when','DESC') : $sercs->orderBy('when','DESC');
         }
 
-        return view('admin.sercs.index', ['sercs' => \App\Models\SERC\SERC::orderBy('when','DESC')->paginate(12)]);
+        return view('admin.sercs.index', ['sercs' => $sercs->paginate(12)]);
 
     }
 
@@ -224,6 +238,9 @@ class SERCController extends Controller
 
     public function getSerc(SERC $serc) {
 
+        $serc->views = $serc->views + 1;
+        $serc->save();
+
         $resources = [];
 
         $serc->load('tags');
@@ -240,6 +257,7 @@ class SERCController extends Controller
        
         unset($serc['getResources']);
 
+        // add view
        
 
         return response()->json($serc);
