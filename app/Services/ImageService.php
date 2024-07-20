@@ -33,8 +33,8 @@ class ImageService {
 
     }
 
-    static function store(Request $request, $locationExtra = '') {
-        $filePath = $request->file('image')->store('img/source' . $locationExtra);
+    static function store(Request $request, $locationExtra = '', $paramName = 'image') {
+        $filePath = $request->file($paramName)->store('img/source' . $locationExtra);
 
         return basename($filePath);
 

@@ -16,4 +16,13 @@ class ImageController extends Controller
         return ImageService::store($request);
     }
 
+    public function ckUpload(Request $request) {
+        $path = ImageService::store($request, '', 'upload');
+
+
+        return response()->json([
+            'url' => route('image', ['path' => $path]),
+        ]);
+    }
+
 }
