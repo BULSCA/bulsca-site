@@ -1027,6 +1027,9 @@ html {
 .-mt-6{
   margin-top: -1.5rem;
 }
+.-mt-px{
+  margin-top: -1px;
+}
 .mb-0{
   margin-bottom: 0px;
 }
@@ -1056,6 +1059,9 @@ html {
 }
 .ml-1{
   margin-left: 0.25rem;
+}
+.ml-12{
+  margin-left: 3rem;
 }
 .ml-2{
   margin-left: 0.5rem;
@@ -1110,12 +1116,6 @@ html {
 }
 .mt-auto{
   margin-top: auto;
-}
-.-mt-px{
-  margin-top: -1px;
-}
-.ml-12{
-  margin-left: 3rem;
 }
 .line-clamp-1{
   overflow: hidden;
@@ -1176,6 +1176,9 @@ html {
 .h-12{
   height: 3rem;
 }
+.h-16{
+  height: 4rem;
+}
 .h-20{
   height: 5rem;
 }
@@ -1232,9 +1235,6 @@ html {
 }
 .h-screen{
   height: 100vh;
-}
-.h-16{
-  height: 4rem;
 }
 .max-h-4{
   max-height: 1rem;
@@ -1311,23 +1311,23 @@ html {
 .w-\[99\%\]{
   width: 99%;
 }
+.w-auto{
+  width: auto;
+}
 .w-full{
   width: 100%;
 }
 .w-screen{
   width: 100vw;
 }
-.w-auto{
-  width: auto;
+.max-w-6xl{
+  max-width: 72rem;
 }
 .max-w-7xl{
   max-width: 80rem;
 }
 .max-w-\[90\%\]{
   max-width: 90%;
-}
-.max-w-6xl{
-  max-width: 72rem;
 }
 .max-w-xl{
   max-width: 36rem;
@@ -1620,17 +1620,21 @@ html {
 .border-l-4{
   border-left-width: 4px;
 }
+.border-r{
+  border-right-width: 1px;
+}
 .border-t{
   border-top-width: 1px;
 }
 .border-t-2{
   border-top-width: 2px;
 }
-.border-r{
-  border-right-width: 1px;
-}
 .border-dashed{
   border-style: dashed;
+}
+.border-gray-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 .border-gray-300{
   --tw-border-opacity: 1;
@@ -1654,10 +1658,6 @@ html {
 .border-white{
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-.border-gray-200{
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 .bg-black{
   --tw-bg-opacity: 1;
@@ -1931,11 +1931,11 @@ html {
 .leading-7{
   line-height: 1.75rem;
 }
-.tracking-widest{
-  letter-spacing: 0.1em;
-}
 .tracking-wider{
   letter-spacing: 0.05em;
+}
+.tracking-widest{
+  letter-spacing: 0.1em;
 }
 .text-black{
   --tw-text-opacity: 1;
@@ -1956,6 +1956,14 @@ html {
 .text-cyan-400{
   --tw-text-opacity: 1;
   color: rgb(34 211 238 / var(--tw-text-opacity));
+}
+.text-gray-200{
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+.text-gray-300{
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 .text-gray-400{
   --tw-text-opacity: 1;
@@ -2008,14 +2016,6 @@ html {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-gray-200{
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-}
-.text-gray-300{
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 .underline{
   -webkit-text-decoration-line: underline;
