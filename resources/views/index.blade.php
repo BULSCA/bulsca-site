@@ -54,7 +54,7 @@
             </div>
         </div>
     @else
-    {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
+        {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
         <div class="absolute top-0 right-0 w-full h-full  flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
             id="head1">
             <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[27%] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-24   h-auto"
@@ -175,8 +175,8 @@
 
         if (clk < 2) return;
         target.src =
-            "https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-1/89133349_2788611911222752_6862972772499324928_n.jpg?stp=dst-jpg_p200x200&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Z9BSXnigZCcAX_9ozYA&_nc_ht=scontent-mad1-1.xx&oh=00_AT--a8zn5YY8ZGnwBJ8A0MEUxQV9fRNRpolc1qrYczW83w&oe=6324671E"
-
+            "/storage/photos/ben.jpg"
+        target.classList.add('animate-spin')
     }
 
     function daysUntil(date) {

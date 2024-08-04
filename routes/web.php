@@ -73,6 +73,8 @@ Route::Get('/get-involved/committee', function () {
 
     $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
 
+    $isBetween = true;
+
     return view('get-involved.committee', ['time' => $isBetween]);
 })->name('get-involved.committee');
 
