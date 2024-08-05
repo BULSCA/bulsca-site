@@ -116,6 +116,13 @@
                 </div>
             </div>
         </div>
+        <br>
+        <h3>FAQ</h3>
+
+        <details class="faq">
+            <summary>FQ title</summary>
+            <p>Content</p>
+        </details>
 
         <br>
         <h3>Gallery</h3>
