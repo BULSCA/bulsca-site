@@ -69,10 +69,11 @@
             help setup
             more if one isn't available at your university.
             <br>
-            You can find a list of our clubs below, as well as links to their pages where you can find out more about
-            them.
-        </p>
-        <br>
+            <br>
+            You can find a list of our clubs below, clicking one will update the map and show you when their Freshers Fayre
+            is. To find out more about a club click the "More" link.
+            <br>
+            <br>
 
         <div class="w-full flex flex-col-reverse md:flex-row ">
             <div class="w-full md:w-[30%]" id="club-cards">
@@ -114,10 +115,12 @@
                 <div id="club-map" style="width: 100%; height: 100%; "
                     x-locations="{{ \App\Models\University::where('active', true)->orderBy('name')->whereNotNull('location')->get(['name', 'id', 'location'])->toJson() }}">
                 </div>
-                <div class="absolute bottom-0 left-0 w-full border-t-2 border-white  bg-bulsca flex items-center px-16"
+                <div class="absolute bottom-0 left-0  w-[40%]  border-t-2 border-white  bg-bulsca flex items-center px-2"
                     id="map-club-bar"
                     style="display: none; height: {{ (1 / \App\Models\University::count()) * 100 * 1 }}%;">
-                    <h3 class="text-white hmb-0">Warwick</h3>
+                    <p class="text-white text-sm hmb-0 leading-[1.125rem]">Freshers Fayre:
+                        <br>Sports Hub, 11AM-5PM, 01/09/24
+                    </p>
                 </div>
             </div>
         </div>
