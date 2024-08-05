@@ -59,7 +59,8 @@
         <br>
         <h3>Clubs</h3>
         <p>Lifesaving is provided by university clubs through their local branches. We currently have
-            <strong>{{ \App\Models\University::count() }} active clubs</strong> across the UK, and were always looking to
+            <strong>{{ \App\Models\University::where('active', true)->count() }} active clubs</strong> across the UK, and
+            were always looking to
             help setup
             more if one isn't available at your university.
             <br>
@@ -71,7 +72,7 @@
         <div class="w-full flex flex-col-reverse md:flex-row ">
             <div class="w-full md:w-[30%]" id="club-cards">
 
-                @foreach (\App\Models\University::orderBy('name')->get() as $club)
+                @foreach (\App\Models\University::where('active', true)->orderBy('name')->get() as $club)
                     <div x-club-name="{{ $club->name }}" x-club-loc="{{ $club->location }}"
                         class="bg-bulsca w-full flex items-center space-x-5 px-5 py-3 hover:scale-x-105 border-y last-of-type:border-b-0 first-of-type:border-t-0 hover:bg-bulsca_red cursor-pointer">
 
@@ -106,7 +107,7 @@
             </div>
             <div class="relative flex flex-grow z-20 bg-white h-[500px] md:h-auto w-full">
                 <div id="club-map" style="width: 100%; height: 100%; "
-                    x-locations="{{ \App\Models\University::orderBy('name')->whereNotNull('location')->get(['name', 'id', 'location'])->toJson() }}">
+                    x-locations="{{ \App\Models\University::where('active', true)->orderBy('name')->whereNotNull('location')->get(['name', 'id', 'location'])->toJson() }}">
                 </div>
                 <div class="absolute bottom-0 left-0 w-full border-t-2 border-white  bg-bulsca flex items-center px-16"
                     id="map-club-bar"
