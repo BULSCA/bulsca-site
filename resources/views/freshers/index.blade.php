@@ -7,6 +7,7 @@
 @section('extra-meta')
 
 @section('content')
+
     <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
 
         <div class="h-full w-full overflow-hidden relative">
@@ -28,6 +29,10 @@
     <div class="container-responsive">
 
         <h1>Welcome</h1>
+        <div class="-mt-3 text-gray-500 text-sm mb-1 indent-3">Jump to: <a href="#clubs"
+                class="text-gray-500 hover:text-gray-800">Clubs</a>, <a href="#gallery"
+                class="text-gray-500 hover:text-gray-800">Gallery</a>, <a href="#faq"
+                class="text-gray-500 hover:text-gray-800">FAQ</a></div>
         <p>
             to the British Universities Lifesaving Clubs Association (BULSCA) Freshers' page! We are the national governing
             body for university lifesaving clubs in the UK. We are here to help you find your nearest university lifesaving
@@ -57,7 +62,7 @@
         </div>
 
         <br>
-        <h3>Clubs</h3>
+        <h3 id="clubs" class=" scroll-mb-[35rem]">Clubs</h3>
         <p>Lifesaving is provided by university clubs through their local branches. We currently have
             <strong>{{ \App\Models\University::where('active', true)->count() }} active clubs</strong> across the UK, and
             were always looking to
@@ -117,15 +122,8 @@
             </div>
         </div>
         <br>
-        <h3>FAQ</h3>
 
-        <details class="faq">
-            <summary>FQ title</summary>
-            <p>Content</p>
-        </details>
-
-        <br>
-        <h3>Gallery</h3>
+        <h3 id="gallery" class=" scroll-mb-[35rem]">Gallery</h3>
 
 
 
@@ -156,5 +154,58 @@
             </div>
         </div>
 
+        <br>
+        <h3 id="faq" class=" scroll-mb-[35rem]">FAQ</h3>
+
+        <details class="faq">
+            <summary>Do I need to be able to swim?</summary>
+            <p>Sort of. One the first aid side you don't need to be able to swim at all. However, on the swimming side we
+                recommend that you can swim at least one length (25m) of a pool without stopping.</p>
+        </details>
+        <details class="faq">
+            <summary>Is this the same as Lifeguarding?</summary>
+            <p>Lifesaving crosses with Lifeguarding in many ways, however its also different in that we regularly train,
+                compete and hold socials within individual clubs and across competitions. It an excellent way to maintain
+                your lifeguarding skills or become one, with clubs running NPLQ's all year round.</p>
+        </details>
+        <details class="faq">
+            <summary>There isn't a club at my univeristy?</summary>
+            <p>We're sorry to hear that, but if you get in touch with our Club Development manager they can help you to find
+                a local club, or organise the process of setting up a club with your univesity and local RLSS branch. You
+                can contact the CLub Development manager at <a
+                    href="mailto:clubdevelopment@bulsca.co.uk">clubdevelopment@bulsca.co.uk</a></p>
+        </details>
+
+        <script>
+            // when opening a detials close all the others
+            document.querySelectorAll('details').forEach((item) => {
+                item.addEventListener('click', () => {
+                    if (!item.open) {
+
+                        document.querySelectorAll('details').forEach((item) => {
+                            if (item !== event.target) {
+                                item.open = false;
+                            }
+                        })
+                    }
+                })
+            })
+        </script>
+
+
+
+
     </div>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        });
+    </script>
 @endsection

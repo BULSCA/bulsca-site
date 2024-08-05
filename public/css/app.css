@@ -1421,6 +1421,27 @@ html {
 .cursor-pointer{
   cursor: pointer;
 }
+.scroll-m-3{
+  scroll-margin: 0.75rem;
+}
+.scroll-mb-3{
+  scroll-margin-bottom: 0.75rem;
+}
+.scroll-mb-36{
+  scroll-margin-bottom: 9rem;
+}
+.scroll-mb-56{
+  scroll-margin-bottom: 14rem;
+}
+.scroll-mb-\[20rem\]{
+  scroll-margin-bottom: 20rem;
+}
+.scroll-mb-\[30rem\]{
+  scroll-margin-bottom: 30rem;
+}
+.scroll-mb-\[35rem\]{
+  scroll-margin-bottom: 35rem;
+}
 .list-inside{
   list-style-position: inside;
 }
@@ -1874,6 +1895,15 @@ html {
 }
 .indent-4{
   text-indent: 1rem;
+}
+.indent-1{
+  text-indent: 0.25rem;
+}
+.indent-2{
+  text-indent: 0.5rem;
+}
+.indent-3{
+  text-indent: 0.75rem;
 }
 .font-sans{
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -3275,6 +3305,9 @@ div.multi-range input[type=range]#fromRange::-moz-range-thumb {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.faq{
+  margin-bottom: 0.25rem;
+}
 .faq > summary{
   display: flex;
   cursor: pointer;

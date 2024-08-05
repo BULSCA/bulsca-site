@@ -622,6 +622,7 @@
  }
 
  .faq {
+  @apply mb-1;
   > summary {
     @apply cursor-pointer text-bulsca font-semibold text-lg flex;
 
