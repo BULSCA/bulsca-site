@@ -12,7 +12,7 @@ class ClubController extends Controller
     public function index()
     {
 
-        $clubs = University::orderBy('name')->get();
+        $clubs = University::where('active', true)->orderBy('name')->get();
 
         return view('get-involved.clubs', ['clubs' => $clubs]);
     }
