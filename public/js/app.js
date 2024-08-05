@@ -45,7 +45,6 @@ var ToggleContent = /*#__PURE__*/_createClass(function ToggleContent(element) {
   this.open = true;
   clazz = this;
   this.header.onclick = function (e) {
-    console.log("g");
     _this.content.classList.toggle("collapsed");
   };
 });
@@ -133,7 +132,6 @@ if (elementClubMap != null) {
   var locations = JSON.parse(elementClubMap.getAttribute("x-locations"));
   var veclayer_location_map = [];
   locations.forEach(function (location) {
-    console.log(location.location.split(",").reverse());
     var locMarker = new ol_Feature_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
       type: "icon",
       geometry: new ol_geom_Point_js__WEBPACK_IMPORTED_MODULE_6__["default"](location.location.split(",").reverse())

@@ -21,7 +21,6 @@ class ToggleContent {
         clazz = this;
 
         this.header.onclick = (e) => {
-            console.log("g");
             this.content.classList.toggle("collapsed");
         };
     }
@@ -122,8 +121,6 @@ if (elementClubMap != null) {
     var veclayer_location_map = [];
 
     locations.forEach((location) => {
-        console.log(location.location.split(",").reverse());
-
         var locMarker = new Feature({
             type: "icon",
             geometry: new Point(location.location.split(",").reverse()),
