@@ -91,6 +91,17 @@
             </div>
 
             <br>
+            <h4>Socials</h4>
+            <div class="grid-3">
+                <x-form-input id="website" title="Website" required="false" defaultValue="{{ $club->website }}"
+                    placeholder="bulsca.co.uk"></x-form-input>
+                <x-form-input id="instagram" title="Instagram Handle" required="false" defaultValue="{{ $club->instagram }}"
+                    placeholder="BULSCA"></x-form-input>
+                <x-form-input id="facebook" title="Facebook Handle" required="false" defaultValue="{{ $club->facebook }}"
+                    placeholder="BULSCA"></x-form-input>
+            </div>
+
+            <br>
             <div>
                 <div class="main-container">
                     <div class="editor-container editor-container_classic-editor editor-container_include-style"

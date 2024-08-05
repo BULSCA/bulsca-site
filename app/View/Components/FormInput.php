@@ -11,7 +11,7 @@ class FormInput extends Component
      *
      * @return void
      */
-    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $required = true, $deny = false, $defaultObject = null, $dlist = "")
+    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $required = true, $deny = false, $defaultObject = null, $dlist = "", $placeholder = "")
     {
         $this->id = $id;
         $this->title = $title;
@@ -21,6 +21,7 @@ class FormInput extends Component
         $this->required = $required;
         $this->deny = $deny;
         $this->dlist = $dlist;
+        $this->placeholder = $placeholder;
 
         if ($defaultObject != null) {
             $this->defaultValue = $defaultObject[$id];
@@ -34,6 +35,6 @@ class FormInput extends Component
      */
     public function render()
     {
-        return view('components.form-input', ['id' => $this->id, 'title' => $this->title, 'type' => $this->type, 'defaultValue' => $this->defaultValue, 'css' => $this->extraCss, 'required' => $this->required, 'deny' => $this->deny, 'dlist' => $this->dlist]);
+        return view('components.form-input', ['id' => $this->id, 'title' => $this->title, 'type' => $this->type, 'defaultValue' => $this->defaultValue, 'css' => $this->extraCss, 'required' => $this->required, 'deny' => $this->deny, 'dlist' => $this->dlist, 'placeholder' => $this->placeholder]);
     }
 }

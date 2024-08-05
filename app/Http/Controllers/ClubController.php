@@ -56,10 +56,15 @@ class ClubController extends Controller
         $page->banner_color = $req->input('banner_color', $page->banner_color);
         $page->banner_text_color = $req->input('banner_text_color', $page->banner_text_color);
 
+
+
      
 
 
         $club->location = $req->input('location', $club->location);
+        $club->facebook = $req->input('facebook', $club->facebook);
+        $club->instagram = $req->input('instagram', $club->instagram);
+        $club->website = $req->input('website', $club->website);
 
         $club->save();
 
