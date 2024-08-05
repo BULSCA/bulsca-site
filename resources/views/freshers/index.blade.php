@@ -123,28 +123,28 @@
 
         <div class="grid-3">
             <div class=" w-full max-h-80  overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (1).jpeg" class=" " alt="">
+                <img src="storage/photos/freshers/freshers (1).jpeg" loading="lazy" class=" " alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (2).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (2).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (3).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (3).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (4).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (4).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (5).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (5).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (6).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (6).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (7).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (7).jpeg" loading="lazy" class="w-full" alt="">
             </div>
             <div class=" w-full max-h-80 overflow-hidden flex items-center justify-center">
-                <img src="storage/photos/freshers/freshers (8).jpeg" class="w-full" alt="">
+                <img src="storage/photos/freshers/freshers (8).jpeg" loading="lazy" class="w-full" alt="">
             </div>
         </div>
 
