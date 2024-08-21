@@ -115,7 +115,9 @@
         if (h1 == undefined || h2 == undefined) return
 
         setInterval(runner, 10000)
-
+        if (window.scrollY > 50) {
+            nav.classList.add('nav-scrolled')
+        }
     }
 
     window.onscroll = () => {
