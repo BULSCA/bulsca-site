@@ -112,12 +112,13 @@
 
     window.onload = function() {
         initMobileNav()
-        if (h1 == undefined || h2 == undefined) return
-
-        setInterval(runner, 10000)
         if (window.scrollY > 50) {
             nav.classList.add('nav-scrolled')
         }
+        if (h1 == undefined || h2 == undefined) return
+
+        setInterval(runner, 10000)
+
     }
 
     window.onscroll = () => {
