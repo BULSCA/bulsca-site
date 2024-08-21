@@ -17,7 +17,7 @@
                 <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
                     <h1 class="md:text-6xl text-4xl font-bold text-white">Freshers</h1>
-                    <p class="text-white">Welcome to univeristy lifesaving!</p>
+                    <p class="text-white">Welcome to university lifesaving!</p>
                 </div>
             </div>
 
@@ -162,7 +162,7 @@
 
         <details class="faq">
             <summary>Do I need to be able to swim?</summary>
-            <p>Sort of. One the first aid side you don't need to be able to swim at all. However, on the swimming side we
+            <p>Sort of. On the first aid side you don't need to be able to swim at all. However, on the swimming side we
                 recommend that you can swim at least one length (25m) of a pool without stopping.</p>
         </details>
         <details class="faq">
@@ -172,7 +172,7 @@
                 your lifeguarding skills or become one, with clubs running NPLQ's all year round.</p>
         </details>
         <details class="faq">
-            <summary>There isn't a club at my univeristy?</summary>
+            <summary>There isn't a club at my university?</summary>
             <p>We're sorry to hear that, but if you get in touch with our Club Development manager they can help you to find
                 a local club, or organise the process of setting up a club with your univesity and local RLSS branch. You
                 can contact the CLub Development manager at <a
