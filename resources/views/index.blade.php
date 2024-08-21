@@ -8,8 +8,8 @@
     endurance, while helpful, do not necessarily make a good lifesaver!
 @endsection
 
-{{-- remove h-75 and revert back to just h-50 once freshers page goes --}}
-<div class=" md:h-[50vh] h-[75vh]  w-screen bg-gray-100  overflow-hidden  ">
+{{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
+<div class=" h-screen  w-screen bg-gray-100  overflow-hidden  ">
 
 
 
@@ -109,7 +109,7 @@
                 <div class=" py-8 text-center flex flex-col pb-[4.5rem]">
                     <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
                         👋</p>
-                    <p class=" text-xl font-semibold text-white">Welcome to unversity lifesaving</p>
+                    <p class=" text-xl font-semibold text-white">Welcome to university lifesaving</p>
 
                     <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
                         class="btn  self-center btn-thinner mt-8 rounded-full">Find
