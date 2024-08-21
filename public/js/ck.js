@@ -350,6 +350,9 @@ const editorConfig = {
                 .content,
         },
     },
+    htmlEmbed: {
+        showPreviews: true,
+    },
 };
 
 ClassicEditor.create(document.querySelector("#editor"), editorConfig);

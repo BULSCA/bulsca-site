@@ -52,7 +52,12 @@ class ClubController extends Controller
             $page->uni = $club->id;
         }
 
-        $page->content = $req->input('content', $page->content);
+
+     
+
+        
+
+        $page->content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $req->input('content', $page->content));
         $page->banner_color = $req->input('banner_color', $page->banner_color);
         $page->banner_text_color = $req->input('banner_text_color', $page->banner_text_color);
 
