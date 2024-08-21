@@ -178,6 +178,12 @@
                 can contact the CLub Development manager at <a
                     href="mailto:clubdevelopment@bulsca.co.uk">clubdevelopment@bulsca.co.uk</a></p>
         </details>
+        <details class="faq">
+            <summary>I have a disability / long term health condition, is lifesaving accessible to me?</summary>
+            <p>Yes, we strive to make lifesaving inclusive to all and can implement reasonable adjustments to ensure your
+                access. Please check out the welfare page of the website and if you have any questions reach out to our
+                friendly welfare officer at <a href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a></p>
+        </details>
 
         <script>
             // when opening a detials close all the others

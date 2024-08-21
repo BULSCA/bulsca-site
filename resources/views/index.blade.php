@@ -8,7 +8,8 @@
     endurance, while helpful, do not necessarily make a good lifesaver!
 @endsection
 
-<div class=" h-[50vh] w-screen bg-gray-100  overflow-hidden  ">
+{{-- remove h-75 and revert back to just h-50 once freshers page goes --}}
+<div class=" md:h-[50vh] h-[75vh]  w-screen bg-gray-100  overflow-hidden  ">
 
 
 
@@ -54,6 +55,7 @@
             </div>
         </div>
     @else
+        {{-- CHAMPS LANDING --}}
         {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
         <div class="absolute top-0 right-0 w-full h-full  flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
             id="head1">
@@ -95,14 +97,43 @@
         </div>
 
     </div> --}}
+
+
+        {{-- FRESHERS LANDING --}}
+
         <div class="h-full w-full overflow-hidden relative">
+            <div class=" absolute top-0 right-0 w-full h-full head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
+                style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto mt-24  "
+                    alt="">
+                <div class=" py-8 text-center flex flex-col pb-[4.5rem]">
+                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
+                        👋</p>
+                    <p class=" text-xl font-semibold text-white">Welcome to unversity lifesaving</p>
+
+                    <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
+                        class="btn  self-center btn-thinner mt-8 rounded-full">Find
+                        my club &
+                        more</a>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        {{-- DEFAULT LANDING --}}
+
+        {{-- <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
-        </div>
+        </div> --}}
     @endif
 
 

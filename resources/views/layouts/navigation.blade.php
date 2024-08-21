@@ -13,6 +13,7 @@
 
         <nav class="ml-auto mr-10 lg:block hidden">
             <ul class="flex space-x-4 xl:space-x-8 2xl:space-x-12 nav-list">
+
                 <li><a href="{{ route('latest') }}">Latest</a></li>
                 <li class="group {{ Request::is('competitions*') ? 'nav-active' : '' }}">
 
@@ -32,6 +33,7 @@
                     <div
                         class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
                         <ul>
+                            <li><a href="{{ route('freshers') }}">Freshers</a></li>
                             <li><a href="{{ route('clubs') }}">Clubs</a></li>
                             <li><a href="{{ route('create-club') }}">Create a Club</a></li>
                             <li><a href="{{ route('get-involved.committee') }}">Committee</a></li>
@@ -146,6 +148,7 @@
                 </div>
                 <div class="mobile-dropdown">
                     <ul>
+                        <li><a href="{{ route('freshers') }}">Freshers</a></li>
                         <li><a href="{{ route('clubs') }}">Clubs</a></li>
                         <li><a href="{{ route('create-club') }}">Create a Club</a></li>
                         <li><a href="{{ route('get-involved.committee') }}">Committee</a></li>
