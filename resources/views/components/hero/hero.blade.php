@@ -1,7 +1,7 @@
-<div class="   w-screen bg-gray-100  overflow-hidden  " style="height: {{ $hero->height }}">
+<div class="   w-screen bg-gray-100  overflow-hidden  " style="height: {{ $hero->height ?? '50vh' }}">
 
 
-
+    {{-- 
     @if ($nearComp ?? false)
         <div class="h-full w-full overflow-hidden relative">
 
@@ -43,9 +43,9 @@
                 </div>
             </div>
         </div>
-    @else
-        {{-- CHAMPS LANDING --}}
-        {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
+    @else --}}
+    {{-- CHAMPS LANDING --}}
+    {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
         <div class="absolute top-0 right-0 w-full h-full  flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
             id="head1">
             <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[27%] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-24   h-auto"
@@ -88,11 +88,11 @@
     </div> --}}
 
 
-        {{-- FRESHERS LANDING --}}
-
+    {{-- FRESHERS LANDING --}}
+    @if ($hero != null)
         <div class="h-full w-full overflow-hidden relative">
             <div class=" absolute top-0 right-0 w-full h-full head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
-                style="{{ $hero->background() }}" x-data-src="{{ $hero->bg_value }}" x-ref="heroBg"
+                style="{{ $hero->bg_value }}" x-data-src="{{ $hero->bg_value }}" x-ref="heroBg"
                 x-bind:style="hero.bg_value" id="head1">
 
 
@@ -100,22 +100,23 @@
 
 
                 <div class="flex flex-col items-center" x-html="hero.content">
-                    {!! $hero->content ?? '' !!}
+                    @php
+
+                    @endphp
+                    {!! Blade::compileString($hero->content) ?? '' !!}
                 </div>
 
             </div>
         </div>
-
-        {{-- DEFAULT LANDING --}}
-
-        {{-- <div class="h-full w-full overflow-hidden relative">
+    @else
+        <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
-                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                <img src="/storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
-        </div> --}}
+        </div>
     @endif
 
 

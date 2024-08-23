@@ -41,7 +41,7 @@
         handleBackgroundColor(e) {
             var color = e.target.value
     
-            this.hero.bg_value = color
+            this.hero.bg_value = `background: ${color}`
     
         },
     
@@ -78,19 +78,64 @@
     
     
     
-        }
+        },
     
-    }">
-        <x-hero />
+        save() {
+    
+            var data = new FormData()
+    
+            data.append('hero', JSON.stringify(this.hero))
+            data.append('_token', '{{ csrf_token() }}')
+    
+            var url = '/admin/hero/{{ $hero->id }}'
+    
+            if (this.hero.id == -1) {
+                url = '/admin/hero/create'
+            }
+    
+            fetch(url, {
+                    method: 'POST',
+                    body: data
+                }).then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showNotification('Saved Hero')
+    
+                        if (data.id) {
+                            window.location = '/admin/hero/' + data.id + '/edit'
+                        }
+    
+                    } else {
+                        alert('Error')
+                    }
+                })
+    
+        },
+    
+    
+    
+    }" x-init="hero.enabled = hero.enabled === 1">
+        <x-hero :edit="$hero" />
 
 
 
 
 
         <div class=" container-responsive ">
-            <h2>Hero Editor</h2>
-            <br>
+            <div class="flex justify-between items-center">
+                <div class="form-input ">
+                    <label for="">Name</label>
+                    <input type="text" x-model="hero.name" required>
+                </div>
+                <button class="btn btn-save btn-thinner" @click="save">Save</button>
+            </div>
 
+            <div class="form-input checkbox">
+                <label for="">Enabled</label>
+                <input type="checkbox" x-model="hero.enabled">
+            </div>
+
+            <br>
 
             <div class="form-input">
                 <label for="">Content</label>
@@ -106,15 +151,15 @@
 
                     <div class="flex space-x-4 text-sm">
                         <div class="form-input radio">
-                            <label for="">Image</label>
-                            <input type="radio" x-model="hero.bg_type" @click="(e) => switchBackgroundType(e,'image')"
-                                class=" !cursor-pointer" value="image">
+                            <label for="r-image">Image</label>
+                            <input type="radio" id="r-image" x-model="hero.bg_type"
+                                @click="(e) => switchBackgroundType(e,'image')" class=" !cursor-pointer" value="image">
                         </div>
 
                         <div class="form-input radio">
-                            <label for="">Colour</label>
-                            <input type="radio" x-model="hero.bg_type" @click="(e) => switchBackgroundType(e,'color')"
-                                class=" !cursor-pointer" value="color">
+                            <label for="r-clr">Colour</label>
+                            <input type="radio" id="r-clr" x-model="hero.bg_type"
+                                @click="(e) => switchBackgroundType(e,'color')" class=" !cursor-pointer" value="color">
                         </div>
                     </div>
 
@@ -150,6 +195,59 @@
                     <button class="btn btn-thinner" @click="hero.header_logo = ''">No Logo</button>
                 </div>
             </div>
+            <br>
+            <h3>Activation</h3>
+
+            <div class="grid-2">
+                <div class="flex space-x-4 text-sm">
+                    <div class="form-input radio">
+                        <label for="">Manual</label>
+                        <input type="radio" x-model="hero.activation_type" class=" !cursor-pointer" value="manual">
+                    </div>
+
+                    <div class="form-input radio">
+                        <label for="">Time</label>
+                        <input type="radio" x-model="hero.activation_type" class=" !cursor-pointer" value="time">
+                    </div>
+
+                    <div class="form-input radio">
+                        <label for="">Competition</label>
+                        <input type="radio" x-model="hero.activation_type" class=" !cursor-pointer" value="competition">
+                    </div>
+                </div>
+
+                <div x-show="hero.activation_type == 'manual'">
+                    <p>This hero will aways show when enabled, unless a time based or competition based one is active and
+                        current</p>
+                </div>
+
+                <div x-show="hero.activation_type == 'time'" class="grid-2">
+                    <div class="form-input radio">
+                        <label for="">From</label>
+                        <input type="datetime-local" x-model="hero.valid_from">
+                    </div>
+                    <div class="form-input radio">
+                        <label for="">To</label>
+                        <input type="datetime-local" x-model="hero.valid_to">
+                    </div>
+                </div>
+
+                <div x-show="hero.activation_type == 'competition'">
+                    <p>This hero will display for 7 days before a competition. Use the following placeholders:
+                        %competition_name% %competition_link%</p>
+                </div>
+            </div>
+
+            <br>
+
+            <h3>Delete</h3>
+
+            <form method="post" action="{{ route('admin.hero.delete', $hero) }}"
+                onsubmit='return confirm("Are you sure?")'>
+                @csrf
+                <button class="btn btn-danger btn-thinner">Delete</button>
+            </form>
+
 
         </div>
 

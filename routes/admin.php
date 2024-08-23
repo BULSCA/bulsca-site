@@ -95,26 +95,22 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         Route::get('{serc}', [SERCController::class, 'show'])->name('admin.sercs.show');
         Route::post('{serc}', [SERCController::class, 'update'])->name('admin.sercs.update');
         Route::delete('{serc}', [SERCController::class, 'delete'])->name('admin.sercs.delete');
-
-        
-
-    
     });
 
 
     // HEROS
     Route::prefix('hero')->group(function () {
         Route::get('', [HeroController::class, 'index'])->name('admin.hero');
-        Route::get('create')->name('admin.hero.create');
+        Route::get('create', [HeroController::class, 'create'])->name('admin.hero.create');
+        Route::post('create', [HeroController::class, 'store'])->name('admin.hero.store');
+
 
         Route::prefix('{hero}')->group(function () {
-            
-        Route::get('edit', [HeroController::class, 'edit'])->name('admin.hero.edit');
-        Route::post('update', [HeroController::class, 'update'])->name('admin.hero.update');
+
+            Route::get('edit', [HeroController::class, 'edit'])->name('admin.hero.edit');
+            Route::post('', [HeroController::class, 'update'])->name('admin.hero.update');
+
+            Route::post('delete', [HeroController::class, 'delete'])->name('admin.hero.delete');
         });
-
-
-
-
     });
 });

@@ -2,6 +2,8 @@
 
 namespace App\Models\Components;
 
+use Carbon\CarbonInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,13 +17,19 @@ class Hero extends Model
         'valid_to' => 'datetime',
     ];
 
-    public function background(): string {
-        if ($this->bg_type === 'image') {
-            return "background-image: url('{$this->bg_value}')";
-        } else {
-            return "background-color: {$this->bg_value}";
-        }
-    }
-
-
+    protected $fillable = [
+        'name',
+        'height',
+        'bg_type',
+        'bg_value',
+        'header_layout',
+        'header_title',
+        'header_subtitle',
+        'header_logo',
+        'content',
+        'activation_type',
+        'valid_from',
+        'valid_to',
+        'enabled',
+    ];
 }

@@ -23,13 +23,13 @@ return new class extends Migration
             $table->string('header_title')->default('title');
             $table->string('header_subtitle')->default('subtitle');
             $table->string('header_logo')->default('');
-            $table->string('content')->default(''); // will contain the rest of the hero content which will most likely be a html snippet
+            $table->text('content'); // will contain the rest of the hero content which will most likely be a html snippet
 
             // activation - all activation types will require the hero to be enabled
             $table->enum('activation_type', ['manual', 'time', 'competition']);
             $table->dateTime('valid_from')->nullable();
             $table->dateTime('valid_to')->nullable();
-            $table->boolean('enabled')->default(true); 
+            $table->boolean('enabled')->default(true);
 
             $table->timestamps();
         });
