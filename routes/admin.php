@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\GlobalNotificationController;
+use App\Http\Controllers\Hero\HeroController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\SERC\SERCController;
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 
 
+    // SERCS
     Route::prefix('sercs')->group(function () {
         Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
 
@@ -97,5 +99,22 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         
 
     
+    });
+
+
+    // HEROS
+    Route::prefix('hero')->group(function () {
+        Route::get('', [HeroController::class, 'index'])->name('admin.hero');
+        Route::get('create')->name('admin.hero.create');
+
+        Route::prefix('{hero}')->group(function () {
+            
+        Route::get('edit', [HeroController::class, 'edit'])->name('admin.hero.edit');
+        Route::post('update', [HeroController::class, 'update'])->name('admin.hero.update');
+        });
+
+
+
+
     });
 });
