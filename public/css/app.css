@@ -1432,6 +1432,9 @@ html {
 .cursor-pointer{
   cursor: pointer;
 }
+.\!cursor-pointer{
+  cursor: pointer !important;
+}
 .scroll-mb-\[35rem\]{
   scroll-margin-bottom: 35rem;
 }
@@ -1834,6 +1837,9 @@ html {
   padding-top: 2%;
   padding-bottom: 2%;
 }
+.pb-12{
+  padding-bottom: 3rem;
+}
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -1845,9 +1851,6 @@ html {
 }
 .pb-8{
   padding-bottom: 2rem;
-}
-.pb-\[4\.5rem\]{
-  padding-bottom: 4.5rem;
 }
 .pl-2{
   padding-left: 0.5rem;
@@ -1878,9 +1881,6 @@ html {
 }
 .pt-8{
   padding-top: 2rem;
-}
-.pb-12{
-  padding-bottom: 3rem;
 }
 .text-left{
   text-align: left;
@@ -3053,16 +3053,16 @@ div.form-input input[type=color]{
   border-width: 0px;
   padding: 0px;
 }
-div.form-input.checkbox{
+div.form-input.checkbox, div.form-input.radio{
   flex-direction: row;
   align-items: center;
 }
-div.form-input.checkbox > :not([hidden]) ~ :not([hidden]){
+div.form-input.checkbox > :not([hidden]) ~ :not([hidden]), div.form-input.radio > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
-div.form-input.checkbox > input{
+div.form-input.checkbox > input, div.form-input.radio > input{
   margin-bottom: 0.1rem;
 }
 

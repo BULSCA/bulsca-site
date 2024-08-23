@@ -485,7 +485,7 @@
     @apply rounded-md p-0 border-0 overflow-hidden mb-0 ;
    }
 
-   &.checkbox {
+   &.checkbox, &.radio {
     @apply flex-row items-center space-x-6;
 
     > input {

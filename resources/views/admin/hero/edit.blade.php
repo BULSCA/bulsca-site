@@ -9,6 +9,10 @@
     
         heroOriginal: {{ json_encode($hero->getAttributes()) }},
     
+        was: {
+            bg_value: '',
+        },
+    
         handleBackgroundChange(e) {
     
             var file = e.target.files[0]
@@ -32,6 +36,47 @@
             }
     
             fr.readAsDataURL(file)
+        },
+    
+        handleBackgroundColor(e) {
+            var color = e.target.value
+    
+            this.hero.bg_value = color
+    
+        },
+    
+        switchBackgroundType(e, type) {
+    
+    
+    
+    
+            if (type == 'image') {
+    
+                if ($refs.bgfile.files.length === 0) {
+    
+    
+                    return
+                }
+    
+                var file = $refs.bgfile.files[0]
+    
+                var fr = new FileReader()
+    
+                fr.onload = () => {
+                    this.hero.bg_value = fr.result
+                    this.hero.bg_type = 'image'
+    
+                }
+    
+                fr.readAsDataURL(file)
+            } else {
+                this.hero.bg_value = $refs.bgclr.value || ''
+                this.hero.bg_type = 'color'
+            }
+    
+    
+    
+    
         }
     
     }">
@@ -42,7 +87,7 @@
 
 
         <div class=" container-responsive ">
-            <h3>Hero Editor</h3>
+            <h2>Hero Editor</h2>
             <br>
 
 
@@ -52,17 +97,46 @@
             </div>
 
 
-            <h5>Images</h5>
+            <h3>Elements</h3>
 
             <div class="grid-2">
                 <div>
-                    <div class="form-input">
-                        <label for="">Background</label>
-                        <input type="file" name="" class=" file" x-ref="bgfile" id=""
-                            @change="handleBackgroundChange">
+                    <h5 class="hmb-0">Background</h5>
+
+                    <div class="flex space-x-4 text-sm">
+                        <div class="form-input radio">
+                            <label for="">Image</label>
+                            <input type="radio" x-model="hero.bg_type" @click="(e) => switchBackgroundType(e,'image')"
+                                class=" !cursor-pointer" value="image">
+                        </div>
+
+                        <div class="form-input radio">
+                            <label for="">Colour</label>
+                            <input type="radio" x-model="hero.bg_type" @click="(e) => switchBackgroundType(e,'color')"
+                                class=" !cursor-pointer" value="color">
+                        </div>
                     </div>
-                    <button class="btn btn-thinner" x-show="hero.bg_value !== heroOriginal.bg_value"
-                        @click="hero.bg_value = heroOriginal.bg_value; $refs.bgfile.value=null">Reset</button>
+
+                    <div x-show="hero.bg_type == 'color'">
+                        <div class="form-input">
+                            <label for="">Colour</label>
+                            <input type="color" name="" id="" x-ref="bgclr"
+                                @input="handleBackgroundColor">
+                        </div>
+                        <button class="btn btn-thinner" x-show="hero.bg_value !== heroOriginal.bg_value"
+                            @click="hero.bg_value = heroOriginal.bg_value; $refs.bgfile.value=null">Reset</button>
+                    </div>
+                    <div x-show="hero.bg_type == 'image'">
+                        <div class="form-input">
+                            <label for="">Background</label>
+                            <input type="file" name="" class=" file" x-ref="bgfile" id=""
+                                @change="handleBackgroundChange">
+                        </div>
+                        <button class="btn btn-thinner" x-show="hero.bg_value !== heroOriginal.bg_value"
+                            @click="hero.bg_value = heroOriginal.bg_value; $refs.bgfile.value=null">Reset</button>
+                    </div>
+
+
                 </div>
                 <div>
                     <div class="form-input">
