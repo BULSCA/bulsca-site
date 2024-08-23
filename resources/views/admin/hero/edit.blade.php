@@ -20,7 +20,7 @@
             var fr = new FileReader()
     
             fr.onload = () => {
-                this.hero.bg_value = fr.result
+                this.hero.bg_value = `background-image: url(${fr.result})`
             }
     
             fr.readAsDataURL(file)
@@ -53,7 +53,8 @@
             if (type == 'image') {
     
                 if ($refs.bgfile.files.length === 0) {
-    
+                    this.hero.bg_value = this.heroOriginal.bg_value
+                    this.hero.bg_type = 'image'
     
                     return
                 }
@@ -63,14 +64,14 @@
                 var fr = new FileReader()
     
                 fr.onload = () => {
-                    this.hero.bg_value = fr.result
+                    this.hero.bg_value = `background-image: url(${fr.result})`
                     this.hero.bg_type = 'image'
     
                 }
     
                 fr.readAsDataURL(file)
             } else {
-                this.hero.bg_value = $refs.bgclr.value || ''
+                this.hero.bg_value = `background: ${$refs.bgclr.value}`
                 this.hero.bg_type = 'color'
             }
     
@@ -124,7 +125,7 @@
                                 @input="handleBackgroundColor">
                         </div>
                         <button class="btn btn-thinner" x-show="hero.bg_value !== heroOriginal.bg_value"
-                            @click="hero.bg_value = heroOriginal.bg_value; $refs.bgfile.value=null">Reset</button>
+                            @click="hero.bg_value = heroOriginal.bg_value; hero.bg_type='image'">Reset</button>
                     </div>
                     <div x-show="hero.bg_type == 'image'">
                         <div class="form-input">

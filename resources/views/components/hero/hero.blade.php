@@ -93,11 +93,7 @@
         <div class="h-full w-full overflow-hidden relative">
             <div class=" absolute top-0 right-0 w-full h-full head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="{{ $hero->background() }}" x-data-src="{{ $hero->bg_value }}" x-ref="heroBg"
-                x-bind:style="hero.bg_type === 'image' ? { backgroundImage: 'url(' + hero.bg_value + ')' } : {
-                    background: hero
-                        .bg_value
-                }"
-                id="head1">
+                x-bind:style="hero.bg_value" id="head1">
 
 
                 @include('components.hero.header-layouts.vertical')

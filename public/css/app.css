@@ -1426,14 +1426,14 @@ html {
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
 }
+.\!cursor-pointer{
+  cursor: pointer !important;
+}
 .cursor-default{
   cursor: default;
 }
 .cursor-pointer{
   cursor: pointer;
-}
-.\!cursor-pointer{
-  cursor: pointer !important;
 }
 .scroll-mb-\[35rem\]{
   scroll-margin-bottom: 35rem;
