@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Help and Reporting | Welfare |
+    Support and Reporting | Welfare |
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
                 <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                    <h2 class="md:text-6xl text-4xl font-bold text-white">Help and Reporting</h2>
+                    <h2 class="md:text-6xl text-4xl font-bold text-white">Support and Reporting</h2>
 
                 </div>
             </div>
@@ -32,11 +32,21 @@
             <div class="flex flex-col justify-center">
                 <h2>Mental health and wellbeing </h2>
                 <p>
-                    Student well-being and mental health is a huge topic and one that is really important. Amongst essays,
-                    coursework, exams, housing, friendships, relationships, cooking and living independently… university
-                    life can throw a lot at you! There are simple things you can do to look after your well-being but also
-                    remember just as you would if you were physically unwell, it is really important to reach out for help
-                    if you have concerns about your mental health or wellbeing.
+                    Struggling with your mental health can be incredibly difficult and isolating but there is help
+                    available. Please remember to reach out to someone you trust.
+
+                    <br><br>
+
+                    If you feel you need to speak to someone about your wellbeing or mental health these resources can be
+                    accessed immediately:
+
+                    <br><br>
+
+                    <strong><u>Samaritans</u> can be contacted anytime for free on 116 123 or by emailing <a
+                            href="mailto:jo@samaritans.org" class="link">jo@samaritans.org</a>,
+
+                        <u>Shout Textline</u> can be contacted via text: Text ‘SHOUT’ to 85258 24/7.</strong>
+
                 </p>
             </div>
 
@@ -48,8 +58,8 @@
     <div class="container-boast">
         <div>
             <p class="text-white text-2xl font-bold">
-                If you are struggling with your well-being or mental health and would like to speak to someone about this
-                more, please see the resources below:</p>
+                For medical advice please always call 111 (non-urgent) or 999 if you or someone you are with is an immediate
+                danger to themselves or others.</p>
         </div>
 
 
@@ -57,28 +67,12 @@
 
     <div class="container-responsive">
         <p>
-            Resources for immediate access:
-        <ul class=" list-disc list-inside indent-4">
-            <li><strong>Samaritans</strong> can be contacted anytime for free on 116 123 or by emailing <a
-                    href="mailto:jo@samaritans.org">jo@samaritans.org</a> </li>
-            <li><strong>Shout Textline</strong> Text ‘SHOUT’ to 85258 24/7</li>
-        </ul>
+            Trying to find the right support can be overwhelming, especially in times of difficulty. Please remember to
+            reach out to someone you trust. If you aren’t sure who to speak to please contact me at welfare@bulsca.co.uk for
+            further guidance. Reaching out to someone is a difficult but often a great first step.
         </p>
         <br>
-        <p class="text-center font-bold">
-            For medical advice please always call 111 (non-urgent) or 999 if you or someone you are with is an immediate
-            danger to themselves or others.
-        </p>
-        <br>
-        <p>
-            Below are links to resources for you to access in your own time. Trying to find the right support can be
-            overwhelming, especially in times of difficulty. Please remember to reach out to someone you trust. If you
-            aren’t sure who to speak to please contact me at <a href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a>
-            for further guidance. Reaching out to someone is a difficult but often a great first step.
-            <br>
-            <br>
 
-        </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
                 <p>Mental Health and Wellbeing</p>
@@ -114,8 +108,8 @@
 
     </div>
     <div class="container-responsive">
-        <h2>Help at My Uni</h2>
-        <p>Each of your respective universities has its own well-being services; if you are struggling to find these, they
+        <h2>University Support</h2>
+        <p>Each of your respective universities has their own well-being services; if you are struggling to find these, they
             are linked below:
             <br>
             <br>
@@ -144,20 +138,23 @@
     </div>
 
     <div class="container-responsive">
-        <h2>Reporting</h2>
-        <p>There are two ways in which you can raise a concern or report a welfare issue to me as the BULSCA Welfare
-            Officer. <strong>The first is to email me</strong> at <a
-                href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a>. This way is by nature not confidential but you
-            can provide as many or as few details as you would like to. This will be followed up and dealt with
+        <h2>Reporting Welfare Concerns</h2>
+        <p>We all have a <strong>responsibility</strong> to look out for each other. If something does not seem right please
+            do raise it as a concern.
+            This is the best way to ensure our community and its members are safe and supported. There are two ways in which
+            you can raise a concern or report a welfare issue:
+
+            <br>
+            <br>
+            The first is to email me at <a href="mailto:welfare@bulsca.co.uk" class="link">welfare@bulsca.co.uk</a>. This
+            way is by nature not confidential but you can provide as many or as few details as you would like to. This will
+            be followed up and dealt with in line with both our policies and your wishes.
             confidentiality and in line with BULSCA policy and your wishes.
-            <br><br>
+
+            <br>
+            <br>
             Alternatively, suppose you would simply like to draw the Welfare Officer’s attention to an issue or incident
-            without providing any personal details. In that case, you can do so using the reporting form below. <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScDnXdmT9k1Xfa95ufxWe0AYQi1rdAw6nPOE2MUiQpsizXheA/viewform">Welfare
-                Reporting Form</a>
-            <br><br>
-            <i>The use of the welfare reporting form does not initiate disciplinary action. Instead provides the opportunity
-                for further support and signposting.</i>
+            without providing any personal details. In that case, you can do so using the reporting form below:
         </p>
         <br><br>
         <div class="flex items-center justify-center">
@@ -165,5 +162,10 @@
                 src="https://docs.google.com/forms/d/e/1FAIpQLScDnXdmT9k1Xfa95ufxWe0AYQi1rdAw6nPOE2MUiQpsizXheA/viewform"
                 class="md:w-[60%] w-[99%] h-[40rem]" frameborder="0"></iframe>
         </div>
+        <br>
+        <br>
+        <p> Please be aware that the use of the welfare reporting form does not initiate disciplinary action. It provides
+            the opportunity for further support and signposting and the opportunity to raise an issue you feel exists within
+            the organisation without providing specific details.</p>
     </div>
 @endsection

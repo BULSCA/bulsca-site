@@ -139,7 +139,7 @@ Route::get('/welfare', function () {
     return view('welfare.index');
 })->name('welfare');
 
-Route::get('/welfare/help-and-reporting', function () {
+Route::get('/welfare/support-and-reporting', function () {
     return view('welfare.help-and-reporting');
 })->name('welfare.help-and-reporting');
 

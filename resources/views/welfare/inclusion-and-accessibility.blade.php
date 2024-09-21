@@ -36,6 +36,11 @@
                     with a disability or long-term health condition (as defined under the 2010 Equality Act).
                     <br>
                     <br>
+                    Adjustments are assessed against the extent to which they remove a barrier to accessing the sport and do
+                    not exist to provide a competitive advantage. Decisions on adjustments are made in conjunction with the
+                    participant, the welfare officer and the judging panel to ensure they are effective.
+                    <br>
+                    <br>
                     The adjustment process is outlined in the document below. If you have any further questions or access
                     requests please email <a href="mailto:welfare@bulsca.co.uk">welfare@bulsca.co.uk</a>.
                 </p>
@@ -55,10 +60,10 @@
             <div>
                 <h3>Example Adjustments</h3>
                 <ul class=" list-disc list-inside indent-4">
-                    <li>Amended lane and heat allocations</li>
-                    <li>Starting in the water</li>
+                    <li>Outer lane allocation for easy access out/in the water</li>
                     <li>Visual cues for starting races</li>
-                    <li>Large print or easy-read font for the printed SERC brief</li>
+                    <li>Large print available for the printed SERC brief</li>
+                    <li>Provisions for quieter spaces away from poolside</li>
                 </ul>
             </div>
             <div class="flex flex-col space-y-3">

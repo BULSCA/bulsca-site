@@ -47,7 +47,7 @@
                         class="dropdown group-hover:h-auto group-focus:h-auto group-active:h-auto group-focus-within:h-auto">
                         <ul>
                             <li><a href="{{ route('welfare') }}">Home</a></li>
-                            <li><a href="{{ route('welfare.help-and-reporting') }}">Help and Reporting</a></li>
+                            <li><a href="{{ route('welfare.help-and-reporting') }}">Support and Reporting</a></li>
                             <li><a href="{{ route('welfare.inclusion-and-accessibility') }}">Inclusion and
                                     Accessibility</a></li>
                         </ul>
@@ -169,7 +169,7 @@
                 <div class="mobile-dropdown">
                     <ul>
 
-                        <li><a href="{{ route('welfare.help-and-reporting') }}">Help and Reporting</a></li>
+                        <li><a href="{{ route('welfare.help-and-reporting') }}">Support and Reporting</a></li>
                         <li><a href="{{ route('welfare.inclusion-and-accessibility') }}">Inclusion and
                                 Accessibility</a></li>
                     </ul>
