@@ -366,19 +366,19 @@
 
             <h4>Contact Info</h4>
             <div class="grid-4">
-                <div>
+                <div class="break-all">
                     <h5>Organiser</h5>
                     <strong>Name:</strong> {{ $info->contact_organiser_name ?: 'N/A' }} <br>
-                    <strong>Email:</strong> <a
-                        href="mailto:{{ $info->contact_organiser_name }}">{{ $info->contact_organiser_email ?: 'N/A' }}</a>
+                    <strong>Email:</strong> <a href="mailto:{{ $info->contact_organiser_name }}"
+                        class=" ">{{ $info->contact_organiser_email ?: 'N/A' }}</a>
                     <br>
                     <strong>Phone:</strong> <a href="tel:{{ $info->orgPhone() }}">{{ $info->orgPhone() }}</a>
                 </div>
-                <div>
+                <div class="break-all">
                     <h5>Emergency</h5>
                     <strong>Name:</strong> {{ $info->contact_emergency_name ?: 'N/A' }} <br>
-                    <strong>Email:</strong> <a
-                        href="mailto:{{ $info->contact_organiser_name }}">{{ $info->contact_emergency_email ?: 'N/A' }}</a>
+                    <strong>Email:</strong> <a href="mailto:{{ $info->contact_organiser_name }}"
+                        class=" ">{{ $info->contact_emergency_email ?: 'N/A' }}</a>
                     <br>
                     <strong>Phone:</strong> <a href="tel:{{ $info->orgPhone() }}">{{ $info->emergPhone() ?: 'N/A' }}</a>
                 </div>
