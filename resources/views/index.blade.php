@@ -31,7 +31,9 @@
                                 See you next year!
                             @endif
                         </small>
-                        <h2 class="md:text-6xl text-4xl font-bold text-white">{{ $nearComp->getName() }}</h2>
+                        <h2 class="md:text-6xl text-4xl font-bold text-white"><a
+                                href="{{ route('lc-view', Str::lower($nearComp->hostUni->name) . '-' . $nearComp->when->format('Y') . '.' . $nearComp->id) }}"
+                                class="text-white">{{ $nearComp->getName() }}</a></h2>
                         <p class="text-white mt-3">
                             @php
                                 $diff = now()->diffInDays($nearComp->when) + 1;
