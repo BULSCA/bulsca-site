@@ -1444,10 +1444,6 @@ html {
 .list-disc{
   list-style-type: disc;
 }
-.break-before-all{
-  -moz-column-break-before: all;
-       break-before: all;
-}
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1608,19 +1604,6 @@ html {
 }
 .text-ellipsis{
   text-overflow: ellipsis;
-}
-.hyphens-manual{
-  -webkit-hyphens: manual;
-      -ms-hyphens: manual;
-          hyphens: manual;
-}
-.hyphens-auto{
-  -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-          hyphens: auto;
-}
-.whitespace-normal{
-  white-space: normal;
 }
 .whitespace-nowrap{
   white-space: nowrap;

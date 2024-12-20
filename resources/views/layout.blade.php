@@ -17,6 +17,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
 
+
+
     @yield('extra-meta')
 </head>
 
@@ -91,62 +93,71 @@
         <x-notification-sliver>{{ session('message') }}</x-notification-sliver>
     @endif
 
+
+    <script src="{{ asset('js/Snow.js') }}"></script>
+
+    <script>
+        let h1 = document.getElementById("head1")
+        let h2 = document.getElementById("head2")
+        let nav = document.getElementById("navbar")
+        let toggle = true
+
+        const runner = () => {
+            if (toggle) {
+                h1.classList.add('opacity-0')
+                h2.classList.remove('opacity-0')
+            } else {
+                h1.classList.remove('opacity-0')
+                h2.classList.add('opacity-0')
+            }
+            toggle = !toggle
+        }
+
+        window.onload = function() {
+            console.log('h')
+            initMobileNav()
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled')
+            }
+
+            if (h1 == undefined || h2 == undefined) return
+
+            setInterval(runner, 10000)
+
+
+
+        }
+
+        window.onscroll = () => {
+
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled')
+            } else {
+                nav.classList.remove('nav-scrolled')
+            }
+        }
+
+        function initMobileNav() {
+            let mn = document.getElementById('mobile-nav');
+            let mno = document.getElementById('mobile-nav-opener');
+            let mnc = document.getElementById('mobile-nav-closer');
+
+
+            mno.onclick = () => {
+                mn.classList.add('open')
+            }
+
+            mnc.onclick = () => {
+                mn.classList.remove('open')
+            }
+        }
+
+        initMobileNav();
+        letItSnow()
+    </script>
+    <script src="{{ asset('js/app.js') }}?{{ config('version.hash') }}"></script>
 </body>
 
-<script>
-    let h1 = document.getElementById("head1")
-    let h2 = document.getElementById("head2")
-    let nav = document.getElementById("navbar")
-    let toggle = true
 
-    const runner = () => {
-        if (toggle) {
-            h1.classList.add('opacity-0')
-            h2.classList.remove('opacity-0')
-        } else {
-            h1.classList.remove('opacity-0')
-            h2.classList.add('opacity-0')
-        }
-        toggle = !toggle
-    }
-
-    window.onload = function() {
-        initMobileNav()
-        if (window.scrollY > 50) {
-            nav.classList.add('nav-scrolled')
-        }
-        if (h1 == undefined || h2 == undefined) return
-
-        setInterval(runner, 10000)
-
-    }
-
-    window.onscroll = () => {
-
-        if (window.scrollY > 50) {
-            nav.classList.add('nav-scrolled')
-        } else {
-            nav.classList.remove('nav-scrolled')
-        }
-    }
-
-    function initMobileNav() {
-        let mn = document.getElementById('mobile-nav');
-        let mno = document.getElementById('mobile-nav-opener');
-        let mnc = document.getElementById('mobile-nav-closer');
-
-
-        mno.onclick = () => {
-            mn.classList.add('open')
-        }
-
-        mnc.onclick = () => {
-            mn.classList.remove('open')
-        }
-    }
-
-    initMobileNav();
-</script>
-<script src="{{ asset('js/app.js') }}?{{ config('version.hash') }}"></script>
 
 </html>
