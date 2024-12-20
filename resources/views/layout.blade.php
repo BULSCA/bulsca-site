@@ -24,7 +24,9 @@
 </head>
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
-
+    <script>
+        letItSnow()
+    </script>
 
 
     @include('layouts.navigation')
@@ -96,9 +98,7 @@
 
 
 
-    <script>
-        letItSnow()
-    </script>
+
     <script>
         let h1 = document.getElementById("head1")
         let h2 = document.getElementById("head2")

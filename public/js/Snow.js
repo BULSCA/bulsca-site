@@ -38,6 +38,7 @@ letItSnow = () => {
     canvas.style.pointerEvents = "none";
     canvas.style.top = "0px";
     canvas.style.overflow = "hidden";
+    canvas.style.zIndex = "1000";
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
