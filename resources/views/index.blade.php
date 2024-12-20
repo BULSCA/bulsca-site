@@ -103,7 +103,7 @@
 
         {{-- FRESHERS LANDING --}}
 
-        <div class="h-full w-full overflow-hidden relative">
+        {{-- <div class="h-full w-full overflow-hidden relative">
             <div class=" absolute top-0 right-0 w-full h-full head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto mt-24  "
@@ -124,18 +124,18 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- DEFAULT LANDING --}}
 
-        {{-- <div class="h-full w-full overflow-hidden relative">
+        <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
-        </div> --}}
+        </div>
     @endif
 
 
