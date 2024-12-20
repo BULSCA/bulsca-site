@@ -25,6 +25,8 @@ class AdminController extends Controller
             'user' => User::count(),
             'competition' => Competition::count(),
             'serc' => SERC::count(),
+            'resource' => Resource::count(),
+            'season' => Season::count(),
         ];
 
         return view('admin.index', ['count' => $count, 'currentSeason' => Season::current()]);
