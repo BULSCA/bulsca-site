@@ -19,6 +19,7 @@
 
 
     <script src="{{ asset('js/Snow.js') }}"></script>
+
     @yield('extra-meta')
 </head>
 
@@ -95,7 +96,9 @@
 
 
 
-
+    <script>
+        letItSnow()
+    </script>
     <script>
         let h1 = document.getElementById("head1")
         let h2 = document.getElementById("head2")
@@ -153,7 +156,6 @@
         }
 
         initMobileNav();
-        letItSnow()
     </script>
     <script src="{{ asset('js/app.js') }}?{{ config('version.hash') }}"></script>
 </body>
