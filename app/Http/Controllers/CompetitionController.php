@@ -10,6 +10,7 @@ use App\Models\ResultType;
 use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class CompetitionController extends Controller
 {
@@ -33,7 +34,17 @@ class CompetitionController extends Controller
             $info->save();
         }
 
-        return view('dashboard.competitions.view', ['comp' => $lc, 'info' => $info]);
+        $showContactPhone = false;
+
+        $now = Carbon::now();
+
+        $dayDiff = $now->diffInDays($lc->when);
+
+        if ($dayDiff <= 1 && $dayDiff >= 0) {
+            $showContactPhone = true;
+        }
+
+        return view('dashboard.competitions.view', ['comp' => $lc, 'info' => $info, 'showContactPhone' => $showContactPhone]);
     }
 
     public function manage($cid)

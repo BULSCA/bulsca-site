@@ -372,7 +372,9 @@
                     <strong>Email:</strong> <a href="mailto:{{ $info->contact_organiser_name }}"
                         class=" ">{{ $info->contact_organiser_email ?: 'N/A' }}</a>
                     <br>
-                    <strong>Phone:</strong> <a href="tel:{{ $info->orgPhone() }}">{{ $info->orgPhone() }}</a>
+                    @if ($showContactPhone)
+                        <strong>Phone:</strong> <a href="tel:{{ $info->orgPhone() }}">{{ $info->orgPhone() }}</a>
+                    @endif
                 </div>
                 <div class="break-all">
                     <h5>Emergency</h5>
@@ -380,7 +382,10 @@
                     <strong>Email:</strong> <a href="mailto:{{ $info->contact_organiser_name }}"
                         class=" ">{{ $info->contact_emergency_email ?: 'N/A' }}</a>
                     <br>
-                    <strong>Phone:</strong> <a href="tel:{{ $info->orgPhone() }}">{{ $info->emergPhone() ?: 'N/A' }}</a>
+                    @if ($showContactPhone)
+                        <strong>Phone:</strong> <a
+                            href="tel:{{ $info->orgPhone() }}">{{ $info->emergPhone() ?: 'N/A' }}</a>
+                    @endif
                 </div>
             </div>
 
