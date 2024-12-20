@@ -9,7 +9,7 @@
 @endsection
 
 {{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
-<div class=" h-screen  w-screen bg-gray-100  overflow-hidden  ">
+<div class=" h-[50vh]  w-screen bg-gray-100  overflow-hidden  ">
 
 
 
