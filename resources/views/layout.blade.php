@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
 
 
-
+    <script src="{{ asset('js/Snow.js') }}"></script>
     @yield('extra-meta')
 </head>
 
@@ -94,7 +94,7 @@
     @endif
 
 
-    <script src="{{ asset('js/Snow.js') }}"></script>
+
 
     <script>
         let h1 = document.getElementById("head1")
