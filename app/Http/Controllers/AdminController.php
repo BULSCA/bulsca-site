@@ -61,7 +61,7 @@ class AdminController extends Controller
         }
         $allUnis = collect($allUnis);
 
-        $placedUnis = LeaguePlace::where('comp', $competition->id)->with('university')->orderBy('pos')->get();
+        $placedUnis = LeaguePlace::where('comp', $competition->id)->where('pos', '>', 0)->with('university')->orderBy('pos')->get();
         $placedUnis = $placedUnis->groupBy('league');
 
         foreach (['o', 'a', 'b'] as $league) {
