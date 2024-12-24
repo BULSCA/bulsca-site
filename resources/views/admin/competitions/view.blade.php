@@ -103,6 +103,7 @@
 
             getPlacing(league) {
                 let children = document.getElementById(`league-${league}`).querySelectorAll('[x-uni]')
+                let unplaced = document.getElementById(`unplaced-${league}`).querySelectorAll('[x-uni]')
 
                 let placing = []
 
@@ -114,6 +115,13 @@
                         'place': place
                     })
                     place++
+                })
+
+                unplaced.forEach(child => {
+                    placing.push({
+                        'uni': child.getAttribute('x-uni'),
+                        'place': 0
+                    })
                 })
                 
                 return placing
@@ -170,7 +178,7 @@
                
 
                     <p>Unplaced teams</p>
-                    <ul class="list-inside list-none" x-sort.ghost :x-sort:group="league">
+                    <ul class="list-inside list-none" :id="`unplaced-${league}`" x-sort.ghost :x-sort:group="league">
                         <template x-for="uni in unplaced[league]" :key="uni.id">
                             <li class="border rounded-md p-2 grow-0" x-sort:item :x-uni="uni.id" x-text="uni.name"></li>
                         </template>
