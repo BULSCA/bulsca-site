@@ -96,12 +96,22 @@
                 <h3 class="">
                     {{ $comp->hostUni->name }}
                 </h3>
-                <span class="ml-auto mb-4 competition-status {{ $comp->status->toCSSStatus() }}"></span>
+                @if ($comp->results_type != 'NONE')
+                <span class="ml-auto mb-4 competition-status competition-status-finished"></span>
+                @else
+                <span class="ml-auto mb-4 competition-status"></span>
+                @endif
+                
             </div>
             <hr class="-mx-6 mb-4">
             <div>
                 <x-badge>{{ $comp->when->format('d/m/Y') }}</x-badge>
-                <x-badge style="{{ $comp->status->toBadgeCSS() }}">{{ $comp->status->toBadgeMessage() }}</x-badge>
+                @if ($comp->results_type != 'NONE')
+                <x-badge style="success">Results Published</x-badge>
+                @else
+                <x-badge style="alert">No Results</x-badge>
+                @endif
+              
             </div>
         </a>
 
@@ -139,6 +149,15 @@
     <hr class="my-8">
     <div>
         <h1 class="header">Season Results</h1>
+        <div class="alert">
+            <h3>Use competition page instead</h3>
+            <p>
+                You should place universities from each competitions page (by selecting a competition above), <strong>not here!</strong>.
+                <br>
+                Only use this for <strong>ties</strong>, or <strong>advanced</strong> usage!
+            </p>
+        </div>
+        <br>
         <p class="mb-4">Enter the position each university came at each competition in each league. Leave blank (or enter 0) if they didn't compete!
             <br>
             A - A League, B - B League, O - Overall

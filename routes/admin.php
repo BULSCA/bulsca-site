@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     Route::post('/season/{season}/edit', [SeasonController::class, 'update'])->middleware('can:admin.seasons.manage')->name('admin.season.edit');
     Route::post('/season/{season}/results', [SeasonController::class, 'resultsHandler'])->middleware('can:admin.seasons.manage')->name('admin.season.results');
+    Route::post('/season/{season}/{comp}/results', [SeasonController::class, 'saveSeasonCompetitionResults'])->middleware('can:admin.seasons.manage')->name('admin.season.competition.results');
     Route::post('/seasons/create', [SeasonController::class, 'create'])->middleware('can:admin.seasons.manage')->name('admin.seasons.create.post');
     Route::delete('/seasons/delete', [SeasonController::class, 'delete'])->middleware('can:admin.seasons.delete')->name('admin.seasons.delete');
 

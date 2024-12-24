@@ -9,6 +9,7 @@ use App\Models\Season;
 use App\Models\SERC\SERC;
 use App\Models\University;
 use App\Models\User;
+use App\Models\LeaguePlace;
 use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,42 @@ class AdminController extends Controller
 
     public function viewCompetition(Competition $competition)
     {
-        return view('admin.competitions.view', ['competition' => $competition]);
+        $allUnis = [];
+        foreach (University::all() as $uni) {
+            $allUnis[] = ['name' => $uni->name, 'id' => $uni->id];
+        }
+        $allUnis = collect($allUnis);
+
+        $placedUnis = LeaguePlace::where('comp', $competition->id)->with('university')->orderBy('pos')->get();
+        $placedUnis = $placedUnis->groupBy('league');
+
+        foreach (['o', 'a', 'b'] as $league) {
+            if (!isset($placedUnis[$league])) {
+                $placedUnis[$league] = collect();
+            }
+        }
+
+        $leagueUnplaced = [];
+
+        foreach ($placedUnis as $leagueName => $placings) {
+
+            if ($placings->count() == 0) {
+                $leagueUnplaced[$leagueName] = $allUnis;
+                continue;
+            }
+            // Gets uni ids that aren't placed
+            $unplacedIds = $allUnis->pluck('id')->diff($placings->pluck('uni'));
+            $unplaced = [];
+
+            // Get the actual unplaced unis
+            foreach ($unplacedIds as $id) {
+                $unplaced[] = $allUnis->where('id', $id)->first();
+            }
+
+            $leagueUnplaced[$leagueName] = $unplaced;
+        }
+
+        return view('admin.competitions.view', ['competition' => $competition, 'placed' => $placedUnis, 'unplaced' => $leagueUnplaced]);
     }
 
     public function viewCompetitionCreate(Season $season)

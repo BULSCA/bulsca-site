@@ -143,4 +143,30 @@ class SeasonController extends Controller
 
         return redirect()->back();
     }
+
+    public function saveSeasonCompetitionResults(Request $request, Season $season, Competition $comp) {
+
+        $data = $request->json()->all();
+
+        // Remove current competition data
+        LeaguePlace::where('comp', $comp->id)->delete();
+
+        foreach ($data as $league => $placings) {
+            foreach ($placings as $placing) {
+                LeaguePlace::create([
+                    'uni' => $placing['uni'],
+                    'comp' => $comp->id,
+                    'league' => $league,
+                    'pos' => $placing['place']
+                ]);
+            }
+        }
+
+        Cache::forget('league-results.' . $season->id . ".a");
+        Cache::forget('league-results.' . $season->id . ".b");
+        Cache::forget('league-results.' . $season->id . ".o");
+
+        return response()->json(['message' => 'Results saved!']);
+
+    }
 }

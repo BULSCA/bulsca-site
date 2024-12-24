@@ -10,4 +10,9 @@ class LeaguePlace extends Model
     use HasFactory;
 
     protected $fillable = ['uni', 'comp', 'league', 'pos'];
+
+    public function university()
+    {
+        return $this->belongsTo(University::class, 'uni');
+    }
 }

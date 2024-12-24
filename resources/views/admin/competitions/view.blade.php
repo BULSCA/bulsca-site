@@ -92,7 +92,100 @@
             <button type="submit" class="btn btn-thinner btn-save row-start-2 col-start-4">Save</button>
             @endcan
         </form>
+
+        <hr class="my-8">
+
+        <h3 class="header">Competition Placings</h3>
+        <div x-data="{
+            placed: {{ $placed }},
+            unplaced: {{ json_encode($unplaced) }},
+            leagues: ['a','b','o'],
+
+            getPlacing(league) {
+                let children = document.getElementById(`league-${league}`).querySelectorAll('[x-uni]')
+
+                let placing = []
+
+                let place = 1
+                children.forEach(child => {
+                    console.log(child)
+                    placing.push({
+                        'uni': child.getAttribute('x-uni'),
+                        'place': place
+                    })
+                    place++
+                })
+                
+                return placing
+            },
+
+            save() {
+
+                let placings = {}
+                this.leagues.forEach(l => placings[l.toLowerCase()] = this.getPlacing(l))
+
+                let url = '{{ route('admin.season.competition.results', [$competition->currentSeason, $competition]) }}'
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(placings)
+                }).then(response => {
+                    if (response.ok) {
+                        showNotification('Saved placings')
+                    } else {
+                        alert('Error saving')
+                    }
+                })
+
+            },
+
+            
+        }">
+
+        
+
+        <div class="grid-3" >
+            <template x-for="league in leagues">
+                <div>
+                    <h5 class=" capitalize" x-text="league"></h3>
+                    <ul x-sort.ghost :x-sort:group="league" :id="`league-${league}`" class=" list-inside list-decimal min-h-10 bg-gray-100">
+                        <template x-for="uni in placed[league]" :key="uni.id">
+                            <li  class="border rounded-md p-2 grow-0" x-sort:item :x-uni="uni.uni" x-text="uni.university.name"></li>
+                        </template>
+                    </ul>
+                    <br>
+               
+
+                   
+                </div>
+            </template>
+
+            <template x-for="league in leagues">
+                <div>
+                 
+               
+
+                    <p>Unplaced teams</p>
+                    <ul class="list-inside list-none" x-sort.ghost :x-sort:group="league">
+                        <template x-for="uni in unplaced[league]" :key="uni.id">
+                            <li class="border rounded-md p-2 grow-0" x-sort:item :x-uni="uni.id" x-text="uni.name"></li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <button type="button" @click="save()" class="btn btn-thinner btn-save row-start-3 col-start-3">Save</button>
+        </div>
+        
+            
+        </div>
     </div>
+
+    <hr class="my-8">
 
     <div>
         <h3>Delete</h3>
