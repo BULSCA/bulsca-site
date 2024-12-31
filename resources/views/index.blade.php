@@ -9,134 +9,100 @@
 @endsection
 
 {{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
-<div class=" h-[50vh]  w-screen bg-gray-100  overflow-hidden  ">
+<div class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100    ">
 
 
 
-    @if ($nearComp)
-        <div class="h-full w-full overflow-hidden relative">
+       
 
-            <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-                <div
-                    class="flex items-center justify-center bg-black bg-opacity-60 rounded-md py-2 md:py-8 px-8 md:px-0">
-                    <img src="{{ $nearComp->hostUni->image_path ? route('image', $nearComp->hostUni->image_path) : '/storage/logo/blogo.png' }}"
-                        class="w-[20%] hidden md:block " alt="">
-                    <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                        <small class="text-white font-semibold">
-                            @if ($nearComp->when->isToday())
-                                Today
-                            @elseif ($nearComp->when->isFuture())
-                                Upcoming Competition
-                            @else
-                                See you next year!
-                            @endif
-                        </small>
-                        <h2 class="md:text-6xl text-4xl font-bold text-white"><a
-                                href="{{ route('lc-view', Str::lower($nearComp->hostUni->name) . '-' . $nearComp->when->format('Y') . '.' . $nearComp->id) }}"
-                                class="text-white">{{ $nearComp->getName() }}</a></h2>
-                        <p class="text-white mt-3">
-                            @php
-                                $diff = now()->diffInDays($nearComp->when) + 1;
-                            @endphp
-                            @if ($nearComp->when->isToday())
-                                <a href="https://live.bulsca.co.uk"
-                                    class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
-                                    rel="noopener noreferrer" target="_blank">Follow live</a>
-                            @elseif ($nearComp->when->isFuture())
-                                {{ $nearComp->when->format('l jS M Y') }} ({{ $diff }}
-                                day{{ $diff > 1 ? 's' : '' }} to go!)
-                            @else
-                                <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
-                                    class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
-                                    rel="noopener noreferrer" target="_blank">Results</a>
-                            @endif
-                        </p>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    @else
-        {{-- CHAMPS LANDING --}}
-        {{-- <div class="min-h-[100vh]  w-full overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-full h-full  flex flex-col items-center justify-center transition-opacity   duration-1000 " style="background-color: #275271"
-            id="head1">
-            <img src="./storage/photos/champs/2024/champs_2024_dark.png" ondblclick="ee(this)" class=" md:w-[27%] w-[20rem] md:-mt-20 md:-mb-12 -mb-6 mt-24   h-auto"
-                alt="">
-                <div class=" py-8 text-center flex flex-col">
-                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-5 anton-regular uppercase " style="letter-spacing: 5px !important; line-height: 1.2em;  ">BULSCA Championships <br>2024</p>
-                    @php
-                        // Calc start values
-                        $now = now();
-                        $champs = \Carbon\Carbon::create(2024, 3, 2, 9, 30, 0);
-                        $diff = $champs->diff($now);
+       
 
-                        $days = $diff->d;
-                        $hours = $diff->h;
-                        $mins = $diff->i;
-                        $secs = $diff->s;
-                    @endphp
-                     <div id="time-container" class="grid grid-cols-4 gap-y-4 md:gap-y-0 text-white text-lg font-semibold uppercase anton-regular mb-9" style="letter-spacing: 5px !important; line-height: 1.2em;">
-                        <div><div class="text-4xl " id="days">{{ $days }}</div><div>Days</div></div>
-                        <div><div class="text-4xl " id="hours">{{ $hours }}</div><div>Hours</div></div>
-                        <div><div class="text-4xl " id="mins">{{ $mins }}</div><div>Minutes</div></div>
-                        <div><div class="text-4xl " id="secs">{{ $secs }}</div><div>Seconds</div></div>
-                        
-                        
-                        
-                        
-                 
-                    </div> 
+        <div class="h-full w-screen  relative ">
+
+                <div class="absolute bottom-4 left-0 w-screen flex items-center justify-center space-x-3" id="pane-controls">
+                    
                    
-                      
-                 
-                        <div class="flex space-x-2 items-center justify-center">
-                            <a href="https://bulsca.lifesaving.events/championships/24/" rel="noreferrer noopener" target="_blank" id="become-live-sat" class="btn btn-champs self-center btn-thinner ">Sat</a>
-                            <a href="https://results.bulsca.co.uk/champs-2023-24.26" rel="noreferrer noopener" target="_blank" id="become-live-sun" class="btn btn-champs self-center btn-thinner  ">Sun</a>
-                        </div>
-                  
-                  </div>
-        </div>
-
-    </div> --}}
-
-
-        {{-- FRESHERS LANDING --}}
-
-        {{-- <div class="h-full w-full overflow-hidden relative">
-            <div class=" absolute top-0 right-0 w-full h-full head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
-                style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
-                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto mt-24  "
-                    alt="">
-                <div class=" py-8 text-center flex flex-col pb-[4.5rem]">
-                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
-                        👋</p>
-                    <p class=" text-xl font-semibold text-white">Welcome to university lifesaving</p>
-
-                    <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
-                        class="btn  self-center btn-thinner mt-8 rounded-full">Find
-                        my club &
-                        more</a>
-
-
-
-
-
+                    
                 </div>
-            </div>
-        </div> --}}
+            
+                <div id="panes" class="h-full w-full flex flex-row overflow-hidden overflow-x-auto snap-x snap-mandatory thin-scrollbar ">
+                    <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
+                        style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
+                        
+                        <div class=" py-8 text-center flex flex-col ">
+                            <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
+                                👋</p>
+                            <p class=" text-xl font-semibold text-white">Welcome to university lifesaving</p>
 
-        {{-- DEFAULT LANDING --}}
+                            <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
+                                class="btn  self-center btn-thinner mt-8 rounded-full">Find
+                                my club &
+                                more</a>
 
-        <div class="h-full w-full overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
-                id="head1">
-                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
-                    alt="">
-            </div>
+
+
+
+
+                        </div>
+                    </div>
+                
+                        <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
+                            id="head1">
+                            <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                                alt="">
+                        </div>
+                </div>
+                
 
         </div>
-    @endif
+
+        <script>
+            const panes = document.getElementById('panes')
+            const controls = document.getElementById('pane-controls')
+
+            const activeClasses = ['bg-bulsca']
+            const inactiveClasses = ['bg-gray-100', 'opacity-90']
+            const baseClasses = ['cursor-pointer', 'size-3', 'rounded-full']
+
+            
+
+            let first = true
+
+            for (let i = 0; i < panes.children.length; i++) {
+                let child = panes.children[i]
+                jumper = document.createElement('div')
+                jumper.classList.add(...baseClasses)
+
+                if (first) {
+                    jumper.classList.add(...activeClasses)
+                    first = false
+                } else {
+                    jumper.classList.add(...inactiveClasses)
+                }
+
+                jumper.onclick = (e) => {
+                    child.scrollIntoView({behavior: 'smooth'})
+
+                    for (var j = 0; j < panes.children.length; j++) {
+                        var jumper = controls.children[j]
+
+                        jumper.classList.remove(...activeClasses, ...inactiveClasses)
+                        console.log(i,j)
+                        if (j == i) {
+                            jumper.classList.add(...activeClasses)
+                        } else {
+                            jumper.classList.add(...inactiveClasses)
+                        }
+                    }
+
+                }
+
+                controls.appendChild(jumper)
+            }
+
+        </script>    
+    
 
 
 </div>
