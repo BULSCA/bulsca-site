@@ -29,6 +29,52 @@
                 <div id="panes" class="h-full w-full flex flex-row overflow-hidden overflow-x-auto snap-x snap-mandatory thin-scrollbar ">
 
 
+                    @if ($nearComp)
+                        
+
+                            <div class="min-w-full snap-center flex flex-col items-center justify-center head-bg-4 ">
+                                <div
+                                    class="flex items-center justify-center bg-black bg-opacity-60 rounded-md py-2 md:py-8 px-8 md:px-0">
+                                    <img src="{{ $nearComp->hostUni->image_path ? route('image', $nearComp->hostUni->image_path) : '/storage/logo/blogo.png' }}"
+                                        class="w-[20%] hidden md:block " alt="">
+                                    <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+                                        <small class="text-white font-semibold">
+                                            @if ($nearComp->when->isToday())
+                                                Today
+                                            @elseif ($nearComp->when->isFuture())
+                                                Upcoming Competition
+                                            @else
+                                                See you next year!
+                                            @endif
+                                        </small>
+                                        <h2 class="md:text-6xl text-4xl font-bold text-white"><a
+                                                href="{{ route('lc-view', Str::lower($nearComp->hostUni->name) . '-' . $nearComp->when->format('Y') . '.' . $nearComp->id) }}"
+                                                class="text-white">{{ $nearComp->getName() }}</a></h2>
+                                        <p class="text-white mt-3">
+                                            @php
+                                                $diff = now()->diffInDays($nearComp->when) + 1;
+                                            @endphp
+                                            @if ($nearComp->when->isToday())
+                                                <a href="https://live.bulsca.co.uk"
+                                                    class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
+                                                    rel="noopener noreferrer" target="_blank">Follow live</a>
+                                            @elseif ($nearComp->when->isFuture())
+                                                {{ $nearComp->when->format('l jS M Y') }} ({{ $diff }}
+                                                day{{ $diff > 1 ? 's' : '' }} to go!)
+                                            @else
+                                                <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
+                                                    class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
+                                                    rel="noopener noreferrer" target="_blank">Results</a>
+                                            @endif
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    @endif
+
+
                     <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
                         <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56" alt="" srcset="">
                         <div class="flex flex-col items-center">

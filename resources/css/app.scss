@@ -138,6 +138,13 @@
     background-size: cover;
     background-position: center;
   }
+
+  .head-bg-4 {
+    background-image: url("/storage/photos/DSC_0348.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
   
   .btn {
     @apply text-bulsca bg-white p-6 cursor-pointer font-bold uppercase text-lg hover:bg-bulsca hover:border-white transition-all hover:text-white border-2 hover:scale-105 no-underline;
