@@ -138,6 +138,13 @@
     background-size: cover;
     background-position: center;
   }
+
+  .head-bg-4 {
+    background-image: url("/storage/photos/DSC_0348.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
   
   .btn {
     @apply text-bulsca bg-white p-6 cursor-pointer font-bold uppercase text-lg hover:bg-bulsca hover:border-white transition-all hover:text-white border-2 hover:scale-105 no-underline;
@@ -215,7 +222,7 @@
  }
 
  .container-boast {
-   @apply px-2 md:px-[20%] md:py-[5%] py-[15%] bg-bulsca flex md:flex-row flex-col items-center
+   @apply px-2 md:px-[20%] md:py-[3%] py-[10%] bg-bulsca flex md:flex-row flex-col items-center
  }
 
  .mobile-nav {
@@ -879,6 +886,13 @@ div.form-search {
   
 
 
+}
+
+.absolute-center-x {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0);
 }
 
 .thin-scrollbar {
