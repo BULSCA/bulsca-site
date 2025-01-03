@@ -224,10 +224,10 @@
         </div>
 
         <div
-            class="flex flex-col md:flex-row items-center justify-center md:space-x-12 space-y-6 md:space-y-0 text-center md:text-left w-full">
+            class="flex flex-col-reverse md:flex-row items-center justify-center md:space-x-12 space-y-6 md:space-y-0 text-center md:text-left w-full">
 
 
-            <div class="flex flex-col max-w-3xl ">
+            <div class="flex flex-col max-w-3xl !mt-6 md:!mt-0">
                 <h2 class="text-2xl font-semibold ">By Students, For Students</h2>
                 <p>
                     The BULSCA committee is made up entirely of volunteers, either current students or graduates from
@@ -235,7 +235,7 @@
                     education institutions.
                 </p>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class=" h-16 w-16" fill="none" viewBox="0 0 24 24"
+            <svg xmlns="http://www.w3.org/2000/svg" class=" h-16 w-16 " fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />

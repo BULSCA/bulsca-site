@@ -1114,6 +1114,15 @@ html {
 .mt-auto{
   margin-top: auto;
 }
+.\!mt-3{
+  margin-top: 0.75rem !important;
+}
+.\!mt-4{
+  margin-top: 1rem !important;
+}
+.\!mt-6{
+  margin-top: 1.5rem !important;
+}
 .line-clamp-1{
   overflow: hidden;
   display: -webkit-box;
@@ -4499,6 +4508,9 @@ div.form-search > .results > .result > p:last-child{
   .md\:mt-0{
     margin-top: 0px;
   }
+  .md\:\!mt-0{
+    margin-top: 0px !important;
+  }
   .md\:block{
     display: block;
   }
@@ -4548,6 +4560,9 @@ div.form-search > .results > .result > p:last-child{
   .md\:flex-row{
     flex-direction: row;
   }
+  .md\:flex-col{
+    flex-direction: column;
+  }
   .md\:flex-wrap{
     flex-wrap: wrap;
   }
@@ -4556,9 +4571,6 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:justify-start{
     justify-content: flex-start;
-  }
-  .md\:gap-32{
-    gap: 8rem;
   }
   .md\:gap-y-12{
     row-gap: 3rem;
@@ -4703,10 +4715,6 @@ div.form-search > .results > .result > p:last-child{
   .\32xl\:text-4xl{
     font-size: 2.25rem;
     line-height: 2.5rem;
-  }
-  .\32xl\:text-5xl{
-    font-size: 3rem;
-    line-height: 1;
   }
   .\32xl\:text-xl{
     font-size: 1.25rem;
