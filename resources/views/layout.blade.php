@@ -18,15 +18,15 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
 
 
-    <script src="{{ asset('js/Snow.js') }}"></script>
+    {{-- <script src="{{ asset('js/Snow.js') }}"></script> --}}
 
     @yield('extra-meta')
 </head>
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
-    <script>
+    {{-- <script>
         letItSnow()
-    </script>
+    </script> --}}
 
 
     @include('layouts.navigation')
