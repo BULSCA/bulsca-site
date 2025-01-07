@@ -16,7 +16,8 @@ class SERCTag extends Model
 
     protected $hidden = ['pivot'];
 
-    public function getTotalReferences() {
-        return DB::select('SELECT COUNT(*) as count FROM tagged_sercs WHERE serc_tag_id=?', [1])[0]->count;
+    public function getTotalReferences()
+    {
+        return DB::select('SELECT COUNT(*) as count FROM tagged_sercs WHERE serc_tag_id=?', [$this->id])[0]->count;
     }
 }
