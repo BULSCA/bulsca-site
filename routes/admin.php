@@ -86,6 +86,11 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
         Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
 
+        Route::get('tags', [SERCController::class, 'listTags'])->name('admin.sercs.tags.list');
+        Route::get('tags/{tag}', [SERCController::class, 'getTag'])->name('admin.sercs.tags.get');
+        Route::post('tags/{tag}', [SERCController::class, 'updateTag'])->name('admin.sercs.tags.update');
+        Route::delete('tags/{tag}', [SERCController::class, 'deleteTag'])->name('admin.sercs.tags.delete');
+
         Route::get('add', [SERCController::class, 'add'])->name('admin.sercs.add');
         Route::post('add', [SERCController::class, 'store'])->name('admin.sercs.store');
 

@@ -21,7 +21,12 @@ SERCs | Admin |
 
     <div class="flex items-center  mb-2">
         <h1 class="header">SERCs</h1>
-        @can('admin.sercs.manage')<a href="{{ route('admin.sercs.add') }}" class="ml-auto btn btn-thinner">Add</a>@endcan
+        @can('admin.sercs.manage')
+        <div class="ml-auto">
+        <a href="{{ route('admin.sercs.tags.list') }}" class="btn btn-thinner">Tags</a>
+        <a href="{{ route('admin.sercs.add') }}" class="ml-auto btn btn-thinner">Add</a>
+        </div>
+        @endcan
     </div>
 
     <form method="GET" action="" id="search-and-filter" class="w-full relative flex-col ">
@@ -29,7 +34,7 @@ SERCs | Admin |
         <div class="form-search group w-full mb-3 relative">
             
             <input type="text" id="resource-search" name="s" class="input "
-                 placeholder="Search..." value="{{ request('s') }}">
+                 placeholder="Search..." value="{{ request('s') }}" x-data x-init="() => {$el.focus(); let v = $el.value; $el.value = ''; $el.value = v}">
 
 
             

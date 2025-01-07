@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SERC;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\SERC\StoreSERCRequest;
+use App\Http\Requests\SERC\StoreTagRequest;
 use App\Models\Resource;
 use App\Models\SERC\SERC;
 use App\Models\SERC\SERCTag;
@@ -261,5 +262,33 @@ class SERCController extends Controller
        
 
         return response()->json($serc);
+    }
+
+    public function listTags() {
+        $tags = null;
+   
+        if (request('s') != null) {
+            $tags = SERCTag::where('name', 'LIKE', '%' . request('s') . '%');
+        } else {
+            $tags = SERCTag::orderBy('name');
+        }
+
+        return view('admin.sercs.tags.index', ['tags' => $tags->paginate(12)]);
+    }
+
+    public function getTag(SERCTag $tag) {
+        return view('admin.sercs.tags.show', ['tag' => $tag]);
+    }
+
+    public function updateTag(SERCTag $tag, StoreTagRequest $request) {
+        $tag->name = $request->name;
+        $tag->save();
+
+        return redirect()->back()->with('message', 'Updated Tag!');
+    }
+
+    public function deleteTag(SERCTag $tag) {
+        $tag->delete();
+        return redirect()->route('admin.sercs.tags.list')->with('message', 'Tag Deleted!');
     }
 }
