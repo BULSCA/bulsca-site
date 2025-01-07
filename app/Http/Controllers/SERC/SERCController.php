@@ -280,7 +280,7 @@ class SERCController extends Controller
             $tags = SERCTag::orderBy('name');
         }
 
-        return view('admin.sercs.tags.index', ['tags' => $tags->paginate(12)]);
+        return view('admin.sercs.tags.index', ['tags' => $tags->paginate(16)]);
     }
 
     public function getTag(SERCTag $tag)
