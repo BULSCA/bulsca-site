@@ -32,6 +32,10 @@
 
             <x-form-input id='name' title='Name' defaultValue="{{ $tag->name }}" />
 
+            <x-form-input id='category_new' title='New Category' required="false"/>
+
+            <x-form-select id="category" required="true" title="Category" defaultValue="{{ $tag->category }}" :options=" $categories " ></x-form-select>
+
             <button type="submit" class="btn btn-thinner btn-save col-start-4 row-start-5">Save</button>
 
         </form>

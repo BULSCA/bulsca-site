@@ -52,7 +52,13 @@ Tags | SERCs | Admin |
   
             </div>
             <hr class="-mx-6 ">
-            <p class="  text-sm font-normal  ">{{ $tag->getTotalReferences() }} reference(s)</p>
+            <div>
+            <x-badge>{{ $tag->getTotalReferences() }} reference(s)  </x-badge>
+            @if ($tag->category)
+            <x-badge style="warning">Category: {{ $tag->category ?? '-' }}</x-badge>
+            @endif
+        </div>
+            
             
 
         </a>

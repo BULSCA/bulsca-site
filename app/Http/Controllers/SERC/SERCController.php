@@ -277,11 +277,29 @@ class SERCController extends Controller
     }
 
     public function getTag(SERCTag $tag) {
-        return view('admin.sercs.tags.show', ['tag' => $tag]);
+
+        $categories = [];
+
+        foreach (SERCTag::select('category')->distinct()->get()->pluck('category')->toArray() as $tagg) {
+            $c = new \stdClass();
+            $c->id = $tagg ? $tagg : 'null';
+            $c->name = $tagg ? $tagg : 'None';
+            $categories[] = $c;
+        }
+
+
+        return view('admin.sercs.tags.show', ['tag' => $tag, 'categories' => $categories]);
     }
 
     public function updateTag(SERCTag $tag, StoreTagRequest $request) {
         $tag->name = $request->name;
+
+        if ($request->input('category_new', null)) {
+            $tag->category = $request->category_new;
+        } else {
+            $tag->category = $request->category == 'null' ? null : $request->category;
+        }
+        
         $tag->save();
 
         return redirect()->back()->with('message', 'Updated Tag!');
