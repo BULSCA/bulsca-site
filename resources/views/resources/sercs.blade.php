@@ -5,6 +5,7 @@
 @endsection
 
 @section('extra-meta')
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @endsection
 
@@ -247,6 +248,7 @@
 
                                 <template x-for="(taggs, group) in tags">
                                     <div x-data="{
+                                        open: true,
                                         matchAny() {
                                             for (tag of taggs) {
                                                 if (tag.name.toLowerCase().includes(tagSearch.toLowerCase().trim())) {
@@ -257,10 +259,11 @@
                                         }
                                     }">
                                         <p class="bg-bulsca text-white text-xs p-1 mb-1 rounded-md" x-show="matchAny()"
-                                            x-text="group == '' ? 'Other' : group ">
+                                            x-text="group == '' ? 'Other' : group "
+                                            @click="open = !open">
                                         </p>
 
-                                        <div class="flex flex-wrap">
+                                        <div class="flex flex-wrap" x-collapse x-show="open">
                                             <template x-for="tag in taggs">
                                                 <span class="badge mb-1 cursor-pointer" @click="toggleTag(tag.id)"
                                                     :class="tag.name.toLowerCase().includes(tagSearch.toLowerCase().trim()) ? (
