@@ -182,7 +182,9 @@
     }" x-init="() => { parseDefaultURL() }">
 
         <p>Below you can see and filter through our collection of SERCs. To view more information and download the SERC
-            documents simply click the relevant SERC!</p>
+            documents simply click the relevant SERC!
+        <br><br><strong>Please note:</strong> Packs may not accurately reflect how a SERC ran on the day. <u>Last minute changes often occur</u>, that are not included here. Packs are for <u>training and guidance</u> but should not be used to critique writers, officials or organisers.
+    </p>
         <br>
 
         <div class="flex md:flex-row flex-col md:space-x-4 relative ">
@@ -361,6 +363,9 @@
 
 
         </div>
+
+        <br>
+        <p>BULSCA has obtained permission to distribute all the above SERC packs. Please contact <a href="mailto:clubdevelopment@bulsca.co.uk">clubdevelopment@bulsca.co.uk</a> to have your pack added/removed.</p>
 
 
         <div class="modal" x-show="showModal" x-transition.opacity style="display: none">
