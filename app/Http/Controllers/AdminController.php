@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\LeaguePlace;
 use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -120,7 +121,7 @@ class AdminController extends Controller
 
     public function viewUser(User $user)
     {
-        return view('admin.users.view', ['user' => $user, 'unis' => University::orderBy('name')->get(), 'roles' => Role::where('name', '!=', 'super_admin')->get()]);
+        return view('admin.users.view', ['user' => $user, 'unis' => University::orderBy('name')->get(), 'roles' => Role::where('name', '!=', 'super_admin')->get(), 'permissions' => Permission::all()]);
     }
 
     public function viewUserCreate()
