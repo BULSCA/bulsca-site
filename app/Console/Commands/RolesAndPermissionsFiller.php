@@ -32,7 +32,13 @@ class RolesAndPermissionsFiller extends Command
 
         Role::findOrCreate('super_admin'); // has all perms by default
         $admin = Role::findOrCreate('admin');
-        $committee = Role::findOrCreate('committee');
+
+        $articles = Role::findOrCreate('articles');
+        $competitions = Role::findOrCreate('competitions');
+        $resources = Role::findOrCreate('resources');
+        $sercs = Role::findOrCreate('sercs');
+        $usersAndUnis = Role::findOrCreate('users-unis');
+
 
 
         $adminP = Permission::findOrCreate('admin');
@@ -57,18 +63,28 @@ class RolesAndPermissionsFiller extends Command
 
         $adminSercs = Permission::findOrCreate('admin.sercs');
         $adminSercsManage = Permission::findOrCreate('admin.sercs.manage');
+        $adminSercsManageDelete = Permission::findOrCreate('admin.sercs.delete');
 
-        $article = Permission::findOrCreate('article');
+        $articleP = Permission::findOrCreate('article');
 
         // Give admin all perms for now
-        $baseAdminPerms = [$adminP, $adminSeason, $adminCompetitions, $adminUniversity, $adminUsers, $adminResources, $article, $adminSeasonManage, $adminCompetitionsManage, $adminUniversityManage, $adminUsersManage, $adminResourcesManage, $adminSeasonManageDelete, $adminCompetitionsManageDelete, $adminUniversityManageDelete, $adminSercs, $adminSercsManage];
+        $baseAdminPerms = [$adminP, $adminSeason, $adminCompetitions, $adminUniversity, $adminUsers, $adminResources, $articleP, $adminSeasonManage, $adminCompetitionsManage, $adminUniversityManage, $adminUsersManage, $adminResourcesManage, $adminSeasonManageDelete, $adminCompetitionsManageDelete, $adminUniversityManageDelete, $adminSercs, $adminSercsManage, $adminSercsManageDelete];
         $admin->syncPermissions($baseAdminPerms);
 
-        // Committee can view seasons, comps, unis and users and do article stuff
-        $committee->syncPermissions([$article, $adminSeason, $adminP, $adminCompetitions, $adminUniversity, $adminResources, $adminSercs, $adminSercsManage]);
+     
+        $articles->syncPermissions([$articleP]);
+        $competitions->syncPermissions([$adminP, $adminSeason, $adminSeasonManage, $adminSeasonManageDelete, $adminCompetitions, $adminCompetitionsManage, $adminCompetitionsManageDelete]);
+        $resources->syncPermissions([$adminP, $adminResources, $adminResourcesManage]);
+        $sercs->syncPermissions([$adminP, $adminSercs, $adminSercsManage, $adminSercsManageDelete]);
+        $usersAndUnis->syncPermissions([$adminP, $adminUsers, $adminUsersManage, $adminUniversity, $adminUniversityManage, $adminUniversityManageDelete]);
 
 
         $this->info('All permissions and roles created!');
+
+        // Delete any old roles that aren't the following
+        $currentRoles = ['super_admin', 'admin', 'sercs', 'articles', 'competitions', 'resources', 'sercs', 'users-unis'];
+
+        Role::whereNotIn('name', $currentRoles)->delete();
 
 
 
