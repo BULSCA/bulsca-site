@@ -6,6 +6,7 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\GlobalNotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -82,6 +83,12 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
 
     Route::prefix('sercs')->group(function () {
+        Route::prefix('casualties')->group(function() {
+            Route::get('', [CasualtyController::class, 'index'])->name('admin.sercs.casualties');
+            Route::get('add', [CasualtyController::class, 'add'])->name('admin.sercs.casualties.add');
+            Route::get('{casualty}', [CasualtyController::class, 'show'])->name('admin.sercs.casualties.show');
+        });
+
         Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
 
         Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
@@ -100,6 +107,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         Route::post('{serc}', [SERCController::class, 'update'])->name('admin.sercs.update');
         Route::delete('{serc}', [SERCController::class, 'delete'])->name('admin.sercs.delete');
 
+        
         
 
     

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\SERC\StoreSERCRequest;
 use App\Http\Requests\SERC\StoreTagRequest;
+use App\Models\Casualty\Casualty;
+use App\Models\Casualty\CasualtyGroup;
 use App\Models\Resource;
 use App\Models\SERC\SERC;
 use App\Models\SERC\SERCTag;
@@ -36,7 +38,12 @@ class SERCController extends Controller
             $sercs = $sercs == null ? SERC::orderBy('when', 'DESC') : $sercs->orderBy('when', 'DESC');
         }
 
-        return view('admin.sercs.index', ['sercs' => $sercs->paginate(12)]);
+        $count = [
+            'casualties' => Casualty::count(),
+            'groups' => CasualtyGroup::count(),
+        ];
+
+        return view('admin.sercs.index', ['sercs' => $sercs->paginate(12), 'count' => $count]);
     }
 
     public function add()
