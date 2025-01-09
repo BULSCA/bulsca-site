@@ -121,7 +121,7 @@ class AdminController extends Controller
 
     public function viewUser(User $user)
     {
-        return view('admin.users.view', ['user' => $user, 'unis' => University::orderBy('name')->get(), 'roles' => Role::where('name', '!=', 'super_admin')->get(), 'permissions' => Permission::all()]);
+        return view('admin.users.view', ['user' => $user, 'unis' => University::orderBy('name')->get(), 'roles' => Role::where('name', '!=', 'super_admin')->get()]);
     }
 
     public function viewUserCreate()

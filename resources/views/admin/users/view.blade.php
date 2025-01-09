@@ -83,31 +83,7 @@
                 @endforeach
             </div>
 
-            <br>
-
-            <h5>Permissions</h5>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Permission</th>
-                            <th>Has Permission</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($permissions as $permission)
-                            <tr>
-                                <td>{{ Str::headline(Str::replace('_', ' ', $permission->name)) }}</td>
-                                <td>
-                                    <input type="checkbox" @cannot('admin.users.manage') readonly @endcannot
-                                        @if ($user->hasPermissionTo($permission->name)) checked @endif
-                                        name="permission-{{ $permission->id }}" id="permission-{{ $permission->id }}">
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+           
 
             <br>
             @can('admin.users.manage')
