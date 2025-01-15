@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SERC\StoreCasualtyRequest;
 use App\Models\Casualty\Casualty;
 use App\Models\Casualty\CasualtyGroup;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class CasualtyController extends Controller
@@ -65,6 +66,18 @@ class CasualtyController extends Controller
         $casualty->save();
 
         return redirect()->back()->with('message', 'Updated Casualty!');
+    }
+
+    public function addImage(Casualty $casualty, Request $request)
+    {
+
+        $path = ImageService::store($request, '/casualties/' . $casualty->id, 'image', true);
+
+        $imageUrl = ImageService::getUrl($path);
+
+
+
+        return response()->json(['success' => true, 'url' => $imageUrl]);
     }
 
     public function delete(Casualty $casualty)

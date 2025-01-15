@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
             Route::get('{casualty}', [CasualtyController::class, 'show'])->name('admin.sercs.casualties.show');
             Route::post('{casualty}', [CasualtyController::class, 'update'])->name('admin.sercs.casualties.update');
             Route::delete('{casualty}', [CasualtyController::class, 'delete'])->name('admin.sercs.casualties.delete');
+
+            Route::post('{casualty}/images', [CasualtyController::class, 'addImage'])->name('admin.sercs.casualties.images.add');
         });
 
         Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
