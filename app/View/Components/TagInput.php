@@ -7,16 +7,17 @@ use Illuminate\View\Component;
 class TagInput extends Component
 {
 
-    private $value;
+    private $value, $allowNew;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($value = "")
+    public function __construct($value = "", $allowNew = 'true')
     {
         $this->value = $value;
+        $this->allowNew = $allowNew;
     }
 
     /**
@@ -26,6 +27,6 @@ class TagInput extends Component
      */
     public function render()
     {
-        return view('components.tag-input', ['value' => $this->value]);
+        return view('components.tag-input', ['value' => $this->value, 'allowNew' => $this->allowNew]);
     }
 }

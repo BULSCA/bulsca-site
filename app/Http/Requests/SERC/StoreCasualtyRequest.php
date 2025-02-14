@@ -31,6 +31,7 @@ class StoreCasualtyRequest extends FormRequest
             'manual' => '',
             'group' => 'required|not_in:null',
             'description' => '',
+            'tags' => '',
         ];
     }
 

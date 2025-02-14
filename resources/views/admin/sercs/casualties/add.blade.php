@@ -41,10 +41,14 @@
                     casualty
                 </p>
 
+                <div class="row-start-3 col-span-2">
+                    <x-tag-input allowNew="false"></x-tag-input>
+                </div>
+
+                <script src="{{ asset('js/TagInput.js') }}"></script>
 
 
-
-                <div class=" row-start-3 col-span-4">
+                <div class=" row-start-4 col-span-4">
 
 
                     <div>

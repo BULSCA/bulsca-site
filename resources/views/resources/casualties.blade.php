@@ -1,0 +1,177 @@
+@extends('layout')
+
+@section('title')
+    Casualties | Resources |
+@endsection
+
+@section('extra-meta')
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endsection
+
+@section('content')
+    <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
+
+        <div class="h-full w-full overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
+                <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
+                <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+                    <h2 class="md:text-6xl text-4xl font-bold text-white">Casualties</h2>
+                    <p class="text-white">❤️‍🩹</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="container-responsive" x-data="{
+        casualties: [],
+    
+    
+        activeSerc: null,
+        showModal: false,
+    
+        tagSearch: '',
+    
+        filters: {
+            search: '',
+    
+            group: 'all',
+    
+        },
+    
+    
+    
+    
+    
+        searchCasualties() {
+    
+            this.updateQueryHistory()
+    
+            let queryParams = `?search=${this.filters.search}&group=${this.filters.group}`
+    
+            fetch(`{{ route('resources.casualties.search') }}${queryParams}`).then(response => response.json()).then(data => {
+                this.casualties = data
+            })
+        },
+    
+        updateQueryHistory() {
+            let queryParams = `?search=${this.filters.search}&group=${this.filters.group}`
+            window.history.pushState({}, '', `{{ route('resources.casualties') }}${queryParams}`)
+        },
+    
+    
+    
+    
+    
+        parseDefaultURL() {
+            let url = new URL(window.location.href)
+    
+            let params = url.searchParams
+    
+            this.filters.search = params.get('search') || ''
+            this.filters.group = params.get('group') || 'all'
+    
+            this.searchCasualties()
+    
+    
+        },
+    
+    
+    
+    
+    
+    
+    }" x-init="() => { parseDefaultURL() }">
+
+        <p>Below you can see and filter through our collection of SERCs. To view more information and download the SERC
+            documents simply click the relevant SERC!
+            <br><br><strong>Please note:</strong> Packs may not accurately reflect how a SERC ran on the day. <u>Last minute
+                changes often occur</u>, that are not included here. Packs are for <u>training and guidance</u> but should
+            not be used to critique writers, officials or organisers.
+        </p>
+        <br>
+
+        <div class="flex md:flex-row flex-col md:space-x-4 relative ">
+            <div class="md:min-w-56 md:w-56 w-full relative ">
+                <div class="sticky top-24">
+                    <h5 class="bg-bulsca p-2 text-white">Filters</h5>
+
+                    <div class="flex flex-col space-y-1">
+
+
+
+                        <div class="form-input text-sm">
+                            <label for="filter-year">Group</label>
+                            <select id="filter-year" class="input smaller" x-model="filters.group"
+                                @change="searchCasualties()">
+                                <option value="all">All</option>
+                                @foreach ($filterOptions['groups'] as $group)
+                                    <option value="{{ $group->name }}">{{ $group->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w-full relative ">
+                <div class="md:sticky top-24">
+                    <div class="form-search group col-span-3 mb-3 relative">
+
+                        <input type="text" id="resource-search" class="input " x-model="filters.search"
+                            @input.debounce="searchCasualties()" placeholder="Search by name...">
+                    </div>
+                </div>
+
+
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-4 flex-grow-0 items-start">
+
+
+
+                    <template x-if="casualties.length == 0">
+                        <div class="col-span-3 flex items-center justify-center">
+                            <p>No Casualties found</p>
+                        </div>
+                    </template>
+
+                    <template x-for="casualty in casualties">
+
+                        <div class="border rounded-md px-3 py-4 cursor-pointer hover:border-black hover:shadow-md group"
+                            @click="loadSerc(serc)">
+                            <h5 class="mb-0 line-clamp-1 group-hover:line-clamp-none" x-text="casualty.name">Casualty Name
+                            </h5>
+
+
+
+
+
+                            <div class="overflow-x-auto flex flex-row whitespace-nowrap thin-scrollbar">
+
+                                <span class="badge badge-warning" x-text="casualty.get_casualty_group.name">Group</span>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </template>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+@endsection
