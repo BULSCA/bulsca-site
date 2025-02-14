@@ -52,4 +52,10 @@ class ImageService
 
         return basename($filePath);
     }
+
+    static function delete($path)
+    {
+        Storage::delete('img/source/' . $path);
+        Storage::delete('img/cache/' . $path);
+    }
 }

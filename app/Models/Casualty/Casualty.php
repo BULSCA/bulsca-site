@@ -10,7 +10,13 @@ class Casualty extends Model
 {
     use HasFactory;
 
-    public function getCasualtyGroup() {
+    public function getCasualtyGroup()
+    {
         return $this->belongsTo(CasualtyGroup::class, 'group');
+    }
+
+    public function getImages()
+    {
+        return $this->hasMany(CasualtyImage::class, 'casualty_id');
     }
 }

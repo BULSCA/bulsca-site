@@ -8,6 +8,7 @@ use App\Models\Casualty\Casualty;
 use App\Models\Casualty\CasualtyGroup;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CasualtyController extends Controller
 {
@@ -73,11 +74,29 @@ class CasualtyController extends Controller
 
         $path = ImageService::store($request, '/casualties/' . $casualty->id, 'image', true);
 
+        $img = $casualty->getImages()->create(['path' => $path]);
+
         $imageUrl = ImageService::getUrl($path);
 
 
 
-        return response()->json(['success' => true, 'url' => $imageUrl]);
+        return response()->json(['success' => true, 'url' => $imageUrl, 'id' => $img->id]);
+    }
+
+    public function deleteImage(Casualty $casualty, Request $request)
+    {
+
+        $image = $casualty->getImages->where('id', $request->id)->first();
+
+        if ($image == null) {
+            return response()->json(['success' => false]);
+        }
+
+        ImageService::delete($image->path);
+
+        $image->delete();
+
+        return response()->json(['success' => true]);
     }
 
     public function delete(Casualty $casualty)

@@ -40,7 +40,13 @@
 
 
                 <div class="row-start-2 col-span-4" x-data="{
-                    images: [],
+                    images: {{ $casualty->getImages->map(function ($image) {
+                        return [
+                            'id' => $image->id,
+                            'preview' => App\Services\ImageService::getUrl($image->path),
+                            'state' => 'uploaded',
+                        ];
+                    }) }},
                 
                     handleImages() {
                         const files = this.$refs.images.files;
@@ -76,14 +82,33 @@
                                 showNotification('Uploaded and image')
                 
                                 image.state = 'uploaded'
+                                image.id = data.id
                                 image.preview = data.url
                             })
                         }
                     },
                 
                     deleteImage(image) {
-                        let index = this.images.indexOf(image)
-                        this.images.splice(index, 1)
+                
+                        let fd = new FormData()
+                        fd.append('id', image.id)
+                        fd.append('_method', 'DELETE')
+                        fd.append('_token', '{{ csrf_token() }}')
+                
+                        fetch('{{ route('admin.sercs.casualties.images.delete', $casualty) }}', {
+                            method: 'POST',
+                            body: fd
+                        }).then(resp => resp.json()).then(data => {
+                            if (data.success === false) {
+                                return
+                            }
+                
+                            showNotification('Deleted image')
+                
+                
+                            let index = this.images.indexOf(image)
+                            this.images.splice(index, 1)
+                        })
                     }
                 
                 
