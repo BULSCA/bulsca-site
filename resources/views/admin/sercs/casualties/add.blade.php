@@ -37,11 +37,14 @@
 
 
 
+                <p class="row-start-2 col-span-4 text-red-500 font-semibold">You can add an image gallery after creating the
+                    casualty
+                </p>
 
 
 
 
-                <div class=" row-start-2 col-span-4">
+                <div class=" row-start-3 col-span-4">
 
 
                     <div>
