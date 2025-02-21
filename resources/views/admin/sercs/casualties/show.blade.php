@@ -126,7 +126,7 @@
                             <template x-for="(image) in images">
                                 <div
                                     class="col-span-1 flex items-center justify-center overflow-hidden rounded-md aspect-video relative group ">
-                                    <img :src="image.preview" class="h-full" alt="">
+                                    <img :src="image.preview" class="w-full" alt="">
 
                                     <div x-show="image.state==='uploading'"
                                         class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center">

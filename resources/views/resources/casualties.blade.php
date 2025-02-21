@@ -88,13 +88,7 @@
     
     }" x-init="() => { parseDefaultURL() }">
 
-        <p>Below you can see and filter through our collection of SERCs. To view more information and download the SERC
-            documents simply click the relevant SERC!
-            <br><br><strong>Please note:</strong> Packs may not accurately reflect how a SERC ran on the day. <u>Last minute
-                changes often occur</u>, that are not included here. Packs are for <u>training and guidance</u> but should
-            not be used to critique writers, officials or organisers.
-        </p>
-        <br>
+
 
         <div class="flex md:flex-row flex-col md:space-x-4 relative ">
             <div class="md:min-w-56 md:w-56 w-full relative ">
@@ -132,7 +126,7 @@
                 </div>
 
 
-                <div class="w-full grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-4 flex-grow-0 items-start">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-4 gap-4 flex-grow-0 items-start">
 
 
 
@@ -144,10 +138,38 @@
 
                     <template x-for="casualty in casualties">
 
-                        <div class="border rounded-md px-3 py-4 cursor-pointer hover:border-black hover:shadow-md group"
-                            @click="loadSerc(serc)">
-                            <h5 class="mb-0 line-clamp-1 group-hover:line-clamp-none" x-text="casualty.name">Casualty Name
-                            </h5>
+                        <a :href="casualty.link" target="_blank"
+                            class="border rounded-md px-3 py-4 cursor-pointer hover:border-black hover:shadow-md group no-underline">
+
+                            <div
+                                class="flex items-center justify-center overflow-hidden rounded-md aspect-video relative group mb-2">
+                                <img :src="casualty.images[0]" class="w-full" alt="">
+                            </div>
+
+                            <div class="flex justify-between items-center mb-1">
+
+
+                                <h5 class="mb-0 line-clamp-1 group-hover:line-clamp-none" x-text="casualty.name">Casualty
+                                    Name
+                                </h5>
+
+
+                                <small class="flex items-center justify-center space-x-0 font-thin text-gray-400"
+                                    title="# Casualties"><span>3</span> <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                        <path fill-rule="evenodd"
+                                            d="M19.449 8.448 16.388 11a4.52 4.52 0 0 1 0 2.002l3.061 2.55a8.275 8.275 0 0 0 0-7.103ZM15.552 19.45 13 16.388a4.52 4.52 0 0 1-2.002 0l-2.55 3.061a8.275 8.275 0 0 0 7.103 0ZM4.55 15.552 7.612 13a4.52 4.52 0 0 1 0-2.002L4.551 8.45a8.275 8.275 0 0 0 0 7.103ZM8.448 4.55 11 7.612a4.52 4.52 0 0 1 2.002 0l2.55-3.061a8.275 8.275 0 0 0-7.103 0Zm8.657-.86a9.776 9.776 0 0 1 1.79 1.415 9.776 9.776 0 0 1 1.414 1.788 9.764 9.764 0 0 1 0 10.211 9.777 9.777 0 0 1-1.415 1.79 9.777 9.777 0 0 1-1.788 1.414 9.764 9.764 0 0 1-10.212 0 9.776 9.776 0 0 1-1.788-1.415 9.776 9.776 0 0 1-1.415-1.788 9.764 9.764 0 0 1 0-10.212 9.774 9.774 0 0 1 1.415-1.788A9.774 9.774 0 0 1 6.894 3.69a9.764 9.764 0 0 1 10.211 0ZM14.121 9.88a2.985 2.985 0 0 0-1.11-.704 3.015 3.015 0 0 0-2.022 0 2.985 2.985 0 0 0-1.11.704c-.326.325-.56.705-.704 1.11a3.015 3.015 0 0 0 0 2.022c.144.405.378.785.704 1.11.325.326.705.56 1.11.704.652.233 1.37.233 2.022 0a2.985 2.985 0 0 0 1.11-.704c.326-.325.56-.705.704-1.11a3.016 3.016 0 0 0 0-2.022 2.985 2.985 0 0 0-.704-1.11Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+
+
+                                </small>
+
+
+
+                            </div>
+
 
 
 
@@ -155,7 +177,7 @@
 
                             <div class="overflow-x-auto flex flex-row whitespace-nowrap thin-scrollbar">
 
-                                <span class="badge badge-warning" x-text="casualty.get_casualty_group.name">Group</span>
+                                <span class="badge badge-warning" x-text="casualty.group">Group</span>
 
 
 
@@ -164,7 +186,7 @@
 
 
                             </div>
-                        </div>
+                        </a>
 
                     </template>
 

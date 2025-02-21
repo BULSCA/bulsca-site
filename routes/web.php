@@ -99,6 +99,7 @@ Route::get('/resources/sercs/{serc}', [SERCController::class, 'getSerc'])->name(
 
 Route::get('/resources/casualties', [CasualtyController::class, 'publicCasualties'])->name('resources.casualties');
 Route::get('/resources/casualties/search', [CasualtyController::class, 'publicSearch'])->name('resources.casualties.search');
+Route::get('/resources/casualties/{slug}', [CasualtyController::class, 'publicView'])->where('casualty', '([a-z]*[A-Z]*)*\.[0-9]*')->name('resources.casualties.get');
 
 Route::get('/resources', [DynamicResourcePageController::class, 'index'])->name('resources');
 Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])->name('resources.page.view');

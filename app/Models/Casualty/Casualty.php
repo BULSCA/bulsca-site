@@ -37,4 +37,9 @@ class Casualty extends Model
     {
         return $this->belongsToMany(SERCTag::class, 'tagged_casualties', 'casualty_id', 'serc_tag_id');
     }
+
+    public function getSlug()
+    {
+        return str_replace(' ', '-', strtolower($this->name)) . '.' . $this->id;
+    }
 }

@@ -145,7 +145,9 @@ class CasualtyController extends Controller
         // Two queries - one for searching with no tags as its simple
 
 
-        $query = Casualty::with('getCasualtyGroup:name,id');
+        $query = Casualty::with('getCasualtyGroup:name,id')->with('getImages', function ($query) {
+            $query->limit(1);
+        });
 
         if (request('group') != 'all') {
 
@@ -160,7 +162,52 @@ class CasualtyController extends Controller
         }
 
 
+        $result = $query->orderBy('name', 'ASC')->get();
 
-        return response()->json($query->orderBy('name', 'ASC')->get());
+        $casualties = $result->map(function ($item) {
+
+            $images = $item->getImages->map(function ($image) {
+                return ImageService::getUrl($image->path);
+            });
+
+
+            if (count($images) == 0) {
+                $images = ['/storage/logo/blogo.png'];
+            }
+
+
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'group' => $item->getCasualtyGroup->name,
+                'images' => $images,
+                'link' => route('resources.casualties.get', $item->getSlug())
+            ];
+        });
+
+        return response()->json($casualties);
+    }
+
+    public function publicView(string $slug)
+    {
+
+
+        $id = explode('.', $slug)[1];
+
+        $casualty = Casualty::find($id);
+
+        if ($casualty == null) {
+            return redirect()->route('resources.casualties');
+        }
+
+        $images = $casualty->getImages->map(function ($image) {
+            return ImageService::getUrl($image->path);
+        });
+
+        if (count($images) == 0) {
+            $images = ['/storage/logo/blogo.png'];
+        }
+
+        return view('resources.casualty', ['casualty' => $casualty, 'images' => $images]);
     }
 }
