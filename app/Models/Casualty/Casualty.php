@@ -5,6 +5,7 @@ namespace App\Models\Casualty;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Casualty\CasualtyGroup;
+use App\Models\SERC\SERC;
 use App\Models\SERC\SERCTag;
 use DB;
 
@@ -41,5 +42,14 @@ class Casualty extends Model
     public function getSlug()
     {
         return str_replace(' ', '-', strtolower($this->name)) . '.' . $this->id;
+    }
+
+    public function getAssociatedSercs()
+    {
+        $sercIds = DB::select("SELECT DISTINCT ts.serc_id FROM tagged_casualties tc JOIN tagged_sercs ts ON ts.serc_tag_id=tc.serc_tag_id WHERE tc.casualty_id=?", [$this->id]);
+
+        return SERC::whereIn('id', array_map(function ($item) {
+            return $item->serc_id;
+        }, $sercIds))->get();
     }
 }
