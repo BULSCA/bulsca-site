@@ -151,7 +151,7 @@ class CasualtyController extends Controller
 
         if (request('group') != 'all') {
 
-            $groupId = CasualtyGroup::where('name', request('group'))->first()->id;
+            $groupId = CasualtyGroup::where('id', request('group'))->first()->id;
 
             $query = $query->where('group', $groupId);
         }

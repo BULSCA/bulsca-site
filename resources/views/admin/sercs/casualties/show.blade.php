@@ -172,6 +172,7 @@
                         </div>
 
                     </div>
+                    <small>Advisable to have <strong>3 images or less</strong>!</small>
 
                 </div>
 

@@ -105,7 +105,7 @@
                                 @change="searchCasualties()">
                                 <option value="all">All</option>
                                 @foreach ($filterOptions['groups'] as $group)
-                                    <option value="{{ $group->name }}">{{ $group->name }}</option>
+                                    <option value="{{ $group->id }}">{{ $group->name }}</option>
                                 @endforeach
                             </select>
                         </div>
