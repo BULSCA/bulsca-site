@@ -96,7 +96,8 @@
 
                             </div>
 
-                            <p class="mt-1 mb-2 line-clamp-3" x-text="serc.description ? serc.description : '-'">
+                            <p class="mt-1 mb-2 line-clamp-3 !text-black font-normal"
+                                x-text="serc.description ? serc.description : '-'">
                                 {{ $serc->description }}
                             </p>
 

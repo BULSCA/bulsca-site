@@ -2597,6 +2597,10 @@ html {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
+.\!text-black{
+  --tw-text-opacity: 1 !important;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1)) !important;
+}
 .underline{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
