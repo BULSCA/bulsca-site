@@ -30,28 +30,29 @@
 
     <div class="container-responsive">
 
+        @if (count($images) > 0)
+            @php
+                $cols = 'grid-cols-3';
 
-        @php
-            $cols = 'grid-cols-3';
+                if (count($images) == 1) {
+                    $cols = 'grid-cols-1';
+                } elseif (count($images) == 2) {
+                    $cols = 'grid-cols-2';
+                }
+            @endphp
 
-            if (count($images) == 1) {
-                $cols = 'grid-cols-1';
-            } elseif (count($images) == 2) {
-                $cols = 'grid-cols-2';
-            }
-        @endphp
+            <div class="grid {{ $cols }} gap-3 grid-rows-1">
 
-        <div class="grid {{ $cols }} gap-3 grid-rows-1">
+                @foreach ($images as $image)
+                    <div
+                        class="flex items-center justify-center overflow-hidden rounded-md aspect-video relative group mb-2 w-full max-h-[30vh] min-w-[33%]">
+                        <img src="{{ $image }}" class="w-full " alt="">
+                    </div>
+                @endforeach
 
-            @foreach ($images as $image)
-                <div
-                    class="flex items-center justify-center overflow-hidden rounded-md aspect-video relative group mb-2 w-full max-h-[30vh] min-w-[33%]">
-                    <img src="{{ $image }}" class="w-full " alt="">
-                </div>
-            @endforeach
-
-        </div>
-        <br>
+            </div>
+            <br>
+        @endif
         <h1>{{ $casualty->name }}</h3>
 
 

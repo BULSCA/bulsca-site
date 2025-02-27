@@ -204,9 +204,7 @@ class CasualtyController extends Controller
             return ImageService::getUrl($image->path);
         });
 
-        if (count($images) == 0) {
-            $images = ['/storage/logo/blogo.png'];
-        }
+
 
         return view('resources.casualty', ['casualty' => $casualty, 'images' => $images]);
     }
