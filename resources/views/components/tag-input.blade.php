@@ -1,9 +1,10 @@
 <div class="flex flex-col">
     <label for="tags">Tags</label>
-    <div data-tag-input="tags" data-tag-default-value="{{ $value }}" class="tag-input">
-    
+    <div data-tag-input="tags" data-tag-default-value="{{ $value }}" data-tag-allow-new="{{ $allowNew }}"
+        class="tag-input">
+
         <div class="tags">
-            
+
         </div>
         <div contenteditable="true" class="fake-input"></div>
         <input hidden data-tag-container id="tags" name="tags" type="text">
@@ -13,7 +14,7 @@
             <span>two</span>
             <span>three</span>
         </div>
-        
+
     </div>
     <small class="ml-auto">Click a tag to remove it</small>
 </div>

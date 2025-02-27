@@ -6,6 +6,8 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\GlobalNotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\SERC\CasualtyController;
+use App\Http\Controllers\SERC\CasualtyGroupController;
 use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -81,27 +83,45 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 
 
-    Route::prefix('sercs')->group(function () {
+    Route::prefix('sercs')->middleware('can:admin.sercs')->group(function () {
+        Route::prefix('casualties')->group(function () {
+
+            Route::prefix('groups')->group(function () {
+                Route::get('', [CasualtyGroupController::class, 'index'])->name('admin.sercs.casualties.groups');
+                Route::get('add', [CasualtyGroupController::class, 'add'])->name('admin.sercs.casualties.groups.add');
+                Route::post('add', [CasualtyGroupController::class, 'store'])->name('admin.sercs.casualties.groups.store');
+                Route::get('{group}', [CasualtyGroupController::class, 'show'])->name('admin.sercs.casualties.groups.show');
+                Route::post('{group}', [CasualtyGroupController::class, 'update'])->name('admin.sercs.casualties.groups.update');
+                Route::delete('{group}', [CasualtyGroupController::class, 'delete'])->name('admin.sercs.casualties.groups.delete');
+            });
+
+            Route::get('', [CasualtyController::class, 'index'])->name('admin.sercs.casualties');
+            Route::get('add', [CasualtyController::class, 'add'])->name('admin.sercs.casualties.add');
+            Route::post('add', [CasualtyController::class, 'store'])->name('admin.sercs.casualties.store');
+            Route::get('{casualty}', [CasualtyController::class, 'show'])->name('admin.sercs.casualties.show');
+            Route::post('{casualty}', [CasualtyController::class, 'update'])->name('admin.sercs.casualties.update');
+            Route::delete('{casualty}', [CasualtyController::class, 'delete'])->name('admin.sercs.casualties.delete');
+
+            Route::post('{casualty}/images', [CasualtyController::class, 'addImage'])->name('admin.sercs.casualties.images.add');
+            Route::delete('{casualty}/images', [CasualtyController::class, 'deleteImage'])->name('admin.sercs.casualties.images.delete');
+        });
+
         Route::get('', [SERCController::class, 'index'])->name('admin.sercs');
-
         Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
-
         Route::get('tags', [SERCController::class, 'listTags'])->name('admin.sercs.tags.list');
         Route::get('tags/{tag}', [SERCController::class, 'getTag'])->name('admin.sercs.tags.get');
-        Route::post('tags/{tag}', [SERCController::class, 'updateTag'])->name('admin.sercs.tags.update');
-        Route::delete('tags/{tag}', [SERCController::class, 'deleteTag'])->name('admin.sercs.tags.delete');
 
-        Route::get('add', [SERCController::class, 'add'])->name('admin.sercs.add');
-        Route::post('add', [SERCController::class, 'store'])->name('admin.sercs.store');
 
-        Route::post('resources/{serc}', [SERCController::class, 'deleteResource'])->name('admin.sercs.resource.delete');
+        Route::post('tags/{tag}', [SERCController::class, 'updateTag'])->middleware('can:admin.sercs.manage')->name('admin.sercs.tags.update');
+        Route::delete('tags/{tag}', [SERCController::class, 'deleteTag'])->middleware('can:admin.sercs.delete')->name('admin.sercs.tags.delete');
+
+        Route::get('add', [SERCController::class, 'add'])->middleware('can:admin.sercs.manage')->name('admin.sercs.add');
+        Route::post('add', [SERCController::class, 'store'])->middleware('can:admin.sercs.manage')->name('admin.sercs.store');
+
+        Route::post('resources/{serc}', [SERCController::class, 'deleteResource'])->middleware('can:admin.sercs.delete')->name('admin.sercs.resource.delete');
 
         Route::get('{serc}', [SERCController::class, 'show'])->name('admin.sercs.show');
-        Route::post('{serc}', [SERCController::class, 'update'])->name('admin.sercs.update');
-        Route::delete('{serc}', [SERCController::class, 'delete'])->name('admin.sercs.delete');
-
-        
-
-    
+        Route::post('{serc}', [SERCController::class, 'update'])->middleware('can:admin.sercs.manage')->name('admin.sercs.update');
+        Route::delete('{serc}', [SERCController::class, 'delete'])->middleware('can:admin.sercs.delete')->name('admin.sercs.delete');
     });
 });

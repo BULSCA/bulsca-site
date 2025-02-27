@@ -11,6 +11,7 @@ use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\UniversityController;
 use App\Models\Competition;
@@ -95,6 +96,11 @@ Route::get('/resources/forms', function () {
 Route::get('/resources/sercs', [SERCController::class, 'publicSERCs'])->name('resources.sercs');
 Route::get('/resources/sercs/search', [SERCController::class, 'publicSearch'])->name('resources.sercs.search');
 Route::get('/resources/sercs/{serc}', [SERCController::class, 'getSerc'])->name('resources.sercs.get');
+
+Route::get('/resources/casualties', [CasualtyController::class, 'publicCasualties'])->name('resources.casualties');
+Route::get('/resources/casualties/search', [CasualtyController::class, 'publicSearch'])->name('resources.casualties.search');
+Route::get('/resources/casualties/{slug}', [CasualtyController::class, 'publicView'])->where('casualty', '([a-z]*[A-Z]*)*\.[0-9]*')->name('resources.casualties.get');
+
 Route::get('/resources', [DynamicResourcePageController::class, 'index'])->name('resources');
 Route::get('/resources/{page}', [DynamicResourcePageController::class, 'view'])->name('resources.page.view');
 Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('view-resource');
