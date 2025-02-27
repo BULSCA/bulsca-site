@@ -50,6 +50,6 @@ class Casualty extends Model
 
         return SERC::whereIn('id', array_map(function ($item) {
             return $item->serc_id;
-        }, $sercIds))->get();
+        }, $sercIds))->orderBy('when', 'desc')->get();
     }
 }
