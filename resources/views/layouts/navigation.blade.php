@@ -192,7 +192,7 @@
 
                         <li><a href="{{ route('resources') }}">All</a></li>
                         <li><a href="{{ route('resources.sercs') }}">SERCs</a></li>
-                        <li><a href="{{ '' }}">Casualty Types</a></li>
+                        <li><a href="{{ route('resources.casualties') }}">Casualties</a></li>
 
                     </ul>
                 </div>
