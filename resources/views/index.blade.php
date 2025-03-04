@@ -79,6 +79,9 @@
                 <div class="flex flex-col items-center">
                     <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th
                         March</p>
+                        <p class="text-white 2xl:text-2xl text-xl font-semibold uppercase text-center md:text-left" id="time-container">
+                            <span id="days">0</span> Days, <span id="hours">0</span> Hours, <span id="mins">0</span> Minutes & <span id="secs">0</span> Seconds
+                        </p>
                     <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2
                         Crawley</p>
                 </div>
@@ -264,6 +267,9 @@
         srcset="">
     <div class="flex flex-col">
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th March</p>
+        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">
+            <span id="days"></span><span id="hours"></span><span id="mins"></span><span id="secs"></span>
+        </p>
         <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2 Crawley</p>
     </div>
 
@@ -301,40 +307,46 @@
     daysUntil('2023-03-18');
 </script>
 
-{{-- <script>
+ <script>
     // Set the date we're counting down to
-var countDownDate = new Date("March 2, 2024 09:30:00").getTime();
+var countDownDate = new Date("March 15, 2025 09:00:00").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
 
-  // Get today's date and time
-  var now = new Date().getTime();
+function tick() {
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+// Get today's date and time
+var now = new Date().getTime();
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
 
-  // Display the result in the element with id="demo"
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+// Display the result in the element with id="demo"
+
+
+// If the count down is finished, write some text
+if (distance < 0) {
+  clearInterval(x);
+  document.getElementById("time-container").innerHTML = 'Goodluck!'
+   document.getElementById("time-container").style.color = '#66ff00'
+   document.getElementById("time-container").classList.remove('text-white')
+} else {
   document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("mins").innerHTML = minutes;
-    document.getElementById("secs").innerHTML = seconds;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("mins").innerHTML = minutes;
+  document.getElementById("secs").innerHTML = seconds;
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("time-container").style.display = "none";
-    document.getElementById("become-live-champs").innerHTML = "Follow live!";
-    document.getElementById("become-live-champs").href = "https://live.lifesaving.events";
-  }
-}, 1000);
-</script> --}}
+}
+}
+// Update the count down every 1 second
+var x = setInterval(() => tick(), 1000);
+tick()
+</script> 
 
 
 @endsection
