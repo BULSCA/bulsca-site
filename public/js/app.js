@@ -247,16 +247,176 @@ if (elementClubMap != null) {
 
 /***/ }),
 
+/***/ "./node_modules/color-name/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/color-name/index.js ***!
+  \******************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = {
+	"aliceblue": [240, 248, 255],
+	"antiquewhite": [250, 235, 215],
+	"aqua": [0, 255, 255],
+	"aquamarine": [127, 255, 212],
+	"azure": [240, 255, 255],
+	"beige": [245, 245, 220],
+	"bisque": [255, 228, 196],
+	"black": [0, 0, 0],
+	"blanchedalmond": [255, 235, 205],
+	"blue": [0, 0, 255],
+	"blueviolet": [138, 43, 226],
+	"brown": [165, 42, 42],
+	"burlywood": [222, 184, 135],
+	"cadetblue": [95, 158, 160],
+	"chartreuse": [127, 255, 0],
+	"chocolate": [210, 105, 30],
+	"coral": [255, 127, 80],
+	"cornflowerblue": [100, 149, 237],
+	"cornsilk": [255, 248, 220],
+	"crimson": [220, 20, 60],
+	"cyan": [0, 255, 255],
+	"darkblue": [0, 0, 139],
+	"darkcyan": [0, 139, 139],
+	"darkgoldenrod": [184, 134, 11],
+	"darkgray": [169, 169, 169],
+	"darkgreen": [0, 100, 0],
+	"darkgrey": [169, 169, 169],
+	"darkkhaki": [189, 183, 107],
+	"darkmagenta": [139, 0, 139],
+	"darkolivegreen": [85, 107, 47],
+	"darkorange": [255, 140, 0],
+	"darkorchid": [153, 50, 204],
+	"darkred": [139, 0, 0],
+	"darksalmon": [233, 150, 122],
+	"darkseagreen": [143, 188, 143],
+	"darkslateblue": [72, 61, 139],
+	"darkslategray": [47, 79, 79],
+	"darkslategrey": [47, 79, 79],
+	"darkturquoise": [0, 206, 209],
+	"darkviolet": [148, 0, 211],
+	"deeppink": [255, 20, 147],
+	"deepskyblue": [0, 191, 255],
+	"dimgray": [105, 105, 105],
+	"dimgrey": [105, 105, 105],
+	"dodgerblue": [30, 144, 255],
+	"firebrick": [178, 34, 34],
+	"floralwhite": [255, 250, 240],
+	"forestgreen": [34, 139, 34],
+	"fuchsia": [255, 0, 255],
+	"gainsboro": [220, 220, 220],
+	"ghostwhite": [248, 248, 255],
+	"gold": [255, 215, 0],
+	"goldenrod": [218, 165, 32],
+	"gray": [128, 128, 128],
+	"green": [0, 128, 0],
+	"greenyellow": [173, 255, 47],
+	"grey": [128, 128, 128],
+	"honeydew": [240, 255, 240],
+	"hotpink": [255, 105, 180],
+	"indianred": [205, 92, 92],
+	"indigo": [75, 0, 130],
+	"ivory": [255, 255, 240],
+	"khaki": [240, 230, 140],
+	"lavender": [230, 230, 250],
+	"lavenderblush": [255, 240, 245],
+	"lawngreen": [124, 252, 0],
+	"lemonchiffon": [255, 250, 205],
+	"lightblue": [173, 216, 230],
+	"lightcoral": [240, 128, 128],
+	"lightcyan": [224, 255, 255],
+	"lightgoldenrodyellow": [250, 250, 210],
+	"lightgray": [211, 211, 211],
+	"lightgreen": [144, 238, 144],
+	"lightgrey": [211, 211, 211],
+	"lightpink": [255, 182, 193],
+	"lightsalmon": [255, 160, 122],
+	"lightseagreen": [32, 178, 170],
+	"lightskyblue": [135, 206, 250],
+	"lightslategray": [119, 136, 153],
+	"lightslategrey": [119, 136, 153],
+	"lightsteelblue": [176, 196, 222],
+	"lightyellow": [255, 255, 224],
+	"lime": [0, 255, 0],
+	"limegreen": [50, 205, 50],
+	"linen": [250, 240, 230],
+	"magenta": [255, 0, 255],
+	"maroon": [128, 0, 0],
+	"mediumaquamarine": [102, 205, 170],
+	"mediumblue": [0, 0, 205],
+	"mediumorchid": [186, 85, 211],
+	"mediumpurple": [147, 112, 219],
+	"mediumseagreen": [60, 179, 113],
+	"mediumslateblue": [123, 104, 238],
+	"mediumspringgreen": [0, 250, 154],
+	"mediumturquoise": [72, 209, 204],
+	"mediumvioletred": [199, 21, 133],
+	"midnightblue": [25, 25, 112],
+	"mintcream": [245, 255, 250],
+	"mistyrose": [255, 228, 225],
+	"moccasin": [255, 228, 181],
+	"navajowhite": [255, 222, 173],
+	"navy": [0, 0, 128],
+	"oldlace": [253, 245, 230],
+	"olive": [128, 128, 0],
+	"olivedrab": [107, 142, 35],
+	"orange": [255, 165, 0],
+	"orangered": [255, 69, 0],
+	"orchid": [218, 112, 214],
+	"palegoldenrod": [238, 232, 170],
+	"palegreen": [152, 251, 152],
+	"paleturquoise": [175, 238, 238],
+	"palevioletred": [219, 112, 147],
+	"papayawhip": [255, 239, 213],
+	"peachpuff": [255, 218, 185],
+	"peru": [205, 133, 63],
+	"pink": [255, 192, 203],
+	"plum": [221, 160, 221],
+	"powderblue": [176, 224, 230],
+	"purple": [128, 0, 128],
+	"rebeccapurple": [102, 51, 153],
+	"red": [255, 0, 0],
+	"rosybrown": [188, 143, 143],
+	"royalblue": [65, 105, 225],
+	"saddlebrown": [139, 69, 19],
+	"salmon": [250, 128, 114],
+	"sandybrown": [244, 164, 96],
+	"seagreen": [46, 139, 87],
+	"seashell": [255, 245, 238],
+	"sienna": [160, 82, 45],
+	"silver": [192, 192, 192],
+	"skyblue": [135, 206, 235],
+	"slateblue": [106, 90, 205],
+	"slategray": [112, 128, 144],
+	"slategrey": [112, 128, 144],
+	"snow": [255, 250, 250],
+	"springgreen": [0, 255, 127],
+	"steelblue": [70, 130, 180],
+	"tan": [210, 180, 140],
+	"teal": [0, 128, 128],
+	"thistle": [216, 191, 216],
+	"tomato": [255, 99, 71],
+	"turquoise": [64, 224, 208],
+	"violet": [238, 130, 238],
+	"wheat": [245, 222, 179],
+	"white": [255, 255, 255],
+	"whitesmoke": [245, 245, 245],
+	"yellow": [255, 255, 0],
+	"yellowgreen": [154, 205, 50]
+};
+
+
+/***/ }),
+
 /***/ "./resources/css/app.scss":
 /*!********************************!*\
   !*** ./resources/css/app.scss ***!
   \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module '@tailwindcss/typography'\nRequire stack:\n- /Users/admin/bulsca-site/tailwind.config.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at Function.resolve (node:internal/modules/helpers:145:19)\n    at _resolve (/Users/admin/bulsca-site/node_modules/jiti/dist/jiti.js:1:251148)\n    at jiti (/Users/admin/bulsca-site/node_modules/jiti/dist/jiti.js:1:253746)\n    at /Users/admin/bulsca-site/tailwind.config.js:20:15\n    at evalModule (/Users/admin/bulsca-site/node_modules/jiti/dist/jiti.js:1:256443)\n    at jiti (/Users/admin/bulsca-site/node_modules/jiti/dist/jiti.js:1:254371)\n    at /Users/admin/bulsca-site/node_modules/tailwindcss/lib/lib/load-config.js:48:30\n    at loadConfig (/Users/admin/bulsca-site/node_modules/tailwindcss/lib/lib/load-config.js:50:6)\n    at getTailwindConfig (/Users/admin/bulsca-site/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:71:116)\n    at processResult (/Users/admin/bulsca-site/node_modules/webpack/lib/NormalModule.js:761:19)\n    at /Users/admin/bulsca-site/node_modules/webpack/lib/NormalModule.js:863:5\n    at /Users/admin/bulsca-site/node_modules/loader-runner/lib/LoaderRunner.js:400:11\n    at /Users/admin/bulsca-site/node_modules/loader-runner/lib/LoaderRunner.js:252:18\n    at context.callback (/Users/admin/bulsca-site/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at Object.loader (/Users/admin/bulsca-site/node_modules/laravel-mix/node_modules/postcss-loader/dist/index.js:142:7)");
 
 /***/ }),
 
@@ -282,7 +442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var color_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! color-name */ "./node_modules/color-parse/node_modules/color-name/index.js");
+/* harmony import */ var color_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! color-name */ "./node_modules/color-name/index.js");
 /**
  * @module color-parse
  */
@@ -321,8 +481,8 @@ function parse(cstr) {
 	cstr = String(cstr).toLowerCase();
 
 	//keyword
-	if (color_name__WEBPACK_IMPORTED_MODULE_0__["default"][cstr]) {
-		parts = color_name__WEBPACK_IMPORTED_MODULE_0__["default"][cstr].slice()
+	if (color_name__WEBPACK_IMPORTED_MODULE_0__[cstr]) {
+		parts = color_name__WEBPACK_IMPORTED_MODULE_0__[cstr].slice()
 		space = 'rgb'
 	}
 
@@ -437,171 +597,6 @@ function parse(cstr) {
 		alpha
 	}
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/color-parse/node_modules/color-name/index.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/color-parse/node_modules/color-name/index.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-	aliceblue: [240, 248, 255],
-	antiquewhite: [250, 235, 215],
-	aqua: [0, 255, 255],
-	aquamarine: [127, 255, 212],
-	azure: [240, 255, 255],
-	beige: [245, 245, 220],
-	bisque: [255, 228, 196],
-	black: [0, 0, 0],
-	blanchedalmond: [255, 235, 205],
-	blue: [0, 0, 255],
-	blueviolet: [138, 43, 226],
-	brown: [165, 42, 42],
-	burlywood: [222, 184, 135],
-	cadetblue: [95, 158, 160],
-	chartreuse: [127, 255, 0],
-	chocolate: [210, 105, 30],
-	coral: [255, 127, 80],
-	cornflowerblue: [100, 149, 237],
-	cornsilk: [255, 248, 220],
-	crimson: [220, 20, 60],
-	cyan: [0, 255, 255],
-	darkblue: [0, 0, 139],
-	darkcyan: [0, 139, 139],
-	darkgoldenrod: [184, 134, 11],
-	darkgray: [169, 169, 169],
-	darkgreen: [0, 100, 0],
-	darkgrey: [169, 169, 169],
-	darkkhaki: [189, 183, 107],
-	darkmagenta: [139, 0, 139],
-	darkolivegreen: [85, 107, 47],
-	darkorange: [255, 140, 0],
-	darkorchid: [153, 50, 204],
-	darkred: [139, 0, 0],
-	darksalmon: [233, 150, 122],
-	darkseagreen: [143, 188, 143],
-	darkslateblue: [72, 61, 139],
-	darkslategray: [47, 79, 79],
-	darkslategrey: [47, 79, 79],
-	darkturquoise: [0, 206, 209],
-	darkviolet: [148, 0, 211],
-	deeppink: [255, 20, 147],
-	deepskyblue: [0, 191, 255],
-	dimgray: [105, 105, 105],
-	dimgrey: [105, 105, 105],
-	dodgerblue: [30, 144, 255],
-	firebrick: [178, 34, 34],
-	floralwhite: [255, 250, 240],
-	forestgreen: [34, 139, 34],
-	fuchsia: [255, 0, 255],
-	gainsboro: [220, 220, 220],
-	ghostwhite: [248, 248, 255],
-	gold: [255, 215, 0],
-	goldenrod: [218, 165, 32],
-	gray: [128, 128, 128],
-	green: [0, 128, 0],
-	greenyellow: [173, 255, 47],
-	grey: [128, 128, 128],
-	honeydew: [240, 255, 240],
-	hotpink: [255, 105, 180],
-	indianred: [205, 92, 92],
-	indigo: [75, 0, 130],
-	ivory: [255, 255, 240],
-	khaki: [240, 230, 140],
-	lavender: [230, 230, 250],
-	lavenderblush: [255, 240, 245],
-	lawngreen: [124, 252, 0],
-	lemonchiffon: [255, 250, 205],
-	lightblue: [173, 216, 230],
-	lightcoral: [240, 128, 128],
-	lightcyan: [224, 255, 255],
-	lightgoldenrodyellow: [250, 250, 210],
-	lightgray: [211, 211, 211],
-	lightgreen: [144, 238, 144],
-	lightgrey: [211, 211, 211],
-	lightpink: [255, 182, 193],
-	lightsalmon: [255, 160, 122],
-	lightseagreen: [32, 178, 170],
-	lightskyblue: [135, 206, 250],
-	lightslategray: [119, 136, 153],
-	lightslategrey: [119, 136, 153],
-	lightsteelblue: [176, 196, 222],
-	lightyellow: [255, 255, 224],
-	lime: [0, 255, 0],
-	limegreen: [50, 205, 50],
-	linen: [250, 240, 230],
-	magenta: [255, 0, 255],
-	maroon: [128, 0, 0],
-	mediumaquamarine: [102, 205, 170],
-	mediumblue: [0, 0, 205],
-	mediumorchid: [186, 85, 211],
-	mediumpurple: [147, 112, 219],
-	mediumseagreen: [60, 179, 113],
-	mediumslateblue: [123, 104, 238],
-	mediumspringgreen: [0, 250, 154],
-	mediumturquoise: [72, 209, 204],
-	mediumvioletred: [199, 21, 133],
-	midnightblue: [25, 25, 112],
-	mintcream: [245, 255, 250],
-	mistyrose: [255, 228, 225],
-	moccasin: [255, 228, 181],
-	navajowhite: [255, 222, 173],
-	navy: [0, 0, 128],
-	oldlace: [253, 245, 230],
-	olive: [128, 128, 0],
-	olivedrab: [107, 142, 35],
-	orange: [255, 165, 0],
-	orangered: [255, 69, 0],
-	orchid: [218, 112, 214],
-	palegoldenrod: [238, 232, 170],
-	palegreen: [152, 251, 152],
-	paleturquoise: [175, 238, 238],
-	palevioletred: [219, 112, 147],
-	papayawhip: [255, 239, 213],
-	peachpuff: [255, 218, 185],
-	peru: [205, 133, 63],
-	pink: [255, 192, 203],
-	plum: [221, 160, 221],
-	powderblue: [176, 224, 230],
-	purple: [128, 0, 128],
-	rebeccapurple: [102, 51, 153],
-	red: [255, 0, 0],
-	rosybrown: [188, 143, 143],
-	royalblue: [65, 105, 225],
-	saddlebrown: [139, 69, 19],
-	salmon: [250, 128, 114],
-	sandybrown: [244, 164, 96],
-	seagreen: [46, 139, 87],
-	seashell: [255, 245, 238],
-	sienna: [160, 82, 45],
-	silver: [192, 192, 192],
-	skyblue: [135, 206, 235],
-	slateblue: [106, 90, 205],
-	slategray: [112, 128, 144],
-	slategrey: [112, 128, 144],
-	snow: [255, 250, 250],
-	springgreen: [0, 255, 127],
-	steelblue: [70, 130, 180],
-	tan: [210, 180, 140],
-	teal: [0, 128, 128],
-	thistle: [216, 191, 216],
-	tomato: [255, 99, 71],
-	turquoise: [64, 224, 208],
-	violet: [238, 130, 238],
-	wheat: [245, 222, 179],
-	white: [255, 255, 255],
-	whitesmoke: [245, 245, 245],
-	yellow: [255, 255, 0],
-	yellowgreen: [154, 205, 50]
-});
 
 
 /***/ }),
@@ -50312,42 +50307,7 @@ const VERSION = '8.2.0';
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -50376,68 +50336,13 @@ const VERSION = '8.2.0';
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.scss")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	__webpack_require__("./resources/js/app.js");
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/css/app.scss");
 /******/ 	
 /******/ })()
 ;
