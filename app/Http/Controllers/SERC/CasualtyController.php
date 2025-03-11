@@ -166,9 +166,12 @@ class CasualtyController extends Controller
 
         $casualties = $result->map(function ($item) {
 
-            $images = $item->getImages->map(function ($image) {
+
+
+            $images = $item->getImages()->get()->map(function ($image) {
                 return ImageService::getUrl($image->path);
             });
+
 
 
             if (count($images) == 0) {
