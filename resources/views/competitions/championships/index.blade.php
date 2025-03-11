@@ -36,7 +36,12 @@
             </div>
 
         </div>
+        <br>
+
+        <a href="#previous" class="text-right float-right">Looking for previous years?</a>
+
     </div>
+
 
     <div class="container-responsive">
         <h2 class="header">The Championships</h2>
@@ -110,5 +115,21 @@
 
 
 
+    </div>
+
+
+    <div class="container-responsive" id="previous">
+        <div class="image-link-group">
+
+            <div class=" image-link "
+                style="background-image: url(/storage/photos/champs/2024/champs_2024_dark.png); background-size: contain">
+                <a href="{{ route('champs.2024') }}" class=" ">Champs 2024</a>
+            </div>
+
+            <div class=" image-link " style="">
+                <a href="{{ route('champs.2023') }}#entries" class=" ">Champs 2023</a>
+            </div>
+
+        </div>
     </div>
 @endsection

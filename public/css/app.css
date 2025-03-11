@@ -1404,6 +1404,9 @@ html {
 .row-start-5{
   grid-row-start: 5;
 }
+.float-right{
+  float: right;
+}
 .m-2{
   margin: 0.5rem;
 }
@@ -2505,6 +2508,10 @@ html {
 .tracking-widest{
   letter-spacing: 0.1em;
 }
+.\!text-black{
+  --tw-text-opacity: 1 !important;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1)) !important;
+}
 .\!text-white{
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
@@ -2596,10 +2603,6 @@ html {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-.\!text-black{
-  --tw-text-opacity: 1 !important;
-  color: rgb(0 0 0 / var(--tw-text-opacity, 1)) !important;
 }
 .underline{
   -webkit-text-decoration-line: underline;
