@@ -92,6 +92,12 @@
                 </a>
             </div> --}}
 
+            <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
+                style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                    alt="">
+            </div>
+
 
             <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
