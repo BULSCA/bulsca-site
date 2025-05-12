@@ -248,7 +248,7 @@
 
                 @foreach ($odata['comps'] as $comp)
                     <td>
-                        @if ($row['positionPoints'][$comp] != 0)
+                        @if (array_key_exists($comp, $row['positionPoints']) && $row['positionPoints'][$comp] != 0)
                             {{ max(11 - $row['positionPoints'][$comp], 1) }} (@th($row['positionPoints'][$comp]))
                         @endif
                     </td>

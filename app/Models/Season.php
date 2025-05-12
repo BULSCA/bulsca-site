@@ -106,6 +106,23 @@ class Season extends Model
 
     private function cmp($a, $b)
     {
+
+        // Handle ties
+        if ($a['points'] == $b['points']) {
+            $aPos = collect($a['positionPoints'])->countBy();
+            $bPos = collect($b['positionPoints'])->countBy();
+
+            foreach ([1,2,3,4,5,6,8,9,10] as $position) {
+                $aC = $aPos[$position] ?? 10;
+                $bC = $bPos[$position] ?? 10;
+
+                if ($aC !== $bC) {
+                    return $aC < $bC;
+                }
+            }
+
+        }
+
         return $a['points'] > $b['points'] ? -1 : 1;
     }
 
@@ -120,7 +137,14 @@ class Season extends Model
             $compOrder = [];
 
             foreach ($compOrderData as $cod) {
-                array_push($compOrder, $cod->hostUni->name);
+
+                if (in_array($cod->hostUni->name, $compOrder)) {
+                    array_push($compOrder, $cod->hostUni->name . '_2');
+                } else {
+                    array_push($compOrder, $cod->hostUni->name);
+                }
+
+                
             }
 
             $data = DB::select(DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0,GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name"), [$this->id, $league]);
@@ -138,6 +162,12 @@ class Season extends Model
 
                 $points += $row->points;
 
+
+                
+
+                if (array_key_exists($row->host, $positionPoints)) {
+                    $row->host = $row->host . "_2";
+                }
 
                 $positionPoints[$row->host] = $row->pos;
 
