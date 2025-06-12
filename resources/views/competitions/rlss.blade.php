@@ -12,8 +12,8 @@ RLSS Competitions |
     <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
       <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
       <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-        <h2 class="md:text-6xl text-4xl font-bold text-white">Competitions</h2>
-        <p class="text-white">At the heart of BULSCA</p>
+        <h2 class="md:text-6xl text-4xl font-bold text-white">RLSS Competitions</h2>
+        <p class="text-white">More opportunities to do lifesaving!</p>
       </div>
     </div>
 
