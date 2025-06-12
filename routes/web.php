@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\CompetitionSignUpController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\DashboardController;
@@ -72,9 +73,8 @@ Route::get('/competitions/rlss', function () {
 
 Route::get('/competitions/register', [CompetitionSignUpController::class, 'create'])->name('competitions.register');
 Route::post('/competitions/register', [CompetitionSignUpController::class, 'store'])->name('competitions.register.store');
-Route::get('/competitions/register/success', function () {
-    return view('competitions.register-success');
-})->name('competitions.register.success');
+Route::get('/competitions/register/success', [CompetitionSignUpController::class, 'success'])->name('competitions.register.success');
+
 
 
 Route::Get('/get-involved', function () {
