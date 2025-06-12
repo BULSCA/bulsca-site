@@ -22,3 +22,16 @@ RLSS Competitions |
 
 </div>
 <x-alert-banner />
+
+{{-- External Link Section --}}
+<div class="container mx-auto mt-6 text-center">
+    <p class="text-gray-600 text-lg mb-4">
+        Clicking the button below will take you to an external site.
+    </p>
+    <a href="https://www.rlss.org.uk/nationals-regional-heats" target="_blank" 
+       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+        Go to 'RLSS Regional Heats'
+    </a>
+</div>
+
+@endsection
