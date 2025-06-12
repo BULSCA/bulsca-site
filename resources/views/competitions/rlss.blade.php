@@ -38,8 +38,7 @@ RLSS Competitions |
 <div class=" container-responsive ">
   <div class=" image-link-group">
     <div class=" image-link " style="">
-      <a href="{{ route('league') }}" class=" ">{{ $season->name }}</a>
-    <a href="https://www.rlss.org.uk/nationals-regional-heats" target="_blank"> Go to 'RLSS Regional Heats'</a>
+      <a href="https://www.rlss.org.uk/nationals-regional-heats" target="_blank"> Go to 'RLSS Regional Heats'</a>
     </div>
   </div>
 </div>
