@@ -67,7 +67,7 @@ Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeas
 Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous'])->name('league.previous');
 
 Route::get('/competitions/rlss', function () {
-    return view('competitions.rlss', ['season' => Season::current()]);
+    return view('competitions.rlss');
 })->name('rlss-comps');
 
 Route::Get('/get-involved', function () {
