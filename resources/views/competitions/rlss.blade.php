@@ -24,14 +24,23 @@ RLSS Competitions |
 <x-alert-banner />
 
 {{-- External Link Section --}}
-<div class="container mx-auto mt-6 text-center">
-    <p class="text-gray-600 text-lg mb-4">
-        Clicking the button below will take you to an external site.
+<div class="container-boast">
+  <div>
+    <h1 class="header-white header header-bold uppercase mb-2">Whats different about an RLSS competition? </h1>
+    <p class="text-white">
+        RLSS competitions are run by the Royal Life Saving Society UK and are open to all lifesavers, not just BULSCA members.  These competitions are a great way to gain experience, improve your skills, and meet other lifesavers from different clubs and regions.
     </p>
-    <a href="https://www.rlss.org.uk/nationals-regional-heats" target="_blank" 
-       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-        Go to 'RLSS Regional Heats'
-    </a>
+  </div>
+
+
 </div>
 
+<div class=" container-responsive ">
+  <div class=" image-link-group">
+    <div class=" image-link " style="">
+      <a href="{{ route('league') }}" class=" ">{{ $season->name }}</a>
+    <a href="https://www.rlss.org.uk/nationals-regional-heats" target="_blank"> Go to 'RLSS Regional Heats'</a>
+    </div>
+  </div>
+</div>
 @endsection
