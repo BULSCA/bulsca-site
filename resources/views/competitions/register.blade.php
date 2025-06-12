@@ -1,6 +1,18 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
+
+<div class="container-boast">
+  <div>
+    <h1 class="header-white header header-bold uppercase mb-2">Registration bage </h1>
+    <p class="text-white">
+      page info...
+    </p>
+  </div>
+
+
+</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

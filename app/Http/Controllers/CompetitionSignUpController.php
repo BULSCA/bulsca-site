@@ -7,22 +7,13 @@ use App\Models\CompetitionRegistration;
 
 class CompetitionSignUpController extends Controller
 {
-    /**
-     * Display the competition sign-up form.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function create()
     {
         return view('competitions.register');
     }
 
-    /**
-     * Handle the competition sign-up form submission.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
