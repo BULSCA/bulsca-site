@@ -70,6 +70,13 @@ Route::get('/competitions/rlss', function () {
     return view('competitions.rlss');
 })->name('rlss-comps');
 
+Route::get('/competitions/register', [CompetitionSignUpController::class, 'create'])->name('competitions.register');
+Route::post('/competitions/register', [CompetitionSignUpController::class, 'store'])->name('competitions.register.store');
+Route::get('/competitions/register/success', function () {
+    return view('competitions.register-success');
+})->name('competitions.register.success');
+
+
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
