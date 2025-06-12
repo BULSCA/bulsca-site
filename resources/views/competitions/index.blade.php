@@ -38,12 +38,11 @@ Competitions |
     <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">
       <a href="{{ route('champs') }}" class="">Champs {{ $season->to->format('Y') }}</a>
     </div>
-
-
-  </div>
-  <br>
-  <div class="image-link bulsca" style="">
-    <a href="{{ route('league.previous') }}">Previous Leagues</a>
+    <div class="image-link bulsca" style="">
+      <a href="{{ route('league.previous') }}">Previous Leagues</a>
+    </div>
+    <div class="image-link bulsca" style="">
+      <a href="{{ route('rlss-comps') }}">RLSS Comps</a>
   </div>
 </div>
 
