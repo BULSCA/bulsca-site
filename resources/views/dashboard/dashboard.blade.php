@@ -73,12 +73,39 @@
                         Socials</a>
 
             </div>
+            <hr class="my-5">
         @endif
 
-        <hr class="my-5">
+
+        <h3>
+            Upcoming Competitions
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
+            @forelse ($upcoming as $comp)
+                <div class="rounded-lg  border overflow-hidden  flex justify-between items-center ">
+                    <div class="flex flex-col m-4">
+                        <h4>
+                            {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
+                        </h4>
+                        <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
+                    </div>
+
+
+                    <a href="{{ route('lc-view', $comp->id) }}"
+                        class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
+                        View
+                    </a>
+
+                </div>
+            @empty
+                <p>There are no upcoming competitions!</p>
+            @endforelse
+        </div>
+
 
         @if (auth()->user()->getHomeUni() &&
                 auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
+            <hr class="my-5">
             <h3 class="">
                 Your Competitions
             </h3>
@@ -105,34 +132,7 @@
                 @endforelse
             </div>
 
-
-            <hr class="my-5">
         @endif
-
-        <h3>
-            Upcoming Competitions
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
-            @forelse ($upcoming as $comp)
-                <div class="rounded-lg  border overflow-hidden  flex justify-between items-center ">
-                    <div class="flex flex-col m-4">
-                        <h4>
-                            {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
-                        </h4>
-                        <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
-                    </div>
-
-
-                    <a href="{{ route('lc-view', $comp->id) }}"
-                        class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
-                        View
-                    </a>
-
-                </div>
-            @empty
-                <p>There are no upcoming competitions!</p>
-            @endforelse
-        </div>
     </div>
 
 

@@ -27,15 +27,13 @@
             @endif
         </div>
 
-
+        <hr class="my-5">
 
         <div class=" md:space-x-3 md:flex-row flex flex-col justify-center md:justify-start">
-            <a href="{{ $info->form_entry }}" target="_blank" rel="noopener noreferrer"
-                class="btn btn-thinner inline-flex items-center mt-2">Entry Form <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg></a>
+            @if (auth()->user()->getHomeUni() &&
+                    auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
+                <a href="{{ route('lc-entry-create', $comp->id) }}" class="btn btn-thinner inline-flex items-center mt-2">Manage Teams</a>
+            @endif
             <a href="{{ $info->form_judges }}" target="_blank" rel="noopener noreferrer"
                 class="btn btn-thinner inline-flex items-center mt-2">Judges Form <svg xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -56,7 +54,7 @@
                 {{ date('d/m/Y @ h:i A', strtotime($info->getTimetableTime('timetable_entry_close'))) }}</small>
         </div>
 
-
+        <hr class="my-5">
 
         <div class="grid-4">
             <div class="group">

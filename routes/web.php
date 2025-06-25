@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\CompetitionEntryController;
 use App\Http\Controllers\CompetitionSignUpController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
@@ -70,11 +71,6 @@ Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous
 Route::get('/competitions/rlss', function () {
     return view('competitions.rlss');
 })->name('rlss-comps');
-
-Route::get('/competitions/register', [CompetitionSignUpController::class, 'create'])->name('competitions.register');
-Route::post('/competitions/register', [CompetitionSignUpController::class, 'store'])->name('competitions.register.store');
-Route::get('/competitions/register/success', [CompetitionSignUpController::class, 'success'])->name('competitions.register.success');
-
 
 
 Route::Get('/get-involved', function () {
@@ -177,6 +173,24 @@ Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController:
 Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->middleware(['auth'])->name('lc-result-remove');
 Route::post('/competitions/{cid}/manage/upload-pack', [CompetitionController::class, 'packUpload'])->middleware(['auth'])->name('lc-pack-upload');
 Route::get('/competitions/{cid}/manage/remove-pack', [CompetitionController::class, 'packRemove'])->middleware(['auth'])->name('lc-pack-remove');
+
+// Competition Entry Routes
+Route::get('/competitions/{cid}/entry', [CompetitionEntryController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('lc-entry-create');
+
+Route::post('/competitions/{cid}/entry', [CompetitionEntryController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('lc-entry-store');
+
+Route::get('/competitions/{cid}/entry/edit', [CompetitionEntryController::class, 'edit'])
+    ->middleware(['auth'])
+    ->name('lc-entry-edit');
+
+Route::put('/competitions/{cid}/entry/update', [CompetitionEntryController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('lc-entry-update');
+
 
 Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
 Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(['auth'])->name('image.ck-upload');

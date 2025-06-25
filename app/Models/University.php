@@ -46,4 +46,9 @@ class University extends Model
     {
         return Str::lower($this->name) . "." . $this->id;
     }
+
+    public function competitionEntries()
+    {
+        return $this->hasMany(CompetitionEntry::class);
+    }
 }
