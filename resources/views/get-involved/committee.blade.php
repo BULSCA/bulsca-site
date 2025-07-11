@@ -17,7 +17,7 @@
                 <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
                     <h2 class="md:text-6xl text-4xl font-bold text-white">Committee</h2>
-                    <p class="text-white"></p>
+                    <p class="font-bold text-white">2024-2025</p>
                 </div>
             </div>
 
