@@ -6,6 +6,7 @@ use App\Http\Requests\CreateNewCompetition;
 use App\Http\Requests\ManageCompetitionRequest;
 use App\Models\Competition;
 use App\Models\CompetitionInfo;
+use App\Models\CompetitionSignup;
 use App\Models\ResultType;
 use App\Models\Season;
 use Illuminate\Http\Request;
@@ -14,9 +15,6 @@ use Carbon\Carbon;
 
 class CompetitionController extends Controller
 {
-    //
-
-
     public function view($cid)
     {
 
@@ -70,6 +68,30 @@ class CompetitionController extends Controller
 
         return view('dashboard.competitions.manage', ['comp' => $lc]);
     }
+
+    public function signups($cid)
+    {
+        $arr = explode(".", $cid);
+        $id = $arr[count($arr) - 1];
+
+        $lc = Competition::find($id)->load('hostUni', 'currentSeason');
+
+        if (!$lc->hostUni->currentUserIsClubAdmin()) {
+            return redirect()->route('lc-view', $cid);
+        }
+    
+        // Fetch all signups with user details
+        $signups = CompetitionSignup::where('competition_id', $comp->id)
+            ->with('user') // Eager load user details
+            ->get();
+    
+        // You might want to pass this to a view
+        return view('dashboard.competitions.signups-dashboard', [
+            'competition' => $comp,
+            'signups' => $signups
+        ]);
+    }
+    
 
     public function resultsUpload(Request $request, $cid)
     {
@@ -156,9 +178,6 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-
-
-
     public function update(ManageCompetitionRequest $request, Competition $cid)
     {
         $comp = $cid;
@@ -208,10 +227,6 @@ class CompetitionController extends Controller
 
         return redirect()->back();
     }
-
-
-
-
 
     public function adminUpdate(Request $request, Competition $competition)
     {

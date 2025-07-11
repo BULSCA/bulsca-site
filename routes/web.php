@@ -171,6 +171,12 @@ Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::
 Route::post('/competitions/{cid}/manage/upload-pack', [CompetitionController::class, 'packUpload'])->middleware(['auth'])->name('lc-pack-upload');
 Route::get('/competitions/{cid}/manage/remove-pack', [CompetitionController::class, 'packRemove'])->middleware(['auth'])->name('lc-pack-remove');
 
+Route::get('/competitions/{cid}/signups', [CompetitionController::class, 'signups'])->name('lc-signups');
+Route::get('/competitions/{cid}/signup', [CompetitionSignupController::class, 'view'])->middleware(['auth'])->name('su-view');
+Route::get('/competitions/{cid}/signup/manage', [CompetitionSignupController::class, 'manage'])->middleware(['auth'])->name('su-manage');
+Route::post('/competitions/{cid}/signup/manage', [CompetitionSignupController::class, 'update'])->middleware(['auth'])->name('su-manage-update');
+
+
 Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
 Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(['auth'])->name('image.ck-upload');
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
