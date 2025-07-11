@@ -15,7 +15,8 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard', [
             'myCompetitions' => CompetitionService::checkCompetitionsForAlerts(CompetitionService::myCompetitions(false)),
-            'upcoming' => CompetitionService::upcoming()
+            'upcoming' => CompetitionService::upcoming(),
+            'activeSignupCompetitions' => CompetitionService::activeSignupCompetitions()
         ]);
     }
 }

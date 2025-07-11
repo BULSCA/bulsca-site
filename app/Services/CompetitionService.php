@@ -26,6 +26,11 @@ class CompetitionService {
         return Competition::where('when', '>=', now())->orderBy('when')->get();
     }
 
+    static function activeSignupCompetitions() {
+        return Competition::where('signup_active', true)->get();
+        // not sure if best method?  11/07/2025
+    }
+
     static function checkCompetitionsForAlerts($competitions) {
 
 

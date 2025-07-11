@@ -14,7 +14,8 @@ class Competition extends Model
 
     protected $casts = [
         'when' => 'datetime',
-        'status' => CompetitionStatus::class
+        'status' => CompetitionStatus::class,
+        'signup_status' => 'boolean'
     ];
 
     public function hostUni()

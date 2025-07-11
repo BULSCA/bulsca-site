@@ -14,7 +14,19 @@ use Carbon\Carbon;
 
 class CompetitionController extends Controller
 {
-    //
+    //* Temporary section for adding signup functionality, should be sorted into logical order with other functions later *//
+    
+    public function toggleSignupStatus(Competition $cid)
+    {
+        $comp = $cid;
+
+        $comp->signup_active = !$comp->signup_active;
+        $comp->save();
+    
+        return redirect()->back()->with('success', 'Signup status updated');
+    }
+    
+    //* Temporary section for adding signup functionality, should be sorted into logical order with other functions later *//
 
 
     public function view($cid)
@@ -156,9 +168,6 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-
-
-
     public function update(ManageCompetitionRequest $request, Competition $cid)
     {
         $comp = $cid;
@@ -208,10 +217,6 @@ class CompetitionController extends Controller
 
         return redirect()->back();
     }
-
-
-
-
 
     public function adminUpdate(Request $request, Competition $competition)
     {

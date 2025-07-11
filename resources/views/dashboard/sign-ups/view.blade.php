@@ -1,7 +1,8 @@
 @extends('layouts.dashlayout')
 
 @section('title')
-    Dashboard |
+    Signup dashboard |
+    <?php // {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }} | Competitions | ?>
 @endsection
 
 @section('nav-extra')
@@ -73,9 +74,9 @@
                         Socials</a>
 
             </div>
-
-            <hr class="my-5">
         @endif
+
+        <hr class="my-5">
 
         <h3>
             Upcoming Competitions
@@ -88,73 +89,24 @@
                             {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
                         </h4>
                         <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
-                        <small class="-mt-2">
-                            @if ($comp->signup_active)
-                                <span class="text-bulsca_red text-base">Signup now open!</span>
-                            @endif
-                        </small>
-
                     </div>
-                    <?php /*
-                    @if ($comp->signup_active)
-                        <a href="{{ route('lc-view', $comp->id) }}"
-                            class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
-                            View & Signup!
-                        </a>
-                        @else
-                        <a href="{{ route('lc-view', $comp->id) }}"
-                            class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
-                            View
-                        </a>
-                    @endif
-                    */ ?>
+
+
                     <a href="{{ route('lc-view', $comp->id) }}"
                         class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
-                        @if ($comp->signup_active)
-                            View & Signup
-                            @else
-                            View
-                        @endif
-                    </a>                    
+                        View
+                    </a>
+
                 </div>
             @empty
                 <p>There are no upcoming competitions!</p>
             @endforelse
         </div>
-
-
-    @if (auth()->user()->getHomeUni() &&
-                auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
-            <hr class="my-5">  <?php // horizontal line rule for option section ?>
-            <h3 class="">
-                Your Competitions
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
-                @forelse ($myCompetitions as $comp)
-                    <div class="relative rounded-lg  border   flex justify-between items-center ">
-
-                        <div class="flex flex-col m-4">
-                            <h4>
-                                {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
-                            </h4>
-                            <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
-                        </div>
-
-
-                        <a href="{{ route('lc-manage', $comp->id) }}"
-                            class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center rounded-r-md ">
-                            Manage
-                        </a>
-
-                    </div>
-                @empty
-                    <p>You aren't hosting any competitions!</p>
-                @endforelse
-            </div>
-        @endif
-    
-    
     </div>
+
+
+
+
 
 
 

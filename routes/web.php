@@ -170,6 +170,8 @@ Route::post('/competitions/{cid}/manage/upload-results', [CompetitionController:
 Route::get('/competitions/{cid}/manage/remove-results', [CompetitionController::class, 'resultsRemove'])->middleware(['auth'])->name('lc-result-remove');
 Route::post('/competitions/{cid}/manage/upload-pack', [CompetitionController::class, 'packUpload'])->middleware(['auth'])->name('lc-pack-upload');
 Route::get('/competitions/{cid}/manage/remove-pack', [CompetitionController::class, 'packRemove'])->middleware(['auth'])->name('lc-pack-remove');
+Route::put('/competitions/{cid}/manage/toggle-signup', [CompetitionController::class, 'toggleSignupStatus'])->middleware(['auth'])->name('lc-toggle-signup');
+
 
 Route::post('/img/upload', [ImageController::class, 'upload'])->middleware(['auth', 'role:admin|super_admin'])->name('image.upload');
 Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(['auth'])->name('image.ck-upload');

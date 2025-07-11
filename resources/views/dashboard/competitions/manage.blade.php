@@ -35,10 +35,20 @@ nav-scrolled
   </div>
   <br>
 
+  <?php // signup toggle feature implementing 11/07/2025 ?>
+  <br>
+  <form action="{{ route('lc-toggle-signup', ['cid'=> $comp->id]) }}" method="post">
+      @csrf
+      @method('PUT')
+      <button type="submit" class="btn {{ $comp->signup_active ? 'btn-success' : 'btn-danger' }}">
+          {{ $comp->signup_active ? 'Signup Open' : 'Signup Closed' }}
+      </button>
+  </form>
+  <br>
+
+
   <form action="{{ route('lc-manage-update', ['cid' => $comp->id]) }}" method="post" class="flex flex-col">
-
-
-    @csrf
+      @csrf
 
     <section>
       <h4>Forms</h4>
