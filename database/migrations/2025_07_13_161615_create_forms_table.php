@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            $table->string('competition');
-            $table->date('close_date')->nullable();
+            //$table->string('competition');
+            //$table->date('close_date')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 // app/Http/Controllers/Form/BaseFormController.php
 namespace App\Http\Controllers\Form\Form;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;

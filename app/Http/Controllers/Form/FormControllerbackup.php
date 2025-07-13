@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Form;
 
+use App\Http\Controllers\Controller;
 use App\Models\Form\Form;
 
 class FormController extends BaseFormController

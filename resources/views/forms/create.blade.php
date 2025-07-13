@@ -1,19 +1,31 @@
-@extends('layouts.app')
+@extends('layouts.dashlayout')
+
+@section('title')
+    Signup dashboard |
+@endsection
+
+@section('nav-extra')
+    nav-scrolled
+@endsection
+
+@section('content')
 
 @section('content')
 <div class="container">
     <h1>Create New Form</h1>
-    <form action="{{ route('forms.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="title">Form Title</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-        <div class="form-group">
-            <label for="description">Description (Optional)</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Create Form</button>
-    </form>
 </div>
+
+{{-- resources/views/forms/create.blade.php --}}
+<form method="POST" action="{{ route('forms.store') }}">
+    @csrf
+    <input type="text" name="field1">
+    <button type="submit">Submit</button>
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+</form>
+
 @endsection
