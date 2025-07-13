@@ -1,19 +1,36 @@
 <?php
-
 namespace App\Models\Form;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class FormQuestionsAnswers extends Model
+class FormQuestionAnswer extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'form_response_id',
+        'form_question_id',
+        'answer_text',
+        'answer_type',
+        'answer_options',
+        'is_edited',
+        'edited_at'
+    ];
 
-    /* protected $fillable = ['uni', 'comp', 'league', 'pos'];
+    protected $casts = [
+        'answer_options' => 'array',
+        'is_edited' => 'boolean',
+        'edited_at' => 'datetime'
+    ];
 
-    public function competition()
+    // Relationship with FormResponse
+    public function response(): BelongsTo
     {
-        return $this->belongsTo(Competition::class, 'comp');
+        return $this->belongsTo(FormResponse::class);
     }
-    */
+
+    // Relationship with FormQuestion
+    public function question(): BelongsTo
+    {
+        return $this->belongsTo(FormQuestion::class);
+    }
 }

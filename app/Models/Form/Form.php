@@ -1,19 +1,12 @@
 <?php
-
+// app/Models/Form/Form.php
 namespace App\Models\Form;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Form extends Model
+class Form extends BaseForm
 {
-    use HasFactory;
-
-    /* protected $fillable = ['uni', 'comp', 'league', 'pos'];
-
-    public function competition()
+    // Concrete implementation of abstract method
+    public function getFormType(): string
     {
-        return $this->belongsTo(Competition::class, 'comp');
+        return 'generic';
     }
-    */
 }

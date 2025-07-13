@@ -63,7 +63,8 @@ Route::get('/competitions/championships/2025', function () {
 })->name('champs.2025');
 
 Route::get('/competitions/league', [SeasonController::class, 'currentSeason'])->name('league');
-Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');
+Route::get('/competitions/league/{
+sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');
 Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous'])->name('league.previous');
 
 Route::get('/competitions/rlss', function () {
@@ -178,6 +179,20 @@ Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
+
+
+//-----Form testing-----//
+Route::get('/forms/create', [FormController::class, 'create'])->name('forms.create');
+Route::post('/forms', [FormController::class, 'store'])->name('forms.store');
+
+// In routes/web.php
+Route::get('/forms/{form}/edit-questions', [FormController::class, 'editQuestions'])
+    ->name('forms.edit-questions');
+Route::post('/forms/{form}/questions', [FormController::class, 'storeQuestion'])
+    ->name('forms.questions.store');
+
+//-----Form testing-----//
+
 
 
 require __DIR__ . '/auth.php';
