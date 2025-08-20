@@ -13,6 +13,7 @@
         "backpack/permissionmanager": "^6.0",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
+        "iatstuti/laravel-cascade-soft-deletes": "^4.2",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",

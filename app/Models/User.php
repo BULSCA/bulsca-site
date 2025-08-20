@@ -11,10 +11,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, CrudTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, CrudTrait, SoftDeletes, CascadeSoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    protected $cascadeDeletes = [];
+
 
     /**
      * The attributes that are mass assignable.
@@ -46,16 +53,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function getHomeUni()
     {
         return University::find(DB::table('user_universities')->where('user', $this->id)->value('uni'));
     }
 
-
-
     public function isUniAdmin($uni)
     {
         return (bool) DB::table('user_universities')->where('user', $this->id)->where('uni', $uni)->value('admin');
+    }
+
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
+    public function collaboratedForms()
+    {
+        return $this->belongsToMany(Form::class, 'form_collaborators', 'user_id', 'form_id')
+            ->withTimestamps();
+    }
+
+    public function isFormCollaborator($form)
+    {
+        return !is_null($this->collaboratedForms()->find($form));
     }
 }
