@@ -1,18 +1,46 @@
-@section('title', 'My Forms')
+@extends('layouts.dashlayout')
 
-@extends('layouts.app')
+@section('title')
+    Forms |
+@endsection
+
+@section('nav-extra')
+    nav-scrolled
+@endsection
 
 @section('content')
 
-    <div class="panel panel-flat border-left-xlg border-left-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title text-semibold">My Forms</h4>
-            <div class="heading-elements">
-                <a href="{{ route('forms.create') }}" class="btn btn-success heading-btn">Create a Form</a>
-            </div>
+
+
+<div class="container-responsive">
+    <div class="flex items-center ">
+        <div class="flex flex-col">
+            <h2 class="" style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Hello</span></h2>
+            <h2 class="   " style='margin-bottom: -.25em !important'><span
+                    class="text-bulsca_red font-bold">{{ auth()->user()->name }}</span></h2>
+            <small class="">
+                @if (auth()->user()->getHomeUni())
+                    Associated with {{ auth()->user()->getHomeUni()->name }} University
+                    @if (auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
+                        <small>(Admin)</small>
+                    @endif
+                @else
+                    No Associated University!
+                @endif
+            </small>
         </div>
+        <a href="{{ route('forms.create') }}" class="btn btn-thinner ml-auto">Create a Form</a>
     </div>
 
+    <hr class="my-5">
+
+    <h3 class="">
+        Your Forms
+    </h3>
+
+</div>
+
+<div class="container-responsive">
     @include('partials.alert', ['name' => 'index'])
 
     <div class="panel panel-flat">
@@ -35,7 +63,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $symbols = App\Form::getStatusSymbols() @endphp
+                    @php $symbols = App\Models\Form\Form::getStatusSymbols() @endphp
                     @foreach ($forms as $form)
                         @php
                             $symbol = $symbols[$form->status];
@@ -58,6 +86,10 @@
             </table>
         @endif
     </div>
+</div>
+
+<hr class="my-5">
+
 @endsection
 
 @section('plugin-scripts')

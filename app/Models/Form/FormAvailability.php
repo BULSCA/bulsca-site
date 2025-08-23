@@ -4,11 +4,9 @@ namespace App\Models\Form;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FormAvailability extends Model
 {
-    use SoftDeletes;
 
     protected $dates = ['deleted_at', 'open_form_at', 'close_form_at'];
 

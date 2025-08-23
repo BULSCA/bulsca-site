@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Form;
 
 use Auth;
-use App\Form;
-use App\User;
+use App\Models\Form\Form;
+use App\Models\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

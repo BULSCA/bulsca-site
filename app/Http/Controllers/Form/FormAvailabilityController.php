@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Form;
 
 use Auth;
-use App\Form;
+use App\Models\Form\Form;
 use Validator;
-use App\FormAvailability;
+use App\Models\Form\FormAvailability;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

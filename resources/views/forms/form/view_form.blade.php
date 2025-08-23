@@ -8,9 +8,25 @@ $fields = $form->fields()->filled()->get();
 
 @section('title', "{$module} | {$page}")
 
-@extends('layouts.auth')
+@extends('layout')
 
 @section('content')
+<div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
+    <div class="h-full w-full overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-full h-full  flex  items-center justify-center head-bg-3  "
+            style="background-image: linear-gradient(rgba(0, 0, 0, 0.25),
+                   rgba(0, 0, 0, 0.25)), url('storage/photos/freshers/fresher_banner.jpeg');  ">
+            <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
+            <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
+                <h1 class="md:text-6xl text-4xl font-bold text-white">Forms</h1>
+                <p class="text-white">Welcome to Bulsca Forms testing!</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-flat">
@@ -18,13 +34,13 @@ $fields = $form->fields()->filled()->get();
                 <h5 class="panel-title">{{ $page }}</h5>
             </div>
 
-            @if ($form->status === App\Form::STATUS_CLOSED)
+            @if ($form->status === App\Models\Form\Form::STATUS_CLOSED)
                 <div class="panel-body">
                     {{ optional($form->availability)->closed_form_message ?? 'Sorry, this form has been closed to responses.' }}
                 </div>
             @else
                 <div class="panel-body">
-                    {!! str_convert_line_breaks($form->description) !!}
+                    {!! nl2br(e($form->description)) !!}
                 </div>
 
                 <div class="panel-body">
@@ -57,7 +73,7 @@ $fields = $form->fields()->filled()->get();
 </div>
 @endsection
 
-@if ($form->status === App\Form::STATUS_OPEN)
+@if ($form->status === App\Models\Form\Form::STATUS_OPEN)
     @section('plugin-scripts')
         <script src="{{ asset('assets/js/plugins/uniform.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/autosize.min.js') }}"></script>

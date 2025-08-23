@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Form;
 
 use Auth;
 use Validator;
-use App\Form;
-use App\FormField;
+use App\Models\Form\Form;
+use App\Models\Form\FormField;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

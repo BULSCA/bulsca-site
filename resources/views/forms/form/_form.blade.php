@@ -1,7 +1,7 @@
 @php
     $action = ($type == 'edit') ? route('forms.update', $form->code) : route('forms.store');
     $title = ($type == 'edit') ? $form->title : '';
-    $description = ($type == 'edit') ? str_convert_line_breaks($form->description, false) : '';
+    $description = ($type == 'edit') ? $form->description : '';
 @endphp
 
 <form id="forms" method="post" action="{{ $action }}" autocomplete="off">

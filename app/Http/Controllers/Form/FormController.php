@@ -3,36 +3,39 @@
 namespace App\Http\Controllers\Form;
 
 use Auth;
-use App\Form;
+use App\Models\Form\Form;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rules\MinWords;
 
 class FormController extends Controller
 {
     public function index()
     {
         $current_user = Auth::user();
-
-        $forms = $current_user->forms()->orWhereHas('collaborationUsers', function ($query) use ($current_user) {
-            $query->where('form_collaborators.user_id', $current_user->id);
-        })->latest()->get();
-
+    
+        $forms = Form::where('user_id', $current_user->id)
+            ->orWhereHas('collaborationUsers', function ($query) use ($current_user) {
+                $query->where('user_id', $current_user->id);
+            })
+            ->get();
+    
         return view('forms.form.index', compact('forms', 'current_user'));
     }
-
+    
     public function create()
     {
         $current_user = Auth::user();
 
-        $max_no_user_unclosed_forms = config('custom.forms.max_no_user_unclosed_forms');
+        $config = config('custom.forms');
         $unclosed_forms_count = $current_user->forms()
             ->whereIn('status', [Form::STATUS_DRAFT, Form::STATUS_PENDING, Form::STATUS_OPEN])
             ->count();
 
-        if ($unclosed_forms_count == $max_no_user_unclosed_forms) {
+        if ($unclosed_forms_count == $config['max_no_user_unclosed_forms']) {
             session()->flash('index', [
-                'status' => 'warning', 'message' => "You have {$max_no_user_unclosed_forms} unclosed forms. Please resolve them before you can create more forms",
+                'status' => 'warning', 'message' => "You have {$config['max_no_user_unclosed_forms']} unclosed forms. Please resolve them before you can create more forms",
             ]);
 
             return redirect()->route('forms.index');
@@ -45,17 +48,22 @@ class FormController extends Controller
     {
         $current_user = Auth::user();
 
-        $max_no_user_unclosed_forms = config('custom.forms.max_no_user_unclosed_forms');
+        $config = config('custom.forms');
         $unclosed_forms_count = $current_user->forms()
             ->whereIn('status', [Form::STATUS_DRAFT, Form::STATUS_PENDING, Form::STATUS_OPEN])
             ->count();
 
-        $not_allowed = ($unclosed_forms_count == $max_no_user_unclosed_forms);
-        abort_if($not_allowed, 403, "You have {$max_no_user_unclosed_forms} unclosed forms. Please resolve them before you can create more forms");
+        $not_allowed = ($unclosed_forms_count == $config['max_no_user_unclosed_forms']);
+        abort_if($not_allowed, 403, "You have {$config['max_no_user_unclosed_forms']} unclosed forms. Please resolve them before you can create more forms");
 
         $this->validate($request, [
-            'title' => 'required|string|min:3|max:190',
-            'description' => 'required|string|min_words:3|max:30000'
+            'title' => 'required|string|min:' . $config['min_no_title_words'] . '|max:' . $config['max_no_title_words'],
+            'description' => [
+                'required', 
+                'string', 
+                'min:' . $config['min_no_description_words'], 
+                'max:' . $config['max_no_description_words']
+            ]
         ]);
 
         $form = new Form([
@@ -93,12 +101,18 @@ class FormController extends Controller
     public function update(Request $request, Form $form)
     {
         $current_user = Auth::user();
+        $config = config('custom.forms');
         $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         $this->validate($request, [
-            'title' => 'required|string|min:3|max:190',
-            'description' => 'required|string|min_words:3|max:30000'
+            'title' => 'required|string|min:' . $config['min_no_title_words'] . '|max:' . $config['max_no_title_words'],
+            'description' => [
+                'required', 
+                'string', 
+                'min:' . $config['min_no_description_words'], 
+                'max:' . $config['max_no_description_words']
+            ]
         ]);
 
         $form->title = $request->title;
@@ -378,4 +392,27 @@ class FormController extends Controller
 
         return redirect()->route('forms.index');
     }
+
+    public function clearUnfinishedForms()
+    {
+        $current_user = Auth::user();
+    
+        // Retrieve unfinished forms
+        $unfinishedForms = $current_user->forms()
+            ->whereIn('status', [Form::STATUS_DRAFT, Form::STATUS_PENDING, Form::STATUS_OPEN])
+            ->get();
+    
+        // Bulk update to close these forms
+        $unfinishedForms->each(function ($form) {
+            $form->status = Form::STATUS_CLOSED;
+            $form->save();
+        });
+    
+        // Redirect with success message
+        return redirect()->route('forms.create')->with('index', [
+            'status' => 'success',
+            'message' => sprintf('%d unfinished forms have been closed', $unfinishedForms->count())
+        ]);
+    }
+    
 }

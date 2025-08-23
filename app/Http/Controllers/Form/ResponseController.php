@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Form;
 
 use Auth;
-use App\Form;
+use App\Models\Form\Form;
 use Validator;
-use App\FormResponse;
-use App\FieldResponse;
+use App\Models\Form\FormResponse;
+use App\Models\Form\FieldResponse;
 use Illuminate\Http\Request;
 use App\Exports\FormResponseExport;
 use App\Http\Controllers\Controller;

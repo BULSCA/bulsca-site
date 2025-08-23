@@ -6,21 +6,17 @@ use Mail;
 use App\Mail\ShareFormLinkMail;
 use App\Mail\FormCollaborationMail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Iatstuti\Database\Support\CascadeSoftDeletes;
+use Illuminate\Support\Str;
+use App\Models\User;
+use App\helpers;
 
 class Form extends Model
 {
-    use SoftDeletes, CascadeSoftDeletes;
 
     const STATUS_DRAFT = 'draft';
     const STATUS_PENDING = 'pending';
     const STATUS_OPEN = 'open';
     const STATUS_CLOSED = 'closed';
-
-    protected $dates = ['deleted_at'];
-
-    protected $cascadeDeletes = ['fields', 'responses'];
 
     protected $fillable = [
         'user_id', 'title', 'description', 'code', 'status',
@@ -60,9 +56,12 @@ class Form extends Model
     public function generateCode()
     {
         do {
-            $this->code = str_random(32);
-        } while (static::where('code', $this->code)->exists());
+            $code = Str::random(10);
+        } while (self::where('code', $code)->exists());
+    
+        $this->code = $code;
     }
+    
 
     public function shareFormViaMail($email, $data)
     {

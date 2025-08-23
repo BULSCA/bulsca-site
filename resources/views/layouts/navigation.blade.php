@@ -92,6 +92,7 @@
                             <ul>
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                 <li><a href="{{ route('settings') }}">Settings</a></li>
+                                <li><a href="{{ route('forms.index') }}">Forms</a></li>
                                 @can('admin')
                                     <li><a href="{{ route('admin') }}">Admin</a></li>
                                 @endcan

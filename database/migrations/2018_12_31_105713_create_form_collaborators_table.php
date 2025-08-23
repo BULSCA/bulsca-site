@@ -16,7 +16,7 @@ class CreateFormCollaboratorsTable extends Migration
         Schema::create('form_collaborators', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('form_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 

@@ -15,12 +15,11 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
             $table->string('code')->unique();
             $table->char('status', 20);
-            $table->softDeletes();
             $table->timestamps();
         });
 

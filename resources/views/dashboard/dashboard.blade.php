@@ -73,9 +73,8 @@
                         Socials</a>
 
             </div>
+            <hr class="my-5">
         @endif
-
-        <hr class="my-5">
 
         @if (auth()->user()->getHomeUni() &&
                 auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))

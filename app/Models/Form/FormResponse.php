@@ -3,12 +3,9 @@
 namespace App\Models\Form;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Iatstuti\Database\Support\CascadeSoftDeletes;
 
 class FormResponse extends Model
 {
-    use SoftDeletes, CascadeSoftDeletes;
 
     protected $fillable = [
         'form_id', 'response_code', 'respondent_ip', 'respondent_user_agent'

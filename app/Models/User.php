@@ -12,15 +12,13 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Iatstuti\Database\Support\CascadeSoftDeletes;
+use App\Models\Form\Form;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, CrudTrait, SoftDeletes, CascadeSoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, CrudTrait;
 
     protected $dates = ['deleted_at'];
-
-    protected $cascadeDeletes = [];
 
 
     /**

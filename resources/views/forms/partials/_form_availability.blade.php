@@ -63,7 +63,7 @@
                             <div class="col-sm-4">
                                 <select class="form-control" name="weekday">
                                     <option value="">Choose Days</option>
-                                    @foreach(App\FormAvailability::weekDays() as $index => $day)
+                                    @foreach(App\Models\Form\FormAvailability::weekDays() as $index => $day)
                                         <option value="{{ $index }}"{{ (optional($availability)->available_weekday === $index) ? ' selected' : '' }}>{{ $day }}</option>
                                     @endforeach
                                 </select>
