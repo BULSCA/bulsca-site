@@ -9,28 +9,17 @@
     $current_user = auth()->user();
 @endphp
 
-@extends('layout', $page_data)
+@extends('layouts.dashlayout', $page_data)
 
-@section('title', "My Forms | {$form->title}")
+@section('title')
+    My Forms | {$form->title}
+@endsection
+
+@section('nav-extra')
+    nav-scrolled
+@endsection
 
 @section('content')
-
-
-<div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
-
-    <div class="h-full w-full overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-full h-full  flex  items-center justify-center head-bg-3  "
-            style="background-image: linear-gradient(rgba(0, 0, 0, 0.25),
-                rgba(0, 0, 0, 0.25)), url('storage/photos/freshers/fresher_banner.jpeg');  ">
-            <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
-            <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                <h1 class="md:text-6xl text-4xl font-bold text-white">Forms</h1>
-                <p class="text-white">Welcome to Bulsca Forms testing!</p>
-            
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <div class="container-responsive">
@@ -53,13 +42,14 @@
             </small>
 
         </div>
-
-        <a href="{{ route('forms.create') }}" class="btn btn-thinner ml-auto">Create a Form</a>
+        <a href="{{ route('forms.index') }}" class="btn btn-thinner ml-auto">All Forms</a>
 
     </div>
 
     <hr class="my-5">
 
+    
+    
     <h3 class="">
         Your Forms
     </h3>
@@ -153,9 +143,9 @@
 
     @includeWhen(($form->status === $form::STATUS_OPEN), 'forms.partials._form-share')
 
-    @includeWhen(($form->user_id === $current_user->id), 'forms.partials._form-collaborate')
+    <?php //@includeWhen(($form->user_id === $current_user->id), 'forms.partials._form-collaborate') ?>
 
-    @include('forms.partials._form_availability')
+    <?php //@include('forms.partials._form_availability') ?>
 
 </div>
 @endsection

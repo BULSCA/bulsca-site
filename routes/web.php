@@ -37,13 +37,13 @@ use Carbon\Carbon;
 */
 
 
-// Route::get('/', function () {
-// 
-//     $nearComp = Competition::whereBetween(DB::raw('DATEDIFF(competitions.when, NOW())'), [-1, 7])->orderBy(DB::raw('DATEDIFF(competitions.when, NOW())'), 'desc')->first();
-//     return view('index', ['nearComp' => $nearComp]);
-// })->name('home');
+Route::get('/', function () {
 
-Route::redirect('/', 'forms')->name('home');
+    $nearComp = Competition::whereBetween(DB::raw('DATEDIFF(competitions.when, NOW())'), [-1, 7])->orderBy(DB::raw('DATEDIFF(competitions.when, NOW())'), 'desc')->first();
+    return view('index', ['nearComp' => $nearComp]);
+})->name('home');
+
+// Route::redirect('/', 'forms')->name('home');
 
 Route::get('/freshers', function () {
     return view('freshers.index');

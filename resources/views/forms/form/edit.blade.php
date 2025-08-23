@@ -1,24 +1,16 @@
-@section('title', "My Forms | Edit Form")
+@extends('layouts.dashlayout')
 
-@extends('layout')
+@section('title')
+    My Forms | Edit Form
+@endsection
+
+@section('nav-extra')
+    nav-scrolled
+@endsection
 
 @section('content')
 
 
-<div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
-    <div class="h-full w-full overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-full h-full  flex  items-center justify-center head-bg-3  "
-            style="background-image: linear-gradient(rgba(0, 0, 0, 0.25),
-                   rgba(0, 0, 0, 0.25)), url('storage/photos/freshers/fresher_banner.jpeg');  ">
-            <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
-            <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                <h1 class="md:text-6xl text-4xl font-bold text-white">Forms</h1>
-                <p class="text-white">Welcome to Bulsca Forms testing!</p>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container-responsive">
     <div class="flex items-center ">
@@ -43,8 +35,11 @@
     <hr class="my-5">
 
     <h3 class="">
-        Edit form
+        Edit Form
     </h3>
+
+
+    
 
     <div class="panel panel-flat border-top-lg border-top-primary">
         <div class="panel-body">
