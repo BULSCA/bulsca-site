@@ -7,6 +7,8 @@
     $fields = $form->fields;
 
     $current_user = auth()->user();
+
+    $symbol = $form::getStatusSymbols()[$form->status];
 @endphp
 
 @extends('layouts.dashlayout', $page_data)
@@ -49,29 +51,26 @@
     <hr class="my-5">
 
     
-    
-    <h3 class="">
-        Your Forms
-    </h3>
+    <div class="flex items-center ">
+        <div class="flex flex-col">
 
+            <h2 class="" style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Your Forms</span></h2>
+            <h2 class="   " style='margin-bottom: -.25em !important'><span
+            class="text-bulsca_red font-bold">{{ $form->title }}  [{{ $symbol['label'] }}]</span></h2>
+
+            <h3 class="" style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important"
+            class="text-bulsca_blue ">{!! nl2br(e($form->description)) !!}</span></h3>
+
+        </div>
+        <div class="btn btn-thinner ml-auto">@include('forms.partials._form-menu')</div>
+        
+        
+    </div>
 
 
     @include('partials.alert', ['name' => 'show'])
 
-    <div class="panel panel-flat">
-        <div class="panel-heading">
-            @php $symbol = $form::getStatusSymbols()[$form->status]; @endphp
-            <h5 class="panel-title">{{ $form->title }} <span class="label bg-{{ $symbol['color'] }} position-left">{{ $symbol['label'] }}</span></h5>
-            <div class="heading-elements">
-                <div class="btn-group heading-btn">
-                    @include('forms.partials._form-menu')
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            {!! nl2br(e($form->description)) !!}
-        </div>
-    </div>
+
 
     <div class="panel panel-body">
         In order to create a form, you need to click on any on the question type in the presentation section (right sidebar) below. Please ensure that you fill in the appropriate field before submitting.
