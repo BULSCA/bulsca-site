@@ -73,12 +73,12 @@ Route::get('/competitions/rlss', function () {
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
-Route::Get('/get-involved/committee', function () {
+Route::get('/get-involved/committee', function () {
 
-    $currentTime = Carbon::now()->timezone('Europe/London')->setHours(24)->setDate(0, 0, 0);
+    $currentTime = Carbon::now()->timezone('Europe/London')->setHours(0)->setDate(0, 0, 0);
 
-    $fourThirty = Carbon::now()->timezone('Europe/London')->setHours(24)->setMinutes(0)->setSeconds(0)->setDate(0, 0, 0);
-    $fourThirtyFive = Carbon::now()->timezone('Europe/London')->setHours(24)->setMinutes(5)->setSeconds(0)->setDate(0, 0, 0);
+    $fourThirty = Carbon::now()->timezone('Europe/London')->setHours(0)->setMinutes(0)->setSeconds(0)->setDate(0, 0, 0);
+    $fourThirtyFive = Carbon::now()->timezone('Europe/London')->setHours(0)->setMinutes(5)->setSeconds(0)->setDate(0, 0, 0);
 
     $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
 

@@ -17,6 +17,7 @@
                 <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
                     <h2 class="md:text-6xl text-4xl font-bold text-white">Committee</h2>
+                    <p class="font-bold text-white">2024-2025</p>
                 </div>
             </div>
 
@@ -72,7 +73,7 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/chair.jpg" class="w-full h-full " alt="">
+                    <img src="/storage/photos/committee/24-25/chair.jpg" class="w-full h-full " alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
                     Tom Park
@@ -84,10 +85,10 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/secretary.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/secretary.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-                    Abbie Luckhurst
+                    Annabel Cruse
                 </h3>
                 <p class=" text-gray-600 font-semibold">
                     Secretary
@@ -96,7 +97,7 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/treasurer.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/treasurer.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
                     Anton Oleinik
@@ -108,7 +109,7 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/club_dev.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/club_dev.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
                     Amy Parnell
@@ -121,10 +122,10 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/communications.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/communications.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-                    Ashlin Evans
+                    Katy Nicholls
                 </h3>
                 <p class=" text-gray-600 font-semibold">
                     Communications Officer
@@ -134,10 +135,10 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/data_manager.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/data_manager.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-                    James O'Donohoe
+                    Noah Hollowell
                 </h3>
                 <p class=" text-gray-600 font-semibold">
                     Data Manager
@@ -147,10 +148,10 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/champs.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/champs.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-                    Katy Nicholls
+                    Glafki Schellekens
                 </h3>
                 <p class=" text-gray-600 font-semibold">
                     Championships Coordinator
@@ -159,10 +160,10 @@
 
             <div class="flex flex-col items-center justify-center md:basis-1/5 ">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center">
-                    <img src="/storage/photos/committee/25-26/welfare.jpg" class="w-full h-full" alt="">
+                    <img src="/storage/photos/committee/24-25/welfare.jpg" class="w-full h-full" alt="">
                 </div>
                 <h3 class="header header-smallish py-4 px-3 border-b border-gray-400">
-                    Ellie Petherick-Davies
+                    Kirsty Reed
                 </h3>
                 <p class=" text-gray-600 font-semibold">
                     Welfare Officer
