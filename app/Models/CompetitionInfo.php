@@ -48,7 +48,7 @@ class CompetitionInfo extends Model
     {
         $phone = "";
         try {
-            $phone = phone($this->contact_organiser_phone, 'GB')->formatInternational();; 
+            $phone = phone($this->contact_organiser_phone, 'GB')->formatInternational();
         } catch (Exception $e) {
             return 'N/A';
         }
