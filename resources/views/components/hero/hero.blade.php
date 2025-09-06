@@ -103,7 +103,7 @@
                     @php
 
                     @endphp
-                    {!! Blade::compileString($hero->content) ?? '' !!}
+                    {!! $hero->content ?? '' !!}
                 </div>
 
             </div>
