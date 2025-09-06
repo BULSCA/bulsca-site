@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use League\Glide\Responses\LaravelResponseFactory;
 use League\Glide\ServerFactory;
 
-class ImageService {
+class PdfService {
 
     static function extractText($filePath) {
         return shell_exec('pdftotext '.$filePath.' -');
