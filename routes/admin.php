@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     });
 
 
-    // HEROS
+    // HEROES
     Route::prefix('hero')->group(function () {
         Route::get('', [HeroController::class, 'index'])->name('admin.hero');
         Route::get('create', [HeroController::class, 'create'])->name('admin.hero.create');
