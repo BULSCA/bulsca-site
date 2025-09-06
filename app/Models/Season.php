@@ -51,7 +51,13 @@ class Season extends Model
 
         return [];
 
-        $res = DB::select(DB::raw('SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS Points FROM competition_uni_places AS CUP INNER JOIN season_unis SU ON CUP.season_uni=SU.id INNER JOIN universities U ON SU.uni=U.id INNER JOIN competitions LC ON LC.id = CUP.league_comp INNER JOIN universities UU ON LC.host = UU.id WHERE SU.season=? ORDER BY SeasonUni,LC.when'), [1]);
+        $queryGrammar = DB::connection()->getQueryGrammar();
+
+        $res = DB::select(
+            DB::raw('SELECT U.name AS SeasonUni, UU.name AS Host, LC.when, GREATEST(1,11-CUP.a_pos) AS Points FROM competition_uni_places AS CUP INNER JOIN season_unis SU ON CUP.season_uni=SU.id INNER JOIN universities U ON SU.uni=U.id INNER JOIN competitions LC ON LC.id = CUP.league_comp INNER JOIN universities UU ON LC.host = UU.id WHERE SU.season=? ORDER BY SeasonUni,LC.when')
+                ->getValue($queryGrammar),
+            [1]
+        );
 
 
         $finalUnis = [];
@@ -147,7 +153,13 @@ class Season extends Model
                 
             }
 
-            $data = DB::select(DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0,GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name"), [$this->id, $league]);
+            $queryGrammar = DB::connection()->getQueryGrammar();
+
+            $data = DB::select(
+                DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0, GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name")
+                    ->getValue($queryGrammar),
+                [$this->id, $league]
+            );
 
 
             $readyData = [];
