@@ -7,25 +7,19 @@ use App\Http\Requests\PostUserCreateRequest;
 use App\Models\User;
 use App\Notifications\WelcomeUserInvite;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Mockery\Undefined;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
-
     public function createUser(PostUserCreateRequest $request)
     {
 
         $validated = $request->validated();
 
-
-
-        $user = new User();
+        $user = new User;
 
         $user->name = $validated['user_name'];
         $user->email = $validated['user_email'];
@@ -40,7 +34,6 @@ class UserController extends Controller
         } catch (Exception $e) {
             // Ignore failed mail for now
         }
-
 
         if ($validated['user_university'] != 'null') {
 
@@ -72,14 +65,10 @@ class UserController extends Controller
 
         $user = User::findOrFail($validated['user_id']);
 
-
         $user->name = $validated['user_name'];
         $user->email = $validated['user_email'];
 
-
         $user->save();
-
-
 
         if ($validated['user_university'] != 'null') {
 

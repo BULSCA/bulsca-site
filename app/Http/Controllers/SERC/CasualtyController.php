@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SERC\StoreCasualtyRequest;
 use App\Models\Casualty\Casualty;
 use App\Models\Casualty\CasualtyGroup;
-use App\Models\Casualty\CasualtyTag;
 use App\Models\SERC\SERCTag;
 use App\Services\ImageService;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class CasualtyController extends Controller
 {
@@ -21,7 +19,7 @@ class CasualtyController extends Controller
         $casualties = null;
 
         if (request('s') != null) {
-            $casualties = Casualty::where('name', 'LIKE', '%' . request('s') . '%')->orderBy('name');
+            $casualties = Casualty::where('name', 'LIKE', '%'.request('s').'%')->orderBy('name');
         } else {
             $casualties = Casualty::orderBy('name');
         }
@@ -40,7 +38,7 @@ class CasualtyController extends Controller
     public function store(StoreCasualtyRequest $request)
     {
 
-        $casualty = new Casualty();
+        $casualty = new Casualty;
         $casualty->name = $request->name;
         $casualty->description = $request->description;
         $casualty->manual_reference = $request->manual;
@@ -50,13 +48,13 @@ class CasualtyController extends Controller
 
         $tags = explode(',', $request->tags);
         foreach ($tags as $tag) {
-            if ($tag == '') continue;
+            if ($tag == '') {
+                continue;
+            }
             $tag = SERCTag::firstOrCreate(['name' => $tag]);
             $tag->save();
             DB::table('tagged_casualties')->insert(['casualty_id' => $casualty->id, 'serc_tag_id' => $tag->id]);
         }
-
-
 
         return redirect()->route('admin.sercs.casualties')->with('success', 'Created casualty!');
     }
@@ -83,7 +81,9 @@ class CasualtyController extends Controller
         $tags = explode(',', $request->tags);
         DB::table('tagged_casualties')->where('casualty_id', $casualty->id)->delete();
         foreach ($tags as $tag) {
-            if ($tag == '') continue;
+            if ($tag == '') {
+                continue;
+            }
             $tag = SercTag::firstOrCreate(['name' => $tag]);
             $tag->save();
             DB::table('tagged_casualties')->insert(['casualty_id' => $casualty->id, 'serc_tag_id' => $tag->id]);
@@ -95,13 +95,11 @@ class CasualtyController extends Controller
     public function addImage(Casualty $casualty, Request $request)
     {
 
-        $path = ImageService::store($request, '/casualties/' . $casualty->id, 'image', true);
+        $path = ImageService::store($request, '/casualties/'.$casualty->id, 'image', true);
 
         $img = $casualty->getImages()->create(['path' => $path]);
 
         $imageUrl = ImageService::getUrl($path);
-
-
 
         return response()->json(['success' => true, 'url' => $imageUrl, 'id' => $img->id]);
     }
@@ -144,7 +142,6 @@ class CasualtyController extends Controller
 
         // Two queries - one for searching with no tags as its simple
 
-
         $query = Casualty::with('getCasualtyGroup:name,id')->with('getImages', function ($query) {
             $query->limit(1);
         });
@@ -156,35 +153,28 @@ class CasualtyController extends Controller
             $query = $query->where('group', $groupId);
         }
 
-
         if (request('search') != '') {
-            $query = $query->where('name', 'LIKE', '%' . request('search') . '%');
+            $query = $query->where('name', 'LIKE', '%'.request('search').'%');
         }
-
 
         $result = $query->orderBy('name', 'ASC')->get();
 
         $casualties = $result->map(function ($item) {
 
-
-
             $images = $item->getImages()->get()->map(function ($image) {
                 return ImageService::getUrl($image->path);
             });
 
-
-
             if (count($images) == 0) {
                 $images = ['/storage/logo/blogo.png'];
             }
-
 
             return [
                 'id' => $item->id,
                 'name' => $item->name,
                 'group' => $item->getCasualtyGroup->name,
                 'images' => $images,
-                'link' => route('resources.casualties.get', $item->getSlug())
+                'link' => route('resources.casualties.get', $item->getSlug()),
             ];
         });
 
@@ -193,7 +183,6 @@ class CasualtyController extends Controller
 
     public function publicView(string $slug)
     {
-
 
         $id = explode('.', $slug)[1];
 
@@ -206,8 +195,6 @@ class CasualtyController extends Controller
         $images = $casualty->getImages->map(function ($image) {
             return ImageService::getUrl($image->path);
         });
-
-
 
         return view('resources.casualty', ['casualty' => $casualty, 'images' => $images]);
     }

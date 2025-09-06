@@ -5,7 +5,6 @@ namespace App\Http\Controllers\SERC;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SERC\StoreCasualtyGroupRequest;
 use App\Models\Casualty\CasualtyGroup;
-use Illuminate\Http\Request;
 
 class CasualtyGroupController extends Controller
 {
@@ -15,7 +14,7 @@ class CasualtyGroupController extends Controller
         $groups = null;
 
         if (request('s') != null) {
-            $groups = CasualtyGroup::where('name', 'LIKE', '%' . request('s') . '%')->orderBy('name');
+            $groups = CasualtyGroup::where('name', 'LIKE', '%'.request('s').'%')->orderBy('name');
         } else {
             $groups = CasualtyGroup::orderBy('name');
         }
@@ -30,7 +29,7 @@ class CasualtyGroupController extends Controller
 
     public function store(StoreCasualtyGroupRequest $storeCasualtyGroupRequest)
     {
-        $group = new CasualtyGroup();
+        $group = new CasualtyGroup;
         $group->name = $storeCasualtyGroupRequest->name;
         $group->description = $storeCasualtyGroupRequest->description;
         $group->save();
@@ -55,6 +54,7 @@ class CasualtyGroupController extends Controller
     public function delete(CasualtyGroup $group)
     {
         $group->delete();
+
         return redirect()->route('admin.sercs.casualties.groups')->with('message', 'Deleted Casualty group!');
     }
 }

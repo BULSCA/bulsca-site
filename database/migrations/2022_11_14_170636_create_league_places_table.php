@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('league_places', function (Blueprint $table) {
             $table->id();
 
-
             $table->foreignId('uni')->references('id')->on('universities')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('comp')->references('id')->on('competitions')->onUpdate('cascade')->onDelete('cascade');
             $table->char('league');

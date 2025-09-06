@@ -24,7 +24,7 @@ class ResourceSearch extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'required'
+            'search' => 'required',
         ];
     }
 }

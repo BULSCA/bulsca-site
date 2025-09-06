@@ -10,23 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UniversityController extends Controller
 {
-
     public function update(Request $request, University $university)
     {
-
-
-
-
 
         $validated = Validator::make($request->all(), [
 
             'name' => 'required|min:8',
 
         ])->validate();
-
-
-
-
 
         $university->name = $validated['name'];
 
@@ -40,19 +31,19 @@ class UniversityController extends Controller
 
         $validated = $request->validate([
             'image' => 'required|file',
-            'uni' => 'required'
+            'uni' => 'required',
         ]);
 
         $uni = University::findOrFail($validated['uni']);
 
         // User isn't authed or user isn't a admin for this uni
-        if ((!auth()->user() || !auth()->user()->isUniAdmin($uni->id)) && auth()->user()->cannot('admin.universities.manage')) {
+        if ((! auth()->user() || ! auth()->user()->isUniAdmin($uni->id)) && auth()->user()->cannot('admin.universities.manage')) {
             abort(403);
         }
 
         $photoId = ImageService::store($request, '/logos/unis');
 
-        $uni->image_path = 'logos/unis/' . $photoId;
+        $uni->image_path = 'logos/unis/'.$photoId;
 
         $uni->save();
 
@@ -63,14 +54,14 @@ class UniversityController extends Controller
     {
         $validated = $request->validated();
 
-        $uni = new University();
+        $uni = new University;
 
         $uni->name = $validated['name'];
 
         if (array_key_exists('image', $validated)) {
             $photoId = ImageService::store($request, '/logos/unis');
 
-            $uni->image_path = 'logos/unis/' . $photoId;
+            $uni->image_path = 'logos/unis/'.$photoId;
         }
 
         $uni->save();
@@ -91,10 +82,10 @@ class UniversityController extends Controller
     {
         $uni = University::where('name', $uni_name)->first();
 
-        if (!$uni) {
+        if (! $uni) {
             abort(404);
         }
 
-        return response()->redirectTo("img/" . $uni->image_path);
+        return response()->redirectTo('img/'.$uni->image_path);
     }
 }

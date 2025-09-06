@@ -18,11 +18,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('competition')->references('id')->on('competitions')->onUpdate('CASCADE')->onDelete('CASCADE');
 
-
             $table->text('form_entry')->nullable();
             $table->text('form_judges')->nullable();
             $table->text('form_helpers')->nullable();
-
 
             $table->json('timetable')->nullable(); // Storing key-value pairs of an item to a timestamp
 
@@ -67,11 +65,6 @@ return new class extends Migration
             $table->text('contact_emergency_phone')->nullable();
 
             $table->longText('extra_info')->nullable();
-
-
-
-
-
 
             $table->timestamps();
         });

@@ -41,7 +41,6 @@ class FixOrdering extends Command
             $page->save();
             $indx++;
 
-
             $secIndx = 0;
             foreach ($page->getSections()->orderBy('name')->get() as $sec) {
                 $sec->ordering = $secIndx;

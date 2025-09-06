@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Mail\ForgotPasswordMail;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,7 +23,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
 
         // Below is removed in L10 -> https://laravel.com/docs/10.x/upgrade
         // $this->registerPolicies();

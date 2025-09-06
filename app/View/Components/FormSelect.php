@@ -11,7 +11,7 @@ class FormSelect extends Component
      *
      * @return void
      */
-    public function __construct($id, $title, $type = "text", $defaultValue = "", $extraCss = "", $options = [], $deny = false)
+    public function __construct($id, $title, $type = 'text', $defaultValue = '', $extraCss = '', $options = [], $deny = false)
     {
         $this->id = $id;
         $this->title = $title;

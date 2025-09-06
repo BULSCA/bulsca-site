@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('when');
             $table->string('where');
 
-
             $table->timestamps();
         });
 
@@ -49,6 +48,6 @@ return new class extends Migration
         Schema::dropIfExists('tagged_sercs');
         Schema::dropIfExists('sercs');
         Schema::dropIfExists('serc_tags');
-        
+
     }
 };

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ResourceSearch;
 use App\Models\Resource;
 use App\Models\ResourcePage;
 use App\Models\ResourcePageSection;
@@ -13,38 +12,31 @@ use Illuminate\Support\Str;
 
 class DynamicResourcePageController extends Controller
 {
-
     public function adminUpload(Request $request)
     {
 
         $validated = $request->validate([
             'resource' => 'file|required',
             'section' => 'required',
-            'name' => 'required'
+            'name' => 'required',
         ]);
-
-
-
-
-
 
         $storedRes = ResourceController::storeResource($request, 'resource', 'resources/resources', $validated['name']);
 
         $rps = ResourcePageSection::findOrFail($validated['section']);
-        $rpsr = new ResourcePageSectionResource();
+        $rpsr = new ResourcePageSectionResource;
 
+        $content = '';
 
-        $content = "";
-
-        if ($request->file('resource')->extension() == "pdf") {
-            $fullTarget = storage_path('app') . '/' . $storedRes->location;
+        if ($request->file('resource')->extension() == 'pdf') {
+            $fullTarget = storage_path('app').'/'.$storedRes->location;
             $content = shell_exec("pdftotext {$fullTarget} -");
         }
 
         $rpsr->section = $rps->id;
         $rpsr->resource = $storedRes->id;
         $rpsr->name = $storedRes->name;
-        $rpsr->short = "";
+        $rpsr->short = '';
         $rpsr->content = $content;
 
         $rpsr->save();
@@ -53,7 +45,7 @@ class DynamicResourcePageController extends Controller
         $sec = ResourcePageSection::find($rps->id);
         $page = ResourcePage::find($sec->page);
 
-        Cache::forget('resource-page-' . Str::replace(' ', '-', Str::lower($page->name)));
+        Cache::forget('resource-page-'.Str::replace(' ', '-', Str::lower($page->name)));
 
         return redirect()->back();
     }
@@ -63,11 +55,10 @@ class DynamicResourcePageController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'page' => 'required'
+            'page' => 'required',
         ]);
 
-
-        $rps = new ResourcePageSection();
+        $rps = new ResourcePageSection;
         $rps->name = $validated['name'];
         $rps->page = $validated['page'];
 
@@ -83,7 +74,7 @@ class DynamicResourcePageController extends Controller
 
         $page = ResourcePage::find($sec->page);
 
-        Cache::forget('resource-page-' . Str::replace(' ', '-', Str::lower($page->name)));
+        Cache::forget('resource-page-'.Str::replace(' ', '-', Str::lower($page->name)));
 
         $sec->delete();
 
@@ -97,10 +88,8 @@ class DynamicResourcePageController extends Controller
             'name' => 'required',
         ]);
 
-
-        $rp = new ResourcePage();
+        $rp = new ResourcePage;
         $rp->name = $validated['name'];
-
 
         $rp->save();
         $rp->orderSelf();
@@ -129,13 +118,14 @@ class DynamicResourcePageController extends Controller
 
         $page = Str::replace('-', ' ', $page);
 
-        $p = Cache::rememberForever('resource-page-' . $defPage, function () use ($page) {
+        $p = Cache::rememberForever('resource-page-'.$defPage, function () use ($page) {
             return ResourcePage::where('name', 'like', $page)->first()->load('getSections');
         });
 
-        if (!$p) {
+        if (! $p) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
+
             return response()->view('errors.404', $data, 404);
         }
 
@@ -145,22 +135,19 @@ class DynamicResourcePageController extends Controller
     public function search($search)
     {
 
-
-
-
         $found = ResourcePageSectionResource::where('name', 'LIKE', "%{$search}%")->orWhere('content', 'LIKE', "%{$search}%")->limit(10)->get(['name', 'resource']);
 
         return response()->json($found);
     }
 
-    public function move(Request $request,  Resource $resource)
+    public function move(Request $request, Resource $resource)
     {
 
         $rprsr = $resource->getPageResource;
 
-
-
-        if ($rprsr == null) return redirect()->back();
+        if ($rprsr == null) {
+            return redirect()->back();
+        }
 
         $rprsr->ordering = null;
 
@@ -171,25 +158,27 @@ class DynamicResourcePageController extends Controller
         return redirect()->back();
     }
 
-
     public function changePageOrder(Request $request, ResourcePage $page)
     {
-        $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $direction = $request->input('direction', 'false') == 'true' ? true : false; // DOWN: false, UP: true
         $page->reorder($direction);
+
         return redirect()->back();
     }
 
     public function changeSectionOrder(Request $request, ResourcePageSection $section)
     {
-        $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $direction = $request->input('direction', 'false') == 'true' ? true : false; // DOWN: false, UP: true
         $section->reorder($direction);
+
         return redirect()->back();
     }
 
     public function changeResourceOrder(Request $request, ResourcePageSectionResource $resource)
     {
-        $direction = $request->input('direction', "false") == "true" ? true : false; // DOWN: false, UP: true
+        $direction = $request->input('direction', 'false') == 'true' ? true : false; // DOWN: false, UP: true
         $resource->reorder($direction);
+
         return redirect()->back();
     }
 }

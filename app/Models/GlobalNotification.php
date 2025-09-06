@@ -9,7 +9,7 @@ class GlobalNotification extends Model
 {
     use HasFactory;
 
-    static function getBanner()
+    public static function getBanner()
     {
         return GlobalNotification::where('type', 'GLOBAL_BANNER')->first();
     }

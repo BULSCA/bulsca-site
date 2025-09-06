@@ -5,21 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateNewSeason;
 use App\Models\Competition;
 use App\Models\LeaguePlace;
-use Illuminate\Http\Request;
 use App\Models\Season;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
 
 class SeasonController extends Controller
 {
-
-
-
     public function currentSeason()
     {
 
-        //$season = Season::where('from', '<=', now())->orderBy('to','desc')->first();
+        // $season = Season::where('from', '<=', now())->orderBy('to','desc')->first();
         $season = Season::current();
         $comps = $season->competitions()->orderBy('when')->with('hostUni')->get();
 
@@ -48,11 +45,10 @@ class SeasonController extends Controller
         $validated = Validator::make($request->all(), [
             'name' => 'required|min:8',
             'from' => 'required|date',
-            'to' => 'required|date|after:from'
+            'to' => 'required|date|after:from',
         ], [
-            'after' => 'The season must end after the start date!'
+            'after' => 'The season must end after the start date!',
         ])->validate();
-
 
         //     $validated = $request->validate([
         //         'name' => 'required|min:8',
@@ -63,9 +59,6 @@ class SeasonController extends Controller
         //         'name' => 'ro'
         //     ]
         // );
-
-
-
 
         $season->name = $validated['name'];
         $season->from = $validated['from'];
@@ -80,7 +73,7 @@ class SeasonController extends Controller
     {
         $validated = $request->validated();
 
-        $season = new Season();
+        $season = new Season;
 
         $season->name = $validated['name'];
         $season->from = $validated['from'];
@@ -117,34 +110,29 @@ class SeasonController extends Controller
     {
         // format is res.league.uni.comp e.g. res.a.1.1
 
-
         foreach ($request->all() as $key => $val) {
             if (Str::startsWith($key, 'res')) {
 
-
-                $parts = explode("_", $key);
+                $parts = explode('_', $key);
                 $league = $parts[1];
                 $uni = $parts[2];
                 $comp = $parts[3];
 
-                //echo "League: " . $league . ", Uni: " . $uni . ", Comp: " . $comp . ", Pos: " . $val . "<br>";
-
-
-
+                // echo "League: " . $league . ", Uni: " . $uni . ", Comp: " . $comp . ", Pos: " . $val . "<br>";
 
                 LeaguePlace::updateOrCreate(['uni' => $uni, 'comp' => $comp, 'league' => $league], ['pos' => $val ? $val : 0]);
             }
         }
 
-
-        Cache::forget('league-results.' . $season->id . ".a");
-        Cache::forget('league-results.' . $season->id . ".b");
-        Cache::forget('league-results.' . $season->id . ".o");
+        Cache::forget('league-results.'.$season->id.'.a');
+        Cache::forget('league-results.'.$season->id.'.b');
+        Cache::forget('league-results.'.$season->id.'.o');
 
         return redirect()->back();
     }
 
-    public function saveSeasonCompetitionResults(Request $request, Season $season, Competition $comp) {
+    public function saveSeasonCompetitionResults(Request $request, Season $season, Competition $comp)
+    {
 
         $data = $request->json()->all();
 
@@ -157,14 +145,14 @@ class SeasonController extends Controller
                     'uni' => $placing['uni'],
                     'comp' => $comp->id,
                     'league' => $league,
-                    'pos' => $placing['place']
+                    'pos' => $placing['place'],
                 ]);
             }
         }
 
-        Cache::forget('league-results.' . $season->id . ".a");
-        Cache::forget('league-results.' . $season->id . ".b");
-        Cache::forget('league-results.' . $season->id . ".o");
+        Cache::forget('league-results.'.$season->id.'.a');
+        Cache::forget('league-results.'.$season->id.'.b');
+        Cache::forget('league-results.'.$season->id.'.o');
 
         return response()->json(['message' => 'Results saved!']);
 

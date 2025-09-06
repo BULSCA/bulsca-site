@@ -10,10 +10,9 @@ class Resource extends Model
 {
     use HasFactory, Uuids;
 
-
     public function getURL()
     {
-        return '/resources/view/' . $this->id;
+        return '/resources/view/'.$this->id;
     }
 
     public function getPageResource()
