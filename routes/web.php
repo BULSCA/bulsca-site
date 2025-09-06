@@ -34,9 +34,11 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
 
-    $nearComp = Competition::whereBetween(DB::raw('DATEDIFF(competitions.when, NOW())'), [-1, 7])->orderBy(DB::raw('DATEDIFF(competitions.when, NOW())'), 'desc')->first();
-
-
+    $queryGrammar = DB::connection()->getQueryGrammar();
+    $datediffExpression = DB::raw('DATEDIFF(competitions.when, NOW())')->getValue($queryGrammar);
+    $nearComp = Competition::whereBetween(DB::raw($datediffExpression), [-1, 7])
+        ->orderBy(DB::raw($datediffExpression), 'desc')
+        ->first();
 
     return view('index', ['nearComp' => $nearComp]);
 })->name('home');

@@ -27,8 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
 
 
-
-        $this->registerPolicies();
+        // Below is removed in L10 -> https://laravel.com/docs/10.x/upgrade
+        // $this->registerPolicies();
 
         Gate::before(function ($user, $ability) {
             return $user->hasRole('super_admin') ? true : null;
