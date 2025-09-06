@@ -71,11 +71,12 @@
                     <br>
                     <a href="{{ route('edit-club', auth()->user()->getHomeUni()->getAsSlug()) }}">Edit Club Page and
                         Socials</a>
-
             </div>
+
+            <hr class="my-5">
+
         @endif
 
-        <hr class="my-5">
 
         @if (auth()->user()->getHomeUni() &&
                 auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
@@ -105,9 +106,10 @@
                 @endforelse
             </div>
 
-
             <hr class="my-5">
+            
         @endif
+
 
         <h3>
             Upcoming Competitions
