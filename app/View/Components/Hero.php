@@ -18,7 +18,7 @@ class Hero extends Component
     {
 
 
-        if ($edit->id != null) {
+        if ($edit !== null && $edit->id !== null) {
 
             $this->hero = $edit;
             return;
