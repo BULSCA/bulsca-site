@@ -32,7 +32,7 @@ class Hero extends Component
             ->orderBy('valid_to', 'asc')
             ->first();
 
-        // if no hero is found find the first hero with a mnual activation type that is enabled
+        // if no hero is found find the first hero with a manual activation type that is enabled
         if (!$this->hero) {
             $this->hero = ModelHero::where('enabled', true)
                 ->where('activation_type', 'manual')
