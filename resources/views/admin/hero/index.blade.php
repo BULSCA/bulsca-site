@@ -17,7 +17,7 @@
 
         <div class="flex items-center  mb-2">
             <h1 class="header">heros</h1>
-            @can('admin.heros.manage')
+            @can('admin.heroes.manage')
                 <a href="{{ route('admin.hero.create') }}" class="ml-auto btn btn-thinner">Add hero</a>
             @endcan
         </div>
