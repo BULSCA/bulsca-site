@@ -138,7 +138,7 @@
         const baseClasses = ['cursor-pointer', 'size-3', 'rounded-full']
 
         const max_index = panes.children.length
-        let current_index = 0
+        let current_index = 1  // Start with the second tile (index 1)
 
         const switchToPane = (i) => {
             const child = panes.children[i]
@@ -186,6 +186,9 @@
 
             controls.appendChild(jumper)
         }
+
+        // Show the second tile initially
+        switchToPane(1)
 
         setInterval(() => {
             current_index++
@@ -268,6 +271,8 @@
         </div>
     </div>
 </div>
+
+{{--
 <div class="container-boast" style="background: #004490">
     <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56" alt=""
         srcset="">
@@ -283,7 +288,7 @@
     <a href="{{ route('champs.2025') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
         Find out More
     </a>
-</div>
+</div>--}}
 
 <script>
     let clk = 0;
