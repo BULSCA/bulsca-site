@@ -43,6 +43,7 @@ Competitions |
     </div>
     <div class="image-link bulsca" style="">
       <a href="{{ route('rlss-comps') }}">RLSS Comps</a>
+    </div>
   </div>
   <br>
 </div>
