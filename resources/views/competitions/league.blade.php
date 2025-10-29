@@ -53,7 +53,7 @@
                         <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
 
                         @if ($comp->short)
-                            <p class="mb-4 mt-2">
+                            <p class="">
                                 {{ $comp->short }}
                             </p>
                         @endif
