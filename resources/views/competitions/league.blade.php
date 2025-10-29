@@ -52,6 +52,12 @@
                         </h4>
                         <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
 
+                        @if ($comp->short)
+                            <p class="mb-4 mt-2">
+                                {{ $comp->short }}
+                            </p>
+                        @endif
+
                         @if ($comp->hasResults())
                             <a href="{{ $comp->getResults()['link'] }}" target="_blank"
                                 class="font-semibold text-gray-600 hover:text-black flex mt-auto ">
@@ -91,15 +97,12 @@
                                 }
                             @endphp
                             <p href="#" class="font-semibold text-gray-600 flex mt-auto ">
-                                Upcoming Event
+                                {{ $output }} to go
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                            </p>
-                            <p href="#" class="font-semibold text-gray-600 flex mt-auto ">
-                                ({{ $output }})
                             </p>
                             
                         @else
