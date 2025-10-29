@@ -27,59 +27,101 @@
     <div class=" container-responsive ">
         <h2 class="pb-3 header header-larger header-bold">Competition Calender </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 md:gap-y-12 gap-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3 md:gap-y-9">
             @foreach ($comps as $comp)
-                <div class="flex flex-col ">
-                    <a href="{{ route('lc-view', Str::lower($comp->hostUni->name) . '-' . $comp->when->format('Y') . '.' . $comp->id) }}"
-                        class="header header-bold hover:text-bulsca_red">
-                        {{ $comp->hostUni->name }}
-                    </a>
+                @php
+                    $dateDiff = now()->diffInDays($comp->when, false); // Calculate the difference in days
+                    $backgroundColor = 'inherit'; // Default background color
+                    $borderColor = 'inherit'; // Default border color
 
-                    <small>
-                        {{ $comp->when->format('d/m/Y') }}
-                    </small>
+                    if ($dateDiff < 0) {
+                        // Past competitions
+                        //$backgroundColor = '#e5e7eb'; // Tailwind gray-200
+                        //$borderColor = '#d1d5db'; // Tailwind gray-300
+                    } elseif ($dateDiff <= 14) {
+                        // Competitions happening in the next 14 days
+                        //$borderColor = 'rgb(158 13 6 / var(--tw-bg-opacity, 1))'; // Orange border (custom color)
+                    }
+                @endphp
+                <div class="rounded-lg  border overflow-hidden  flex flex-col  "
+                    style="background-color: {{ $backgroundColor }}; border-color: {{ $borderColor }};"
+                >
+                    <div class="flex flex-col m-4 h-full">
+                        <h4>
+                            {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
+                        </h4>
+                        <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
 
+                        @if ($comp->hasResults())
+                            <a href="{{ $comp->getResults()['link'] }}" target="_blank"
+                                class="font-semibold text-gray-600 hover:text-black flex mt-auto ">
+                                View Results
 
-                    <p class="mb-4 mt-2">
-                        {{ $comp->short }}
+                                @if (array_key_exists('type', $comp->getResults()))
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" class="w-6 h-6 ml-3">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                    </svg>
+                                @endif
+                            </a>
 
-                    </p>
-                    @if ($comp->hasResults())
-                        <a href="{{ $comp->getResults()['link'] }}" target="_blank"
-                            class="font-semibold text-gray-600 hover:text-black flex mt-auto ">
-                            View Results
+                        @elseif ($dateDiff >= 1)
+                            @php
+                                $output = '';
 
-                            @if (array_key_exists('type', $comp->getResults()))
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-6 h-6 ml-3">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                </svg>
-                            @else
+                                if ($dateDiff > 365) {
+                                    $years = floor($dateDiff / 365);
+                                    $output = $years . ' year' . ($years > 1 ? 's' : '');
+                                } elseif ($dateDiff > 28) {
+                                    $months = floor($dateDiff / 30); // Approximate months as 30 days
+                                    $output = $months . ' month' . ($months > 1 ? 's' : '');
+                                } elseif ($dateDiff > 10) {
+                                    $weeks = floor($dateDiff / 7);
+                                    $output = $weeks . ' week' . ($weeks > 1 ? 's' : '');
+                                } else {
+                                    $days = floor($dateDiff);
+                                    $output = $days . ' day' . ($dateDiff > 1 ? 's' : '');
+                                }
+                            @endphp
+                            <p href="#" class="font-semibold text-gray-600 flex mt-auto ">
+                                Upcoming Event
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                            @endif
+                            </p>
+                            <p href="#" class="font-semibold text-gray-600 flex mt-auto ">
+                                ({{ $output }})
+                            </p>
+                            
+                        @else
+                            <p href="#" class="font-semibold text-red-600  flex mt-auto ">
+                                Results Unavailable!
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                            </p>
+                        @endif
+                    </div>
 
+                    <a href="{{ route('lc-view', $comp->id) }}"
+                        class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 flex items-center justify-center ">
+                        View
+                    </a>
 
-                        </a>
-                    @else
-                        <p href="#" class="font-semibold text-red-600  flex mt-auto ">
-                            Results Unavailable!
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                            </svg>
-                        </p>
-                    @endif
                 </div>
             @endforeach
         </div>
-
-
     </div>
 
     <div class="px-2 md:px-[20%] py-[2%] bg-bulsca flex flex-col space-y-4">
@@ -319,56 +361,53 @@
 </div>
 
 <div class=" container-responsive ">
-<h2 class="pb-3 header header-larger header-bold">B-League Results </h2>
+    <h2 class="pb-3 header header-larger header-bold">B-League Results </h2>
+
+    <div class="table-wrapper relative">
+        <table class=" table-auto" style="position: relative;">
+            <thead>
+                <tr>
+                    @foreach ($bdata['cols'] as $col)
+                        <th>{{ $col }}</th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $pts = 0;
+                @endphp
+
+                @foreach ($bdata['data'] as $row)
+                    @if ($row['points'] == 0)
+                        @continue;
+                    @endif
+
+                    @php
+                        $pts += $row['points'];
+                    @endphp
 
 
-<div class="table-wrapper relative">
-<table class=" table-auto" style="position: relative;">
-    <thead>
-        <tr>
-            @foreach ($bdata['cols'] as $col)
-                <th>{{ $col }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @php
-            $pts = 0;
-        @endphp
+                    <tr>
+                        <th>{{ $row['team'] }}</th>
+                        <td>@th($loop->index + 1)</td>
+                        <td>{{ $row['points'] }}</td>
 
-        @foreach ($bdata['data'] as $row)
-            @if ($row['points'] == 0)
-                @continue;
-            @endif
-
-            @php
-                $pts += $row['points'];
-            @endphp
-
-
-            <tr>
-                <th>{{ $row['team'] }}</th>
-                <td>@th($loop->index + 1)</td>
-                <td>{{ $row['points'] }}</td>
-
-                @foreach ($bdata['comps'] as $comp)
-                    <td>
-                        @if ($row['positionPoints'][$comp] != 0)
-                            {{ max(11 - $row['positionPoints'][$comp], 1) }} (@th($row['positionPoints'][$comp]))
-                        @endif
-                    </td>
+                        @foreach ($bdata['comps'] as $comp)
+                            <td>
+                                @if ($row['positionPoints'][$comp] != 0)
+                                    {{ max(11 - $row['positionPoints'][$comp], 1) }} (@th($row['positionPoints'][$comp]))
+                                @endif
+                            </td>
+                        @endforeach
+                    </tr>
                 @endforeach
-            </tr>
-        @endforeach
-        @if ($pts == 0)
-            <tr>
-                <td colspan="100" class="md:text-center">No data</td>
-            </tr>
-        @endif
-
-
-    </tbody>
-</table>
-</div>
+                @if ($pts == 0)
+                    <tr>
+                        <td colspan="100" class="md:text-center">No data</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
