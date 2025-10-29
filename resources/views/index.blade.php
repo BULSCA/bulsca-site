@@ -58,8 +58,8 @@
                                         class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
                                         rel="noopener noreferrer" target="_blank">Follow live</a>
                                 @elseif ($nearComp->when->isFuture())
-                                    {{ $nearComp->when->format('l jS M Y') }} ({{ $diff }}
-                                    day{{ $diff > 1 ? 's' : '' }} to go!)
+                                    {{ $nearComp->when->format('l jS M Y') }} ({{ floor($diff) }}
+                                    day{{ floor($diff) > 1 ? 's' : '' }} to go!)
                                 @else
                                     <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
                                         class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
@@ -138,7 +138,7 @@
         const baseClasses = ['cursor-pointer', 'size-3', 'rounded-full']
 
         const max_index = panes.children.length
-        let current_index = 1  // Start with the second tile (index 1)
+        let current_index = 0  // Start with the second tile (index 1)
 
         const switchToPane = (i) => {
             const child = panes.children[i]
@@ -188,7 +188,7 @@
         }
 
         // Show the second tile initially
-        switchToPane(1)
+        switchToPane(0)
 
         setInterval(() => {
             current_index++
