@@ -11,6 +11,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Form\Form;
+use App\Models\Form\Submission;
 
 class User extends Authenticatable
 {
@@ -57,5 +59,15 @@ class User extends Authenticatable
     public function isUniAdmin($uni)
     {
         return (bool) DB::table('user_universities')->where('user', $this->id)->where('uni', $uni)->value('admin');
+    }
+
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class);
     }
 }

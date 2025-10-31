@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "Bulsca/site",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The official website of BULSCA (British University Livesaving Clubs Association).",
     "keywords": [
         "framework",
         "laravel"
@@ -14,6 +14,7 @@
         "composer/package-versions-deprecated": "*",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
+        "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",

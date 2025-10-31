@@ -19,6 +19,12 @@ use App\Models\League;
 use App\Models\Season;
 use App\Services\ImageService;
 use Carbon\Carbon;
+use Inertia\Inertia;
+
+
+Route::get('/playground', function () {
+    return Inertia::render('Playground');
+})->name('playground');
 
 /*
 |--------------------------------------------------------------------------
@@ -178,6 +184,7 @@ Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniP
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/form.php';
 
 
 Route::get('/editor', function () {
