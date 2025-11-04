@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.6",
         "league/glide": "^2.2",
+        "league/glide-symfony": "^2.0",
         "pion/laravel-chunk-upload": "^1.5",
         "propaganistas/laravel-phone": "^5.0",
         "smalot/pdfparser": "^2.12",
