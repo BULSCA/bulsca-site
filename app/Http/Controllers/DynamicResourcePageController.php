@@ -9,6 +9,8 @@ use App\Models\ResourcePageSectionResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Smalot\PdfParser\Parser;
+
 
 class DynamicResourcePageController extends Controller
 {
@@ -29,8 +31,10 @@ class DynamicResourcePageController extends Controller
         $content = '';
 
         if ($request->file('resource')->extension() == 'pdf') {
+            $parser = new Parser();
             $fullTarget = storage_path('app').'/'.$storedRes->location;
-            $content = shell_exec("pdftotext {$fullTarget} -");
+            $pdf = $parser->parseFile($fullTarget);
+            $content = $pdf->getText();
         }
 
         $rpsr->section = $rps->id;
