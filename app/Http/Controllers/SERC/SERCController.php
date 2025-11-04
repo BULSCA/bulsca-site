@@ -20,15 +20,10 @@ class SERCController extends Controller
     public function index()
     {
 
-
         $sercs = null;
 
-
-
-
-
         if (request('s') != null) {
-            $sercs = SERC::where('name', 'LIKE', '%' . request('s') . '%');
+            $sercs = SERC::where('name', 'LIKE', '%'.request('s').'%');
         }
 
         if (request('orderByViews')) {
@@ -55,7 +50,7 @@ class SERCController extends Controller
     public function store(StoreSERCRequest $request)
     {
 
-        $serc = new \App\Models\SERC\SERC();
+        $serc = new \App\Models\SERC\SERC;
         $serc->name = $request->name;
         $serc->description = $request->description;
         $serc->when = $request->when;
@@ -69,9 +64,7 @@ class SERCController extends Controller
 
             foreach ($files as $file) {
 
-
-
-                $res = ResourceController::storeFile($file, 'sercs/' . $serc->id, 'self');
+                $res = ResourceController::storeFile($file, 'sercs/'.$serc->id, 'self');
                 $res->save();
 
                 DB::table('serc_resources')->insert(['serc_id' => $serc->id, 'resource_id' => $res->id]);
@@ -80,7 +73,9 @@ class SERCController extends Controller
 
         $tags = explode(',', $request->tags);
         foreach ($tags as $tag) {
-            if ($tag == '') continue;
+            if ($tag == '') {
+                continue;
+            }
             $tag = SERCTag::firstOrCreate(['name' => $tag]);
             $tag->save();
             DB::table('tagged_sercs')->insert(['serc_id' => $serc->id, 'serc_tag_id' => $tag->id]);
@@ -113,23 +108,20 @@ class SERCController extends Controller
 
             foreach ($files as $file) {
 
-
-
-                $res = ResourceController::storeFile($file, 'sercs/' . $serc->id, 'self');
+                $res = ResourceController::storeFile($file, 'sercs/'.$serc->id, 'self');
                 $res->save();
 
                 DB::table('serc_resources')->insert(['serc_id' => $serc->id, 'resource_id' => $res->id]);
             }
         }
 
-
-
-
         // Handle tags - remove all tags and re-add
         $tags = explode(',', $request->tags);
         DB::table('tagged_sercs')->where('serc_id', $serc->id)->delete();
         foreach ($tags as $tag) {
-            if ($tag == '') continue;
+            if ($tag == '') {
+                continue;
+            }
             $tag = SERCTag::firstOrCreate(['name' => $tag]);
             $tag->save();
             DB::table('tagged_sercs')->insert(['serc_id' => $serc->id, 'serc_tag_id' => $tag->id]);
@@ -146,7 +138,6 @@ class SERCController extends Controller
     public function delete(SERC $serc)
     {
 
-
         $resources = $serc->getResources;
 
         foreach ($resources as $res) {
@@ -155,13 +146,14 @@ class SERCController extends Controller
         }
 
         $serc->delete();
+
         return redirect()->route('admin.sercs')->with('message', 'SERC Deleted!');
     }
 
     public function deleteResource(SERC $serc, Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required'
+            'id' => 'required',
         ]);
 
         DB::table('serc_resources')->where('serc_id', $serc->id)->where('resource_id', $validated['id'])->delete();
@@ -172,7 +164,6 @@ class SERCController extends Controller
 
         $res->delete();
 
-        return;
     }
 
     public function publicSERCs()
@@ -183,17 +174,14 @@ class SERCController extends Controller
         $filterOptions['cas_min'] = SERC::min('casualties');
         $filterOptions['cas_max'] = SERC::max('casualties');
 
-        $filterOptions['whens'] = DB::select("SELECT DISTINCT year(sercs.when) AS years FROM sercs ORDER BY years DESC;");
-        $filterOptions['wheres'] = DB::select("SELECT DISTINCT sercs.where FROM sercs ORDER BY sercs.where;");
-
-
+        $filterOptions['whens'] = DB::select('SELECT DISTINCT year(sercs.when) AS years FROM sercs ORDER BY years DESC;');
+        $filterOptions['wheres'] = DB::select('SELECT DISTINCT sercs.where FROM sercs ORDER BY sercs.where;');
 
         $filterOptions['whens'] = array_map(function ($item) {
             return $item->years;
         }, $filterOptions['whens']);
 
-        $filterOptions['tags'] = SERCTag::where("name", "!=", "")->distinct()->orderBy('name')->get(['id', 'name', 'category'])->groupBy('category');
-
+        $filterOptions['tags'] = SERCTag::where('name', '!=', '')->distinct()->orderBy('name')->get(['id', 'name', 'category'])->groupBy('category');
 
         return view('resources.sercs', ['count' => SERC::count(), 'filterOptions' => $filterOptions]);
     }
@@ -202,7 +190,6 @@ class SERCController extends Controller
     {
 
         // Two queries - one for searching with no tags as its simple
-
 
         $query = SERC::with('tags:name,id');
 
@@ -214,7 +201,7 @@ class SERCController extends Controller
         }
 
         if (request('search') != '') {
-            $query->where('name', 'LIKE', '%' . request('search') . '%');
+            $query->where('name', 'LIKE', '%'.request('search').'%');
         }
 
         if (request('cas_min') != null) {
@@ -234,17 +221,11 @@ class SERCController extends Controller
         }
 
         if (request('author') != null) {
-            $query->where('author', 'LIKE', '%' . request('author') . '%');
+            $query->where('author', 'LIKE', '%'.request('author').'%');
         }
-
-
-
-
-
 
         // Another for searchign when using tags:
         //  SELECT * FROM sercs s INNER JOIN tagged_sercs ts ON ts.serc_id = s.id WHERE serc_tag_id IN (10);
-
 
         return response()->json($query->orderBy('when', 'DESC')->get());
     }
@@ -268,11 +249,9 @@ class SERCController extends Controller
 
         $serc['resources'] = $resources;
 
-
         unset($serc['getResources']);
 
         // add view
-
 
         return response()->json($serc);
     }
@@ -282,7 +261,7 @@ class SERCController extends Controller
         $tags = null;
 
         if (request('s') != null) {
-            $tags = SERCTag::where('name', 'LIKE', '%' . request('s') . '%');
+            $tags = SERCTag::where('name', 'LIKE', '%'.request('s').'%');
         } else {
             $tags = SERCTag::orderBy('name');
         }
@@ -296,12 +275,11 @@ class SERCController extends Controller
         $categories = [];
 
         foreach (SERCTag::select('category')->distinct()->get()->pluck('category')->toArray() as $tagg) {
-            $c = new \stdClass();
+            $c = new \stdClass;
             $c->id = $tagg ? $tagg : 'null';
             $c->name = $tagg ? $tagg : 'None';
             $categories[] = $c;
         }
-
 
         return view('admin.sercs.tags.show', ['tag' => $tag, 'categories' => $categories]);
     }
@@ -324,6 +302,7 @@ class SERCController extends Controller
     public function deleteTag(SERCTag $tag)
     {
         $tag->delete();
+
         return redirect()->route('admin.sercs.tags.list')->with('message', 'Tag Deleted!');
     }
 }

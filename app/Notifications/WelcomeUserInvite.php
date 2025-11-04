@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -43,7 +42,7 @@ class WelcomeUserInvite extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Welcome")
+            ->subject('Welcome')
             ->greeting("Hello {$this->user->name},")
             ->line("You're BULSCA account is ready and can be accessed using the following credentials:")
             ->line("Email: {$this->user->email}")

@@ -6,15 +6,12 @@ use Illuminate\View\Component;
 
 class Badge extends Component
 {
-
-
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($style = "info")
+    public function __construct($style = 'info')
     {
         $this->style = $style;
     }

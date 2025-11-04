@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('club_pages', function (Blueprint $table) {
-            $table->string('banner_color')->default("#070660");
-            $table->string('banner_text_color')->default("#ffffff");
+            $table->string('banner_color')->default('#070660');
+            $table->string('banner_text_color')->default('#ffffff');
         });
     }
 

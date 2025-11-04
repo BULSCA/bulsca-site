@@ -9,8 +9,6 @@ use App\Models\ResourcePageSectionResource;
 use DirectoryIterator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Support\Str;
 
 class AddResources extends Command
@@ -37,39 +35,40 @@ class AddResources extends Command
     public function handle()
     {
 
-
-        if (!ResourcePageSection::where('name', $this->argument('section'))->exists()) {
+        if (! ResourcePageSection::where('name', $this->argument('section'))->exists()) {
             $this->error("No section called '{$this->argument('section')}' exists!");
+
             return 0;
         }
 
         $section = ResourcePageSection::where('name', $this->argument('section'))->first();
 
-
         $path = $this->argument('path');
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->error("The path given doesn't exist!");
+
             return 0;
         }
 
-
         foreach (new DirectoryIterator($path) as $fileInfo) {
 
-            if (!$fileInfo->isFIle()) continue;
+            if (! $fileInfo->isFIle()) {
+                continue;
+            }
 
-            $target = 'resources/resources/' . Str::random(40) . '.' . $fileInfo->getExtension();
+            $target = 'resources/resources/'.Str::random(40).'.'.$fileInfo->getExtension();
 
-            $fullTarget = storage_path('app') . '/' . $target;
+            $fullTarget = storage_path('app').'/'.$target;
 
             copy($fileInfo->getPathname(), $fullTarget);
 
-            $resource = new Resource();
+            $resource = new Resource;
             $resource->name = Str::replace('-', ' ', Str::replace('_', ' ', pathinfo($fileInfo->getPathname(), PATHINFO_FILENAME)));
             $resource->location = $target;
             $resource->save();
 
-            $contents = "";
+            $contents = '';
 
             if ($fileInfo->getExtension() == 'pdf') {
                 $contents = shell_exec("pdftotext {$fullTarget} -");
@@ -78,18 +77,17 @@ class AddResources extends Command
                 $contents = file_get_contents($fullTarget);
             }
 
-            $rpsr = new ResourcePageSectionResource();
+            $rpsr = new ResourcePageSectionResource;
             $rpsr->section = $section->id;
             $rpsr->resource = $resource->id;
             $rpsr->name = $resource->name;
-            $rpsr->short = "";
+            $rpsr->short = '';
             $rpsr->content = $contents;
             $rpsr->save();
         }
 
         $page = ResourcePage::find($section->page);
 
-
-        Cache::forget('resource-page-' . Str::replace(' ', '-', Str::lower($page->name)));
+        Cache::forget('resource-page-'.Str::replace(' ', '-', Str::lower($page->name)));
     }
 }

@@ -26,7 +26,7 @@ class StoreTagRequest extends FormRequest
         return [
             'name' => 'required',
             'category' => 'required',
-            'category_new' => ''
+            'category_new' => '',
         ];
     }
 }

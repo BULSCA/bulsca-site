@@ -27,14 +27,14 @@ class CreateNewSeason extends FormRequest
         return [
             'name' => 'required|min:8',
             'from' => 'required|date',
-            'to' => 'required|date|after:from'
+            'to' => 'required|date|after:from',
         ];
     }
 
     public function messages()
     {
         return [
-            'to.after' => 'The season must end after the start date!'
+            'to.after' => 'The season must end after the start date!',
         ];
     }
 }

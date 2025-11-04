@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Exception;
-use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,11 +15,11 @@ class CompetitionInfo extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'timetable' => 'array'
+        'timetable' => 'array',
     ];
 
     protected $attributes = [
-        'teams_limit' => 0
+        'teams_limit' => 0,
     ];
 
     public function getCompetition()
@@ -37,33 +36,35 @@ class CompetitionInfo extends Model
 
         $timestamp = $this->timetable[$key];
 
-        if (!$timestamp) return 'N/A';
-
-
+        if (! $timestamp) {
+            return 'N/A';
+        }
 
         return $timestamp;
     }
 
     public function orgPhone()
     {
-        $phone = "";
+        $phone = '';
         try {
             $phone = phone($this->contact_organiser_phone, 'GB')->formatInternational();
         } catch (Exception $e) {
             return 'N/A';
         }
+
         return $phone;
     }
 
     public function emergPhone()
     {
 
-        $phone = "";
+        $phone = '';
         try {
             $phone = phone($this->contact_emergency_phone, 'GB')->formatInternational();
         } catch (Exception $e) {
             return 'N/A';
         }
+
         return $phone;
     }
 }

@@ -10,11 +10,11 @@ class ResourcePageSectionResource extends Model
 {
     use HasFactory, Orderable;
 
-    public function __construct(array $attributes = array())
+    public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setOrderGroupColumn("section");
+        $this->setOrderGroupColumn('section');
     }
 
     public function getResource()

@@ -9,7 +9,8 @@ class CasualtyGroup extends Model
 {
     use HasFactory;
 
-    public function getCasualties() {
+    public function getCasualties()
+    {
         return $this->hasMany(Casualty::class, 'group');
     }
 }

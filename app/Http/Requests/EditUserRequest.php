@@ -28,7 +28,7 @@ class EditUserRequest extends FormRequest
             'user_name' => 'required',
             'user_email' => 'email|required',
             'user_university' => '',
-            'user_university_admin' => ''
+            'user_university_admin' => '',
         ];
     }
 }

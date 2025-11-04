@@ -6,15 +6,16 @@ use Illuminate\View\Component;
 
 class TagInput extends Component
 {
+    private $value;
 
-    private $value, $allowNew;
+    private $allowNew;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($value = "", $allowNew = 'true')
+    public function __construct($value = '', $allowNew = 'true')
     {
         $this->value = $value;
         $this->allowNew = $allowNew;
