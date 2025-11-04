@@ -2,12 +2,9 @@
 
 namespace App\Traits;
 
-
-
 trait Orderable
 {
-
-    private string $orderGroupColumn = "";
+    private string $orderGroupColumn = '';
 
     /**
      * $direction is TRUE for UP, FALSE for DOWN
@@ -17,14 +14,15 @@ trait Orderable
         $currentOrderIndex = $this->ordering;
         $toSwapWith = self::where('ordering', $currentOrderIndex + ($direction ? -1 : +1));
 
-        if ($this->orderGroupColumn != "") {
+        if ($this->orderGroupColumn != '') {
             $toSwapWith = $toSwapWith->where($this->orderGroupColumn, $this->{$this->orderGroupColumn});
         }
 
         $toSwapWith = $toSwapWith->first();
 
-
-        if ($toSwapWith == null) return false;
+        if ($toSwapWith == null) {
+            return false;
+        }
 
         $targetOrder = $toSwapWith->ordering;
         $toSwapWith->ordering = null;
@@ -48,8 +46,8 @@ trait Orderable
     {
 
         $highestOrder = null;
-        if ($this->orderGroupColumn != "") {
-            $highestOrder =  self::where($this->orderGroupColumn, $this->{$this->orderGroupColumn})->max('ordering');
+        if ($this->orderGroupColumn != '') {
+            $highestOrder = self::where($this->orderGroupColumn, $this->{$this->orderGroupColumn})->max('ordering');
         } else {
             $highestOrder = self::max('ordering');
         }

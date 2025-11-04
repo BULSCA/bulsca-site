@@ -36,7 +36,7 @@ return new class extends Migration
 
             $table->longText('desc')->nullable();
             $table->longText('extra_info')->nullable();
-            
+
             $table->timestamps();
         });
     }

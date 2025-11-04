@@ -12,7 +12,6 @@ class Season extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-
     protected $guarded = ['id'];
 
     protected $casts = [
@@ -33,7 +32,7 @@ class Season extends Model
 
     public function getALeagueResults()
     {
-        return Cache::remember($this->id . '-a-league-res', 3600, function () {
+        return Cache::remember($this->id.'-a-league-res', 3600, function () {
             return $this->computeALeagueResults();
         });
     }
@@ -59,11 +58,9 @@ class Season extends Model
             [1]
         );
 
-
         $finalUnis = [];
 
         $currentUni = new ResultUni($res[0]->SeasonUni);
-
 
         foreach ($res as $row) {
             if ($row->SeasonUni != $currentUni->getName()) {
@@ -75,7 +72,6 @@ class Season extends Model
         }
         array_push($finalUnis, $currentUni);
 
-
         usort($finalUnis, function ($a, $b) {
             return $a->getTotal() < $b->getTotal();
         });
@@ -83,22 +79,15 @@ class Season extends Model
         return $finalUnis;
     }
 
-    public function getBLeagueResults()
+    public function getBLeagueResults() {}
+
+    public static function current()
     {
-    }
-
-
-
-    static function current()
-    {
-
 
         $s = Season::where('from', '<', now())->orderBy('from', 'desc')->first(); // This will show the current season until the next season starts, thus a new season can be made, but not automatically shown
-        //$s = Season::where('from', '>', now())->where('to', '<', now())->first();
+        // $s = Season::where('from', '>', now())->where('to', '<', now())->first();
 
-
-
-        if (!$s) {
+        if (! $s) {
             $s = Season::orderBy('from', 'DESC')->first();
         }
 
@@ -107,7 +96,7 @@ class Season extends Model
 
     public function getDateSlug()
     {
-        return $this->from->format('Y') . "-" . $this->to->format('y');
+        return $this->from->format('Y').'-'.$this->to->format('y');
     }
 
     private function cmp($a, $b)
@@ -118,7 +107,7 @@ class Season extends Model
             $aPos = collect($a['positionPoints'])->countBy();
             $bPos = collect($b['positionPoints'])->countBy();
 
-            foreach ([1,2,3,4,5,6,8,9,10] as $position) {
+            foreach ([1, 2, 3, 4, 5, 6, 8, 9, 10] as $position) {
                 $aC = $aPos[$position] ?? 10;
                 $bC = $bPos[$position] ?? 10;
 
@@ -135,8 +124,7 @@ class Season extends Model
     public function getLeagueResults($league)
     {
 
-
-        return Cache::rememberForever('league-results.' . $this->id . '.' . $league, function () use ($league) {
+        return Cache::rememberForever('league-results.'.$this->id.'.'.$league, function () use ($league) {
 
             $compOrderData = $this->competitions()->with('hostUni')->orderBy('when')->get();
 
@@ -145,45 +133,36 @@ class Season extends Model
             foreach ($compOrderData as $cod) {
 
                 if (in_array($cod->hostUni->name, $compOrder)) {
-                    array_push($compOrder, $cod->hostUni->name . '_2');
+                    array_push($compOrder, $cod->hostUni->name.'_2');
                 } else {
                     array_push($compOrder, $cod->hostUni->name);
                 }
 
-                
             }
 
             $queryGrammar = DB::connection()->getQueryGrammar();
 
             $data = DB::select(
-                DB::raw("SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0, GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name")
+                DB::raw('SELECT u.name AS host, team.name AS team, lp.league, lp.pos, IF(lp.pos = 0, 0, GREATEST(11 - lp.pos, 1)) AS points FROM league_places lp INNER JOIN competitions c on c.id = lp.comp INNER JOIN universities u ON u.id=c.host INNER JOIN universities team ON team.id = lp.uni WHERE c.season = ? AND lp.league = ? ORDER BY u.name, team.name')
                     ->getValue($queryGrammar),
                 [$this->id, $league]
             );
 
-
             $readyData = [];
-
 
             foreach ($data as $row) {
 
-
                 $uniData = array_key_exists($row->team, $readyData) ? $readyData[$row->team] : [];
-                $positionPoints = array_key_exists("positionPoints", $uniData) ? $uniData['positionPoints'] : [];
-                $points = array_key_exists("points", $uniData) ? $uniData['points'] : 0;
+                $positionPoints = array_key_exists('positionPoints', $uniData) ? $uniData['positionPoints'] : [];
+                $points = array_key_exists('points', $uniData) ? $uniData['points'] : 0;
 
                 $points += $row->points;
 
-
-                
-
                 if (array_key_exists($row->host, $positionPoints)) {
-                    $row->host = $row->host . "_2";
+                    $row->host = $row->host.'_2';
                 }
 
                 $positionPoints[$row->host] = $row->pos;
-
-
 
                 $uniData['team'] = $row->team;
                 $uniData['points'] = $points;
@@ -194,30 +173,21 @@ class Season extends Model
 
             // We now need to process the data to sort the rows
 
+            usort($readyData, [Season::class, 'cmp']);
 
-
-
-            usort($readyData, [Season::class, "cmp"]);
-
-
-
-
-            $cols = ["Team", "Position", "Points", ...$compOrder];
-
+            $cols = ['Team', 'Position', 'Points', ...$compOrder];
 
             return ['data' => $readyData, 'cols' => $cols, 'comps' => $compOrder];
         });
     }
 }
 
-
-
-
 class ResultUni
 {
-
     private $uni;
+
     private $scores = [];
+
     private $total = 0;
 
     public function __construct($uni)

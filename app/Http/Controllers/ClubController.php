@@ -20,7 +20,6 @@ class ClubController extends Controller
     public function get($cid)
     {
 
-
         $club = $this->convertSlugToClub(($cid));
 
         return view('get-involved.view-club', ['club' => $club]);
@@ -30,8 +29,8 @@ class ClubController extends Controller
     {
         $club = $this->convertSlugToClub(($cid));
 
-        if (!$club->currentUserIsClubAdmin() && auth()->user()->cannot('admin.universities.manage')) {
-            return redirect()->route('view-club', ['cid' => Str::lower($club->name) . "." . $club->id]);
+        if (! $club->currentUserIsClubAdmin() && auth()->user()->cannot('admin.universities.manage')) {
+            return redirect()->route('view-club', ['cid' => Str::lower($club->name).'.'.$club->id]);
         }
 
         return view('get-involved.edit-club', ['club' => $club]);
@@ -41,30 +40,20 @@ class ClubController extends Controller
     {
         $club = $this->convertSlugToClub(($cid));
 
-        if (!$club->currentUserIsClubAdmin() && auth()->user()->cannot('admin.universities.manage')) {
-            return redirect()->route('view-club', ['cid' => Str::lower($club->name) . "." . $club->id]);
+        if (! $club->currentUserIsClubAdmin() && auth()->user()->cannot('admin.universities.manage')) {
+            return redirect()->route('view-club', ['cid' => Str::lower($club->name).'.'.$club->id]);
         }
 
         $page = $club->getPage()->first();
 
         if ($page == null) {
-            $page = new ClubPage();
+            $page = new ClubPage;
             $page->uni = $club->id;
         }
-
-
-     
-
-        
 
         $page->content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $req->input('content', $page->content));
         $page->banner_color = $req->input('banner_color', $page->banner_color);
         $page->banner_text_color = $req->input('banner_text_color', $page->banner_text_color);
-
-
-
-     
-
 
         $club->location = $req->input('location', $club->location);
         $club->facebook = $req->input('facebook', $club->facebook);
@@ -75,7 +64,7 @@ class ClubController extends Controller
 
         $page->save();
 
-        return redirect()->route('view-club', ['cid' => Str::lower($club->name) . "." . $club->id]);
+        return redirect()->route('view-club', ['cid' => Str::lower($club->name).'.'.$club->id]);
     }
 
     private function convertSlugToClub($slug)
@@ -85,6 +74,7 @@ class ClubController extends Controller
         $clubId = $split[count($split) - 1];
 
         $club = University::find($clubId);
+
         return $club;
     }
 }

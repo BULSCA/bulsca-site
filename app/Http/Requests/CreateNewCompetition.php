@@ -27,14 +27,14 @@ class CreateNewCompetition extends FormRequest
         return [
             'host' => ['required', Rule::notIn(['null'])],
             'when' => 'required|date',
-            'season' => 'required'
+            'season' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'host.not_in' => 'Please select a host!'
+            'host.not_in' => 'Please select a host!',
         ];
     }
 }

@@ -12,17 +12,18 @@ class SeasonUni extends Model
 
     protected $guarded = ['id'];
 
-    public function currentSeason() {
+    public function currentSeason()
+    {
         return $this->hasOne(Season::class, 'id', 'season');
     }
 
-    public function currentUni() {
+    public function currentUni()
+    {
         return $this->hasOne(University::class, 'id', 'uni');
     }
 
-
-    public function seasonPlaces() {
+    public function seasonPlaces()
+    {
         return $this->hasMany(CompetitionUniPlace::class, 'season_uni', 'id');
     }
-
 }

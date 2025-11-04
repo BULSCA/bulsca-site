@@ -26,7 +26,7 @@ class CreateArticleRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
-            'pinned' => ''
+            'pinned' => '',
         ];
     }
 }

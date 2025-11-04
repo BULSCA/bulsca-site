@@ -14,7 +14,7 @@ class Competition extends Model
 
     protected $casts = [
         'when' => 'datetime',
-        'status' => CompetitionStatus::class
+        'status' => CompetitionStatus::class,
     ];
 
     public function hostUni()
@@ -39,22 +39,25 @@ class Competition extends Model
 
     public function hasResults()
     {
-        if ($this->results_resource != null) return true;
-        return $this->results_type == "NONE" ? false : true;
+        if ($this->results_resource != null) {
+            return true;
+        }
+
+        return $this->results_type == 'NONE' ? false : true;
     }
 
     public function getStatus()
     {
         if (now() > $this->when) {
-            return "competition-status-finished";
+            return 'competition-status-finished';
         } else {
-            return "";
+            return '';
         }
     }
 
     public function getName()
     {
-        return $this->hostUni->name . " " . $this->when->format('Y');
+        return $this->hostUni->name.' '.$this->when->format('Y');
     }
 
     public function getInfo()
@@ -74,22 +77,25 @@ class Competition extends Model
 
         if ($this->results_resource != null) {
             $r = $this->getResultsResource()->first();
-            return ["name" => $r->name, "link" => $r->getURL()];
+
+            return ['name' => $r->name, 'link' => $r->getURL()];
         }
 
-        if ($this->results_type == "RESOURCE") {
+        if ($this->results_type == 'RESOURCE') {
             $r = Resource::find($this->results_link);
-            return ["name" => $r->name, "link" => $r->getURL()];
+
+            return ['name' => $r->name, 'link' => $r->getURL()];
         }
-        return ["name" => $this->getName() . " Results", "link" => $this->results_link, "type" => "link"];
+
+        return ['name' => $this->getName().' Results', 'link' => $this->results_link, 'type' => 'link'];
     }
 }
 
 enum ResultType: string
 {
-    case RESOURCE = "RESOURCE";
-    case LINK = "LINK";
-    case NONE = "NONE";
+    case RESOURCE = 'RESOURCE';
+    case LINK = 'LINK';
+    case NONE = 'NONE';
 }
 
 enum CompetitionStatus: string

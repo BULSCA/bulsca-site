@@ -25,7 +25,7 @@ class CreateUniversity extends FormRequest
     {
         return [
             'name' => 'required|unique:universities,name|min:2',
-            'image' => 'nullable|file'
+            'image' => 'nullable|file',
         ];
     }
 }

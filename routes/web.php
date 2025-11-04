@@ -1,24 +1,21 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\BigUpload;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
-use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\UniversityController;
 use App\Models\Competition;
-use App\Models\League;
 use App\Models\Season;
-use App\Services\ImageService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +27,6 @@ use Carbon\Carbon;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/', function () {
 
@@ -68,6 +64,10 @@ Route::get('/competitions/league', [SeasonController::class, 'currentSeason'])->
 Route::get('/competitions/league/{sid}', [SeasonController::class, 'previousSeason'])->where('sid', '\d{4}\-\d{2}')->name('prev_season');
 Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous'])->name('league.previous');
 
+Route::get('/competitions/rlss', function () {
+    return view('competitions.rlss');
+})->name('rlss-comps');
+
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
@@ -79,7 +79,6 @@ Route::get('/get-involved/committee', function () {
     $fourThirtyFive = Carbon::now()->timezone('Europe/London')->setHours(0)->setMinutes(5)->setSeconds(0)->setDate(0, 0, 0);
 
     $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
-
 
     return view('get-involved.committee', ['time' => $isBetween]);
 })->name('get-involved.committee');
@@ -109,7 +108,6 @@ Route::get('/resources/view/{id}', [ResourceController::class, 'get'])->name('vi
 Route::post('/resources/upload', [ResourceController::class, 'upload'])->name('upload-resource');
 Route::get('/resources/search/{search}', [DynamicResourcePageController::class, 'search'])->middleware('throttle:10000,1')->name('resource-search');
 
-
 Route::get('/about', function () {
     return view('about.index');
 })->name('about');
@@ -133,7 +131,6 @@ Route::get('/settings', function () {
     return view('settings');
 })->name('settings')->middleware('auth');
 
-
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
 Route::get('/article/create', function () {
     return view('articles.create');
@@ -145,7 +142,6 @@ Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])-
 Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article.view');
 
 Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name('article.rating')->middleware('throttle:10,1');
-
 
 // ========= WELFARE =========
 Route::get('/welfare', function () {
@@ -175,10 +171,8 @@ Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')-
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
 
-
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
-
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 Route::get('/editor', function () {
     return view('editor');

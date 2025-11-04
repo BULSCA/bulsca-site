@@ -34,8 +34,8 @@ class IndexPdfs extends Command
         foreach ($rpsrs as $pres) {
             $resource = Resource::find($pres->resource);
             if (pathinfo($resource->location, PATHINFO_EXTENSION) == 'pdf') {
-                $fullTarget = storage_path('app') . '/' . $resource->location;
-                $content = "";
+                $fullTarget = storage_path('app').'/'.$resource->location;
+                $content = '';
 
                 $content = shell_exec("pdftotext {$fullTarget} -");
                 $pres->content = $content;
@@ -43,6 +43,7 @@ class IndexPdfs extends Command
             $pres->name = $resource->name;
             $pres->save();
         }
+
         return 0;
     }
 }

@@ -33,12 +33,10 @@ class CreateAdminUser extends Command
         $name = $this->argument('name');
         $email = $this->argument('email');
 
-
-
         $password = Str::random(16);
         $passwordHash = Hash::make($password);
 
-        $user = new User();
+        $user = new User;
         $user->name = $name;
         $user->email = $email;
         $user->password = $passwordHash;
