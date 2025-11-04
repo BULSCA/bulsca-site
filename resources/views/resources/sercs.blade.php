@@ -160,7 +160,7 @@
     
         loadSerc(serc) {
     
-            fetch(`{{ route('resources.sercs.get', '') }}/${serc.id}`).then(response => response.json()).then(data => {
+            fetch(`/resources/sercs/${serc.id}`).then(response => response.json()).then(data => {
                 this.activeSerc = data
                 this.showModal = true
                 this.updateQueryHistory()
