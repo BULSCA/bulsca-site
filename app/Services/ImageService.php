@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use League\Glide\Responses\LaravelResponseFactory;
+use League\Glide\Responses\SymfonyResponseFactory;
 use League\Glide\ServerFactory;
 
 class ImageService
@@ -15,7 +15,7 @@ class ImageService
         $driver = Storage::disk('local')->path('');
 
         $server = ServerFactory::create([
-            'response' => new LaravelResponseFactory(app('request')),
+            'response' => new SymfonyResponseFactory(app('request')),
             'source' => $driver.'img/source',
             'cache' => $driver.'img/cache',
             'cache_path_prefix' => '.cache',
