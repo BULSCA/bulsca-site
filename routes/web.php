@@ -32,7 +32,7 @@ Route::get('/', function () {
 
     $queryGrammar = DB::connection()->getQueryGrammar();
     $datediffExpression = DB::raw('DATEDIFF(competitions.when, NOW())')->getValue($queryGrammar);
-    $nearComp = Competition::whereBetween(DB::raw($datediffExpression), [-1, 7])
+    $nearComp = Competition::whereBetween(DB::raw($datediffExpression), [-1, 14])
         ->orderBy(DB::raw($datediffExpression), 'desc')
         ->first();
 

@@ -14,7 +14,7 @@
 
     <div class="container-responsive">
         <h2 class="" style='margin-bottom: -.25em !important'><span style="font-size: 0.5em !important">Hello</span></h2>
-        <h2 class="   " style='margin-bottom: -.25em !important'><span
+        <h2 class="   " style='margin-bottom: -.2em !important'><span
                 class="text-bulsca_red font-bold">{{ auth()->user()->name }}</span></h2>
         <small class="">
             @if (auth()->user()->getHomeUni())
@@ -72,33 +72,35 @@
                     <a href="{{ route('edit-club', auth()->user()->getHomeUni()->getAsSlug()) }}">Edit Club Page and
                         Socials</a>
             </div>
-
             <hr class="my-5">
-
         @endif
-
 
         @if (auth()->user()->getHomeUni() &&
                 auth()->user()->isUniAdmin(auth()->user()->getHomeUni()->id))
             <h3 class="">
                 Your Competitions
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-3">
                 @forelse ($myCompetitions as $comp)
-                    <div class="relative rounded-lg  border   flex justify-between items-center ">
+                    <div class="relative rounded-lg  border overflow-hidden  flex flex-col ">
 
-                        <div class="flex flex-col m-4">
+                        <div class="flex flex-col m-4 h-full">
                             <h4>
                                 {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
                             </h4>
                             <small class="text-gray-500 -mt-2">{{ $comp->when->format('d/m/Y') }}</small>
                         </div>
 
-
-                        <a href="{{ route('lc-manage', $comp->id) }}"
-                            class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center rounded-r-md ">
-                            Manage
-                        </a>
+                        <div class="grid grid-cols-2 w-full">
+                            <a href="{{ route('lc-view', $comp->id) }}"
+                                class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 flex items-center justify-center  ">
+                                View
+                            </a>
+                            <a href="{{ route('lc-manage', $comp->id) }}"
+                                class="bg-green-500 hover:bg-bulsca_red transition-colors text-white no-underline  p-4 flex items-center justify-center  ">
+                                Manage
+                            </a>
+                        </div>
 
                     </div>
                 @empty
@@ -114,10 +116,10 @@
         <h3>
             Upcoming Competitions
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-3">
             @forelse ($upcoming as $comp)
-                <div class="rounded-lg  border overflow-hidden  flex justify-between items-center ">
-                    <div class="flex flex-col m-4">
+                <div class="rounded-lg  border overflow-hidden  flex flex-col ">
+                    <div class="flex flex-col m-4 h-full">
                         <h4>
                             {{ $comp->hostUni->name }} {{ $comp->when->format('Y') }}
                         </h4>
@@ -126,7 +128,7 @@
 
 
                     <a href="{{ route('lc-view', $comp->id) }}"
-                        class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 h-full flex items-center justify-center ">
+                        class="bg-bulsca hover:bg-bulsca_red transition-colors text-white no-underline  p-4 flex items-center justify-center ">
                         View
                     </a>
 

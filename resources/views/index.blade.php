@@ -58,8 +58,8 @@
                                         class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
                                         rel="noopener noreferrer" target="_blank">Follow live</a>
                                 @elseif ($nearComp->when->isFuture())
-                                    {{ $nearComp->when->format('l jS M Y') }} ({{ $diff }}
-                                    day{{ $diff > 1 ? 's' : '' }} to go!)
+                                    {{ $nearComp->when->format('l jS M Y') }} ({{ floor($diff) }}
+                                    day{{ floor($diff) > 1 ? 's' : '' }} to go!)
                                 @else
                                     <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
                                         class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
@@ -138,7 +138,7 @@
         const baseClasses = ['cursor-pointer', 'size-3', 'rounded-full']
 
         const max_index = panes.children.length
-        let current_index = 0
+        let current_index = 0  // Start with the second tile (index 1)
 
         const switchToPane = (i) => {
             const child = panes.children[i]
@@ -186,6 +186,9 @@
 
             controls.appendChild(jumper)
         }
+
+        // Show the second tile initially
+        switchToPane(0)
 
         setInterval(() => {
             current_index++
@@ -268,6 +271,8 @@
         </div>
     </div>
 </div>
+
+{{--
 <div class="container-boast" style="background: #004490">
     <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56" alt=""
         srcset="">
@@ -283,7 +288,7 @@
     <a href="{{ route('champs.2025') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
         Find out More
     </a>
-</div>
+</div>--}}
 
 <script>
     let clk = 0;

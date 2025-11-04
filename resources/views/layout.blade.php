@@ -18,15 +18,22 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
 
 
-    {{-- <script src="{{ asset('js/Snow.js') }}"></script> --}}
+    <script src="{{ asset('js/Snow.js') }}"></script>
 
     @yield('extra-meta')
 </head>
 
 <body class="overflow-x-hidden flex flex-col min-h-screen">
-    {{-- <script>
-        letItSnow()
-    </script> --}}
+    @php
+        $currentYear = now()->year; // Get the current year
+        $startOfRange = Carbon\Carbon::create($currentYear, 12, 1); // December 1st of the current year
+        $endOfRange = Carbon\Carbon::create($currentYear + 1, 1, 1); // January 1st of the next year
+    @endphp
+    @if (now()->between($startOfRange, $endOfRange))
+        <script>
+            letItSnow()
+        </script>
+    @endif
 
 
     @include('layouts.navigation')
