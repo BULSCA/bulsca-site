@@ -61,14 +61,14 @@
                 @if ($club->instagram)
                     <a href="https://instagram.com/{{ $club->instagram }}" target="_blank" rel="noopener noreferrer"
                         title="{{ $club->name }}'s Instagram" class=" hover:scale-105 transition-transform  text-bulsca">
-                        <img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" class="size-8" alt="">
+                        <img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" class="w-12 h-12" alt="">
                     </a>
                 @endif
 
                 @if ($club->facebook)
                     <a href="https://facebook.com/{{ $club->facebook }}" target="_blank" rel="noopener noreferrer"
                         title="{{ $club->name }}'s Facebook" class=" hover:scale-105 transition-transform  text-bulsca">
-                        <img src="/storage/logo/f_logo_RGB-Blue_1024.png" class="size-8" alt="">
+                        <img src="/storage/logo/f_logo_RGB-Blue_1024.png" class="w-12 h-12" alt="">
                     </a>
                 @endif
             </div>
