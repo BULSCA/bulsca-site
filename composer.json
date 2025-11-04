@@ -21,6 +21,7 @@
         "league/glide": "^2.2",
         "pion/laravel-chunk-upload": "^1.5",
         "propaganistas/laravel-phone": "^5.0",
+        "smalot/pdfparser": "^2.12",
         "spatie/laravel-permission": "^6.4.0"
     },
     "require-dev": {

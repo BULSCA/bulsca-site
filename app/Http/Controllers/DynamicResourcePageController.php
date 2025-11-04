@@ -10,35 +10,32 @@ use App\Models\ResourcePageSectionResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Smalot\PdfParser\Parser;
+
 
 class DynamicResourcePageController extends Controller
 {
-
     public function adminUpload(Request $request)
     {
 
         $validated = $request->validate([
             'resource' => 'file|required',
             'section' => 'required',
-            'name' => 'required'
+            'name' => 'required',
         ]);
-
-
-
-
-
 
         $storedRes = ResourceController::storeResource($request, 'resource', 'resources/resources', $validated['name']);
 
         $rps = ResourcePageSection::findOrFail($validated['section']);
-        $rpsr = new ResourcePageSectionResource();
+        $rpsr = new ResourcePageSectionResource;
 
+        $content = '';
 
-        $content = "";
-
-        if ($request->file('resource')->extension() == "pdf") {
-            $fullTarget = storage_path('app') . '/' . $storedRes->location;
-            $content = shell_exec("pdftotext {$fullTarget} -");
+        if ($request->file('resource')->extension() == 'pdf') {
+            $parser = new Parser();
+            $fullTarget = storage_path('app').'/'.$storedRes->location;
+            $pdf = $parser->parseFile($fullTarget);
+            $content = $pdf->getText();
         }
 
         $rpsr->section = $rps->id;
