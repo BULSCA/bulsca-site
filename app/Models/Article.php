@@ -28,7 +28,9 @@ class Article extends Model
 
         $author = $this->author ? $this->author : 'BULSCA';
 
-        return "{$timePrefix} on {$this->updated_at->format('d/m/Y')} by {$author}";
+        // Updated time was showing current date instead of article date, temporarily reverting to created_at.
+        //return "{$timePrefix} on {$this->updated_at->format('d/m/Y')} by {$author}";
+        return "Created on {$this->created_at->format('d/m/Y')} by {$author}";
     }
 
     public function getViews()
