@@ -1,7 +1,7 @@
 <div class="fixed w-screen z-50 transition-all duration-100 @yield('nav-style') " id="navbar">
     <div class="nav-wrapper transition-all duration-100">
-        <a href="/" class="nav-brand  2xl:text-2xl text-xl pr-2 md:pr-0 capitalize transition-all">
-            British Universities Lifesaving Clubs' Association
+        <a href="/" class="nav-brand  2xl:text-5xl text-3xl font-bold pr-2 md:pr-0 capitalize transition-all">
+            BULSCA
         </a>
 
         <div class="lg:hidden block text-white font-bold ml-auto ">
