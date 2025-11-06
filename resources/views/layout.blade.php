@@ -42,38 +42,41 @@
     @yield('content')
 
 
-    <div class=" container-responsive  ">
-        <div class="grid md:grid-cols-2 grid-cols-1">
-            <div class="flex flex-col">
-                <h2 class="header">Join the mailing list</h2>
-                <form
-                    action="https://bulsca.us15.list-manage.com/subscribe/post?u=1b1c9887c1e5ff377f6979e66&amp;id=94c67a5f8d&amp;f_id=00738de0f0"
-                    method="post" class="flex flex-col  overflow-hidden">
+    <div class="bg-gray-100 border-t-2 border-gray-900">
+        <div class="container-responsive py-6">
+            <div class="flex md:flex-row flex-col items-center justify-between gap-6">
+                <div class="flex flex-col rounded-lg p-6 bg-white shadow-md">
+                    <h2 class="header">Join the mailing list</h2>
+                    <form
+                        action="https://bulsca.us15.list-manage.com/subscribe/post?u=1b1c9887c1e5ff377f6979e66&amp;id=94c67a5f8d&amp;f_id=00738de0f0"
+                        method="post" class="flex flex-col  overflow-hidden">
 
-                    <input type="text"
-                        class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none"
-                        name="EMAIL" placeholder="swimming@bulsca.co.uk">
-                    <input type="text" name="b_1b1c9887c1e5ff377f6979e66_94c67a5f8d" tabindex="-1" value=""
-                        class="hidden" hidden>
-                    <input type="checkbox" id="gdpr_3427" name="gdpr[3427]" value="Y" checked class="hidden"
-                        hidden>
-                    <small class="my-2 mb-3">
-                        By clicking below I acknowledge that BULSCA will send me emails about relevant events and news.
-                        You may opt out anytime by clicking <strong>unsubscribe</strong> in any email!
-                    </small>
-                    <button submit class="btn">Sign me up!</button>
-                </form>
+                        <input type="text"
+                            class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none"
+                            name="EMAIL" placeholder="swimming@bulsca.co.uk">
+                        <input type="text" name="b_1b1c9887c1e5ff377f6979e66_94c67a5f8d" tabindex="-1" value=""
+                            class="hidden" hidden>
+                        <input type="checkbox" id="gdpr_3427" name="gdpr[3427]" value="Y" checked class="hidden"
+                            hidden>
+                        <small class="my-2 mb-3">
+                            By clicking below I acknowledge that BULSCA will send me emails about relevant events and news.
+                            You may opt out anytime by clicking <strong>unsubscribe</strong> in any email!
+                        </small>
+                        <button submit class="btn">Sign me up!</button>
+                    </form>
 
-                <br>
-                <br>
+                    <br>
+                    <br>
 
-            </div>
-            <div class="flex justify-center items-center">
-                <iframe
-                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBULSCA%2F&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
-                    width="340" height="271" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                    allowfullscreen="true"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                <div class="h-292px w-340px">
+                    <iframe
+                        class="rounded-lg shadow-md m-6"
+                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBULSCA%2F&tabs=timeline&width=340&height=292&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
+                        width="340" height="292" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
             </div>
         </div>
     </div>
