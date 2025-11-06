@@ -71,7 +71,6 @@
                     <br>
                     <a href="{{ route('edit-club', auth()->user()->getHomeUni()->getAsSlug()) }}">Edit Club Page and
                         Socials</a>
-
             </div>
             <hr class="my-5">
         @endif
@@ -109,9 +108,10 @@
                 @endforelse
             </div>
 
-
             <hr class="my-5">
+            
         @endif
+
 
         <h3>
             Upcoming Competitions

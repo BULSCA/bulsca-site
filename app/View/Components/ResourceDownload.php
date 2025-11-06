@@ -12,9 +12,7 @@ class ResourceDownload extends Component
      *
      * @return void
      */
-
     private $file;
-
 
     public function __construct($file)
     {

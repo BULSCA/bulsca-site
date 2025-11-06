@@ -14,7 +14,6 @@ class University extends Model
 
     protected $guarded = ['id'];
 
-
     public function getPage()
     {
         return $this->hasOne(ClubPage::class, 'uni', 'id');
@@ -23,11 +22,13 @@ class University extends Model
     public function currentUserIsClubAdmin()
     {
 
+        if (! auth()->user()) {
+            return false;
+        }
 
-
-        if (!auth()->user()) return false;
-
-        if (auth()->user()->hasRole(['admin', 'super_admin'])) return true;
+        if (auth()->user()->hasRole(['admin', 'super_admin'])) {
+            return true;
+        }
 
         return (bool) $this->isUserAdmin(auth()->user());
     }
@@ -35,15 +36,19 @@ class University extends Model
     public function isUserAdmin(User $user)
     {
 
-        if ($user == null) return false;
+        if ($user == null) {
+            return false;
+        }
 
-        if ($user->hasRole(['admin', 'super_admin'])) return true;
+        if ($user->hasRole(['admin', 'super_admin'])) {
+            return true;
+        }
 
         return (bool) DB::table('user_universities')->where('user', $user->id)->where('uni', $this->id)->value('admin');
     }
 
     public function getAsSlug()
     {
-        return Str::lower($this->name) . "." . $this->id;
+        return Str::lower($this->name).'.'.$this->id;
     }
 }

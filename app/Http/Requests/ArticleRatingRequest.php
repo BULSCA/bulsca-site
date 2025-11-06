@@ -25,7 +25,7 @@ class ArticleRatingRequest extends FormRequest
     {
         return [
             'article' => 'required',
-            'type' => 'required'
+            'type' => 'required',
         ];
     }
 }

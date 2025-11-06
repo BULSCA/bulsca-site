@@ -22,12 +22,14 @@
         "league/glide-symfony": "^2.0",
         "pion/laravel-chunk-upload": "^1.5",
         "propaganistas/laravel-phone": "^5.0",
+        "smalot/pdfparser": "^2.12",
         "spatie/laravel-permission": "^6.4.0"
     },
     "require-dev": {
         "backpack/generators": "^4.0",
         "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.24",
         "laravel/sail": "^1.0.1",
         "laravel/telescope": "^5.0",
         "mockery/mockery": "^1.4.4",

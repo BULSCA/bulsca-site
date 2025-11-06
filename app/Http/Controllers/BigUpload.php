@@ -4,22 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-
-use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 use Pion\Laravel\ChunkUpload\Exceptions\UploadMissingFileException;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
+use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 
 class BigUpload extends Controller
 {
-
     public function upload(Request $request)
     {
         // create the file receiver
-        $receiver = new FileReceiver("file", $request, HandlerFactory::classFromRequest($request));
+        $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
 
         // check if the upload is success, throw exception or return response you need
         if ($receiver->isUploaded() === false) {
-            throw new UploadMissingFileException();
+            throw new UploadMissingFileException;
         }
 
         // receive the file
@@ -37,8 +35,8 @@ class BigUpload extends Controller
         $handler = $save->handler();
 
         return response()->json([
-            "done" => $handler->getPercentageDone(),
-            'status' => true
+            'done' => $handler->getPercentageDone(),
+            'status' => true,
         ]);
     }
 
@@ -48,11 +46,11 @@ class BigUpload extends Controller
         // Group files by mime type
         $mime = str_replace('/', '-', $file->getMimeType());
         // Group files by the date (week
-        $dateFolder = date("Y-m-W");
+        $dateFolder = date('Y-m-W');
 
         // Build the file path
         $filePath = "upload/{$mime}/{$dateFolder}/";
-        $finalPath = storage_path("app/" . $filePath);
+        $finalPath = storage_path('app/'.$filePath);
 
         // move the file name
         $file->move($finalPath, $fileName);
@@ -60,16 +58,17 @@ class BigUpload extends Controller
         return response()->json([
             'path' => $filePath,
             'name' => $fileName,
-            'mime_type' => $mime
+            'mime_type' => $mime,
         ]);
     }
+
     protected function createFilename(UploadedFile $file)
     {
         $extension = $file->getClientOriginalExtension();
-        $filename = str_replace("." . $extension, "", $file->getClientOriginalName()); // Filename without extension
+        $filename = str_replace('.'.$extension, '', $file->getClientOriginalName()); // Filename without extension
 
         // Add timestamp hash to name of the file
-        $filename .= "_" . md5(time()) . "." . $extension;
+        $filename .= '_'.md5(time()).'.'.$extension;
 
         return $filename;
     }

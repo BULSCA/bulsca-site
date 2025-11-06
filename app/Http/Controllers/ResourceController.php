@@ -5,47 +5,35 @@ namespace App\Http\Controllers;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ResourceController extends Controller
 {
-
-
     public function get(Request $req, $id)
     {
 
         $resource = Resource::find($id);
         $extension = pathinfo($resource->location)['extension'];
 
-        if (!$resource) {
+        if (! $resource) {
             abort(404);
         }
 
         if ($req->has('dl')) {
-            return Storage::download($resource->location, $resource->name . '.' . $extension);
+            return Storage::download($resource->location, $resource->name.'.'.$extension);
         }
 
-        return response()->file(Storage::path($resource->location), ["Content-Disposition" => "filename=" . $resource->name . "." . $extension]);
-
-
-
+        return response()->file(Storage::path($resource->location), ['Content-Disposition' => 'filename='.$resource->name.'.'.$extension]);
 
     }
-
-
 
     public function upload(Request $request)
     {
 
-
-
         $path = $request->file('fupload')->store('resources');
 
-
-
-        $res = new Resource();
+        $res = new Resource;
         $res->location = $path;
         $res->name = $request->input('name', 'file');
         $res->save();
@@ -53,17 +41,17 @@ class ResourceController extends Controller
         return $res->id;
     }
 
-    static function storeFile($file, $where, $fileName = 'file')
+    public static function storeFile($file, $where, $fileName = 'file')
     {
 
-        if ($fileName == "self") {
+        if ($fileName == 'self') {
             $fileName = $file->getClientOriginalName();
         }
 
-        $storeName = Str::random(40) . "." . $file->getClientOriginalExtension();
+        $storeName = Str::random(40).'.'.$file->getClientOriginalExtension();
         $path = Storage::putFileAs($where, $file, $storeName);
 
-        $res = new Resource();
+        $res = new Resource;
         $res->location = $path;
         $res->name = $fileName;
         $res->save();
@@ -71,23 +59,19 @@ class ResourceController extends Controller
         return $res;
     }
 
-    static function storeResource(Request $request, $postFileName, $where, $fileName = 'file')
+    public static function storeResource(Request $request, $postFileName, $where, $fileName = 'file')
     {
-        //die($request->file($postFileName)->getClientOriginalName());
-        //$path = $request->file($postFileName)->store($where);
+        // die($request->file($postFileName)->getClientOriginalName());
+        // $path = $request->file($postFileName)->store($where);
 
-
-
-        if ($fileName == "self") {
+        if ($fileName == 'self') {
             $fileName = $request->file($postFileName)->getClientOriginalName();
         }
 
-        $storeName = Str::random(40) . "." . $request->file($postFileName)->getClientOriginalExtension();
+        $storeName = Str::random(40).'.'.$request->file($postFileName)->getClientOriginalExtension();
         $path = Storage::putFileAs($where, $request->file($postFileName), $storeName);
 
-
-
-        $res = new Resource();
+        $res = new Resource;
         $res->location = $path;
         $res->name = $request->input('name', $fileName);
         $res->save();
@@ -98,7 +82,7 @@ class ResourceController extends Controller
     public function delete(Request $request)
     {
         $validated = $request->validate([
-            'id' => "required"
+            'id' => 'required',
         ]);
 
         $res = Resource::findOrFail($validated['id']);
@@ -107,7 +91,9 @@ class ResourceController extends Controller
 
         $res->delete();
 
-        if ($request->input('redirect')) return redirect()->route($request->input('redirect'));
+        if ($request->input('redirect')) {
+            return redirect()->route($request->input('redirect'));
+        }
 
         return redirect()->back();
     }
@@ -129,8 +115,8 @@ class ResourceController extends Controller
     public function reupload(Request $request, Resource $resource)
     {
         Storage::delete($resource->location);
-        $storeName = Str::random(40) . "." . $request->file("resource")->getClientOriginalExtension();
-        $path = Storage::putFileAs("resources/resources", $request->file("resource"), $storeName);
+        $storeName = Str::random(40).'.'.$request->file('resource')->getClientOriginalExtension();
+        $path = Storage::putFileAs('resources/resources', $request->file('resource'), $storeName);
 
         $resource->location = $path;
         $resource->name = $request->input('name', $resource->name);
@@ -140,12 +126,12 @@ class ResourceController extends Controller
     }
 }
 
-
 class ResourcePack
 {
-
     private $resources = [];
+
     private $name;
+
     private $count = 1;
 
     public function __construct($name)
@@ -157,7 +143,7 @@ class ResourcePack
     {
         array_push($this->resources, [
             'name' => $name,
-            'id' => $this->count
+            'id' => $this->count,
         ]);
         $this->count++;
     }
@@ -166,7 +152,7 @@ class ResourcePack
     {
         return [
             'name' => $this->name,
-            'resources' => $this->resources
+            'resources' => $this->resources,
         ];
     }
 }

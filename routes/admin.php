@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
-    // SEASONS 
+    // SEASONS
 
     Route::get('/seasons', [AdminController::class, 'viewSeasons'])->middleware('can:admin.seasons')->name('admin.seasons');
     Route::get('/seasons/create', [AdminController::class, 'viewSeasonCreate'])->middleware('can:admin.seasons.manage')->name('admin.seasons.create');
@@ -51,8 +51,6 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/university/{university}/edit', [UniversityController::class, 'update'])->middleware('can:admin.universities.manage')->name('admin.university.edit');
     Route::delete('/university/delete', [UniversityController::class, 'delete'])->middleware('can:admin.universities.delete')->name('admin.universities.delete');
 
-
-
     // USERS
 
     Route::get('/users', [AdminController::class, 'viewUsers'])->middleware('can:admin.users')->name('admin.users');
@@ -75,13 +73,11 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/resources/resource/{resource}/re-upload', [ResourceController::class, 'reupload'])->middleware('can:admin.resources.manage')->name('admin.resource.re-upload');
     Route::post('/resources/resource/{resource}/move', [DynamicResourcePageController::class, 'move'])->middleware('can:admin.resources.manage')->name('admin.resource.move');
 
-
     Route::post('/resources/{page}/changeOrder', [DynamicResourcePageController::class, 'changePageOrder'])->name('admin.resources.page.changeOrder');
     Route::post('/resources/section/{section}/changeOrder', [DynamicResourcePageController::class, 'changeSectionOrder'])->name('admin.resources.section.changeOrder');
     Route::post('/resources/resource/{resource}/changeOrder', [DynamicResourcePageController::class, 'changeResourceOrder'])->name('admin.resources.resource.changeOrder');
 
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
-
 
     Route::prefix('sercs')->middleware('can:admin.sercs')->group(function () {
         Route::prefix('casualties')->group(function () {
@@ -110,7 +106,6 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         Route::get('serc-tags', [SERCController::class, 'tags'])->name('admin.sercs.tags');
         Route::get('tags', [SERCController::class, 'listTags'])->name('admin.sercs.tags.list');
         Route::get('tags/{tag}', [SERCController::class, 'getTag'])->name('admin.sercs.tags.get');
-
 
         Route::post('tags/{tag}', [SERCController::class, 'updateTag'])->middleware('can:admin.sercs.manage')->name('admin.sercs.tags.update');
         Route::delete('tags/{tag}', [SERCController::class, 'deleteTag'])->middleware('can:admin.sercs.delete')->name('admin.sercs.tags.delete');

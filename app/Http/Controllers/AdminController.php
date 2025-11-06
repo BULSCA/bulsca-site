@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\LeaguePlace;
 use App\Models\Resource;
 use App\Models\ResourcePage;
 use App\Models\Season;
 use App\Models\SERC\SERC;
 use App\Models\University;
 use App\Models\User;
-use App\Models\LeaguePlace;
 use Backpack\PermissionManager\app\Models\Role;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
     public function index()
     {
-
 
         $uniCount = University::count();
 
@@ -66,7 +63,7 @@ class AdminController extends Controller
         $placedUnis = $placedUnis->groupBy('league');
 
         foreach (['o', 'a', 'b'] as $league) {
-            if (!isset($placedUnis[$league])) {
+            if (! isset($placedUnis[$league])) {
                 $placedUnis[$league] = collect();
             }
         }
@@ -77,6 +74,7 @@ class AdminController extends Controller
 
             if ($placings->count() == 0) {
                 $leagueUnplaced[$leagueName] = $allUnis;
+
                 continue;
             }
             // Gets uni ids that aren't placed

@@ -12,12 +12,13 @@ class Article extends Model
 
     protected $casts = [
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
     ];
 
     public function getSlug()
     {
         $title = Str::replace(' ', '-', Str::lower($this->title));
+
         return "{$title}.{$this->id}";
     }
 
@@ -35,7 +36,10 @@ class Article extends Model
 
     public function getViews()
     {
-        if ($this->views < 1000) return $this->views;
+        if ($this->views < 1000) {
+            return $this->views;
+        }
+
         return $this->number_shorten($this->views, 1);
     }
 
@@ -43,8 +47,8 @@ class Article extends Model
     {
 
         // Setup default $divisors if not provided
-        if (!isset($divisors)) {
-            $divisors = array(
+        if (! isset($divisors)) {
+            $divisors = [
                 pow(1000, 0) => '', // 1000^0 == 1
                 pow(1000, 1) => 'k', // Thousand
                 pow(1000, 2) => 'M', // Million
@@ -52,7 +56,7 @@ class Article extends Model
                 pow(1000, 4) => 'T', // Trillion
                 pow(1000, 5) => 'Qa', // Quadrillion
                 pow(1000, 6) => 'Qi', // Quintillion
-            );
+            ];
         }
 
         // Loop through each $divisor and find the
@@ -66,6 +70,6 @@ class Article extends Model
 
         // We found our match, or there were no matches.
         // Either way, use the last defined value for $divisor.
-        return number_format($number / $divisor, $precision) . $shorthand;
+        return number_format($number / $divisor, $precision).$shorthand;
     }
 }

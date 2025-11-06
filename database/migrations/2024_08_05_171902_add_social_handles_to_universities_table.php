@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('website')->nullable();
-     
 
         });
     }

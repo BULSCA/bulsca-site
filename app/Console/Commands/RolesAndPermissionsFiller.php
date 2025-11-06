@@ -39,8 +39,6 @@ class RolesAndPermissionsFiller extends Command
         $sercs = Role::findOrCreate('sercs');
         $usersAndUnis = Role::findOrCreate('users-unis');
 
-
-
         $adminP = Permission::findOrCreate('admin');
 
         $adminSeason = Permission::findOrCreate('admin.seasons'); // Allows access to seasons area
@@ -71,13 +69,11 @@ class RolesAndPermissionsFiller extends Command
         $baseAdminPerms = [$adminP, $adminSeason, $adminCompetitions, $adminUniversity, $adminUsers, $adminResources, $articleP, $adminSeasonManage, $adminCompetitionsManage, $adminUniversityManage, $adminUsersManage, $adminResourcesManage, $adminSeasonManageDelete, $adminCompetitionsManageDelete, $adminUniversityManageDelete, $adminSercs, $adminSercsManage, $adminSercsManageDelete];
         $admin->syncPermissions($baseAdminPerms);
 
-     
         $articles->syncPermissions([$articleP]);
         $competitions->syncPermissions([$adminP, $adminSeason, $adminSeasonManage, $adminSeasonManageDelete, $adminCompetitions, $adminCompetitionsManage, $adminCompetitionsManageDelete]);
         $resources->syncPermissions([$adminP, $adminResources, $adminResourcesManage]);
         $sercs->syncPermissions([$adminP, $adminSercs, $adminSercsManage, $adminSercsManageDelete]);
         $usersAndUnis->syncPermissions([$adminP, $adminUsers, $adminUsersManage, $adminUniversity, $adminUniversityManage, $adminUniversityManageDelete]);
-
 
         $this->info('All permissions and roles created!');
 
@@ -85,8 +81,6 @@ class RolesAndPermissionsFiller extends Command
         $currentRoles = ['super_admin', 'admin', 'sercs', 'articles', 'competitions', 'resources', 'sercs', 'users-unis'];
 
         Role::whereNotIn('name', $currentRoles)->delete();
-
-
 
         return 0;
     }

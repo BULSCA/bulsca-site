@@ -12,11 +12,13 @@ class CompetitionUniPlace extends Model
 
     protected $guarded = ['id'];
 
-    public function getUni() {
+    public function getUni()
+    {
         return $this->hasOne(SeasonUni::class, 'uni', 'season_uni');
     }
 
-    public function getComp() {
+    public function getComp()
+    {
         return $this->hasOne(Competition::class, 'id', 'league_comp');
     }
 }

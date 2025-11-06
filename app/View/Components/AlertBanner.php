@@ -2,14 +2,14 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
-use Illuminate\Support\Facades\Cache;
 use App\Models\GlobalNotification;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\View\Component;
 
 class AlertBanner extends Component
 {
-
     private $message;
+
     /**
      * Create a new component instance.
      *
@@ -21,7 +21,10 @@ class AlertBanner extends Component
         $this->message = Cache::rememberForever('gn_banner', function () {
             $banner = GlobalNotification::getBanner();
 
-            if (!$banner) return null;
+            if (! $banner) {
+                return null;
+            }
+
             return $banner->content;
         });
     }
@@ -34,7 +37,9 @@ class AlertBanner extends Component
     public function render()
     {
 
-        if (!$this->message) return;
+        if (! $this->message) {
+            return;
+        }
 
         return view('components.alert-banner', ['content' => $this->message]);
     }

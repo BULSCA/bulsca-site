@@ -27,11 +27,10 @@ class StoreCasualtyGroupRequest extends FormRequest
         $id = $this->route('group') ? $this->route('group')->id : null;
 
         return [
-            'name' => 'required|min:3|unique:casualty_groups,name,' . $id,
+            'name' => 'required|min:3|unique:casualty_groups,name,'.$id,
             'description' => '',
         ];
     }
-
 
     public function messages()
     {

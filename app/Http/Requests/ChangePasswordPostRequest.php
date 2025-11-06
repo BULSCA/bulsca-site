@@ -26,7 +26,7 @@ class ChangePasswordPostRequest extends FormRequest
         return [
             'old_password' => 'required|current_password',
             'new_password' => 'required',
-            'new_password_conf' => 'required|same:new_password'
+            'new_password_conf' => 'required|same:new_password',
         ];
     }
 
