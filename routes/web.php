@@ -178,6 +178,7 @@ Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniP
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/data.php';
 
 
 Route::get('/editor', function () {
