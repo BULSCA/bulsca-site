@@ -343,11 +343,13 @@
                 <td>{{ $row['points'] }}</td>
 
                 @foreach ($data['comps'] as $comp)
-                    <td>
-                        @if ($row['positionPoints'][$comp] != 0)
-                            {{ max(11 - $row['positionPoints'][$comp], 1) }} (@th($row['positionPoints'][$comp]))
-                        @endif
-                    </td>
+                  <td>
+                      @if (!empty($row['positionPoints'][$comp]) && $row['positionPoints'][$comp] != 0)
+                          {{ max(11 - $row['positionPoints'][$comp], 1) }} (@th($row['positionPoints'][$comp]))
+                      @else
+                          –
+                      @endif
+                  </td>
                 @endforeach
             </tr>
         @endforeach
