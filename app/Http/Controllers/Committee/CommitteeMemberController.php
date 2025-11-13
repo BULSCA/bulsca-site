@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Committee;
 
 use App\Http\Controllers\Controller;
+use App\Services\ImageService;
 use App\Http\Controllers\Committee\CommitteeController;
 use Illuminate\Http\Request;
 use App\Models\University;
@@ -43,7 +44,7 @@ class CommitteeMemberController extends Controller
         $member = CommitteeMember::findOrFail($validated['member']);
 
         // User isn't authed or user isn't a admin for this uni
-        if ((!auth()->user() || !auth()->user()->isUniAdmin($uni->id)) && auth()->user()->cannot('admin.universities.manage')) {
+        if (!auth()->user() || auth()->user()->cannot('admin.committee_members.manage')) {
             abort(403);
         }
 

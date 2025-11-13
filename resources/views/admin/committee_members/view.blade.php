@@ -33,7 +33,7 @@
         <form method="POST" action="{{ route('committee_member.updatePhoto') }}" id="member-photo-form" class="hidden" enctype="multipart/form-data">
             @csrf
             <input type="file" name="image" id="member-photo-input" onchange="submitForm()">
-            <input type="hidden" class="hidden" name="uni" value="{{ $committee_member->id }}">
+            <input type="hidden" class="hidden" name="member" value="{{ $committee_member->id }}">
         </form>
         <script>
             const openFileSelect = () => {
