@@ -34,7 +34,7 @@ Committee Members | Admin |
                 <hr class="-mx-6 mb-4">
                 <div>
                     <x-badge>Role: {{ $committee_member->role->label }}</x-badge>
-                    <x-badge>Active: {{ $committee_member->active }}</x-badge>
+                    <x-badge>Committee: {{ $committee_member->committee->name }}</x-badge>
 
                 </div>
             </a>
@@ -42,6 +42,8 @@ Committee Members | Admin |
             @endforeach
         @endif
     </div>
+
+    {{ $committee_members->links() }}
 
 
 
