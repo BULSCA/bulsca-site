@@ -44,7 +44,7 @@ Committees | Admin |
         @endif
     </div>
 
-    <!--{{ $committees->links() }}-->
+    {{ $committees->links() }}
 
 
 

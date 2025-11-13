@@ -49,6 +49,8 @@ Committee Roles | Admin |
         @endif
     </div>
 
+    {{ $committee_roles->links() }}
+
 
 
 </div>
