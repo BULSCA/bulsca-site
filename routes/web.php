@@ -13,6 +13,8 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\SERCController;
+use App\Http\Controllers\Committee\CommitteeController;
+use App\Http\Controllers\Committee\CommitteeMemberController;
 use App\Http\Controllers\UniversityController;
 use App\Models\Competition;
 use App\Models\League;
@@ -71,7 +73,7 @@ Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
-Route::get('/get-involved/committee', function () {
+Route::get('/get-involved/committee2', function () {
 
     $currentTime = Carbon::now()->timezone('Europe/London')->setHours(0)->setDate(0, 0, 0);
 
@@ -81,8 +83,18 @@ Route::get('/get-involved/committee', function () {
     $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
 
 
-    return view('get-involved.committee', ['time' => $isBetween]);
-})->name('get-involved.committee');
+    return view('get-involved.committee2', ['time' => $isBetween]);
+})->name('get-involved.committee2');
+
+
+Route::get('/get-involved/committee/index', [CommitteeController::class, 'currentCommittee'])->name('get-involved.committee');
+Route::get('/get-involved/committee/{cid}', [CommitteeController::class, 'previousCommittee'])->where('cid', '\d{4}\-\d{2}')->name('prev_committee');
+Route::get('/get-involved/previous-committees', [CommitteeController::class, 'previous'])->name('committee.previous');
+
+
+
+
+
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
 Route::Get('/get-involved/clubs/create', function () {
@@ -174,6 +186,7 @@ Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
+Route::post('/committee_member/updatePhoto', [CommitteeMemberController::class, 'updateMemberPhoto'])->name('committee_member.updatePhoto');
 
 
 require __DIR__ . '/auth.php';
