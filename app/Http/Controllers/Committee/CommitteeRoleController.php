@@ -16,7 +16,7 @@ class CommitteeRoleController extends Controller
     public function update(Request $request, CommitteeRole $committee_role)
     {
         $validated = Validator::make($request->all(), [
-            'label' => 'required|min:8',
+            'label' => 'required|min:5|max:255|string',
             'order' => 'required|integer',
             'active' => 'required|boolean',
             'user_id' => 'nullable|integer|exists:users,id',

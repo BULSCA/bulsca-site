@@ -40,7 +40,7 @@ class CommitteeController extends Controller
     public function update(Request $request, Committee $committee)
     {
         $validated = Validator::make($request->all(), [
-            'name' => 'required|min:8',
+            'name' => 'required|min:5|max:255|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
             'active' => 'boolean',

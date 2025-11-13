@@ -21,7 +21,7 @@ class CommitteeMemberController extends Controller
     public function update(Request $request, CommitteeMember $committee_member)
     {
         $validated = Validator::make($request->all(), [
-            'name' => 'required|min:8',
+            'name' => 'required|min:5|max:255|string',
             'affiliated_uni_id' => 'nullable|integer|exists:universities,id',
         ])->validate();
 

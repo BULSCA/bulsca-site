@@ -35,7 +35,7 @@ class CreateNewCommitteeRole extends FormRequest
     public function rules()
     {
         return [
-            'label' => 'required|min:8',
+            'label' => 'required|min:5|max:255|string',
             'order' => 'sometimes|integer',
             'active' => 'required|boolean',
         ];

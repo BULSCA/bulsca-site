@@ -25,7 +25,7 @@ class CreateNewCommitteeMember extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:8',
+            'name' => 'required|min:4|max:255|string',
             'affiliated_uni_id' => 'nullable|integer|exists:universities,id',
         ];
     }
