@@ -46,7 +46,7 @@
             @foreach ($members as $member)
                 <div class="flex flex-col justify-between items-center rounded-md border hover:border-bulsca transition no-underline text-center overflow-hidden min-h-80 w-56">
                     <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center mt-4 mx-4">
-                        <img src="/storage/photos/committee/24-25/chair.jpg" class="w-full h-full " alt="">
+                        <img src="{{ $member->image_path ? route('image', $member->image_path) : '/storage/logo/blogo.png' }}" class="w-full h-full" alt="">
                     </div>
                     <h3 class="header header-smallish px-4">
                         {{ $member->name }}

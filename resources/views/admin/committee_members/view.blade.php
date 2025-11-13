@@ -11,7 +11,7 @@
     <div class="breadcrumbs">
         <a href="{{ route('admin') }}">Admin</a>
         <span>></span>
-        <a href="{{ route('admin.committee_members') }}">Committee Roles</a>
+        <a href="{{ route('admin.committee_members') }}">Committee Members</a>
         <span>></span>
         <p>{{ $committee_member->name }}</p>
 
