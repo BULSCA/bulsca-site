@@ -17,6 +17,15 @@ class CreateNewCommitteeMember extends FormRequest
         return auth()->user()->can('admin.committee.manage');
     }
 
+    protected function prepareForValidation()
+    {
+        if ($this->affiliated_uni_id === 'null' || $this->affiliated_uni_id === '') {
+            $this->merge([
+                'affiliated_uni_id' => null
+            ]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
