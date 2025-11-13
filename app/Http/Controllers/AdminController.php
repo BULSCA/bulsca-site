@@ -10,6 +10,9 @@ use App\Models\SERC\SERC;
 use App\Models\University;
 use App\Models\User;
 use App\Models\LeaguePlace;
+use App\Models\Committee\Committee;
+use App\Models\Committee\CommitteeRole;
+use App\Models\Committee\CommitteeMember;
 use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -29,6 +32,9 @@ class AdminController extends Controller
             'serc' => SERC::count(),
             'resource' => Resource::count(),
             'season' => Season::count(),
+            'committee' => Committee::count(),
+            'committee_role' => CommitteeRole::count(),
+            'committee_member' => CommitteeMember::count(),
         ];
 
         return view('admin.index', ['count' => $count, 'currentSeason' => Season::current()]);
@@ -138,4 +144,57 @@ class AdminController extends Controller
     {
         return view('admin.resources.page', ['rp' => $resourcePage]);
     }
+
+
+
+
+    public function viewCommittees()
+    {
+        return view('admin.committees.index', ['committees' => Committee::orderBy('start_date', 'desc')->paginate(10)]);
+    }
+
+    public function viewCommittee(Committee $committee)
+    {
+        return view('admin.committees.view', ['committee' => $committee], ['roles' => CommitteeRole::orderBy('order', 'desc')->get()]);
+    }
+
+    public function viewCommitteeCreate()
+    {
+        return view('admin.committees.create');
+    }
+
+    public function viewCommitteeRoles()
+    {
+        return view('admin.committee_roles.index', ['committee_roles' => CommitteeRole::orderBy('order', 'desc')->paginate(10)]);
+    }
+
+    public function viewCommitteeRole(CommitteeRole $committee_role)
+    {
+        return view('admin.committee_roles.view', ['committee_role' => $committee_role]);
+    }
+
+    public function viewCommitteeRoleCreate()
+    {
+        return view('admin.committee_roles.create');
+    }
+
+    public function viewCommitteeMembers()
+    {
+        return view('admin.committee_members.index', ['committee_members' => CommitteeMember::orderBy('created_at', 'desc')->paginate(10)]);
+    }
+
+    public function viewCommitteeMember(CommitteeMember $committee_member)
+    {
+        return view('admin.committee_members.view', ['committee_member' => $committee_member]);
+    }
+
+    public function viewCommitteeMemberCreate(Committee $committee, CommitteeRole $role)
+    {
+        return view('admin.committee_members.create', [
+            'unis' => University::orderBy('name', 'desc')->get(), 
+            'committee' => $committee, 
+            'role' => $role
+        ]);
+    }
+
 }
