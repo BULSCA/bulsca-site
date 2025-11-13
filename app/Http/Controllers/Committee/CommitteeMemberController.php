@@ -48,7 +48,7 @@ class CommitteeMemberController extends Controller
             abort(403);
         }
 
-        $photoId = ImageService::store($request, '/logos/unis');
+        $photoId = ImageService::store($request, '/logos/committee_members');
 
         $member->image_path = 'logos/committee_members/' . $photoId;
 
