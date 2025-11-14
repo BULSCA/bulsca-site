@@ -19,6 +19,7 @@ use App\Http\Controllers\UniversityController;
 use App\Models\Competition;
 use App\Models\League;
 use App\Models\Season;
+use App\Models\Committee\CommitteeRole;
 use App\Services\ImageService;
 use Carbon\Carbon;
 
@@ -89,6 +90,7 @@ Route::get('/get-involved/committee2', function () {
 
 Route::get('/get-involved/committee/index', [CommitteeController::class, 'currentCommittee'])->name('get-involved.committee');
 Route::get('/get-involved/committee/{cid}', [CommitteeController::class, 'previousCommittee'])->where('cid', '\d{4}\-\d{2}')->name('prev_committee');
+Route::get('/get-involved/committee/{cid}/{nameslug}', [CommitteeMemberController::class, 'memberProfile'])->name('committee.member.view');
 Route::get('/get-involved/previous-committees', [CommitteeController::class, 'previous'])->name('committee.previous');
 
 
@@ -98,7 +100,8 @@ Route::get('/get-involved/previous-committees', [CommitteeController::class, 'pr
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
 Route::Get('/get-involved/clubs/create', function () {
-    return view('get-involved.create');
+    $chairRole = CommitteeRole::where('label', 'Chair')->first();
+    return view('get-involved.create', ['chair' => $chairRole]);
 })->name('create-club');
 Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('view-club');
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
@@ -160,7 +163,8 @@ Route::get('/articles/tag/{slug}', [ArticleController::class, 'byTag'])->name('a
 
 // ========= WELFARE =========
 Route::get('/welfare', function () {
-    return view('welfare.index');
+    $welfareRole = CommitteeRole::where('label', 'Welfare Officer')->first();
+    return view('welfare.index', ['welfare' => $welfareRole]);
 })->name('welfare');
 
 Route::get('/welfare/support-and-reporting', function () {

@@ -17,19 +17,17 @@ class CommitteeRoleController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'label' => 'required|min:5|max:255|string',
-            'order' => 'required|integer',
-            'active' => 'required|boolean',
             'user_id' => 'nullable|integer|exists:users,id',
+            'content' => 'nullable',
         ])->validate();
 
-        $committee_role->label = $validated['name'];
-        $committee_role->order = $validated['order'];
-        $committee_role->active = $validated['active'] ?? false;
+        $committee_role->label = $validated['label'];
         $committee_role->user_id = $validated['user_id'] ?? null;
+        $committee_role->content = $validated['content'] ?? null;
 
         $committee_role->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'CommitteeRole updated!');
     }
 
     public function create(CreateNewCommitteeRole $request)

@@ -13,7 +13,7 @@
 
         <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-                <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
+                <img src="/storage/photos/welfare2.svg" class="w-[10%] hidden md:block" alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
                     <h2 class="md:text-6xl text-4xl font-bold text-white">Welfare</h2>
 
@@ -28,32 +28,47 @@
 
 
     <div class=" container-responsive ">
-        <div class="grid md:grid-cols-2 grid-cols-1">
-            <div class="flex items-center justify-center md:mt-0 mt-4">
-                <img src="/storage/photos/welfare2.svg" loading="lazy" class="w-[90%]" alt="">
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+            @php
+                $member = $welfare->currentMember();
+            @endphp
+
+            <div class="md:flex-[2] flex-2">
+                <div class="flex flex-col justify-center p-4">
+                    <h1>Welcome </h1>
+                    <p>
+                        to the Welfare Section of the BULSCA website where we have information, resources and contact
+                        information.
+                        <br><br>
+                        The BULSCA committee appoints a welfare and inclusion officer who is responsible for competition access,
+                        welfare and inclusion. {{ $welfare ? $welfare->currentMemberName() : 'The Welfare Officer' }} can be contacted at <a href="mailto:welfare@bulsca.co.uk"
+                            class="link">welfare@bulsca.co.uk</a> and you can meet them and the rest of the committee <a
+                            href="{{ route('get-involved.committee') }}" class="link">here</a>.
+
+                    </p>
+                </div>
             </div>
 
-            <div class="flex flex-col justify-center">
-                <h1>Welcome </h1>
-                <p>
-                    to the Welfare Section of the BULSCA website where we have information, resources and contact
-                    information.
-                    <br><br>
-                    The BULSCA committee appoints a welfare and inclusion officer who is responsible for competition access,
-                    welfare and inclusion. They can be contacted at <a href="mailto:welfare@bulsca.co.uk"
-                        class="link">welfare@bulsca.co.uk</a> and you can meet them and the rest of the committee <a
-                        href="{{ route('get-involved.committee') }}" class="link">here</a>.
-
-                </p>
+            <div class="md:flex-[1] flex-1">
+                <div class="flex flex-col justify-between items-center rounded-md border no-underline text-center overflow-hidden min-h-80 w-56">
+                    <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center mt-4 mx-4">
+                        <img src="{{ $member->image_path ? route('image', $member->image_path) : '/storage/logo/blogo.png' }}" class="w-full h-full" alt="">
+                    </div>
+                    <h3 class="header header-smallish px-4">
+                        {{ $member->name }}
+                    </h3>
+                    <div class="bg-bulsca w-full font-semibold text-white p-2 rounded-b text-center">
+                        {{ $member->role->label }}
+                    </div>
+                </div>
             </div>
-
-
 
         </div>
+
     </div>
 
     <div class="container-boast">
-        <div>
+        <div class="flex flex-col justify-center">
             <p class="text-white text-2xl">
                 We want university lifesaving to be a welcoming place for all and have a <strong>zero-tolerance</strong>
                 policy for bullying, discrimination and harassment. Our approach to Diversity and Inclusion is outlined in
@@ -71,7 +86,6 @@
                 please get in touch with the welfare officer via the email address above.
             </p>
         </div>
-
 
     </div>
 

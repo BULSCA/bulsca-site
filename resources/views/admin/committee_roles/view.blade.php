@@ -27,12 +27,33 @@
     @endif
 
 
-    <div>
+    <div class="flex flex-col space-y-4">
         <h1 class="header">Committee Role Details</h1>
-        <form action="@can('admin.committee_roles.manage'){{ route('admin.committee_role.edit', $committee_role) }}@endcan" method="POST" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <form action="@can('admin.committee_roles.manage'){{ route('admin.committee_role.edit', $committee_role) }}@endcan" method="POST" class="flex flex-col">
             @csrf
 
             <x-form-input deny="{{ auth()->user()->cannot('admin.committee_roles.manage') }}" id='label' title='Label' extraCss="md:col-span-2" defaultValue='{{ $committee_role->label }}' />
+
+            <div>
+                <p>Content</p>
+                <div class="main-container">
+                    <div class="editor-container editor-container_classic-editor editor-container_include-style"
+                        id="editor-container">
+                        <div class="editor-container__editor">
+                            <textarea name="content" id="editor">{{ $committee_role->content }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="importmap">
+            {
+              "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.1/"
+              }
+            }
+            </script>
+            <script type="module" src="{{ asset('js/ck.js') }}"></script>
 
 
             @can('admin.committee_roles.manage')
