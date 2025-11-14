@@ -26,18 +26,50 @@
 
 
 
-    <div class="container-responsive">
+    <div class=" container-responsive ">
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
 
-        <h1>Member Profile</h1>
-        <div class="flex flex-col md:flex-row md:space-x-8 items-center md:items-start mb-8">
-            <div class="w-48 h-48 rounded-full overflow-hidden mb-4 md:mb-0">
-                <img src="{{ $member->image_path ? route('image', $member->image_path) : '/storage/logo/blogo.png' }}" class="w-full h-full object-cover" alt="">
+            <div class="md:flex-[1] flex-1">
+                <div class="flex flex-col justify-between items-center rounded-md border no-underline text-center overflow-hidden min-h-80 w-56">
+                    <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center mt-4 mx-4">
+                        <img src="{{ $member->image_path ? route('image', $member->image_path) : '/storage/logo/blogo.png' }}" class="w-full h-full" alt="">
+                    </div>
+                    <h3 class="header header-smallish px-4">
+                        {{ $member->name }}
+                    </h3>
+                    <div class="bg-bulsca w-full font-semibold text-white p-2 rounded-b text-center">
+                        {{ $member->role->label }}
+                    </div>
+                </div>
             </div>
-            <div class="flex-1">
-                <h2 class="header header-smallish">{{ $member->name }}</h2>
-                <p class="font-semibold text-bulsca mb-2">{{ $role->label }}</p>
-                <!--<p>{{ $member->bio }}</p>-->
+
+            <div class="md:flex-[2] flex-2">
+                <div class="flex flex-col justify-center p-4">
+                    <h1>About me </h1>
+                    @if ($member->content !== null)
+                        <div class="ck-content w-full">
+                            {!! $member->content !!}
+                        </div>
+                    @else
+                        <p>This member has not added a bio yet.</p>
+                    @endif
+                </div>
             </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-boast">
+        <div class="flex flex-col justify-center">
+            <h1 class="text-white">What is the role of {{ $member->role->label }}?</h3>
+            @if ($member->role->content !== null)
+                <div class="ck-content w-full text-white">
+                {!! $member->role->content !!}
+                </div>
+            @else
+                <p class="text-white">sorry, there are no details here yet.</p>
+            @endif
         </div>
 
     </div>

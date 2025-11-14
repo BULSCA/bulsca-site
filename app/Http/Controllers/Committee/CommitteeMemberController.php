@@ -23,10 +23,12 @@ class CommitteeMemberController extends Controller
         $validated = Validator::make($request->all(), [
             'name' => 'required|min:5|max:255|string',
             'affiliated_uni_id' => 'nullable|integer|exists:universities,id',
+            'content' => 'nullable',
         ])->validate();
 
         $committee_member->name = $validated['name'];
         $committee_member->affiliated_uni_id = $validated['affiliated_uni_id'] ?? null;
+        $committee_member->content = $validated['content'];
 
         $committee_member->save();
 
