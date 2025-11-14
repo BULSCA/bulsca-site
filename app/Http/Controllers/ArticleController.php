@@ -17,7 +17,7 @@ class ArticleController extends Controller
         $pinned = Article::where('pinned', true)->orderBy('created_at', 'DESC')->get('id');
 
 
-        return view('articles.index', ['pinned' => Article::where('pinned', true)->orderBy('created_at', 'DESC')->get(), 'articles' => Article::orderBy('created_at', 'DESC')->whereNotIn('id', $pinned)->paginate(8)]);
+        return view('articles.index', ['catagoryName' => 'Latest', 'pinned' => Article::where('pinned', true)->orderBy('created_at', 'DESC')->get(), 'articles' => Article::orderBy('created_at', 'DESC')->whereNotIn('id', $pinned)->paginate(8)]);
     }
 
     public function view($slug)
@@ -51,6 +51,11 @@ class ArticleController extends Controller
         return redirect()->route('article.view', $a->getSlug())->with('message', 'Created article!');
     }
 
+    public function createView()
+    {
+        return view('articles.create', ['tags' => Tag::all()]);
+    }
+
     public function editView($slug)
     {
         $exp = explode('.', $slug);
@@ -72,6 +77,10 @@ class ArticleController extends Controller
         $a->title = $validated['title'];
         $a->content = $validated['content'];
 
+        // Sync tags
+        $a->tags()->sync($request->input('tags', []));
+    
+
         if (array_key_exists('pinned', $validated)) {
             $a->pinned = true;
         } else {
@@ -80,7 +89,7 @@ class ArticleController extends Controller
 
         $a->save();
 
-        return redirect()->route('article.view', $a->getSlug())->with('message', 'Updated article!');
+        return redirect()->route('article.view', $a->getSlug())->with('message', 'Article updated successfully!');
     }
 
     public function delete($slug)
@@ -110,5 +119,35 @@ class ArticleController extends Controller
         $article->save();
 
         return response(200);
+    }
+
+    public function byTag($slug)
+    {
+        $tag = Tag::where('slug', $slug)->firstOrFail();
+        
+        // Get pinned articles that have this tag
+        $pinnedIds = Article::where('pinned', true)
+            ->whereHas('tags', function($query) use ($tag) {
+                $query->where('tags.id', $tag->id);
+            })
+            ->orderBy('created_at', 'DESC')
+            ->pluck('id');
+        
+        $pinned = Article::whereIn('id', $pinnedIds)->get();
+        
+        // Get non-pinned articles with this tag
+        $articles = Article::whereHas('tags', function($query) use ($tag) {
+                $query->where('tags.id', $tag->id);
+            })
+            ->whereNotIn('id', $pinnedIds)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(8);
+        
+        return view('articles.index', [
+            'catagoryName' => 'Catagory: ' . $tag->name,
+            'pinned' => $pinned,
+            'articles' => $articles,
+            'tagFilter' => $tag, // Optional: to show which tag is filtered
+        ]);
     }
 }

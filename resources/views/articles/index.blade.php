@@ -16,7 +16,7 @@ The latest publications from BULSCA all in one place.
         <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
             <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
             <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                <h2 class="md:text-6xl text-4xl font-bold text-white">Latest</h2>
+                <h2 class="md:text-6xl text-4xl font-bold text-white">{{ $catagoryName }}</h2>
                 <p class="text-white">News 📰</p>
             </div>
         </div>
@@ -107,9 +107,24 @@ The latest publications from BULSCA all in one place.
 
                 </p>
                 <small class="mt-2 ml-auto group-hover:text-bulsca_red">Click to continue reading</small>
-            </article>
 
+            </article>
         </a>
+        @if($article->tags->count() > 0)
+            <div class="flex flex-wrap gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-400">
+                    <path fill-rule="evenodd" d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+                @foreach($article->tags as $tag)
+                <a href="{{ route('articles.tag', $tag->slug) }}" 
+                onclick="event.stopPropagation();"
+                class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-700 hover:bg-bulsca hover:text-white transition-colors duration-200">
+                    {{ $tag->name }}
+                </a>
+                @endforeach
+            </div>
+            <hr class="mt-3 mb-3">
+        @endif
         @empty
 
         @empty($pinned)
