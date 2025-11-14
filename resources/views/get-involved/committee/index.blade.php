@@ -29,7 +29,7 @@
 
         <h1 class="header">Committee Members</h1>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-3 md:gap-y-9 pb-8 ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-3 md:gap-y-9 pb-8 justify-items-center">
 
             @foreach ($members as $member)
                 <div class="flex flex-col justify-between items-center rounded-md border hover:border-bulsca transition no-underline text-center overflow-hidden min-h-80 w-56">
@@ -46,16 +46,9 @@
                 </div>
             @endforeach
 
-
-
-
-
-
-
-
-
-
         </div>
+
+    </div>
 
         <h1 class="header">About the Committee</h1>
         <p class="pb-8">
