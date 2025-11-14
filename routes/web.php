@@ -89,6 +89,7 @@ Route::get('/get-involved/committee2', function () {
 
 Route::get('/get-involved/committee/index', [CommitteeController::class, 'currentCommittee'])->name('get-involved.committee');
 Route::get('/get-involved/committee/{cid}', [CommitteeController::class, 'previousCommittee'])->where('cid', '\d{4}\-\d{2}')->name('prev_committee');
+Route::get('/get-involved/committee/{cid}/{nameslug}', [CommitteeMemberController::class, 'memberProfile'])->name('committee.member.view');
 Route::get('/get-involved/previous-committees', [CommitteeController::class, 'previous'])->name('committee.previous');
 
 

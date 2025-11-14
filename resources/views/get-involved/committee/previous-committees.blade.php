@@ -34,7 +34,7 @@ Previous Leagues | Competitions |
 
         @foreach ($committees as $committee)
         <div class=" image-link " style="">
-            <a href="{{ route('prev_committee', $committee->getDateSlug()) }}" class=" ">{{ $committee->name }}</a>
+            <a href="{{ route('prev_committee', ['cid' => $committee->date_slug]) }}" class=" ">{{ $committee->name }}</a>
         </div>
         @endforeach
 

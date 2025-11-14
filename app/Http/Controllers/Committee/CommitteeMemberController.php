@@ -110,4 +110,23 @@ class CommitteeMemberController extends Controller
         return response()->redirectTo("img/" . $member->image_path);
     }
 
+    public function memberProfile($cid, $nameslug)
+    {
+        $committee_member = CommitteeMember::all()
+            ->first(function($member) use ($nameslug) {
+                return Str::slug($member->name) === $nameslug;
+            });
+    
+        if (!$committee_member) {
+            abort(404);
+        }
+    
+        $role = $committee_member->role;
+    
+        return view('get-involved.committee.member-profile', [
+            'member' => $committee_member,
+            'role' => $role,
+        ]);
+    }
+
 }

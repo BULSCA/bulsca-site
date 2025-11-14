@@ -4,6 +4,8 @@ namespace App\Models\Committee;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class Committee extends Model
 {
@@ -45,9 +47,9 @@ class Committee extends Model
         return $c;
     }
 
-    public function getDateSlug()
+    public function getDateSlugAttribute()
     {
-        return $this->start_date->format('Y') . "-" . $this->end_date->format('y');
+        return Str::slug($this->start_date->format('Y') . '-' . $this->end_date->format('y'));
     }
 
 }
