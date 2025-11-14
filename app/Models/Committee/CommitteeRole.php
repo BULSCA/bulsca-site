@@ -4,6 +4,7 @@ namespace App\Models\Committee;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Committee\Committee;
 
 class CommitteeRole extends Model
 {
@@ -27,6 +28,29 @@ class CommitteeRole extends Model
     public function members()
     {
         return $this->hasMany(CommitteeMember::class, 'role_id');
+    }
+
+    public function currentMember()
+    {
+        if (!$this->active) {
+            return null;
+        }
+    
+        $committee = Committee::current();
+        if (!$committee) {
+            return null;
+        }
+    
+        return $this->members()
+            ->where('committee_id', $committee->id)
+            ->latest()
+            ->first();
+    }
+
+    public function currentMemberName()
+    {
+        $member = $this->currentMember();
+        return $member ? $member->name : '(unfilled)';
     }
 
 }
