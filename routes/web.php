@@ -164,7 +164,7 @@ Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name
 
 // ========= WELFARE =========
 Route::get('/welfare', function () {
-    $welfareRole = CommitteeRole::where('label', 'Welfare Officer')->first();
+    $welfareRole = CommitteeRole::where('label', 'Welfare and Inclusion Officer')->first();
     return view('welfare.index', ['welfare' => $welfareRole]);
 })->name('welfare');
 
