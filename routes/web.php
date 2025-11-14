@@ -147,9 +147,7 @@ Route::get('/settings', function () {
 
 
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
-Route::get('/article/create', function () {
-    return view('articles.create');
-})->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
+Route::get('/article/create', [ArticleController::class, 'createView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
 Route::post('/article/create', [ArticleController::class, 'create'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create.post');
 Route::get('/article/{slug}/edit', [ArticleController::class, 'editView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit');
 Route::post('/article/{slug}/edit', [ArticleController::class, 'edit'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit.post');
@@ -157,6 +155,7 @@ Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])-
 Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article.view');
 
 Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name('article.rating')->middleware('throttle:10,1');
+Route::get('/articles/tag/{slug}', [ArticleController::class, 'byTag'])->name('articles.tag');
 
 
 // ========= WELFARE =========
