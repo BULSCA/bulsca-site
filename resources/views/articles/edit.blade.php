@@ -31,6 +31,17 @@
                 <input class="input header " value="{{ $article->title }}" required id="article-title"
                     name="title"></input>
             </div>
+            <hr class="mt-3 mb-7">
+
+            <div>
+                <p>tags</p>
+                <select name="tags[]" id="article-tags" class="w-full" multiple>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}" @if ($article->tags->contains($tag)) selected @endif>
+                            {{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <hr class="mt-3 mb-7">
             <div>

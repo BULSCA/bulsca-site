@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRatingRequest;
 use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -56,7 +57,7 @@ class ArticleController extends Controller
 
         $id = $exp[count($exp) - 1];
 
-        return view('articles.edit', ['article' => Article::findOrFail($id)]);
+        return view('articles.edit', ['article' => Article::findOrFail($id), 'tags' => Tag::all()]);
     }
 
     public function edit(CreateArticleRequest $request, $slug)

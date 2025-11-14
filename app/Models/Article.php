@@ -15,6 +15,11 @@ class Article extends Model
         'updated_at' => 'datetime'
     ];
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tag', 'article_id', 'tag_id');
+    }
+
     public function getSlug()
     {
         $title = Str::replace(' ', '-', Str::lower($this->title));
