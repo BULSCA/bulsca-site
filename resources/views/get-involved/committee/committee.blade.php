@@ -16,7 +16,7 @@
             <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
                 <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
                 <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                    <h2 class="md:text-6xl text-4xl font-bold text-white">Committee</h2>
+                    <h2 class="md:text-6xl text-4xl font-bold text-white">{{ $committee->name }}</h2>
                 </div>
             </div>
         </div>
@@ -26,8 +26,6 @@
 
 
     <div class="container-responsive">
-
-        <h1 class="header">Committee Members</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-3 md:gap-y-9 pb-8 justify-items-center">
 
