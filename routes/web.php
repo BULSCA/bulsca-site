@@ -13,10 +13,13 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\SERCController;
+use App\Http\Controllers\Committee\CommitteeController;
+use App\Http\Controllers\Committee\CommitteeMemberController;
 use App\Http\Controllers\UniversityController;
 use App\Models\Competition;
 use App\Models\League;
 use App\Models\Season;
+use App\Models\Committee\CommitteeRole;
 use App\Services\ImageService;
 use Carbon\Carbon;
 
@@ -71,7 +74,7 @@ Route::get('/competitions/previous-leagues', [SeasonController::class, 'previous
 Route::Get('/get-involved', function () {
     return view('get-involved.index');
 })->name('get-involved');
-Route::get('/get-involved/committee', function () {
+Route::get('/get-involved/committee2', function () {
 
     $currentTime = Carbon::now()->timezone('Europe/London')->setHours(0)->setDate(0, 0, 0);
 
@@ -81,12 +84,24 @@ Route::get('/get-involved/committee', function () {
     $isBetween = $currentTime->lessThan($fourThirtyFive) && $currentTime->greaterThan($fourThirty);
 
 
-    return view('get-involved.committee', ['time' => $isBetween]);
-})->name('get-involved.committee');
+    return view('get-involved.committee2', ['time' => $isBetween]);
+})->name('get-involved.committee2');
+
+
+Route::get('/get-involved/committee/index', [CommitteeController::class, 'currentCommittee'])->name('get-involved.committee');
+Route::get('/get-involved/committee/{cid}', [CommitteeController::class, 'previousCommittee'])->where('cid', '\d{4}\-\d{2}')->name('prev_committee');
+Route::get('/get-involved/committee/{cid}/{nameslug}', [CommitteeMemberController::class, 'memberProfile'])->name('committee.member.view');
+Route::get('/get-involved/previous-committees', [CommitteeController::class, 'previous'])->name('committee.previous');
+
+
+
+
+
 
 Route::Get('/get-involved/clubs', [ClubController::class, 'index'])->name('clubs');
 Route::Get('/get-involved/clubs/create', function () {
-    return view('get-involved.create');
+    $chairRole = CommitteeRole::where('label', 'Chair')->first();
+    return view('get-involved.create', ['chair' => $chairRole]);
 })->name('create-club');
 Route::Get('/get-involved/clubs/{cid}', [ClubController::class, 'get'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('view-club');
 Route::Get('/get-involved/clubs/{cid}/edit', [ClubController::class, 'edit'])->where('cid', '([a-z]*[A-Z]*)*\.[0-9]*')->name('edit-club');
@@ -135,9 +150,7 @@ Route::get('/settings', function () {
 
 
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
-Route::get('/article/create', function () {
-    return view('articles.create');
-})->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
+Route::get('/article/create', [ArticleController::class, 'createView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
 Route::post('/article/create', [ArticleController::class, 'create'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create.post');
 Route::get('/article/{slug}/edit', [ArticleController::class, 'editView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit');
 Route::post('/article/{slug}/edit', [ArticleController::class, 'edit'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.edit.post');
@@ -145,11 +158,13 @@ Route::delete(('/article/{slug}/delete'), [ArticleController::class, 'delete'])-
 Route::get('/article/{slug}', [ArticleController::class, 'view'])->name('article.view');
 
 Route::post('/article/rating', [ArticleController::class, 'ratingChange'])->name('article.rating')->middleware('throttle:10,1');
+Route::get('/articles/tag/{slug}', [ArticleController::class, 'byTag'])->name('articles.tag');
 
 
 // ========= WELFARE =========
 Route::get('/welfare', function () {
-    return view('welfare.index');
+    $welfareRole = CommitteeRole::where('label', 'Welfare and Inclusion Officer')->first();
+    return view('welfare.index', ['welfare' => $welfareRole]);
 })->name('welfare');
 
 Route::get('/welfare/support-and-reporting', function () {
@@ -174,6 +189,7 @@ Route::post('/img-ck/upload', [ImageController::class, 'ckUpload'])->middleware(
 Route::get('/img/{path}', [ImageController::class, 'get'])->where('path', '.*')->name('image');
 
 Route::post('/university/updatePhoto', [UniversityController::class, 'updateUniPhoto'])->name('university.updatePhoto');
+Route::post('/committee_member/updatePhoto', [CommitteeMemberController::class, 'updateMemberPhoto'])->name('committee_member.updatePhoto');
 
 
 require __DIR__ . '/auth.php';

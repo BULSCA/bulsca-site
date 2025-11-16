@@ -32,6 +32,37 @@
             </div>
 
             <hr class="mt-3 mb-7">
+
+            <div>
+                <p class="font-semibold mb-2">Tags</p>
+                <select name="tags[]" id="article-tags" class="w-full border rounded p-2" multiple>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">
+                            {{ $tag->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <small class="text-gray-500">Hold Ctrl (Cmd on Mac) to select multiple tags</small>
+            </div>
+
+            <hr class="mt-3 mb-7">
+
+            @push('scripts')
+            <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const element = document.getElementById('article-tags');
+                    const choices = new Choices(element, {
+                        removeItemButton: true,
+                        searchEnabled: true,
+                        placeholderValue: 'Select tags...',
+                    });
+                });
+            </script>
+            @endpush
+
+
             <div>
                 <div class="main-container">
                     <div class="editor-container editor-container_classic-editor editor-container_include-style"

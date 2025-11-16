@@ -6,6 +6,9 @@ use App\Http\Controllers\DynamicResourcePageController;
 use App\Http\Controllers\GlobalNotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\Committee\CommitteeController;
+use App\Http\Controllers\Committee\CommitteeRoleController;
+use App\Http\Controllers\Committee\CommitteeMemberController;
 use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\CasualtyGroupController;
 use App\Http\Controllers\SERC\SERCController;
@@ -16,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+
 
     // SEASONS 
 
@@ -29,6 +33,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/seasons/create', [SeasonController::class, 'create'])->middleware('can:admin.seasons.manage')->name('admin.seasons.create.post');
     Route::delete('/seasons/delete', [SeasonController::class, 'delete'])->middleware('can:admin.seasons.delete')->name('admin.seasons.delete');
 
+
     // COMPETITIONS
 
     Route::get('/competitions', [AdminController::class, 'viewCompetitions'])->middleware('can:admin.competitions')->name('admin.competitions');
@@ -41,6 +46,7 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
 
     Route::delete('/competitions/delete', [CompetitionController::class, 'delete'])->middleware('can:admin.competitions.delete')->name('admin.competitions.delete');
 
+
     // UNIVERSITIES
 
     Route::get('/universities', [AdminController::class, 'viewUniversities'])->middleware('can:admin.universities')->name('admin.universities');
@@ -52,7 +58,6 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::delete('/university/delete', [UniversityController::class, 'delete'])->middleware('can:admin.universities.delete')->name('admin.universities.delete');
 
 
-
     // USERS
 
     Route::get('/users', [AdminController::class, 'viewUsers'])->middleware('can:admin.users')->name('admin.users');
@@ -60,6 +65,44 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::get('/users/create', [AdminController::class, 'viewUserCreate'])->middleware('can:admin.users.manage')->name('admin.users.create');
     Route::post('/users/create', [UserController::class, 'createUser'])->middleware('can:admin.users.manage')->name('admin.users.create.post');
     Route::post('/users/edit', [UserController::class, 'editUser'])->middleware('can:admin.users.manage')->name('admin.users.edit');
+
+
+    // COMMITTEES
+
+    Route::get('/committees', [AdminController::class, 'viewCommittees'])->middleware('can:admin.committees')->name('admin.committees');
+    Route::get('/committee/{committee}', [AdminController::class, 'viewCommittee'])->middleware('can:admin.committees')->name('admin.committee.view');
+    Route::post('/committee/{committee}/edit', [CommitteeController::class, 'update'])->middleware('can:admin.committees.manage')->name('admin.committee.edit');
+    Route::get('/committees/create', [AdminController::class, 'viewCommitteeCreate'])->middleware('can:admin.committees.manage')->name('admin.committees.create');
+    Route::post('/committees/create', [CommitteeController::class, 'create'])->middleware('can:admin.committees.manage')->name('admin.committees.create.post');
+    Route::delete('/committees/delete', [CommitteeController::class, 'delete'])->middleware('can:admin.committees.delete')->name('admin.committees.delete');
+
+
+    // COMMITTEE ROLES
+
+    Route::get('/committee_roles', [AdminController::class, 'viewCommitteeRoles'])->middleware('can:admin.committee_roles')->name('admin.committee_roles');
+    Route::get('/committee_role/{committee_role}', [AdminController::class, 'viewCommitteeRole'])->middleware('can:admin.committee_roles')->name('admin.committee_role.view');
+    Route::post('/committee_role/{committee_role}/edit', [CommitteeRoleController::class, 'update'])->middleware('can:admin.committee_roles.manage')->name('admin.committee_role.edit');
+    Route::get('/committee_roles/create', [AdminController::class, 'viewCommitteeRoleCreate'])->middleware('can:admin.committee_roles.manage')->name('admin.committee_roles.create');
+    Route::post('/committee_roles/create', [CommitteeRoleController::class, 'create'])->middleware('can:admin.committee_roles.manage')->name('admin.committee_roles.create.post');
+    Route::delete('/committee_roles/delete', [CommitteeRoleController::class, 'delete'])->middleware('can:admin.committee_roles.delete')->name('admin.committee_roles.delete');
+
+    
+    // COMMITTEE MEMBERS
+    Route::prefix('committee_members')->middleware('can:admin.committee_members')->group(function () {
+        Route::get('', [AdminController::class, 'viewCommitteeMembers'])->name('admin.committee_members');
+        Route::get('/create/{committee}/{role}', [AdminController::class, 'viewCommitteeMemberCreate'])
+            ->middleware('can:admin.committee_members.manage')
+            ->name('admin.committee_members.create');
+        Route::post('/create/{committee}/{role}', [CommitteeMemberController::class, 'create'])
+            ->middleware('can:admin.committee_members.manage')
+            ->name('admin.committee_members.create.post');
+        Route::delete('/delete', [CommitteeMemberController::class, 'delete'])->middleware('can:admin.committee_members.delete')->name('admin.committee_members.delete');
+        Route::get('/{committee_member}', [AdminController::class, 'viewCommitteeMember'])->name('admin.committee_member.view');
+        Route::post('/{committee_member}/edit', [CommitteeMemberController::class, 'update'])->name('admin.committee_member.edit');
+    });
+
+
+    // RESOURCES
 
     Route::get('/resources', [AdminController::class, 'viewResources'])->middleware('can:admin.resources')->name('admin.resources');
     Route::post('/resources/upload', [DynamicResourcePageController::class, 'adminUpload'])->middleware('can:admin.resources.manage')->name('admin.resource.upload');
@@ -80,8 +123,13 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
     Route::post('/resources/section/{section}/changeOrder', [DynamicResourcePageController::class, 'changeSectionOrder'])->name('admin.resources.section.changeOrder');
     Route::post('/resources/resource/{resource}/changeOrder', [DynamicResourcePageController::class, 'changeResourceOrder'])->name('admin.resources.resource.changeOrder');
 
+
+    // GLOBAL NOTIFICATIONS
+
     Route::post('/global-notifications/banner', [GlobalNotificationController::class, 'updateBannerNotification'])->name('globalnotifs.banner');
 
+
+    // SERCS
 
     Route::prefix('sercs')->middleware('can:admin.sercs')->group(function () {
         Route::prefix('casualties')->group(function () {
