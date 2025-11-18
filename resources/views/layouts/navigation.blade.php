@@ -1,7 +1,30 @@
 <div class="fixed w-screen z-50 transition-all duration-100 @yield('nav-style') " id="navbar">
-    <div class="nav-wrapper transition-all duration-100">
-        <a href="/" class="nav-brand  2xl:text-5xl text-3xl font-bold pr-2 md:pr-0 capitalize transition-all">
-            BULSCA
+    <div class="nav-wrapper transition-all duration-100 flex items-center">
+        <a href="/" class="nav-brand 2xl:text-2xl text-xl pr-2 md:pr-0 capitalize transition-all relative h-8 md:h-10 flex items-center"
+            x-data="{ scrolled: false }"
+            x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 40 })">
+            <span class="absolute left-0 top-0 w-full transition-all"
+                x-show="!scrolled"
+                x-transition:enter="transition-opacity duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-300"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0">
+                British Universities Lifesaving Clubs' Association
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                    alt="">
+            </span>
+            <span class="absolute left-0 top-1/2 w-full transition-all"
+                x-show="scrolled"
+                x-transition:enter="transition-opacity duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-300"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0">
+                BULSCA
+            </span>
         </a>
 
         <div class="lg:hidden block text-white font-bold ml-auto ">
@@ -266,3 +289,5 @@
 
     });
 </script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
