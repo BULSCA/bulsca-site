@@ -92,11 +92,8 @@
                 </div>
             </div>
         </div>
-        <div class="bg-bulsca-dark text-center text-white p-4 flex items-center">
-            <a href="/">
-                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="w-12 h-auto mr-4" alt="">
-            </a>
-            <span>&copy; {{ date('Y') }} British Universities Lifesaving Clubs' Association (BULSCA).</span>
+        <div class="w-full text-center text-sm text-white p-4 flex items-center justify-center">
+            <span>&copy; {{ date('Y') }} British Universities Lifesaving Clubs' Association</span>
         </div>
     </footer>
 
