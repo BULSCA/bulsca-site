@@ -92,18 +92,10 @@
                 </a>
             </div> --}}
 
-            <div
-                class="min-w-full snap-center flex flex-col items-center justify-center head-bg-4 "
-                style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1"
-            >
-                <div
-                    class="flex items-center justify-center rounded-md max-w-[80vh] bg-black bg-opacity-60 rounded-md py-2 md:py-8 px-8 md:px-2">
-                    <img src="./storage/logo/blogo.png" ondblclick="ee(this)"
-                        class="w-[20%] hidden md:block " alt="">
-                    <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8 text-center">
-                        <h2 class="md:text-6xl text-4xl font-bold text-white">British University Lifesaving Clubs' Association</h2>
-                    </div>
-                </div>
+            <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
+                style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                    alt="">
             </div>
 
 
@@ -122,18 +114,10 @@
                 </div>
             </div>
 
-            <div
-                class="min-w-full snap-center flex flex-col items-center justify-center head-bg-4 "
-                id="head1"
-            >
-                <div
-                    class="flex items-center justify-center rounded-md max-w-[80vh] bg-black bg-opacity-60 rounded-md py-2 md:py-8 px-8 md:px-2">
-                    <img src="./storage/logo/blogo.png" ondblclick="ee(this)"
-                        class="w-[20%] hidden md:block " alt="">
-                    <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8 text-center">
-                        <h2 class="md:text-6xl text-4xl font-bold text-white">British University Lifesaving Clubs' Association</h2>
-                    </div>
-                </div>
+            <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
+                id="head1">
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                    alt="">
             </div>
 
 
