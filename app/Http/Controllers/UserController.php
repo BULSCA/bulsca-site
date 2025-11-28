@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 use Mockery\Undefined;
 use Spatie\Permission\Models\Role;
 
+use Laravel\Sanctum\HasApiTokens;
+
 class UserController extends Controller
 {
 
