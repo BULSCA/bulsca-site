@@ -12,10 +12,57 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
+use App\Interfaces\CompetitionRepositoryInterface;
+use App\Classes\ApiResponseClass;
+use App\Http\Resources\CompetitionResource;
+use App\Http\Requests\UpdateCompetitionRequest;
+use App\Http\Requests\StoreCompetitionRequest;
+use Illuminate\Support\Facades\DB;
+
 class CompetitionController extends Controller
 {
-    //
+    private CompetitionRepositoryInterface $competitionRepositoryInterface;
+    
+    public function __construct(CompetitionRepositoryInterface $competitionRepositoryInterface)
+    {
+        $this->competitionRepositoryInterface = $competitionRepositoryInterface;
+    }
 
+    public function index()
+    {
+        $data = $this->competitionRepositoryInterface->index();
+
+        return ApiResponseClass::sendResponse(CompetitionResource::collection($data), '', 200);
+    }
+
+    public function store(StoreCompetitionRequest $request)
+    {
+        $data =[
+            'name' => $request->name,
+            'when' => $request->when,
+        ];
+        DB::beginTransaction();
+        try {
+                $competition = $this->competitionRepositoryInterface->store($data);
+
+                DB::commit();
+                return ApiResponseClass::sendResponse(new CompetitionResource($competition), 'Competition created successfully.', 201);
+        } catch (\Exception $e) {
+            return ApiResponseClass::rollback($e);
+        }
+    }
+
+    public function show($id)
+    {
+        $competition = $this->competitionRepositoryInterface->getById($id);
+
+        return ApiResponseClass::sendResponse(new CompetitionResource($competition), '', 200);
+    }
+
+    public function edit(Competition $competition)
+    {
+        //  show the form for editing the resource
+    }
 
     public function view($cid)
     {
@@ -156,11 +203,13 @@ class CompetitionController extends Controller
         return redirect()->route('lc-manage', ['cid' => $cid]);
     }
 
-
-
-
     public function update(ManageCompetitionRequest $request, Competition $cid)
     {
+        $updateData = [
+            'name' => $request->name,
+            'when' => $request->when,
+        ];
+        
         $comp = $cid;
 
         $info = $comp->getInfo;
@@ -208,10 +257,6 @@ class CompetitionController extends Controller
 
         return redirect()->back();
     }
-
-
-
-
 
     public function adminUpdate(Request $request, Competition $competition)
     {
