@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Repositories;
+
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
+
 use App\Models\Competition;
 use App\Interfaces\CompetitionRepositoryInterface;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 class CompetitionRepository implements CompetitionRepositoryInterface
 {
-    /**
-     * Create a new class instance.
-     */
     public function index()
     {
         return Competition::all();
@@ -32,6 +31,6 @@ class CompetitionRepository implements CompetitionRepositoryInterface
 
     public function delete($id)
     {
-        return Competition::destroy($id);
+        Competition::destroy($id);
     }
 }
