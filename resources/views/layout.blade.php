@@ -31,6 +31,7 @@
     @endphp
     @if (now()->between($startOfRange, $endOfRange))
         <script>
+            console.log('Let it snow!');
             letItSnow()
         </script>
     @endif
