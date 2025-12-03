@@ -182,7 +182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+const colors = {
 	aliceblue: [240, 248, 255],
 	antiquewhite: [250, 235, 215],
 	aqua: [0, 255, 255],
@@ -330,9 +330,11 @@ __webpack_require__.r(__webpack_exports__);
 	white: [255, 255, 255],
 	whitesmoke: [245, 245, 245],
 	yellow: [255, 255, 0],
-	yellowgreen: [154, 205, 50]
-});
+	yellowgreen: [154, 205, 50],
+}
 
+for (const key in colors) Object.freeze(colors[key]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.freeze(colors));
 
 /***/ }),
 
@@ -404,15 +406,15 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+var hsl = {
 	name: 'hsl',
-	min: [0,0,0],
-	max: [360,100,100],
+	min: [0, 0, 0],
+	max: [360, 100, 100],
 	channel: ['hue', 'saturation', 'lightness'],
 	alias: ['HSL'],
 
-	rgb: function(hsl) {
-		var h = hsl[0]/360, s = hsl[1]/100, l = hsl[2]/100, t1, t2, t3, rgb, val, i=0;
+	rgb: function (hsl) {
+		var h = hsl[0] / 360, s = hsl[1] / 100, l = hsl[2] / 100, t1, t2, t3, rgb, val, i = 0;
 
 		if (s === 0) return val = l * 255, [val, val, val];
 
@@ -420,30 +422,32 @@ __webpack_require__.r(__webpack_exports__);
 		t1 = 2 * l - t2;
 
 		rgb = [0, 0, 0];
-		for (;i<3;) {
+		for (; i < 3;) {
 			t3 = h + 1 / 3 * - (i - 1);
 			t3 < 0 ? t3++ : t3 > 1 && t3--;
 			val = 6 * t3 < 1 ? t1 + (t2 - t1) * 6 * t3 :
-			2 * t3 < 1 ? t2 :
-			3 * t3 < 2 ?  t1 + (t2 - t1) * (2 / 3 - t3) * 6 :
-			t1;
+				2 * t3 < 1 ? t2 :
+					3 * t3 < 2 ? t1 + (t2 - t1) * (2 / 3 - t3) * 6 :
+						t1;
 			rgb[i++] = val * 255;
 		}
 
 		return rgb;
 	}
-});
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (hsl);
 
 
 //extend rgb
-_rgb_js__WEBPACK_IMPORTED_MODULE_0__["default"].hsl = function(rgb) {
-	var r = rgb[0]/255,
-			g = rgb[1]/255,
-			b = rgb[2]/255,
-			min = Math.min(r, g, b),
-			max = Math.max(r, g, b),
-			delta = max - min,
-			h, s, l;
+_rgb_js__WEBPACK_IMPORTED_MODULE_0__["default"].hsl = function (rgb) {
+	var r = rgb[0] / 255,
+		g = rgb[1] / 255,
+		b = rgb[2] / 255,
+		min = Math.min(r, g, b),
+		max = Math.max(r, g, b),
+		delta = max - min,
+		h, s, l;
 
 	if (max === min) {
 		h = 0;
@@ -455,9 +459,11 @@ _rgb_js__WEBPACK_IMPORTED_MODULE_0__["default"].hsl = function(rgb) {
 		h = 2 + (b - r) / delta;
 	}
 	else if (b === max) {
-		h = 4 + (r - g)/ delta;
+		h = 4 + (r - g) / delta;
 	}
 
+	//FIXME h is possibly undefined
+	//@ts-ignore
 	h = Math.min(h * 60, 360);
 
 	if (h < 0) {
@@ -503,19 +509,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//cylindrical luv
+// cylindrical luv
 var lchuv = {
 	name: 'lchuv',
 	channel: ['lightness', 'chroma', 'hue'],
 	alias: ['LCHuv', 'cielchuv'],
-	min: [0,0,0],
-	max: [100,100,360],
+	min: [0, 0, 0],
+	max: [100, 100, 360],
 
-	luv: function(luv){
+	luv: function (luv) {
 		var l = luv[0],
-		c = luv[1],
-		h = luv[2],
-		u, v, hr;
+			c = luv[1],
+			h = luv[2],
+			u, v, hr;
 
 		hr = h / 360 * 2 * Math.PI;
 		u = c * Math.cos(hr);
@@ -523,28 +529,28 @@ var lchuv = {
 		return [l, u, v];
 	},
 
-	xyz: function(arg) {
+	xyz: function (arg) {
 		return _luv_js__WEBPACK_IMPORTED_MODULE_0__["default"].xyz(lchuv.luv(arg));
 	}
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (lchuv);
 
-_luv_js__WEBPACK_IMPORTED_MODULE_0__["default"].lchuv = function(luv){
+_luv_js__WEBPACK_IMPORTED_MODULE_0__["default"].lchuv = function (luv) {
 	var l = luv[0], u = luv[1], v = luv[2];
 
-	var c = Math.sqrt(u*u + v*v);
-	var hr = Math.atan2(v,u);
+	var c = Math.sqrt(u * u + v * v);
+	var hr = Math.atan2(v, u);
 	var h = hr * 360 / 2 / Math.PI;
 	if (h < 0) {
 		h += 360;
 	}
 
-	return [l,c,h]
+	return [l, c, h]
 };
 
-_xyz_js__WEBPACK_IMPORTED_MODULE_1__["default"].lchuv = function(arg){
-  return _luv_js__WEBPACK_IMPORTED_MODULE_0__["default"].lchuv(_xyz_js__WEBPACK_IMPORTED_MODULE_1__["default"].luv(arg));
+_xyz_js__WEBPACK_IMPORTED_MODULE_1__["default"].lchuv = function (arg) {
+	return _luv_js__WEBPACK_IMPORTED_MODULE_0__["default"].lchuv(_xyz_js__WEBPACK_IMPORTED_MODULE_1__["default"].luv(arg));
 };
 
 
@@ -567,24 +573,24 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @module color-space/luv
  */
- 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+
+var luv = {
 	name: 'luv',
 	//NOTE: luv has no rigidly defined limits
 	//easyrgb fails to get proper coords
 	//boronine states no rigid limits
 	//colorMine refers this ones:
-	min: [0,-134,-140],
-	max: [100,224,122],
+	min: [0, -134, -140],
+	max: [100, 224, 122],
 	channel: ['lightness', 'u', 'v'],
 	alias: ['LUV', 'cieluv', 'cie1976'],
 
-	xyz: function(arg, i, o){
+	xyz: function (arg, i, o) {
 		var _u, _v, l, u, v, x, y, z, xn, yn, zn, un, vn;
 		l = arg[0], u = arg[1], v = arg[2];
 
-		if (l === 0) return [0,0,0];
+		if (l === 0) return [0, 0, 0];
 
 		//get constants
 		//var e = 0.008856451679035631; //(6/29)^3
@@ -607,7 +613,7 @@ __webpack_require__.r(__webpack_exports__);
 		_u = u / (13 * l) + un || 0;
 		_v = v / (13 * l) + vn || 0;
 
-		y = l > 8 ? yn * Math.pow( (l + 16) / 116 , 3) : yn * l * k;
+		y = l > 8 ? yn * Math.pow((l + 16) / 116, 3) : yn * l * k;
 
 		//wikipedia method
 		x = y * 9 * _u / (4 * _v) || 0;
@@ -620,13 +626,15 @@ __webpack_require__.r(__webpack_exports__);
 
 		return [x, y, z];
 	}
-});
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (luv);
 
 // http://www.brucelindbloom.com/index.html?Equations.html
 // https://github.com/boronine/husl/blob/master/husl.coffee
 //i - illuminant
 //o - observer
-_xyz_js__WEBPACK_IMPORTED_MODULE_0__["default"].luv = function(arg, i, o) {
+_xyz_js__WEBPACK_IMPORTED_MODULE_0__["default"].luv = function (arg, i, o) {
 	var _u, _v, l, u, v, x, y, z, xn, yn, zn, un, vn;
 
 	//get constants
@@ -651,9 +659,9 @@ _xyz_js__WEBPACK_IMPORTED_MODULE_0__["default"].luv = function(arg, i, o) {
 	_u = (4 * x) / (x + (15 * y) + (3 * z)) || 0;
 	_v = (9 * y) / (x + (15 * y) + (3 * z)) || 0;
 
-	var yr = y/yn;
+	var yr = y / yn;
 
-	l = yr <= e ? k * yr : 116 * Math.pow(yr, 1/3) - 16;
+	l = yr <= e ? k * yr : 116 * Math.pow(yr, 1 / 3) - 16;
 
 	u = 13 * l * (_u - un);
 	v = 13 * l * (_v - vn);
@@ -680,14 +688,15 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @module  color-space/rgb
  */
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+const rgb = {
 	name: 'rgb',
-	min: [0,0,0],
-	max: [255,255,255],
+	min: [0, 0, 0],
+	max: [255, 255, 255],
 	channel: ['red', 'green', 'blue'],
 	alias: ['RGB']
-});
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rgb);
 
 
 /***/ }),
@@ -711,62 +720,58 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-var xyz = {
+const xyz = {
 	name: 'xyz',
-	min: [0,0,0],
-	channel: ['X','Y','Z'],
-	alias: ['XYZ', 'ciexyz', 'cie1931']
-};
+	min: [0, 0, 0],
+	channel: ['X', 'Y', 'Z'],
+	alias: ['XYZ', 'ciexyz', 'cie1931'],
 
+	// Whitepoint reference values with observer/illuminant
+	// http://en.wikipedia.org/wiki/Standard_illuminant
+	whitepoint: {
+		//1931 2°
+		2: {
+			//incadescent
+			A: [109.85, 100, 35.585],
+			// B:[],
+			C: [98.074, 100, 118.232],
+			D50: [96.422, 100, 82.521],
+			D55: [95.682, 100, 92.149],
+			//daylight
+			D65: [95.045592705167, 100, 108.9057750759878],
+			D75: [94.972, 100, 122.638],
+			//flourescent
+			// F1: [],
+			F2: [99.187, 100, 67.395],
+			// F3: [],
+			// F4: [],
+			// F5: [],
+			// F6:[],
+			F7: [95.044, 100, 108.755],
+			// F8: [],
+			// F9: [],
+			// F10: [],
+			F11: [100.966, 100, 64.370],
+			// F12: [],
+			E: [100, 100, 100]
+		},
 
-/**
- * Whitepoint reference values with observer/illuminant
- *
- * http://en.wikipedia.org/wiki/Standard_illuminant
- */
-xyz.whitepoint = {
-	//1931 2°
-	2: {
-		//incadescent
-		A:[109.85, 100, 35.585],
-		// B:[],
-		C: [98.074, 100, 118.232],
-		D50: [96.422, 100, 82.521],
-		D55: [95.682, 100, 92.149],
-		//daylight
-		D65: [95.045592705167, 100, 108.9057750759878],
-		D75: [94.972, 100, 122.638],
-		//flourescent
-		// F1: [],
-		F2: [99.187, 100, 67.395],
-		// F3: [],
-		// F4: [],
-		// F5: [],
-		// F6:[],
-		F7: [95.044, 100, 108.755],
-		// F8: [],
-		// F9: [],
-		// F10: [],
-		F11: [100.966, 100, 64.370],
-		// F12: [],
-		E: [100,100,100]
-	},
-
-	//1964  10°
-	10: {
-		//incadescent
-		A:[111.144, 100, 35.200],
-		C: [97.285, 100, 116.145],
-		D50: [96.720, 100, 81.427],
-		D55: [95.799, 100, 90.926],
-		//daylight
-		D65: [94.811, 100, 107.304],
-		D75: [94.416, 100, 120.641],
-		//flourescent
-		F2: [103.280, 100, 69.026],
-		F7: [95.792, 100, 107.687],
-		F11: [103.866, 100, 65.627],
-		E: [100,100,100]
+		//1964  10°
+		10: {
+			//incadescent
+			A: [111.144, 100, 35.200],
+			C: [97.285, 100, 116.145],
+			D50: [96.720, 100, 81.427],
+			D55: [95.799, 100, 90.926],
+			//daylight
+			D65: [94.811, 100, 107.304],
+			D75: [94.416, 100, 120.641],
+			//flourescent
+			F2: [103.280, 100, 69.026],
+			F7: [95.792, 100, 107.687],
+			F11: [103.866, 100, 65.627],
+			E: [100, 100, 100]
+		}
 	}
 };
 
@@ -780,12 +785,12 @@ xyz.max = xyz.whitepoint[2].D65;
 /**
  * Transform xyz to rgb
  *
- * @param {Array} xyz Array of xyz values
- *
- * @return {Array} RGB values
+ * @param {Array<number>} _xyz Array of xyz values
+ * @param {Array<number>} white Whitepoint reference
+ * @return {Array<number>} RGB values
  */
 xyz.rgb = function (_xyz, white) {
-	//FIXME: make sure we have to divide like this. Probably we have to replace matrix as well then
+	// FIXME: make sure we have to divide like this. Probably we have to replace matrix as well then
 	white = white || xyz.whitepoint[2].E;
 
 	var x = _xyz[0] / white[0],
@@ -820,14 +825,14 @@ xyz.rgb = function (_xyz, white) {
 /**
  * RGB to XYZ
  *
- * @param {Array} rgb RGB channels
+ * @param {Array<number>} rgb RGB channels
  *
- * @return {Array} XYZ channels
+ * @return {Array<number>} XYZ channels
  */
-_rgb_js__WEBPACK_IMPORTED_MODULE_0__["default"].xyz = function(rgb, white) {
+_rgb_js__WEBPACK_IMPORTED_MODULE_0__["default"].xyz = function (rgb, white) {
 	var r = rgb[0] / 255,
-			g = rgb[1] / 255,
-			b = rgb[2] / 255;
+		g = rgb[1] / 255,
+		b = rgb[2] / 255;
 
 	// assume sRGB
 	r = r > 0.04045 ? Math.pow(((r + 0.055) / 1.055), 2.4) : (r / 12.92);
