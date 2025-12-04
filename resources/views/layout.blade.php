@@ -42,6 +42,10 @@
 
     @yield('content')
 
+    <div class="container-responsive my-12">
+        @include('components.meta-content.carousel')
+    </div>
+
     <footer class="bg-bulsca">
         <div class="w-full container-responsive">
             <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mx-2">
