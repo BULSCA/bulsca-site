@@ -206,6 +206,22 @@
                 </a>
             @endcan
 
+            @can('admin.organisations')
+                <a href="{{ route('admin.organisations') }}"
+                    class="rounded-md no-underline border-2 hover:border-gray-300 cursor-pointer py-4 px-6 flex flex-row items-center text-fuchsia-500 ">
+                    <div class="flex flex-col ">
+                        <p class=" text-4xl font-bold ">{{ $count['organisation'] }}</p>
+                        <small class="text-base">Organisations</small>
+
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-auto" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </a>
+            @endcan
+
         </div>
 
         <br>

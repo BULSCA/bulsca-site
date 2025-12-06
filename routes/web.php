@@ -200,3 +200,19 @@ require __DIR__ . '/data.php';
 Route::get('/editor', function () {
     return view('editor');
 });
+
+
+
+
+
+
+
+
+
+
+
+use App\Http\Controllers\EntityController;
+
+// routes/web.php
+Route::get('/entities/{entity}', [EntityController::class, 'showView'])->name('entities.show');   
+Route::get('/entities', [EntityController::class, 'indexView'])->name('entities.index');   

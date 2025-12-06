@@ -26,6 +26,10 @@
                 No Associated University!
             @endif
         </small>
+        <br>
+        <small class="">
+            <span> {{ auth()->user()?->entity->display_name ?? 'no entity' }} </span>
+        </small>
 
         <hr class="my-5">
 
