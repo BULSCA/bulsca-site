@@ -144,10 +144,6 @@ Route::get('/cookies', function () {
     return view('legal.cookies');
 })->name('cookies');
 
-Route::get('/settings', function () {
-    return view('settings');
-})->name('settings')->middleware('auth');
-
 
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
 Route::get('/article/create', [ArticleController::class, 'createView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
@@ -175,7 +171,20 @@ Route::get('/welfare/inclusion-and-accessibility', function () {
     return view('welfare.inclusion-and-accessibility');
 })->name('welfare.inclusion-and-accessibility');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/settings', function () {
+        return view('dashboard.settings');
+    })->name('settings');
+    Route::get('/change-password', function () {
+        return view('dashboard.change-password');
+    })->name('password.change');
+});
+
+
+
 Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
 Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->middleware(['auth'])->name('lc-manage');
 Route::post('/competitions/{cid}/manage', [CompetitionController::class, 'update'])->middleware(['auth'])->name('lc-manage-update');
