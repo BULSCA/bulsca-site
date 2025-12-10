@@ -72,6 +72,12 @@
                 </div>
             @endif
 
+            <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
+                style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
+                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
+                    alt="">
+            </div>
+
             <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
                 <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.JPG') }}" class=" w-56"
                     alt="" srcset="">
@@ -90,32 +96,20 @@
                 </a>
             </div>
 
-            <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
-                style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
-                <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
-                    alt="">
-            </div>
-
-
+            @if (now()->month >= 9 && now()->month <= 10)
             <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
 
                 <div class=" py-8 text-center flex flex-col ">
-                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
-                        👋</p>
+                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 ">Hello Freshers 👋</p>
                     <p class=" text-xl font-semibold text-white">Welcome to university lifesaving</p>
 
                     <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
                         class="btn  self-center btn-thinner mt-8 rounded-full">Find
-                        my club &
-                        more</a>
-
-
-
-
-
+                        my club & more</a>
                 </div>
             </div>
+            @endif
 
             <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
