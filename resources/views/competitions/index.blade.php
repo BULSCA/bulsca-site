@@ -35,7 +35,7 @@ Competitions |
     <div class=" image-link " style="background-image: url(/storage/photos/IMG_4946.JPG);">
       <a href="{{ route('league') }}" class=" ">{{ $season->name }}</a>
     </div>
-    <!--
+
     <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">
       <a href="{{ route('champs') }}" class="">Champs {{ $season->to->format('Y') }}</a>
     </div>
@@ -43,7 +43,7 @@ Competitions |
 
   </div>
   <br>
-  -->
+
     <div class="image-link bulsca" style="">
       <a href="{{ route('league.previous') }}">Previous Leagues</a>
     </div>
