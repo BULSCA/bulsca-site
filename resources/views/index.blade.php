@@ -265,6 +265,63 @@
 </div>
 
 
+<!-- Competition Boast -->
+@if ($nearComp)
+    @php
+        $page = $nearComp->hostUni->getPage()->first();
+        $banner_color = $page->banner_color ?? '#000000ff';
+    @endphp
+    <div class="container-boast" style="background: {{ $banner_color }}">
+        <img src="{{ $nearComp->hostUni->image_path ? route('image', $nearComp->hostUni->image_path) : '/storage/logo/blogo.png' }}" class=" w-56" alt=""
+            srcset="">
+        <div class="flex flex-col">
+            <p class="text-white 2xl:text-2xl text-1xl font-bold uppercase text-center md:text-left">
+                @if ($nearComp->when->isToday())
+                    Today
+                @elseif ($nearComp->when->isFuture())
+                    Upcoming Competition
+                @else
+                    See you next year!
+                @endif
+            </p>
+            <p><a href="{{ route('lc-view', Str::lower($nearComp->hostUni->name) . '-' . $nearComp->when->format('Y') . '.' . $nearComp->id) }}"
+                class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">{{ $nearComp->getName() }}
+            </a></p>
+            <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">
+                @php
+                    $diff = now()->diffInDays($nearComp->when) + 1;
+                @endphp
+                @if ($nearComp->when->isToday())
+                    <a href="https://live.bulsca.co.uk"
+                        class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
+                        rel="noopener noreferrer" target="_blank">Follow live</a>
+                @elseif ($nearComp->when->isFuture())
+                    {{ $nearComp->when->format('l jS M Y') }} ({{ floor($diff) }}
+                    day{{ floor($diff) > 1 ? 's' : '' }} to go!)
+                @else
+                    <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
+                        class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
+                        rel="noopener noreferrer" target="_blank">Results</a>
+                @endif
+            </p>
+        </div>
+
+        @if ($nearComp->when->isToday())
+            <a href="https://live.bulsca.co.uk"
+                class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
+                rel="noopener noreferrer" target="_blank">Follow live</a>
+        @elseif ($nearComp->when->isFuture())
+
+        @else
+            <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
+                class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
+                rel="noopener noreferrer" target="_blank">Results</a>
+        @endif
+    </div>
+@endif
+<!-- End Competition Boast -->
+ 
+<!-- Champs 2026 Boast -->
 <div class="container-boast" style="background: #004490">
     <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class=" w-56" alt=""
         srcset="">
@@ -281,6 +338,7 @@
         Find out More
     </a>
 </div>
+<!-- End Champs 2026 Boast -->
 
 <script>
     let clk = 0;
