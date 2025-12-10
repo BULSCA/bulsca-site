@@ -323,8 +323,9 @@
  
 <!-- Champs 2026 Boast -->
 <div class="container-boast" style="background: #004490">
-    <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class=" w-56" alt=""
-        srcset="">
+    <div class="inline-flex p-4 rounded-lg" style="background: #004490">
+        <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class="w-56" alt="">
+    </div>
     <div class="flex flex-col">
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th March</p>
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">
