@@ -73,7 +73,7 @@
             @endif
 
             <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
-                <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.svg') }}" class=" w-56"
+                <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.JPG') }}" class=" w-56"
                     alt="" srcset="">
                 <div class="flex flex-col items-center">
                     <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th
@@ -272,7 +272,7 @@
 
 
 <div class="container-boast" style="background: #004490">
-    <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.svg') }}" class=" w-56" alt=""
+    <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.JPG') }}" class=" w-56" alt=""
         srcset="">
     <div class="flex flex-col">
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th March</p>
