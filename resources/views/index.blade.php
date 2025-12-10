@@ -72,25 +72,23 @@
                 </div>
             @endif
 
-            {{-- 
             <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
-                <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56"
+                <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.svg') }}" class=" w-56"
                     alt="" srcset="">
                 <div class="flex flex-col items-center">
-                    <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th
+                    <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th
                         March</p>
                         <p class="text-white 2xl:text-2xl text-xl font-semibold uppercase text-center md:text-left" id="time-container">
                             <span id="days">0</span> Days, <span id="hours">0</span> Hours, <span id="mins">0</span> Minutes & <span id="secs">0</span> Seconds
                         </p>
-                    <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2
-                        Crawley</p>
+                    <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Liverpool Aquatics Centre</p>
                 </div>
 
-                <a href="{{ route('champs.2025') }}" rel="noopener noreferrer"
+                <a href="{{ route('champs.2026') }}" rel="noopener noreferrer"
                     class="btn btn-thinner mt-6 !text-white !bg-[#004490] hover:!bg-[#f48c00] hover:!border-[#f48c00]">
                     Find out More
                 </a>
-            </div> --}}
+            </div>
 
             <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
@@ -272,23 +270,23 @@
     </div>
 </div>
 
-{{--
+
 <div class="container-boast" style="background: #004490">
-    <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56" alt=""
+    <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.svg') }}" class=" w-56" alt=""
         srcset="">
     <div class="flex flex-col">
-        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th March</p>
+        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th March</p>
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">
             <span id="days"></span><span id="hours"></span><span id="mins"></span><span
                 id="secs"></span>
         </p>
-        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2 Crawley</p>
+        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Liverpool Aquatics Centre</p>
     </div>
 
-    <a href="{{ route('champs.2025') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
+    <a href="{{ route('champs.2026') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
         Find out More
     </a>
-</div>--}}
+</div>
 
 <script>
     let clk = 0;
@@ -321,7 +319,7 @@
 
 <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("March 15, 2025 09:00:00").getTime();
+    var countDownDate = new Date("March 7, 2026 09:00:00").getTime();
 
 
     function tick() {
