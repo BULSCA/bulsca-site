@@ -116,20 +116,10 @@
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
-
-
-
-
         </div>
 
 
     </div>
-
-    <style>
-        #panes {
-            scroll-behavior: auto !important;
-        }
-    </style>
 
     <script>
         const panes = document.getElementById('panes')
@@ -145,11 +135,15 @@
         const switchToPane = (i) => {
             const child = panes.children[i]
             current_index = i
+
+
             panes.scrollTo({
                 left: i * child.clientWidth,
                 behavior: 'smooth'
             })
+
             //child.scrollIntoView({behavior: 'smooth', block:'nearest'})
+
             for (var j = 0; j < panes.children.length; j++) {
                 var jumper = controls.children[j]
 
@@ -163,6 +157,7 @@
             }
         }
 
+
         let first = true
 
         for (let i = 0; i < panes.children.length; i++) {
@@ -175,10 +170,12 @@
             } else {
                 jumper.classList.add(...inactiveClasses)
             }
+
             jumper.onclick = (e) => {
                 switchToPane(i)
 
             }
+
             controls.appendChild(jumper)
         }
 
@@ -187,10 +184,15 @@
 
         setInterval(() => {
             current_index++
+
             if (current_index >= max_index) {
                 current_index = 0
             }
+
             switchToPane(current_index)
+
+
+
         }, 6000);
     </script>
 
