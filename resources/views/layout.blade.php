@@ -42,15 +42,15 @@
 
     @yield('content')
 
-    <footer class="bg-bulsca">
-        <div class="w-full container-responsive">
-            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mx-2">
 
-                <div class="md:flex-[2] flex-2 rounded-lg p-6 bg-white shadow-md">
+    <div class=" container-responsive  ">
+        <div class="grid md:grid-cols-2 grid-cols-1">
+            <div class="flex flex-col">
                 <h2 class="header">Join the mailing list</h2>
                 <form
                     action="https://bulsca.us15.list-manage.com/subscribe/post?u=1b1c9887c1e5ff377f6979e66&amp;id=94c67a5f8d&amp;f_id=00738de0f0"
                     method="post" class="flex flex-col  overflow-hidden">
+
                     <input type="text"
                         class="border-b-2 border-red-500 text-xl   p-2  my-2 hover:outline-none focus:outline-none"
                         name="EMAIL" placeholder="swimming@bulsca.co.uk">
@@ -64,38 +64,39 @@
                     </small>
                     <button submit class="btn">Sign me up!</button>
                 </form>
-                </div>
 
-                <div class="flex flex-col items-center justify-center md:flex-[1] flex-1 border-2">
-                    <h3 class="text-white font-semibold text-lg pb-2">Quick Links</h3>
-                    <p class="text-white ">
-                        <a class="text-white font-normal no-underline hover:underline"
-                            href="{{ route('contact') }}">Contact</a>
-                    </p>
-                    <p>
-                        <a class="text-white font-normal no-underline hover:underline"
-                            href="{{ route('welfare') }}">Welfare</a>
-                    </p>
-                    <p class="text-white font-normal no-underline hover:underline">
-                        privacy policy
-                    </p>
+                <br>
+                <br>
 
-
-                    <div class="p-6 flex flex-row items-center justify-center divide-x mt-auto">
-                        <a href="https://www.facebook.com/BULSCA/" rel="noopener noreferrer" target="_blank"><img
-                                src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12 mx-3" alt=""></a>
-                        <a href="https://www.instagram.com/bulsca" rel="noopener noreferrer" target="_blank"><img
-                                src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12 mx-3"
-                                alt=""></a>
-                    </div>
-
-
-                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBULSCA%2F&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
+                    width="340" height="271" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
         </div>
-        <div class="w-full text-center text-sm text-white p-4 flex items-center justify-center">
-            <span>&copy; {{ date('Y') }} British Universities Lifesaving Clubs' Association</span>
+    </div>
+
+
+
+    <footer class="bg-black w-full flex flex-col items-center justify-center mt-auto">
+        <div class="p-6 px-32 flex flex-row items-center justify-center space-x-4">
+
+            <a href="https://www.facebook.com/BULSCA/" rel="noopener noreferrer" target="_blank"><img
+                    src="/storage/logo/f_logo_RGB-Blue_1024.png" loading="lazy" class="w-12 h-12" alt=""></a>
+            <a href="https://www.instagram.com/bulsca" rel="noopener noreferrer" target="_blank"><img
+                    src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12"
+                    alt=""></a>
+
         </div>
+        <small class="text-white pb-4 divide-x ">
+            <a class="text-white font-normal no-underline hover:underline pr-1"
+                href="{{ route('contact') }}">Contact</a>
+            <a class="text-white font-normal no-underline hover:underline pl-2"
+                href="{{ route('welfare') }}">Welfare</a>
+        </small>
     </footer>
 
 
