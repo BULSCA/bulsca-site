@@ -96,7 +96,7 @@
                 </a>
             </div>
 
-            @if (now()->month >= 7 && now()->month <= 12)
+            @if (now()->month >= 7 && now()->month <= 11)
             <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
 
