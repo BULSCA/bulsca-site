@@ -77,9 +77,11 @@
                         <a class="text-white font-normal no-underline hover:underline"
                             href="{{ route('welfare') }}">Welfare</a>
                     </p>
+                    <!--
                     <p class="text-white font-normal no-underline hover:underline">
                         privacy policy
                     </p>
+                    -->
 
 
                     <div class="p-6 flex flex-row items-center justify-center divide-x mt-auto">
