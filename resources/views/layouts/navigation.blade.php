@@ -239,7 +239,7 @@
                 </div>
             </li>
 
-            <li><a href="{{ route('about') }}">About</a></li>
+
 
             <li class="group {{ Request::is('dashboard*') ? 'mobile-nav-active' : '' }}">
                 <div class="mobile-nav-link">

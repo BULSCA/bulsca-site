@@ -26,13 +26,13 @@
         <div class="image-link-group">
 
             <div class=" image-link "
-                style="background-image: url(/storage/photos/champs/2025/champs-logo.svg); background-size: contain">
-                <a href="{{ route('champs.2025') }}" class=" ">Champs 2025 Info</a>
+                style="background-image: url(/storage/photos/champs/2026/champs-logo.JPG); background-size: contain">
+                <a href="{{ route('champs.2026') }}" class=" ">Champs 2026 Info</a>
             </div>
 
             <div class=" image-link "
-                style="background-image: url(/storage/photos/champs/2025/champs-logo-2.svg); background-size: contain">
-                <a href="{{ route('champs.2025') }}#entries" class=" ">Champs 2025 Entries</a>
+                style="background-image: url(/storage/photos/champs/2026/champs-logo-2.JPG); background-size: contain">
+                <a href="{{ route('champs.2026') }}#entries" class=" ">Champs 2026 Entries</a>
             </div>
 
         </div>
