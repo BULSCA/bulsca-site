@@ -68,45 +68,49 @@
             were always looking to
             help setup
             more if one isn't available at your university.
-            <br>
-            <br>
+        </p>
+        <br>
+        <p>
             You can find a list of our clubs below, clicking one will update the map and show you when their Freshers Fayre
-            is. To find out more about a club click the "More" link.
-            <br>
-            <br>
+            is. To find out more about a club, click the
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" style="display: inline; vertical-align: text-bottom;" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            button.
+        </p>
+        <br>
 
-        <div class="w-full flex flex-col-reverse md:flex-row ">
+
+
+        <div class="w-full flex flex-col-reverse md:flex-row space-x-2">
             <div class="w-full md:w-[30%]" id="club-cards">
 
                 @foreach (\App\Models\University::where('active', true)->orderBy('name')->get() as $club)
-                    <div x-club-name="{{ $club->name }}" x-club-loc="{{ $club->location }}"
-                        class="bg-bulsca w-full flex items-center space-x-5 px-5 py-3 hover:scale-x-105 border-y last-of-type:border-b-0 first-of-type:border-t-0 hover:bg-bulsca_red cursor-pointer">
-
-
-                        <div
-                            class="w-5 aspect-square  overflow-hidden flex items-center justify-center pointer-events-none ">
-                            <img src="{{ $club->image_path ? route('image', $club->image_path) : '/storage/logo/blogo.png' }}"
-                                class="w-full  " alt="">
+                    <div
+                        x-club-name="{{ $club->name }}"
+                        x-club-loc="{{ $club->location }}"
+                        class="bg-bulsca w-full flex items-center space-x-5 hover:scale-x-105 border-y last-of-type:border-b-0 first-of-type:border-t-0 hover:bg-bulsca_red cursor-pointer"
+                    >
+                        <div class="flex items-center space-x-3 pl-3 py-3 flex-1">
+                            <div class="size-8 overflow-hidden flex items-center justify-center pointer-events-none">
+                                <img src="{{ $club->image_path ? route('image', $club->image_path) : '/storage/logo/blogo.png' }}"
+                                    class="w-full" alt="">
+                            </div>
+                            <h5 class="text-white mb-0 pointer-events-none text-ellipsis overflow-hidden">{{ $club->name }}</h5>
                         </div>
 
-                        <h5 class="text-white hmb-0 pointer-events-none text-ellipsis overflow-hidden">{{ $club->name }}
-                        </h5>
-
                         <div class="flex  " style="margin-left: auto !important">
-                            <a href='{{ route('clubs') }}/{{ Str::lower($club->name) . '.' . $club->id }}' target="_blank"
-                                class=" text-white text-xs flex items-center justify-center hover:text-bulsca no-underline ">More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                            <a href="{{ route('clubs') }}/{{ Str::lower($club->name) . '.' . $club->id }}" target="_blank"
+                                class=" text-white flex items-center justify-center hover:text-bulsca transition-colors  no-underline p-3 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-6 ml-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                 </svg>
                             </a>
-
-
                         </div>
-
-
-
                     </div>
                 @endforeach
 
