@@ -8,23 +8,13 @@
 
 @section('content')
 
-    <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
-
-        <div class="h-full w-full overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-full h-full  flex  items-center justify-center head-bg-3  "
-                style="background-image: linear-gradient(rgba(0, 0, 0, 0.25),
-                       rgba(0, 0, 0, 0.25)), url('storage/photos/freshers/fresher_banner.jpeg');  ">
-                <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block " alt="">
-                <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                    <h1 class="md:text-6xl text-4xl font-bold text-white">Freshers</h1>
-                    <p class="text-white">Welcome to university lifesaving!</p>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
+    <x-page-banner
+        title="Freshers"
+        subtitle="Welcome to university lifesaving!"
+        :snowContainer="true"
+        backgroundImage="storage/photos/freshers/fresher_banner.jpeg"
+        backgroundOverlay="rgba(0, 0, 0, 0.25)"
+    />
 
     <div class="container-responsive">
 

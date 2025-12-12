@@ -16,9 +16,6 @@
         :snowContainer="true"
     />
 
-
-
-
     <div class=" container-responsive ">
         <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
 

@@ -10,8 +10,6 @@ nav-scrolled
 
 @section('content')
 
-
-
 <div class="container-responsive">
     <h1 class="header">Settings</h1>
     <p>Edit your account settings here!</p>
@@ -35,11 +33,5 @@ nav-scrolled
     </form>
 
 </div>
-
-
-
-
-
-
 
 @endsection

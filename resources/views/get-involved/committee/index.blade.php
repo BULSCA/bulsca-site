@@ -15,9 +15,6 @@
         :snowContainer="true"
     />
 
-
-
-
     <div class="container-responsive">
 
         <h1 class="header">Meet your Committee</h1>
