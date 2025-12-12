@@ -9,7 +9,7 @@
 @endsection
 
 {{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
-<div class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100    ">
+<div id="banner-carousel" data-snow-container class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100    ">
 
 
 
