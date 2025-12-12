@@ -5,34 +5,23 @@
 @endsection
 
 @section('content')
-    <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
-
-        <div class="h-full w-full overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-                <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
-                <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                    <h2 class="md:text-6xl text-4xl font-bold text-white">Championships</h2>
-                    <p class="text-white"></p>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
+    <x-page-banner
+    title="Championships"
+    :snowContainer="true"
+/>
 
 
     <div class="container-responsive">
         <div class="image-link-group">
 
             <div class=" image-link "
-                style="background-image: url(/storage/photos/champs/2025/champs-logo.svg); background-size: contain">
-                <a href="{{ route('champs.2025') }}" class=" ">Champs 2025 Info</a>
+                style="background-image: url(/storage/photos/champs/2026/champs-logo.JPG); background-size: contain">
+                <a href="{{ route('champs.2026') }}" class=" ">Champs 2026 Info</a>
             </div>
 
             <div class=" image-link "
-                style="background-image: url(/storage/photos/champs/2025/champs-logo-2.svg); background-size: contain">
-                <a href="{{ route('champs.2025') }}#entries" class=" ">Champs 2025 Entries</a>
+                style="background-image: url(/storage/photos/champs/2026/champs-logo-2.JPG); background-size: contain">
+                <a href="{{ route('champs.2026') }}#entries" class=" ">Champs 2026 Entries</a>
             </div>
 
         </div>

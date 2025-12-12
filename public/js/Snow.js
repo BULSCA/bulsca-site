@@ -8,7 +8,7 @@ MOUSE_Y = 0;
 
 let snowflakes = [];
 
-letItSnow = () => {
+letItSnow = (containerId = null) => {
     const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -33,16 +33,44 @@ letItSnow = () => {
 
     setSnowflakesByScreenWidth();
 
+    // Get container or use body
+    const container = containerId ? document.getElementById(containerId) : document.body;
+    if (!container) {
+        console.error(`Container ${containerId} not found`);
+        return;
+    }
+
     const canvas = document.createElement("canvas");
     canvas.style.position = "absolute";
     canvas.style.pointerEvents = "none";
     canvas.style.top = "0px";
+    canvas.style.left = "0px";
     canvas.style.overflow = "hidden";
     canvas.style.zIndex = "1000";
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    document.body.appendChild(canvas);
+    // Size canvas to container
+    const updateCanvasSize = () => {
+        if (containerId) {
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        } else {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    };
+    
+    updateCanvasSize();
+    
+    // If using a container, make it position relative if not already positioned
+    if (containerId) {
+        const containerPosition = window.getComputedStyle(container).position;
+        if (containerPosition === 'static') {
+            container.style.position = 'relative';
+        }
+    }
+
+    container.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
 
@@ -66,15 +94,6 @@ letItSnow = () => {
     const updateSnowflake = (snowflake) => {
         distance = distanceFromMouse(snowflake.x, snowflake.y);
 
-        // if (distance < 100) {
-        //     moveToLeft = snowflake.x <= MOUSE_X;
-        //     moveDown = snowflake.y >= MOUSE_Y;
-
-        //     snowflake.x += 30 * (moveToLeft ? -1 : 1);
-        //     snowflake.y += snowflake.speed * 0.7;
-
-        //     //snowflake.y += snowflake.speed;
-        // } else {
         middle = window.innerWidth / 2;
         distanceFromMiddle = middle - MOUSE_X;
 
@@ -82,7 +101,6 @@ letItSnow = () => {
 
         snowflake.y += snowflake.speed;
         snowflake.x += snowflake.sway;
-        // }
 
         if (snowflake.x > canvas.width) {
             snowflake.x = 0;
@@ -127,15 +145,16 @@ letItSnow = () => {
     }, 50);
 
     window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
+        updateCanvasSize();
         setSnowflakesByScreenWidth();
     });
 
-    window.addEventListener("scroll", () => {
-        canvas.style.top = `${window.scrollY}px`;
-    });
+    // Only add scroll listener if not using a container
+    if (!containerId) {
+        window.addEventListener("scroll", () => {
+            canvas.style.top = `${window.scrollY}px`;
+        });
+    }
 
     window.addEventListener("mousemove", (e) => {
         MOUSE_X = e.clientX;

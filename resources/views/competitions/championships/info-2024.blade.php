@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
+    <div id="page-banner" data-snow-container class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
 
         <div class="h-full w-full overflow-hidden relative">
             <div class="absolute top-0 right-0 w-full h-full flex items-center justify-center " style="background-color: #275271">

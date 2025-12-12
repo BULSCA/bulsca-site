@@ -1,6 +1,6 @@
 @extends('layout')
 
-<div class="h-[30vh] w-screen bg-gray-100  overflow-hidden  ">
+<div id="page-banner" data-snow-container class="h-[30vh] w-screen bg-gray-100  overflow-hidden  ">
 
   <div class="h-full w-full overflow-hidden relative">
     <div class="absolute top-0 right-0 w-full h-full head-bg flex items-center justify-center transition-opacity   duration-1000" id="head1">
