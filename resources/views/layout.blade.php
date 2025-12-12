@@ -23,16 +23,24 @@
     @yield('extra-meta')
 </head>
 
-<body class="overflow-x-hidden flex flex-col min-h-screen">
     @php
-        $currentYear = now()->year; // Get the current year
-        $startOfRange = Carbon\Carbon::create($currentYear, 12, 1); // December 1st of the current year
-        $endOfRange = Carbon\Carbon::create($currentYear + 1, 1, 1); // January 1st of the next year
+        $currentYear = now()->year;
+        
+        // Calculate Easter Sunday dynamically
+        $easter = Carbon\Carbon::createFromTimestamp(easter_date($currentYear));
+        $easterStart = $easter->copy()->subWeeks(2);
+        $easterEnd = $easter->copy()->addWeek();
+        
+        // December snow period
+        $snowStart = Carbon\Carbon::create($currentYear, 12, 1);
+        $snowEnd = Carbon\Carbon::create($currentYear + 1, 1, 1);
     @endphp
-    @if (now()->between($startOfRange, $endOfRange))
+
+    @if (now()->between($easterStart, $easterEnd))
         <script>
             console.log('Let it snow!');
             document.addEventListener('DOMContentLoaded', () => {
+
                 const snowContainer = document.querySelector('[data-snow-container]');
                 if (snowContainer) {
                     console.log('Snow container found:', snowContainer.id);
@@ -43,7 +51,27 @@
                 }
             });
         </script>
+    @elseif (now()->between($snowStart, $snowEnd))
+        <script>
+            console.log('Happy Easter!');
+            document.addEventListener('DOMContentLoaded', () => {
+
+                const easterContainer = document.querySelector('[data-snow-container]');
+                if (easterContainer) {
+                    console.log('Easter container found:', easterContainer.id);
+                    addEasterEggCorners(easterContainer.id);
+                } else {
+                    console.log('No Easter container, using full page');
+                    addEasterEggCorners();
+                }
+            });
+        </script>
     @endif
+
+
+   
+
+
 
 
     @include('layouts.navigation')
