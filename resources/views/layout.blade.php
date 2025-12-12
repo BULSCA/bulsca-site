@@ -48,7 +48,7 @@
         $easterEnd = $easter->copy()->addWeek();
 
         // Halloween period
-        $halloweenStart = Carbon\Carbon::create($currentYear, 10, 20);
+        $halloweenStart = Carbon\Carbon::create($currentYear, 10, 25);
         $halloweenEnd = Carbon\Carbon::create($currentYear, 11, 1);
 
         // December snow period
@@ -69,6 +69,9 @@
                     console.log('No snow container, using full page');
                     letItSnow(); // Fall back to full page
                 }
+                addCornerImages([
+                    { url: '/storage/photos/holiday-photos/christmas-snowman.png', position: 'bottom-right' }
+                ], snowContainer ? snowContainer.id : null);
             });
         </script>
     @elseif (now()->between($newYearStart, $newYearEnd))
