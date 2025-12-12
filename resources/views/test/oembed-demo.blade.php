@@ -6,17 +6,22 @@ Social Media Embed Demo |
 
 @section('content')
 
-<div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
-    <div class="h-full w-full overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-            <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
-            <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8">
-                <h2 class="md:text-6xl text-4xl font-bold text-white">BULSCA Social Media Integration</h2>
-                <p class="text-white">This page demonstrates how BULSCA embeds Facebook and Instagram content on our website to share updates with our university lifesaving community.</p>
-            </div>
-        </div>
-    </div>
-</div>
+<x-page-banner
+    title="BULSCA Social Media Integration"
+    subtitle="This page demonstrates how BULSCA embeds Facebook and Instagram content on our website to share updates with our university lifesaving community."
+    :snowContainer="true"
+/>
+
+<x-meta-content.carousel 
+    title="Latest from BULSCA"
+    :items="[
+        'https://www.instagram.com/p/DPjy55CEh3F/?utm_source=ig_embed&amp;utm_campaign=loading',
+        'https://www.instagram.com/p/DPeW1nEgLMY/?utm_source=ig_embed&amp;utm_campaign=loading',
+        'https://www.instagram.com/p/DPEtrJBiSz1/?utm_source=ig_embed&amp;utm_campaign=loading'
+    ]"
+    height="h-[70vh]"
+    backgroundOverlay="rgba(0, 0, 0, 0.5)"
+/>
 
 
 <div class="container-responsive py-8">
