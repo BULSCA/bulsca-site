@@ -7,6 +7,7 @@
 @section('content')
     <x-page-banner
         title="Support and Reporting"
+        logo="/storage/photos/welfare2.svg"
         :snowContainer="true"
     />
 

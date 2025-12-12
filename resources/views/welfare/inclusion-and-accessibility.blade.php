@@ -8,6 +8,7 @@
 
     <x-page-banner
         title="Inclusion and Accessibility"
+        logo="/storage/photos/welfare2.svg"
         :snowContainer="true"
     />
 
