@@ -30,9 +30,17 @@
         $endOfRange = Carbon\Carbon::create($currentYear + 1, 1, 1); // January 1st of the next year
     @endphp
     @if (now()->between($startOfRange, $endOfRange))
+        @yield('snow-container')
         <script>
             console.log('Let it snow!');
-            letItSnow()
+            window.addEventListener('DOMContentLoaded', () => {
+                const snowContainer = document.querySelector('[data-snow-container]');
+                if (snowContainer) {
+                    letItSnow(snowContainer.id);
+                } else {
+                    letItSnow(); // Fall back to full page
+                }
+            });
         </script>
     @endif
 
