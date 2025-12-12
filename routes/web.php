@@ -221,3 +221,11 @@ Route::get('/test/oembed-demo', function () {
 })->name('oembed-demo');
 
 // ========= END META CONTENT ROUTES ==========
+
+
+// ========= SSO AUTH ROUTES ==========
+use App\Http\Controllers\SSOAuthController;
+
+// SSO routes
+Route::get('/auth/sso', [SSOAuthController::class, 'redirectToSSO'])->name('auth.sso');
+Route::get('/auth/sso/callback', [SSOAuthController::class, 'handleCallback'])->name('auth.sso.callback');
