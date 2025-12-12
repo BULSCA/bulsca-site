@@ -9,6 +9,7 @@ Competitions |
 <x-page-banner 
     title="Competitions" 
     subtitle="At the heart of BULSCA"
+    :snowContainer="true"
 />
 <x-alert-banner />
 
