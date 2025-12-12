@@ -1,10 +1,9 @@
-
 @props([
     'title' => '',
     'subtitle' => '',
     'logo' => '/storage/logo/blogo.png',
     'height' => 'h-[40vh]',
-    'snowContainer' => true
+    'snowContainer' => false
 ])
 
 <div {{ $attributes->merge(['class' => $height . ' w-screen bg-gray-100 overflow-hidden']) }} @if($snowContainer) id="page-banner" data-snow-container @endif>
