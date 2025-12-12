@@ -15,21 +15,12 @@
 
 @section('content')
 
-<div class="h-[40vh] w-screen bg-gray-100  overflow-hidden  ">
+<x-page-banner
+    title="{{ Str::words($article->title, 3) }}"
+    subtitle="{{ $article->getDateAuthorString() }}"
+    :snowContainer="true"
+/>
 
-    <div class="h-full w-full overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-full h-full head-bg-3 flex items-center justify-center ">
-            <img src="/storage/logo/blogo.png" class="w-[10%] hidden md:block" alt="">
-            <div class="md:border-l-2 border-white md:ml-12 md:pl-12 py-8 max-w-7xl">
-                <h2 class="md:text-6xl text-4xl font-bold text-white text-center">{{ Str::words($article->title, 3) }}</h2>
-
-            </div>
-        </div>
-
-    </div>
-
-
-</div>
 
 <div class="container-responsive flex flex-col space-y-4">
 

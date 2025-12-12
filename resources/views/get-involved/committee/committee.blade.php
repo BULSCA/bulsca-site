@@ -11,9 +11,9 @@
 
 @section('content')
     <x-page-banner
-    title="{{ $committee->name }}"
-    :snowContainer="true"
-/>
+        title="{{ $committee->name }}"
+        :snowContainer="true"
+    />
 
 
 

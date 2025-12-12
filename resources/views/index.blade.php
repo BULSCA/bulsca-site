@@ -9,26 +9,12 @@
 @endsection
 
 {{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
-<div id="banner-carousel" data-snow-container class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100    ">
-
-
-
-
-
-
-
+<div id="banner-carousel" data-snow-container class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100">
 
     <div class="h-full w-screen  relative ">
-
-        <div class="absolute bottom-4 left-0 w-screen flex items-center justify-center space-x-3" id="pane-controls">
-
-
-
-        </div>
-
+        <div class="absolute bottom-4 left-0 w-screen flex items-center justify-center space-x-3" id="pane-controls"></div>
         <div id="panes"
             class="h-full w-full flex flex-row overflow-hidden overflow-x-auto snap-x snap-mandatory thin-scrollbar ">
-
 
             @if ($nearComp)
                 <div class="min-w-full snap-center flex flex-col items-center justify-center head-bg-4 ">
