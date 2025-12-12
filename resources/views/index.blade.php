@@ -9,26 +9,12 @@
 @endsection
 
 {{-- remove h-100 and revert back to just h-50 once freshers page goes --}}
-<div class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100    ">
-
-
-
-
-
-
-
+<div id="banner-carousel" data-snow-container class=" h-[60vh] max-h-[70vh] overflow-hidden w-screen  bg-gray-100">
 
     <div class="h-full w-screen  relative ">
-
-        <div class="absolute bottom-4 left-0 w-screen flex items-center justify-center space-x-3" id="pane-controls">
-
-
-
-        </div>
-
+        <div class="absolute bottom-4 left-0 w-screen flex items-center justify-center space-x-3" id="pane-controls"></div>
         <div id="panes"
             class="h-full w-full flex flex-row overflow-hidden overflow-x-auto snap-x snap-mandatory thin-scrollbar ">
-
 
             @if ($nearComp)
                 <div class="min-w-full snap-center flex flex-col items-center justify-center head-bg-4 ">
@@ -72,67 +58,54 @@
                 </div>
             @endif
 
-            {{-- 
-            <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
-                <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56"
-                    alt="" srcset="">
-                <div class="flex flex-col items-center">
-                    <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th
-                        March</p>
-                        <p class="text-white 2xl:text-2xl text-xl font-semibold uppercase text-center md:text-left" id="time-container">
-                            <span id="days">0</span> Days, <span id="hours">0</span> Hours, <span id="mins">0</span> Minutes & <span id="secs">0</span> Seconds
-                        </p>
-                    <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2
-                        Crawley</p>
-                </div>
-
-                <a href="{{ route('champs.2025') }}" rel="noopener noreferrer"
-                    class="btn btn-thinner mt-6 !text-white !bg-[#004490] hover:!bg-[#f48c00] hover:!border-[#f48c00]">
-                    Find out More
-                </a>
-            </div> --}}
-
             <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 style="background-image: url('storage/photos/manikin_swimmer_down_view.jpg')" id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
 
+            <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
+                <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class=" w-56"
+                    alt="" srcset="">
+                <div class="flex flex-col items-center">
+                    <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th
+                        March</p>
+                        <p class="text-white 2xl:text-2xl text-xl font-semibold uppercase text-center md:text-left" id="time-container">
+                            <span id="days">0</span> Days, <span id="hours">0</span> Hours, <span id="mins">0</span> Minutes & <span id="secs">0</span> Seconds
+                        </p>
+                    <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Liverpool Aquatics Centre</p>
+                </div>
 
+                <a href="{{ route('champs.2026') }}" rel="noopener noreferrer"
+                    class="btn btn-thinner mt-6 !text-white !bg-[#004490] hover:!bg-[#f48c00] hover:!border-[#f48c00]">
+                    Find out More
+                </a>
+            </div>
+
+            @if (now()->month >= 7 && now()->month <= 11)
             <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
                 style="background-image: url('storage/photos/freshers/freshers (4).jpeg')" id="head1">
 
                 <div class=" py-8 text-center flex flex-col ">
-                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 " style="  ">Hello Freshers
-                        👋</p>
+                    <p class="md:text-[5rem] text-5xl font-bold text-white mb-3 md:mb-0 ">Hello Freshers 👋</p>
                     <p class=" text-xl font-semibold text-white">Welcome to university lifesaving</p>
 
                     <a href="{{ route('freshers') }}#clubs" id="become-live-sat"
                         class="btn  self-center btn-thinner mt-8 rounded-full">Find
-                        my club &
-                        more</a>
+                        my club & more</a>
                 </div>
             </div>
+            @endif
 
             <div class=" min-w-full h-full snap-center head-bg-3 flex items-center justify-center transition-opacity   duration-1000"
                 id="head1">
                 <img src="./storage/logo/blogo.png" ondblclick="ee(this)" class="md:w-[12.5%] w-[50%] h-auto"
                     alt="">
             </div>
-
-
-
-
         </div>
 
 
     </div>
-
-    <style>
-        #panes {
-            scroll-behavior: auto !important;
-        }
-    </style>
 
     <script>
         const panes = document.getElementById('panes')
@@ -148,11 +121,15 @@
         const switchToPane = (i) => {
             const child = panes.children[i]
             current_index = i
+
+
             panes.scrollTo({
                 left: i * child.clientWidth,
                 behavior: 'smooth'
             })
+
             //child.scrollIntoView({behavior: 'smooth', block:'nearest'})
+
             for (var j = 0; j < panes.children.length; j++) {
                 var jumper = controls.children[j]
 
@@ -166,6 +143,7 @@
             }
         }
 
+
         let first = true
 
         for (let i = 0; i < panes.children.length; i++) {
@@ -178,10 +156,12 @@
             } else {
                 jumper.classList.add(...inactiveClasses)
             }
+
             jumper.onclick = (e) => {
                 switchToPane(i)
 
             }
+
             controls.appendChild(jumper)
         }
 
@@ -190,10 +170,15 @@
 
         setInterval(() => {
             current_index++
+
             if (current_index >= max_index) {
                 current_index = 0
             }
+
             switchToPane(current_index)
+
+
+
         }, 6000);
     </script>
 
@@ -265,23 +250,82 @@
     </div>
 </div>
 
-{{--
+
+<!-- Competition Boast -->
+@if ($nearComp)
+    @php
+        $page = $nearComp->hostUni->getPage()->first();
+        $banner_color = $page->banner_color ?? '#000000ff';
+    @endphp
+    <div class="container-boast" style="background: {{ $banner_color }}">
+        <img src="{{ $nearComp->hostUni->image_path ? route('image', $nearComp->hostUni->image_path) : '/storage/logo/blogo.png' }}" class=" w-56" alt=""
+            srcset="">
+        <div class="flex flex-col">
+            <p class="text-white 2xl:text-2xl text-1xl font-bold uppercase text-center md:text-left">
+                @if ($nearComp->when->isToday())
+                    Today
+                @elseif ($nearComp->when->isFuture())
+                    Upcoming Competition
+                @else
+                    See you next year!
+                @endif
+            </p>
+            <p><a href="{{ route('lc-view', Str::lower($nearComp->hostUni->name) . '-' . $nearComp->when->format('Y') . '.' . $nearComp->id) }}"
+                class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">{{ $nearComp->getName() }}
+            </a></p>
+            <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">
+                @php
+                    $diff = now()->diffInDays($nearComp->when) + 1;
+                @endphp
+                @if ($nearComp->when->isToday())
+                    <a href="https://live.bulsca.co.uk"
+                        class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
+                        rel="noopener noreferrer" target="_blank">Follow live</a>
+                @elseif ($nearComp->when->isFuture())
+                    {{ $nearComp->when->format('l jS M Y') }} ({{ floor($diff) }}
+                    day{{ floor($diff) > 1 ? 's' : '' }} to go!)
+                @else
+                    <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
+                        class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
+                        rel="noopener noreferrer" target="_blank">Results</a>
+                @endif
+            </p>
+        </div>
+
+        @if ($nearComp->when->isToday())
+            <a href="https://live.bulsca.co.uk"
+                class=" bg-green-500 rounded-md px-4 py-2 text-sm no-underline text-white hover:bg-green-600 transition-all duration-200 ease-in-out hover:underline"
+                rel="noopener noreferrer" target="_blank">Follow live</a>
+        @elseif ($nearComp->when->isFuture())
+
+        @else
+            <a href="https://results.bulsca.co.uk/resolve/{{ $nearComp->when->format('d-m-Y') }}/{{ $nearComp->hostUni->name }}"
+                class=" bg-white rounded-md px-4 py-2 text-sm no-underline  hover:bg-gray-200 transition-all duration-200 ease-in-out hover:underline"
+                rel="noopener noreferrer" target="_blank">Results</a>
+        @endif
+    </div>
+@endif
+<!-- End Competition Boast -->
+ 
+<!-- Champs 2026 Boast -->
 <div class="container-boast" style="background: #004490">
-    <img src="{{ asset('storage/photos/champs/2025/champs-logo-orange.svg') }}" class=" w-56" alt=""
-        srcset="">
+    <div class="inline-flex p-4 rounded-lg" style="background: #004490">
+        <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class="w-56" alt="">
+    </div>
     <div class="flex flex-col">
-        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">15-16th March</p>
+        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th March</p>
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">
             <span id="days"></span><span id="hours"></span><span id="mins"></span><span
                 id="secs"></span>
         </p>
-        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ K2 Crawley</p>
+        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Liverpool Aquatics Centre</p>
     </div>
 
-    <a href="{{ route('champs.2025') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
+    <a href="{{ route('champs.2026') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
         Find out More
     </a>
-</div>--}}
+</div>
+<!-- End Champs 2026 Boast -->
 
 <script>
     let clk = 0;
@@ -314,7 +358,7 @@
 
 <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("March 15, 2025 09:00:00").getTime();
+    var countDownDate = new Date("March 7, 2026 09:00:00").getTime();
 
 
     function tick() {
