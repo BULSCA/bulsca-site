@@ -11,6 +11,7 @@
 @section('content')
     <x-page-banner
         title="Welfare"
+        logo="/storage/photos/welfare2.svg"
         :snowContainer="true"
     />
 
