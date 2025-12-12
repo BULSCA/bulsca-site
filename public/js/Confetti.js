@@ -1,7 +1,11 @@
 // public/js/Confetti.js
-const throwConfetti = () => {
-    const colors = ['#dc2626', '#000000', '#ffffff']; // BULSCA red, black, white
-    const confettiCount = 100;
+const throwConfetti = (colors = ['#dc2626', '#000000', '#ffffff'], confettiCount = 100) => {
+    // Validate input
+    if (!Array.isArray(colors) || colors.length === 0) {
+        console.error('throwConfetti requires an array of colors');
+        colors = ['#dc2626', '#000000', '#ffffff']; // Fallback to BULSCA colors
+    }
+
     const container = document.createElement('div');
     container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999';
     document.body.appendChild(container);
@@ -34,4 +38,6 @@ const throwConfetti = () => {
     document.head.appendChild(style);
 
     setTimeout(() => container.remove(), 5000);
+    
+    console.log(`🎉 Confetti thrown! ${confettiCount} pieces in ${colors.length} colors:`, colors);
 };
