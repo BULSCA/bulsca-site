@@ -200,3 +200,8 @@ require __DIR__ . '/data.php';
 Route::get('/editor', function () {
     return view('editor');
 });
+
+
+Route::get('/test/oembed-demo', function () {
+    return view('test.oembed-demo');
+})->name('oembed-demo');

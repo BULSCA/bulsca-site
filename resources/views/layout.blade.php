@@ -42,9 +42,13 @@
 
     @yield('content')
 
+    <!--
+    {{--
     <div class="container-responsive my-12">
         @include('components.meta-content.carousel')
     </div>
+    --}}
+    -->
 
     <footer class="bg-bulsca">
         <div class="w-full container-responsive">
