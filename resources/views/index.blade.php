@@ -341,6 +341,24 @@
 </div>
 <!-- End Champs 2026 Boast -->
 
+
+
+
+   <div class="bg-stripes h-screen flex items-center justify-center">
+       <h1 class="text-white text-4xl">Diagonal Stripes Background</h1>
+   </div>
+
+
+
+    <style>
+        .bg-stripes {
+            background-color: #004490; /* Base color */
+            background-image: 
+                linear-gradient(45deg, #f06427 25%, transparent 25%, transparent 50%, #f06427 50%, #f06427 75%, transparent 75%, transparent);
+            background-size: 50rem 50rem; /* Size of the stripes */
+        }
+    </style>
+
 <script>
     let clk = 0;
 
