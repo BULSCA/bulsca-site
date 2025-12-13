@@ -34,13 +34,8 @@ class CreateAdminUser extends Command
         $email = $this->argument('email');
 
 
-        # if domain = 127.0.0.1 or localhost, set password to 'password' for ease of testing
-        $host = parse_url(config('app.url'), PHP_URL_HOST);
-        if ($host === '127.0.0.1' || $host === 'localhost') {
-            $password = 'password';
-        } else {
+
         $password = Str::random(16);
-        }
         $passwordHash = Hash::make($password);
 
         $user = new User();

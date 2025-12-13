@@ -9,7 +9,6 @@ use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\Committee\CommitteeController;
 use App\Http\Controllers\Committee\CommitteeRoleController;
 use App\Http\Controllers\Committee\CommitteeMemberController;
-use App\Http\Controllers\OrganisationController;
 use App\Http\Controllers\SERC\CasualtyController;
 use App\Http\Controllers\SERC\CasualtyGroupController;
 use App\Http\Controllers\SERC\SERCController;
@@ -100,26 +99,6 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         Route::delete('/delete', [CommitteeMemberController::class, 'delete'])->middleware('can:admin.committee_members.delete')->name('admin.committee_members.delete');
         Route::get('/{committee_member}', [AdminController::class, 'viewCommitteeMember'])->name('admin.committee_member.view');
         Route::post('/{committee_member}/edit', [CommitteeMemberController::class, 'update'])->name('admin.committee_member.edit');
-    });
-
-
-    // ORGANISATIONS
-    Route::prefix('organisations')->middleware('can:admin.organisations')->group(function () {
-        Route::get('', [AdminController::class, 'viewOrganisations'])
-            ->name('admin.organisations');
-        Route::get('/create', [AdminController::class, 'viewOrganisationCreate'])
-            ->middleware('can:admin.organisations.manage')
-            ->name('admin.organisations.create');
-        Route::post('/create', [OrganisationController::class, 'create'])
-            ->middleware('can:admin.organisations.manage')
-            ->name('admin.organisations.create.post');
-        Route::delete('/delete', [OrganisationController::class, 'delete'])
-            ->middleware('can:admin.organisations.delete')
-            ->name('admin.organisations.delete');
-        Route::get('/{organisation}', [AdminController::class, 'viewOrganisation'])
-            ->name('admin.organisation.view');
-        Route::post('/{organisation}/edit', [OrganisationController::class, 'update'])
-            ->name('admin.organisation.edit');
     });
 
 

@@ -13,7 +13,6 @@ use App\Models\LeaguePlace;
 use App\Models\Committee\Committee;
 use App\Models\Committee\CommitteeRole;
 use App\Models\Committee\CommitteeMember;
-use App\Models\Organisation;
 use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -36,7 +35,6 @@ class AdminController extends Controller
             'committee' => Committee::count(),
             'committee_role' => CommitteeRole::count(),
             'committee_member' => CommitteeMember::count(),
-            'organisation' => Organisation::count(),
         ];
 
         return view('admin.index', ['count' => $count, 'currentSeason' => Season::current()]);
@@ -197,24 +195,6 @@ class AdminController extends Controller
             'committee' => $committee, 
             'role' => $role
         ]);
-    }
-
-
-
-
-    public function viewOrganisations()
-    {
-        return view('admin.organisations.index', ['organisations' => Organisation::orderBy('name')->paginate(10)]);
-    }
-
-    public function viewOrganisation(Organisation $organisation)
-    {
-        return view('admin.organisations.view', ['organisation' => $organisation]);
-    }
-
-    public function viewOrganisationCreate()
-    {
-        return view('admin.organisations.create');
     }
 
 }

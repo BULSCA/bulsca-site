@@ -148,6 +148,10 @@ Route::get('/cookies', function () {
     return view('legal.cookies');
 })->name('cookies');
 
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings')->middleware('auth');
+
 
 Route::get('/latest', [ArticleController::class, 'index'])->name('latest');
 Route::get('/article/create', [ArticleController::class, 'createView'])->middleware(['auth', 'role:admin|super_admin|committee'])->name('article.create');
@@ -175,20 +179,7 @@ Route::get('/welfare/inclusion-and-accessibility', function () {
     return view('welfare.inclusion-and-accessibility');
 })->name('welfare.inclusion-and-accessibility');
 
-
-
-Route::prefix('dashboard')->middleware('auth')->group(function () {
-    Route::get('', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/settings', function () {
-        return view('dashboard.settings');
-    })->name('settings');
-    Route::get('/change-password', function () {
-        return view('dashboard.change-password');
-    })->name('password.change');
-});
-
-
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/competitions/{cid}', [CompetitionController::class, 'view'])->name('lc-view');
 Route::get('/competitions/{cid}/manage', [CompetitionController::class, 'manage'])->middleware(['auth'])->name('lc-manage');
 Route::post('/competitions/{cid}/manage', [CompetitionController::class, 'update'])->middleware(['auth'])->name('lc-manage-update');
@@ -213,45 +204,3 @@ require __DIR__ . '/data.php';
 Route::get('/editor', function () {
     return view('editor');
 });
-
-
-
-
-
-// ========== META CONTENT ROUTES ==========
-use App\Http\Controllers\MetaContentController;
-
-Route::get('/meta-content/feed', [MetaContentController::class, 'index'])->name('meta-content.feed');
-Route::get('/api/meta-content/posts', [MetaContentController::class, 'posts'])->name('meta-content.posts');
-Route::post('/meta-content/clear-cache', [MetaContentController::class, 'clearCache'])->name('meta-content.clear-cache');
-
-Route::get('/test/oembed-demo', function () {
-    return view('test.oembed-demo');
-})->name('oembed-demo');
-
-// ========= END META CONTENT ROUTES ==========
-
-
-
-
-
-// ========== META CONTENT ROUTES ==========
-use App\Http\Controllers\MetaContentController;
-
-Route::get('/meta-content/feed', [MetaContentController::class, 'index'])->name('meta-content.feed');
-Route::get('/api/meta-content/posts', [MetaContentController::class, 'posts'])->name('meta-content.posts');
-Route::post('/meta-content/clear-cache', [MetaContentController::class, 'clearCache'])->name('meta-content.clear-cache');
-
-Route::get('/test/oembed-demo', function () {
-    return view('test.oembed-demo');
-})->name('oembed-demo');
-
-// ========= END META CONTENT ROUTES ==========
-
-
-// ========== ENTITY VIEW ROUTES ==========
-use App\Http\Controllers\EntityController;
-
-// routes/web.php
-Route::get('/entities/{entity}', [EntityController::class, 'showView'])->name('entities.show');   
-Route::get('/entities', [EntityController::class, 'indexView'])->name('entities.index');   

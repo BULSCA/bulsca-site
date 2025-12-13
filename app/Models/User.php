@@ -60,10 +60,4 @@ class User extends Authenticatable
     {
         return (bool) DB::table('user_universities')->where('user', $this->id)->where('uni', $uni)->value('admin');
     }
-
-    public function entity()
-    {
-        return $this->hasOne(Entity::class, 'entity_ref_id')
-                    ->where('entity_type', self::class);
-    }   
 }
