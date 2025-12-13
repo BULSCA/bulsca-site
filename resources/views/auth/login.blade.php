@@ -47,17 +47,11 @@ Login |
       </button>
     </form>
 
-    @if(config('sso.enabled'))
-        <div style="text-align: center; margin: 20px 0;">
-            <p>- OR -</p>
-        </div>
-        
-        <a href="{{ route('auth.sso') }}" style="text-decoration: none;">
-            <button type="button" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                Sign in with BULSCA SSO
-            </button>
+    <div class="text-center mt-4">
+        <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900">
+            ← {{ __('Back to login options') }}
         </a>
-    @endif
+    </div>
 
   </div>
 </div>

@@ -1445,6 +1445,9 @@ html {
 .mb-5{
   margin-bottom: 1.25rem;
 }
+.mb-6{
+  margin-bottom: 1.5rem;
+}
 .mb-7{
   margin-bottom: 1.75rem;
 }
@@ -1587,9 +1590,6 @@ html {
 .h-3{
   height: 0.75rem;
 }
-.h-32{
-  height: 8rem;
-}
 .h-36{
   height: 9rem;
 }
@@ -1637,9 +1637,6 @@ html {
 }
 .h-\[60vh\]{
   height: 60vh;
-}
-.h-\[70vh\]{
-  height: 70vh;
 }
 .h-auto{
   height: auto;
@@ -1697,9 +1694,6 @@ html {
 }
 .w-3{
   width: 0.75rem;
-}
-.w-32{
-  width: 8rem;
 }
 .w-36{
   width: 9rem;
@@ -2309,6 +2303,10 @@ html {
 .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+.py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .py-16{
   padding-top: 4rem;
