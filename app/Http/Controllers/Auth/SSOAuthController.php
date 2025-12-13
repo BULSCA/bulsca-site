@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -124,5 +125,28 @@ class SSOAuthController extends Controller
             ]);
             return redirect('/login')->withErrors(['error' => 'Authentication failed. Please try again.']);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        
+        // If SSO user, also logout from SSO server
+        if ($user && isset($user->auth_type) && $user->auth_type === 'sso' && session('sso_access_token')) {
+            try {
+                Http::timeout(5)->post(config('sso.auth_server') . '/sso/logout', [
+                    'access_token' => session('sso_access_token'),
+                ]);
+            } catch (\Exception $e) {
+                \Log::warning('SSO logout failed: ' . $e->getMessage());
+            }
+        }
+
+        Auth::guard('web')->logout();
+        
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
