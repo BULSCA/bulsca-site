@@ -60,4 +60,54 @@ class User extends Authenticatable
     {
         return (bool) DB::table('user_universities')->where('user', $this->id)->where('uni', $uni)->value('admin');
     }
+
+
+    // ---------------------------------------------------------------- //
+    // -------------- New Organisation/Management System -------------- //
+
+    // Management roles
+    public function managedOrganisations()
+    {
+        return $this->belongsToMany(Organisation::class, 'organisation_managers')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
+    // Committee positions
+    public function committeePositions()
+    {
+        return $this->belongsToMany(OrganisationCommitteePosition::class, 'organisation_committee_members')
+            ->withPivot('appointed_at')
+            ->withTimestamps();
+    }
+
+    // Regular memberships
+    public function memberOf()
+    {
+        return $this->belongsToMany(Organisation::class, 'organisation_members')
+            ->withPivot(['status', 'joined_at'])
+            ->withTimestamps();
+    }
+
+    // Check role in organisation
+    public function isOwnerOf(Organisation $org): bool
+    {
+        return $this->managedOrganisations()
+            ->where('organisation_id', $org->id)
+            ->wherePivot('role', 'owner')
+            ->exists();
+    }
+
+    public function isAdminOf(Organisation $org): bool
+    {
+        return $this->managedOrganisations()
+            ->where('organisation_id', $org->id)
+            ->wherePivot('role', 'admin')
+            ->exists();
+    }
+
+    public function isManagerOf(Organisation $org): bool
+    {
+        return $org->isManager($this);
+    }
 }
