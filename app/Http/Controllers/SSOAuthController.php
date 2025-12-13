@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class SSOAuthController extends Controller
 {
@@ -32,23 +33,45 @@ class SSOAuthController extends Controller
     {
         // Verify state to prevent CSRF
         if ($request->state !== session('sso_state')) {
+            Log::error('SSO state mismatch', [
+                'expected' => session('sso_state'),
+                'received' => $request->state
+            ]);
             return redirect('/login')->withErrors(['error' => 'Invalid state parameter']);
         }
 
         if ($request->has('error')) {
+            Log::error('SSO authorization error', ['error' => $request->error]);
             return redirect('/login')->withErrors(['error' => $request->error]);
         }
 
         try {
             // Exchange code for access token
-            $response = Http::timeout(10)->post(config('sso.auth_server') . '/sso/token', [
+            $tokenUrl = config('sso.auth_server') . '/sso/token';
+            
+            Log::info('Requesting SSO token', [
+                'url' => $tokenUrl,
+                'client_id' => config('sso.client_id'),
+                'code' => $request->code,
+            ]);
+
+            $response = Http::timeout(10)->post($tokenUrl, [
                 'grant_type' => 'authorization_code',
                 'client_id' => config('sso.client_id'),
                 'client_secret' => config('sso.client_secret'),
                 'code' => $request->code,
             ]);
 
+            Log::info('SSO token response', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+
             if (!$response->successful()) {
+                Log::error('SSO token request failed', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
                 return redirect('/login')->withErrors(['error' => 'Failed to authenticate with SSO']);
             }
 
@@ -62,6 +85,10 @@ class SSOAuthController extends Controller
             ]);
 
             if (!$userResponse->successful()) {
+                Log::error('SSO validation failed', [
+                    'status' => $userResponse->status(),
+                    'body' => $userResponse->body(),
+                ]);
                 return redirect('/login')->withErrors(['error' => 'Failed to get user information']);
             }
 
@@ -86,10 +113,15 @@ class SSOAuthController extends Controller
             // Log user in
             Auth::login($user);
 
+            Log::info('SSO login successful', ['user_id' => $user->id]);
+
             return redirect()->intended('/dashboard');
 
         } catch (\Exception $e) {
-            \Log::error('SSO callback error: ' . $e->getMessage());
+            Log::error('SSO callback exception', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return redirect('/login')->withErrors(['error' => 'Authentication failed. Please try again.']);
         }
     }
