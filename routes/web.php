@@ -204,3 +204,21 @@ require __DIR__ . '/data.php';
 Route::get('/editor', function () {
     return view('editor');
 });
+
+
+
+
+
+
+// ========== META CONTENT ROUTES ==========
+use App\Http\Controllers\MetaContentController;
+
+Route::get('/meta-content/feed', [MetaContentController::class, 'index'])->name('meta-content.feed');
+Route::get('/api/meta-content/posts', [MetaContentController::class, 'posts'])->name('meta-content.posts');
+Route::post('/meta-content/clear-cache', [MetaContentController::class, 'clearCache'])->name('meta-content.clear-cache');
+
+Route::get('/test/oembed-demo', function () {
+    return view('test.oembed-demo');
+})->name('oembed-demo');
+
+// ========= END META CONTENT ROUTES ==========
