@@ -19,6 +19,13 @@ Route::middleware('guest')->group(function () {
     Route::get('login', function() {
         return view('auth.login-choice');
     })->name('login');
+
+    // Uncomment the following lines and remove the above to make SSO the default login method
+    /*
+    Route::get('login', function() {
+        return redirect()->route('auth.sso');
+    })->name('login');
+    */
     
     // Legacy login
     Route::get('login/legacy', [AuthenticatedSessionController::class, 'create'])
@@ -46,6 +53,7 @@ Route::middleware('guest')->group(function () {
             ->name('password.update');
 });
 
+
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
             ->name('verification.notice');
@@ -71,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::post('change-password', [SettingsController::class, 'changePassword'])
             ->name('password.change');
 });
+
 
 // ========= SSO AUTH ROUTES ==========
 Route::middleware('guest')->group(function() {
