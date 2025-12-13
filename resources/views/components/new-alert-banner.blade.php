@@ -1,6 +1,6 @@
 @props([
     'content' => null,
-    'backgroundColour' => 'rgba(0, 0, 0, 0)'
+    'backgroundColour' => 'rgba(255, 0, 0, 0)'
 ])
 
 <div class="flex items-center justify-center text-white p-3
