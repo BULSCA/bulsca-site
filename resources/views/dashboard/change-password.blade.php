@@ -11,8 +11,15 @@ nav-scrolled
 @section('content')
 
 <div class="container-responsive">
-    <h1 class="header">Settings</h1>
-    <p>Edit your account settings here!</p>
+    <div class="breadcrumbs">
+        <a href="{{ route('dashboard') }}">Dashboard</a>
+        <span>></span>
+        <p>Change Password</p>
+    </div>
+
+
+    <h1 class="header">Change Password</h1>
+    <p>Change your password here!</p>
 
     <br>
     <hr>
