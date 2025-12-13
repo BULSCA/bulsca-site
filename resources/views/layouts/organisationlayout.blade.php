@@ -127,7 +127,7 @@
                 <img src="/storage/logo/Instagram_Glyph_Gradient_RGB.png" loading="lazy" class="w-12 h-12" alt="">
             </a>
         </div>
-        <small class="text-white pb-4">Made with ☕ by Noah</small>
+        <small class="text-white pb-4">Made with ☕ by Noah & James</small>
     </footer>
 
     <x-notification-sliver>{{ session('message') }}</x-notification-sliver>

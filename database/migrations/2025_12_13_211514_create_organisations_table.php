@@ -36,7 +36,7 @@ return new class extends Migration
             $table->foreignId('organisation_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('role', ['owner', 'admin']);
-            $table->unique(['organisation_id', 'user_id']);
+            $table->unique(['organisation_id', 'user_id'], 'org_manager_unique');
             $table->timestamps();
             
             $table->index(['organisation_id', 'role']);
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->json('permissions')->nullable();
             $table->timestamps();
             
-            $table->unique(['organisation_id', 'title']);
+            $table->unique(['organisation_id', 'title'], 'org_committee_position_unique');
         });
 
         // Committee members (bridge between users and positions)
@@ -60,7 +60,7 @@ return new class extends Migration
             $table->foreignId('committee_position_id')->constrained('organisation_committee_positions')->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamp('appointed_at')->nullable();
-            $table->unique(['committee_position_id', 'user_id']);
+            $table->unique(['committee_position_id', 'user_id'], 'org_committee_member_unique');
             $table->timestamps();
             
             $table->index('user_id');
@@ -73,7 +73,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['active', 'inactive', 'pending'])->default('pending');
             $table->timestamp('joined_at')->nullable();
-            $table->unique(['organisation_id', 'user_id']);
+            $table->unique(['organisation_id', 'user_id'], 'org_member_unique');
             $table->timestamps();
             
             $table->index(['organisation_id', 'status']);

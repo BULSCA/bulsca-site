@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Organisation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Organisation\Manager\AddManagerRequest;
 use App\Http\Requests\Organisation\Manager\UpdateManagerRequest;
-use App\Models\Organisation;
+use App\Models\Organisation\Organisation;
 use App\Models\User;
 
 class OrganisationManagerController extends Controller

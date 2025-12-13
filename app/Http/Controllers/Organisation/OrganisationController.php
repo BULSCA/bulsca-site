@@ -6,7 +6,7 @@ use App\Helpers\OrganisationHelpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Organisation\StoreOrganisationRequest;
 use App\Http\Requests\Organisation\UpdateOrganisationRequest;
-use App\Models\Organisation;
+use App\Models\Organisation\Organisation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +14,7 @@ class OrganisationController extends Controller
 {
     public function index()
     {
-        $organisations = Organisation::withCount(['members', 'committeeMembers', 'managers'])
+        $organisations = Organisation::withCount(['members', 'managers'])
             ->orderBy('name')
             ->paginate(20);
             

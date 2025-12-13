@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Organisation\Committee\StoreCommitteePositionRequest;
 use App\Http\Requests\Organisation\Committee\UpdateCommitteePositionRequest;
 use App\Http\Requests\Organisation\Committee\AssignCommitteeMemberRequest;
-use App\Models\Organisation;
-use App\Models\OrganisationCommitteePosition;
+use App\Models\Organisation\Organisation;
+use App\Models\Organisation\OrganisationCommitteePosition;
 use Illuminate\Support\Facades\Auth;
 
 class OrganisationCommitteeController extends Controller

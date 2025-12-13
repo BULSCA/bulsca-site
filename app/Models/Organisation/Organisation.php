@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Organisation;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+use App\Models\User;
+use App\Models\Competition;
 
 class Organisation extends Model
 {
@@ -63,18 +66,12 @@ class Organisation extends Model
         return $this->hasMany(OrganisationCommitteePosition::class);
     }
 
-    // All users with committee positions (through positions)
-    public function committeeMembers(): BelongsToMany
+    // All users with committee positions - use attribute accessor instead
+    public function getCommitteeMembersAttribute()
     {
-        return $this->hasManyThrough(
-            User::class,
-            OrganisationCommitteePosition::class,
-            'organisation_id', // Foreign key on committee_positions
-            'id', // Foreign key on users
-            'id', // Local key on organisations
-            'id' // Local key on committee_positions
-        )->join('organisation_committee_members', 'organisation_committee_positions.id', '=', 'organisation_committee_members.committee_position_id')
-        ->where('organisation_committee_members.user_id', '=', \DB::raw('users.id'));
+        return User::whereHas('committeePositions', function($query) {
+            $query->where('organisation_id', $this->id);
+        })->get();
     }
 
     // Regular members (NOT including committee or managers)
@@ -97,6 +94,14 @@ class Organisation extends Model
     }
 
     // ==================== HELPER METHODS ====================
+
+    // Get count of committee members
+    public function getCommitteeMembersCountAttribute(): int
+    {
+        return User::whereHas('committeePositions', function($query) {
+            $query->where('organisation_id', $this->id);
+        })->count();
+    }
 
     // Get total member count (excluding managers/committee)
     public function getMemberCount(): int

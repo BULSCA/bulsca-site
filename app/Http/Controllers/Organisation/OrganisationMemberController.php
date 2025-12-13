@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Organisation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Organisation\Member\AddMemberRequest;
 use App\Http\Requests\Organisation\Member\UpdateMemberRequest;
-use App\Models\Organisation;
+use App\Models\Organisation\Organisation;
 
 class OrganisationMemberController extends Controller
 {

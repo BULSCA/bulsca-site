@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Organisation;
 
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\User;
 
 class OrganisationCommitteePosition extends Model
 {
@@ -19,7 +21,7 @@ class OrganisationCommitteePosition extends Model
 
     public function members()
     {
-        return $this->belongsToMany(User::class, 'organisation_committee_members')
+        return $this->belongsToMany(User::class, 'organisation_committee_members', 'committee_position_id', 'user_id')
             ->withPivot('appointed_at')
             ->withTimestamps();
     }
