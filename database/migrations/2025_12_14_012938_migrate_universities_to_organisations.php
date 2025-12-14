@@ -10,7 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         // Migrate universities to organisations
-        $universities = DB::table('unis')->get();
+        $universities = DB::table('universities')->get();
         
         foreach ($universities as $uni) {
             $orgId = DB::table('organisations')->insertGetId([
