@@ -6,7 +6,7 @@ use App\Mail\ForgotPasswordMail;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use App\Models\Organisation;
+use App\Models\Organisation\Organisation;
 use App\Policies\OrganisationPolicy;
 
 class AuthServiceProvider extends ServiceProvider

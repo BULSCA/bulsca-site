@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Models\Organisation\Organisation;
+use App\Models\Organisation\OrganisationCommitteePosition;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, CrudTrait;
@@ -109,5 +112,20 @@ class User extends Authenticatable
     public function isManagerOf(Organisation $org): bool
     {
         return $org->isManager($this);
+    }
+
+
+
+
+
+    // Legacy university relationship (keep for transition period)
+    public function getHomeUniOrganisation()
+    {
+        $mapping = DB::table('uni_org_mapping')
+            ->join('user_universities', 'uni_org_mapping.uni_id', '=', 'user_universities.uni')
+            ->where('user_universities.user', $this->id)
+            ->first();
+        
+        return $mapping ? Organisation::find($mapping->organisation_id) : null;
     }
 }

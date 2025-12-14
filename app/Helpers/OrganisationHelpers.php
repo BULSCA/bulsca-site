@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Models\Organisation;
+use App\Models\Organisation\Organisation;
 
 class OrganisationHelpers
 {
