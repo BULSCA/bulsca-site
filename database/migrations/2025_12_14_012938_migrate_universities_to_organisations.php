@@ -9,6 +9,16 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Create mapping table FIRST
+        Schema::create('uni_org_mapping', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('uni_id');
+            $table->unsignedBigInteger('organisation_id');
+            $table->timestamps();
+            
+            $table->unique(['uni_id', 'organisation_id']);
+        });
+        
         // Migrate universities to organisations
         $universities = DB::table('universities')->get();
         
