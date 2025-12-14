@@ -38,13 +38,21 @@ return new class extends Migration
             $mapping = DB::table('uni_org_mapping')->where('uni_id', $admin->uni)->first();
             
             if ($mapping) {
-                DB::table('organisation_managers')->insert([
-                    'organisation_id' => $mapping->organisation_id,
-                    'user_id' => $admin->user,
-                    'role' => 'owner',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                // Check if not already exists (prevent duplicates on re-run)
+                $exists = DB::table('organisation_managers')
+                    ->where('organisation_id', $mapping->organisation_id)
+                    ->where('user_id', $admin->user)
+                    ->exists();
+                    
+                if (!$exists) {
+                    DB::table('organisation_managers')->insert([
+                        'organisation_id' => $mapping->organisation_id,
+                        'user_id' => $admin->user,
+                        'role' => 'owner',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
         }
         
@@ -55,39 +63,54 @@ return new class extends Migration
             $mapping = DB::table('uni_org_mapping')->where('uni_id', $member->uni)->first();
             
             if ($mapping) {
-                DB::table('organisation_members')->insert([
-                    'organisation_id' => $mapping->organisation_id,
-                    'user_id' => $member->user,
-                    'status' => 'active',
-                    'joined_at' => $member->created_at ?? now(),
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                // Check if not already exists
+                $exists = DB::table('organisation_members')
+                    ->where('organisation_id', $mapping->organisation_id)
+                    ->where('user_id', $member->user)
+                    ->exists();
+                    
+                if (!$exists) {
+                    DB::table('organisation_members')->insert([
+                        'organisation_id' => $mapping->organisation_id,
+                        'user_id' => $member->user,
+                        'status' => 'active',
+                        'joined_at' => $member->created_at ?? now(),
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
         }
         
-        // Update competition references
-        $competitions = DB::table('competitions')->whereNotNull('uni')->get();
-        
-        foreach ($competitions as $competition) {
-            $mapping = DB::table('uni_org_mapping')->where('uni_id', $competition->uni)->first();
+        // Update competition references (only if column exists)
+        if (Schema::hasColumn('competitions', 'uni')) {
+            $competitions = DB::table('competitions')->whereNotNull('uni')->get();
             
-            if ($mapping) {
-                DB::table('competitions')->where('id', $competition->id)->update([
-                    'organisation_id' => $mapping->organisation_id,
-                ]);
+            foreach ($competitions as $competition) {
+                $mapping = DB::table('uni_org_mapping')->where('uni_id', $competition->uni)->first();
+                
+                if ($mapping) {
+                    DB::table('competitions')->where('id', $competition->id)->update([
+                        'organisation_id' => $mapping->organisation_id,
+                    ]);
+                }
             }
         }
     }
 
     public function down(): void
     {
-        // Optionally restore data (this is complex, consider if you need it)
+        // Clear migrated data
         DB::table('organisation_members')->truncate();
         DB::table('organisation_managers')->truncate();
         DB::table('organisations')->truncate();
-        DB::table('uni_org_mapping')->truncate();
         
-        DB::table('competitions')->update(['organisation_id' => null]);
+        if (Schema::hasTable('uni_org_mapping')) {
+            DB::table('uni_org_mapping')->truncate();
+        }
+        
+        if (Schema::hasColumn('competitions', 'organisation_id')) {
+            DB::table('competitions')->update(['organisation_id' => null]);
+        }
     }
 };
