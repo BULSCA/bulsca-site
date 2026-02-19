@@ -176,11 +176,20 @@
                         <a class="text-white font-normal no-underline hover:underline"
                             href="{{ route('welfare') }}">Welfare</a>
                     </p>
-                    <!--
-                    <p class="text-white font-normal no-underline hover:underline">
-                        privacy policy
+                    <p>
+                        <a class="text-white font-normal no-underline hover:underline"
+                            href="{{ route('privacy-policy') }}">Privacy Policy</a>
                     </p>
-                    -->
+                    <?php
+                        $ref = isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : 'direct';
+                        $ref = urlencode($ref);
+                        echo '<p>
+                            <a class="text-white font-normal no-underline hover:underline"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://scoring.events?ref=' . $ref . '">Scoring.Events</a>
+                        </p>';
+                    ?>
 
 
                     <div class="p-6 flex flex-row items-center justify-center divide-x mt-auto">

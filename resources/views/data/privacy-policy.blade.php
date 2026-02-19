@@ -23,9 +23,11 @@ Privacy-policy |
   <h2 class="header header-smallish">How We Use Data</h2>
   <p>Login credentials are used solely for authentication and access control within our internal systems. We do not share, sell, or use this data for any other purpose.</p>
   <br><br>
+  <!--
   <h2 class="header header-smallish">Third-Party Services</h2>
   <p>Our systems may integrate with third-party platforms (e.g., Facebook Login) for authentication purposes. These services may collect data in accordance with their own privacy policies.</p>
   <br><br>
+  -->
   <h2 class="header header-smallish">Contact</h2>
   <p>If you have any questions about this policy, please contact us at <a href="mailto:data@bulsca.co.uk">data@bulsca.co.uk</a>.</p>
 </div>
