@@ -44,11 +44,13 @@ Legacy Login |
             </button>
         </form>
 
-        <div class="text-center mt-6">
-            <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-bulsca_red transition">
-                ← Back to login options
-            </a>
-        </div>
+        @if(config('sso.enabled'))
+            <div class="text-center mt-6">
+                <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-bulsca_red transition">
+                    ← Back to login options
+                </a>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
