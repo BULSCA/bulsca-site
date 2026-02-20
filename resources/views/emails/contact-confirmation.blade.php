@@ -1,6 +1,6 @@
 
 <div class="es-p20t es-p20b es-p30r es-p30l es-m-txt-l">
-    <h2>Thank you, {{ $senderName }}!</h2>
+    <p>Dear {{ $senderName }},</p>
     
     <p>We have received your message and forwarded it to the {{ ucfirst(str_replace(['_', '-'], ' ', $department)) }} team.</p>
     
