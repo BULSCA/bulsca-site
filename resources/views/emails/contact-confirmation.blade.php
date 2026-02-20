@@ -1,4 +1,3 @@
-
 <div class="es-p20t es-p20b es-p30r es-p30l es-m-txt-l">
     <p>Dear {{ $senderName }},</p>
     
