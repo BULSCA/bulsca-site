@@ -16,6 +16,7 @@ use App\Http\Controllers\SERC\SERCController;
 use App\Http\Controllers\Committee\CommitteeController;
 use App\Http\Controllers\Committee\CommitteeMemberController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\ContactFormController;
 use App\Models\Competition;
 use App\Models\League;
 use App\Models\Season;
@@ -138,6 +139,8 @@ Route::get('/about/records', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+Route::get('/contact-form', [ContactFormController::class, 'show'])->name('contact-form');
+Route::post('/contact-form', [ContactFormController::class, 'submit'])->name('contact-form.submit');
 Route::get('/privacy', function () {
     return view('legal.privacy');
 })->name('privacy');
