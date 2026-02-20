@@ -31,7 +31,7 @@
                     <br>
                     <br>
                     The adjustment process is outlined in the document below. If you have any further questions or access
-                    requests please <a href="{{ route('contact') }}?department=welfare" class="link">contact the welfare officer</a>.
+                    requests please <a href="{{ route('contact-form') }}?department=welfare" class="link">contact the welfare officer</a>.
                 </p>
 
             </div>

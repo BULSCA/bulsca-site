@@ -18,7 +18,7 @@ Data-deletion |
   <p>If you have a BULSCA login and would like your account or associated data removed, please contact us using the form below.</p>
 
   <p>
-    <a href="{{ route('contact') }}?department=data" class="btn inline-block mt-4">Request Data Deletion</a>
+    <a href="{{ route('contact-form') }}?department=data" class="btn inline-block mt-4">Request Data Deletion</a>
   </p>
 
   <p>We will process your request and confirm once your data has been deleted from our systems.</p>

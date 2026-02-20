@@ -358,7 +358,7 @@
 
         <br>
         <p>BULSCA has obtained permission to distribute all the above SERC packs. Please <a
-                href="{{ route('contact') }}?department=development" class="link">contact the Development Officer</a> to have your pack
+                href="{{ route('contact-form') }}?department=development" class="link">contact the Development Officer</a> to have your pack
             added/removed.</p>
 
 

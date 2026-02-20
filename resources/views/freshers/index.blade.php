@@ -166,13 +166,13 @@
             <p>We're sorry to hear that, but if you get in touch with our Club Development manager they can help you to find
                 a local club, or organise the process of setting up a club with your univesity and local RLSS branch. You
                 can contact them using <a
-                    href="{{ route('contact') }}?department=development" class="link">our contact form</a></p>
+                    href="{{ route('contact-form') }}?department=development" class="link">our contact form</a></p>
         </details>
         <details class="faq">
             <summary>I have a disability / long term health condition, is lifesaving accessible to me?</summary>
             <p>Yes, we strive to make lifesaving inclusive to all and can implement reasonable adjustments to ensure your
                 access. Please check out the <a href="{{ route('welfare') }}" class="link">welfare page</a> of the website and if you have any questions reach out to our
-                friendly welfare officer using <a href="{{ route('contact') }}?department=welfare" class="link">our contact form</a></p>
+                friendly welfare officer using <a href="{{ route('contact-form') }}?department=welfare" class="link">our contact form</a></p>
         </details>
 
         <script>

@@ -58,7 +58,7 @@
     <div class="container-responsive">
         <p>
             Trying to find the right support can be overwhelming, especially in times of difficulty. Please remember to
-            reach out to someone you trust. If you aren’t sure who to speak to please <a href="{{ route('contact') }}?department=welfare" class="link">contact the Welfare Officer</a> for
+            reach out to someone you trust. If you aren’t sure who to speak to please <a href="{{ route('contact-form') }}?department=welfare" class="link">contact the Welfare Officer</a> for
             further guidance. Reaching out to someone is a difficult but often a great first step.
         </p>
         <br>
@@ -136,7 +136,7 @@
 
             <br>
             <br>
-            The first is to contact the Welfare Officer using <a href="{{ route('contact') }}?department=welfare" class="link">our contact form</a>. This
+            The first is to contact the Welfare Officer using <a href="{{ route('contact-form') }}?department=welfare" class="link">our contact form</a>. This
             way is by nature not confidential but you can provide as many or as few details as you would like to. This will
             be followed up and dealt with in line with both our policies and your wishes.
             confidentiality and in line with BULSCA policy and your wishes.
