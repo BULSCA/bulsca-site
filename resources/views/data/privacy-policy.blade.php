@@ -29,7 +29,7 @@ Privacy-policy |
   <br><br>
   -->
   <h2 class="header header-smallish">Contact</h2>
-  <p>If you have any questions about this policy, please contact us at <a href="mailto:data@bulsca.co.uk">data@bulsca.co.uk</a>.</p>
+  <p>If you have any questions about this policy, please <a href="{{ route('contact-form') }}?department=data" class="link">contact us here</a>.</p>
 </div>
 
 

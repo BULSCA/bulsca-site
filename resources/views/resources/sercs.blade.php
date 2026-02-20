@@ -357,8 +357,8 @@
         </div>
 
         <br>
-        <p>BULSCA has obtained permission to distribute all the above SERC packs. Please contact <a
-                href="mailto:clubdevelopment@bulsca.co.uk">clubdevelopment@bulsca.co.uk</a> to have your pack
+        <p>BULSCA has obtained permission to distribute all the above SERC packs. Please <a
+                href="{{ route('contact-form') }}?department=development" class="link">contact the Development Officer</a> to have your pack
             added/removed.</p>
 
 

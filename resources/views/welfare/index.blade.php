@@ -31,8 +31,8 @@
                         information.
                         <br><br>
                         The BULSCA committee appoints a welfare and inclusion officer who is responsible for competition access,
-                        welfare and inclusion. {{ $welfare ? $welfare->currentMemberName() : 'The Welfare Officer' }} can be contacted at <a href="mailto:welfare@bulsca.co.uk"
-                            class="link">welfare@bulsca.co.uk</a> and you can meet them and the rest of the committee <a
+                        welfare and inclusion. {{ $welfare ? $welfare->currentMemberName() : 'The Welfare Officer' }} can be contacted using <a href="{{ route('contact-form') }}?department=welfare"
+                            class="link">our contact form</a> and you can meet them and the rest of the committee <a
                             href="{{ route('get-involved.committee') }}" class="link">here</a>.
 
                     </p>
