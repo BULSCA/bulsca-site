@@ -75,10 +75,26 @@ Contact |
             <small class="text-gray-500 mt-1 block">Maximum 5000 characters</small>
         </div>
 
+        <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAACiHoCPmXG0NP_Bx"
+            data-action="contact"
+            data-theme="light"
+            data-size="normal"
+            data-callback="onSuccess"
+        ></div>
+
         <br>
         <button type="submit" class="btn w-full">Send Message</button>
     </form>
 
 </div>
+
+
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+></script>
 
 @endsection

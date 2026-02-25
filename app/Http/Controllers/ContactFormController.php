@@ -8,6 +8,7 @@ use App\Models\ContactSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 
 class ContactFormController extends Controller
 {
@@ -44,10 +45,11 @@ class ContactFormController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'department' => 'required|string|in:' . implode(',', array_keys(self::DEPARTMENT_EMAILS)),
+            'email' => 'required|email',
+            'department' => 'required|in:' . implode(',', array_keys(self::DEPARTMENT_EMAILS)),
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:5000',
+            'cf-turnstile-response' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -55,6 +57,17 @@ class ContactFormController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        // Verify Turnstile token
+        $response = Http::post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+            'secret' => config('services.turnstile.secret_key'),
+            'response' => $request->input('cf-turnstile-response'),
+        ]);
+
+        if (!$response->json('success')) {
+            return back()->withErrors(['turnstile' => 'Verification failed. Please try again.'])->withInput();
+        }
+
 
         $departmentKey = $request->input('department');
         $recipientEmail = self::DEPARTMENT_EMAILS[$departmentKey];
