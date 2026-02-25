@@ -39,4 +39,8 @@ return [
         'user_id' => env('META_USER_ID'),
     ],
 
+    'turnstile' => [
+        'secret_key' => env('TURNSTILE_SECRET_KEY'),
+    ],
+
 ];
