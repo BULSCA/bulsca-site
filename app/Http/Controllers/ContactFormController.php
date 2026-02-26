@@ -95,6 +95,7 @@ class ContactFormController extends Controller
             $request->input('name'),
             $departmentKey,
             messageSubject: $request->input('subject'),
+            messageContent: $request->input('message'),
         ));
 
         return back()->with('success', 'Thank you! Your message has been sent. You will receive a confirmation email shortly.');

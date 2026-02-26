@@ -16,6 +16,7 @@ class ContactFormConfirmation extends Mailable
         public string $senderName,
         public string $department,
         public string $messageSubject,
+        public string $messageContent,
     ) {
     }
 
