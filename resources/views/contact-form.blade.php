@@ -11,7 +11,7 @@ Contact |
     :snowContainer="true"
 />
 
-<div class="container-responsive w-[90%]">
+<div class="container-responsive mx-4">
     <h1 class="header header-large">
         Contact
     </h1>
@@ -40,9 +40,9 @@ Contact |
 
     <form action="{{ route('contact-form.submit') }}" method="POST" class="flex flex-col">
         @csrf
-        <div class="grid grid-cols-3 gap-4">
-            <x-form-input id="name" title="Name"></x-form-input>
-            <x-form-input id="email" title="Email" extraCss="col-span-2"></x-form-input>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <x-form-input id="name" title="Name" class="md:col-span-1"></x-form-input>
+            <x-form-input id="email" title="Email" class="md:col-span-1"></x-form-input>
         </div>
 
         <br>
@@ -50,7 +50,7 @@ Contact |
         <br>
 
         <div class="mb-4">
-            <label for="department" class="block font-semibold mb-2">Who would you like to contact?</label>
+            <label for="department" class="block mb-2">Who would you like to contact?</label>
             <select id="department" name="department" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
                 <option value="">-- Select a department --</option>
                 <option value="chair" @if(old('department') === 'chair' || request()->query('department') === 'chair') selected @endif>Chair - General inquiries & external organisations</option>
@@ -70,7 +70,7 @@ Contact |
         <x-form-input id="subject" title="Subject"></x-form-input>
 
         <div class="mb-4">
-            <label for="message" class="block font-semibold mb-2">Message</label>
+            <label for="message" class="block mb-2">Message</label>
             <textarea id="message" name="message" rows="8" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>{{ old('message') }}</textarea>
             <small class="text-gray-500 mt-1 block">Maximum 5000 characters</small>
         </div>

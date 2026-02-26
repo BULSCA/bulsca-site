@@ -1237,6 +1237,17 @@ html {
 .prose :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)){
   margin-bottom: 0;
 }
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .pointer-events-none{
   pointer-events: none;
 }
@@ -2187,6 +2198,10 @@ html {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
 }
+.border-green-400{
+  --tw-border-opacity: 1;
+  border-color: rgb(74 222 128 / var(--tw-border-opacity, 1));
+}
 .border-green-500{
   --tw-border-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-border-opacity, 1));
@@ -2198,6 +2213,10 @@ html {
 .border-purple-500{
   --tw-border-opacity: 1;
   border-color: rgb(168 85 247 / var(--tw-border-opacity, 1));
+}
+.border-red-400{
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity, 1));
 }
 .border-red-500{
   --tw-border-opacity: 1;
@@ -2455,6 +2474,9 @@ html {
 .pb-2{
   padding-bottom: 0.5rem;
 }
+.pb-20{
+  padding-bottom: 5rem;
+}
 .pb-3{
   padding-bottom: 0.75rem;
 }
@@ -2508,6 +2530,9 @@ html {
 }
 .indent-4{
   text-indent: 1rem;
+}
+.align-bottom{
+  vertical-align: bottom;
 }
 .font-sans{
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -2712,6 +2737,10 @@ html {
 .text-red-600{
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+.text-red-700{
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
 }
 .text-slate-500{
   --tw-text-opacity: 1;
@@ -4796,6 +4825,11 @@ div.form-search > .results > .result > p:last-child{
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-gray-500:hover{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
 .hover\:text-gray-600:hover{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
@@ -4863,6 +4897,11 @@ div.form-search > .results > .result > p:last-child{
 .focus\:border-blue-300:focus{
   --tw-border-opacity: 1;
   border-color: rgb(147 197 253 / var(--tw-border-opacity, 1));
+}
+
+.focus\:border-blue-500:focus{
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
 }
 
 .focus\:border-gray-300:focus{
@@ -5084,6 +5123,9 @@ div.form-search > .results > .result > p:last-child{
   .sm\:mt-0{
     margin-top: 0px;
   }
+  .sm\:block{
+    display: block;
+  }
   .sm\:flex{
     display: flex;
   }
@@ -5104,6 +5146,9 @@ div.form-search > .results > .result > p:last-child{
   }
   .sm\:w-full{
     width: 100%;
+  }
+  .sm\:max-w-2xl{
+    max-width: 42rem;
   }
   .sm\:max-w-lg{
     max-width: 32rem;
@@ -5171,6 +5216,9 @@ div.form-search > .results > .result > p:last-child{
   .sm\:text-left{
     text-align: left;
   }
+  .sm\:align-middle{
+    vertical-align: middle;
+  }
   .sm\:text-sm{
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -5180,6 +5228,9 @@ div.form-search > .results > .result > p:last-child{
 @media (min-width: 768px){
   .md\:sticky{
     position: sticky;
+  }
+  .md\:col-span-1{
+    grid-column: span 1 / span 1;
   }
   .md\:col-span-2{
     grid-column: span 2 / span 2;
@@ -5257,6 +5308,9 @@ div.form-search > .results > .result > p:last-child{
   .md\:-rotate-90{
     --tw-rotate: -90deg;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+  .md\:grid-cols-1{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
