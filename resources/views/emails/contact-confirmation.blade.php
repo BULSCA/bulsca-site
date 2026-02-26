@@ -3,12 +3,11 @@
     
     <p>We have received your message and forwarded it to the {{ ucfirst(str_replace(['_', '-'], ' ', $department)) }} team.</p>
     
-    <p>
-        <strong>Your message subject:</strong>
-        <br>
-        <i>{{ $messageSubject }}</i>
-        <br>
-    </p>
+    <div style="border: 1px solid #ccc; padding: 15px; border-radius: 5px; margin-top: 20px;">
+        <p><strong>Subject:</strong> {{ $messageSubject }}</p>
+        <h3>Message:</h3>
+        <p>{!! nl2br(e($messageContent)) !!}</p>
+    </div>
     
     <p>Our team will review your message and get back to you as soon as possible.</p>
     
