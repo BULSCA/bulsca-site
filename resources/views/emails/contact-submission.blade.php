@@ -4,10 +4,10 @@
     
     <p><strong>From:</strong> {{ $senderName }} ({{ $senderEmail }})</p>
     <p><strong>Department:</strong> {{ ucfirst(str_replace(['_', '-'], ' ', $department)) }}</p>
-    <p><strong>Subject:</strong> {{ $messageSubject }}</p>
     
-    <hr>
-    
-    <h3>Message:</h3>
-    <p>{!! nl2br(e($messageContent)) !!}</p>
+    <div style="border: 1px solid #ccc; padding: 15px; border-radius: 5px; margin-top: 20px;">
+        <p><strong>Subject:</strong> {{ $messageSubject }}</p>
+        <h3>Message:</h3>
+        <p>{!! nl2br(e($messageContent)) !!}</p>
+    </div>
 </div>
