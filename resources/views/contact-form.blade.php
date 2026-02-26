@@ -80,7 +80,8 @@ Contact |
             data-sitekey="0x4AAAAAACiHoCPmXG0NP_Bx"
             data-action="contact"
             data-theme="light"
-            data-size="normal"
+            data-size="flexible"
+            data-appearance="always"
             data-callback="onSuccess"
         ></div>
 
