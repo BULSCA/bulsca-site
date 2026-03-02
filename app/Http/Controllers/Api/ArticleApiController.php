@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRatingRequest;
 use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class ArticleApiController extends Controller
 {
 
     public function index()
@@ -18,6 +19,8 @@ class ArticleController extends Controller
 
 
         //return view('articles.index', ['catagoryName' => 'Latest', 'pinned' => Article::where('pinned', true)->orderBy('created_at', 'DESC')->get(), 'articles' => Article::orderBy('created_at', 'DESC')->whereNotIn('id', $pinned)->paginate(8)]);
-        return response()->json(['message' => 'Results saved!']);
+        return response()->json([
+            'done'
+        ]);
     }
 }
