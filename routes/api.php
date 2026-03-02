@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\ArticleApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('uni-logo/{uni_name}', 'App\Http\Controllers\UniversityController@getLogo');
+
+
+Route::get('/Api/Articles', [ArticleApiController::class, 'index'])->name('latest');
