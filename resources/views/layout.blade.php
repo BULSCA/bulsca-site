@@ -138,7 +138,7 @@
 
     
     <x-layouts.footer>
-        <x-layouts.mailing-list></x-layouts.mailing-list>
+        <x-layouts.join-mailing-list></x-layouts.join-mailing-list>
     </x-layouts.footer>
 
 
