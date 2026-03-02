@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
-
 use App\Models\Article;
 use App\Interfaces\ArticleRepositoryInterface;
 
@@ -11,7 +9,9 @@ class ArticleRepository implements ArticleRepositoryInterface
 {
     public function index()
     {
-        return Article::all();
+        return Article::orderBy('pinned', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
     public function getById($id)

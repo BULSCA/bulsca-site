@@ -3,24 +3,42 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRatingRequest;
-use App\Http\Requests\CreateArticleRequest;
-use App\Models\Article;
-use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Resources\ArticleResource;
+use App\Interfaces\ArticleRepositoryInterface;
+use App\Traits\ApiResponseTrait;
 
 class ArticleApiController extends Controller
 {
+    use ApiResponseTrait;
+
+    public function __construct(
+        private ArticleRepositoryInterface $articleRepository
+    ) {
+    }
 
     public function index()
     {
+        try {
+            $articles = $this->articleRepository->index();
+            return $this->successResponse(
+                ArticleResource::collection($articles),
+                'Articles retrieved successfully'
+            );
+        } catch (\Exception $e) {
+            return $this->errorResponse('Failed to retrieve articles', 500);
+        }
+    }
 
-        $pinned = Article::where('pinned', true)->orderBy('created_at', 'DESC')->get('id');
-
-
-        //return view('articles.index', ['catagoryName' => 'Latest', 'pinned' => Article::where('pinned', true)->orderBy('created_at', 'DESC')->get(), 'articles' => Article::orderBy('created_at', 'DESC')->whereNotIn('id', $pinned)->paginate(8)]);
-        return response()->json([
-            'done'
-        ]);
+    public function show($id)
+    {
+        try {
+            $article = $this->articleRepository->getById($id);
+            return $this->successResponse(
+                new ArticleResource($article),
+                'Article retrieved successfully'
+            );
+        } catch (\Exception $e) {
+            return $this->errorResponse('Article not found', 404);
+        }
     }
 }
