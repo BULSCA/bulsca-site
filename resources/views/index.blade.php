@@ -64,6 +64,8 @@
                     alt="">
             </div>
 
+            <!-- Champs 2026 Boast -->
+            <!--
             <div class="min-w-full snap-center flex flex-col items-center justify-center" style="background: #004490">
                 <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class=" w-56"
                     alt="" srcset="">
@@ -81,6 +83,7 @@
                     Find out More
                 </a>
             </div>
+            -->
 
             @if (now()->month >= 7 && now()->month <= 11)
             <div class=" min-w-full snap-center head-bg-3 flex flex-col items-center justify-center transition-opacity   duration-1000 !bg-right md:bg-center  "
@@ -308,6 +311,7 @@
 <!-- End Competition Boast -->
  
 <!-- Champs 2026 Boast -->
+<!--
 <div class="container-boast" style="background: #004490">
     <div class="inline-flex p-4 rounded-lg" style="background: #004490">
         <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class="w-56" alt="">
@@ -325,6 +329,7 @@
         Find out More
     </a>
 </div>
+-->
 <!-- End Champs 2026 Boast -->
 
 <script>
