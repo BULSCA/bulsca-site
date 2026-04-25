@@ -91,13 +91,26 @@ nav-scrolled
     <br>
     <hr><br><br>
 
+
     <section>
       <h4>General Info</h4>
-
-      <div class="grid-3">
-        <x-form-input id="general_location" title="Location" required="false" :defaultObject="$comp->getInfo"></x-form-input>
+      <div class="grid-2">
         <x-form-input id="general_league_event" title="League Event" required="false" :defaultObject="$comp->getInfo"></x-form-input>
         <x-form-input id="general_required_kit" title="Required Kit" required="false" :defaultObject="$comp->getInfo"></x-form-input>
+      </div>
+
+      <h5>Location</h5>
+      <p class="text-sm text-gray-600 mb-4">Set the main venue for your competition</p>
+      <div x-data="locationSearch()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="relative">
+          <x-form-input id="location_name" title="Location Name" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
+        </div>
+
+        <x-form-input id="location_address" title="Address" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
+        <x-form-input id="location_postcode" title="Postcode" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
+        <x-form-input id="location_country" title="Country" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
+        <x-form-input id="location_lat" title="Latitude" type="number" step="0.00000001" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
+        <x-form-input id="location_long" title="Longitude" type="number" step="0.00000001" required="false" :defaultObject="$comp->getInfo->primaryLocation"></x-form-input>
       </div>
       <h5>First Aid Kits</h5>
       <div class="grid-3 mb-3">
@@ -391,6 +404,7 @@ nav-scrolled
         ''
     }
   })
+
 </script>
 
 

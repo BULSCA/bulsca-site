@@ -44,7 +44,11 @@ class CompetitionController extends Controller
             $showContactPhone = true;
         }
 
-        return view('dashboard.competitions.view', ['comp' => $lc, 'info' => $info, 'showContactPhone' => $showContactPhone]);
+        return view('dashboard.competitions.view', [
+            'comp' => $lc,
+            'info' => $info,
+            'showContactPhone' => $showContactPhone,
+        ]);
     }
 
     public function manage($cid)
@@ -159,53 +163,74 @@ class CompetitionController extends Controller
 
 
 
+
     public function update(ManageCompetitionRequest $request, Competition $cid)
     {
         $comp = $cid;
-
+    
         $info = $comp->getInfo;
-
+    
         if ($info === null) {
             $info = new CompetitionInfo();
             $info->competition = $cid->id;
         }
-
+    
         $timetable = [];
-
-
+    
         $cid->short = $request->input('comp_short', $cid->short);
         $cid->save();
         $request->request->remove('comp_short');
-
-
-
+    
         $request->merge(["general_fak_travel" => $request->exists('general_fak_travel'), "general_fak_full" => $request->exists('general_fak_full')]);
-
+    
         foreach ($request->all() as $key => $value) {
             if (str_contains($key, "timetable")) {
                 $request->request->remove($key);
                 $timetable[$key] = $value;
             }
-
+        
             if (str_contains($key, "cost")) {
                 $request->merge([$key => str_replace("£", "", str_replace(",", "", $value))]);
             }
+            
+            // Remove location fields from data
+            if (str_contains($key, "location_")) {
+                $request->request->remove($key);
+            }
         }
-
+    
         $data = $request->all();
-
-        $data['teams_limit'] =  $request->input('teams_limit', 0);
+    
+        $data['teams_limit'] = $request->input('teams_limit', 0);
         if ($data['teams_limit'] === null) {
             $data['teams_limit'] = 0;
         }
-
+    
         $info->fill($data);
-
+    
         $info->timetable = $timetable;
-
-
+    
         $info->save();
-
+    
+        // Handle primary location
+        if ($request->filled('location_name')) {
+            $locationData = [
+                'name' => $request->input('location_name'),
+                'address' => $request->input('location_address'),
+                'postcode' => $request->input('location_postcode'),
+                'country' => $request->input('location_country'),
+                'lat' => $request->input('location_lat'),
+                'long' => $request->input('location_long'),
+            ];
+            
+            if ($info->primaryLocation) {
+                $info->primaryLocation->update($locationData);
+            } else {
+                $location = $info->locations()->create($locationData);
+                $info->update(['primary_location_id' => $location->id]);
+            }
+        }
+    
         return redirect()->back();
     }
 

@@ -66,4 +66,49 @@ class CompetitionInfo extends Model
         }
         return $phone;
     }
+
+    public function getOldLocation()
+    {
+        try {
+            $location = $this->general_location; // Access as property, not method
+        } catch (Exception $e) {
+            return null;
+        }
+        \Log::info("Retrieved old location: " . json_encode($location ? $location : 'null'));
+        return $location;
+    }
+    
+    public function primaryLocation()
+    {
+        return $this->belongsTo(Location::class, 'primary_location_id');
+    }
+    
+    public function locations()
+    {
+        return $this->morphMany(Location::class, 'locatable');
+    }
+
+
+    public function getLocationAttribute()
+    {
+        try {
+            $location = $this->primaryLocation;
+        } catch (Exception $e) {
+            $location = null;
+        }
+
+        if ($location === null) {
+            $location = $this->getOldLocation();
+        }
+
+        if ($location) {
+            if (is_object($location)) {
+                \Log::info("Retrieved location: " . json_encode($location->toArray()));
+            } else {
+                \Log::info("Retrieved location: " . $location);
+            }
+        }
+
+        return $location;
+    }
 }

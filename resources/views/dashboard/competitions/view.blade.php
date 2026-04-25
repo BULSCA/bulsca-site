@@ -62,7 +62,7 @@
             <div class="group">
                 <h4>Location</h4>
                 <p class=" md:truncate group-hover:overflow-visible group-hover:whitespace-normal ">
-                    {{ $info->general_location ?: 'N/A' }}
+                    <x-location-display :location="$info->location" />
                 </p>
             </div>
             <div>
