@@ -16,7 +16,7 @@ class ArticleController extends Controller
 
         $pinned = Article::where('pinned', true)->orderBy('created_at', 'DESC')->get('id');
 
-
+        
         return view('articles.index', ['catagoryName' => 'Latest', 'pinned' => Article::where('pinned', true)->orderBy('created_at', 'DESC')->get(), 'articles' => Article::orderBy('created_at', 'DESC')->whereNotIn('id', $pinned)->paginate(8)]);
     }
 

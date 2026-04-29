@@ -13,4 +13,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Protected API routes with key validation
 Route::middleware(['validate-api-key'])->group(function () {
     Route::get('/articles', [ArticleApiController::class, 'index'])->name('api.articles.index');
+    Route::get('/articles/{id}', [ArticleApiController::class, 'show'])->name('api.articles.show');
 });

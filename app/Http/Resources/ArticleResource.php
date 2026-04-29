@@ -6,17 +6,12 @@ use Illuminate\Http\Request;
 
 class ArticleResource extends BaseResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return [
+        $data = [
             'id' => $this->id,
+            'slug' => $this->slug,
             'title' => $this->title,
-            'content' => $this->content,
             'author' => $this->author,
             'pinned' => $this->pinned,
             'created_at' => $this->created_at,
@@ -25,5 +20,14 @@ class ArticleResource extends BaseResource
             'thumbs_up' => $this->thumbs_up,
             'thumbs_down' => $this->thumbs_down
         ];
+
+        // Include content only when viewing a single article
+        if ($request->route()->getName() === 'api.articles.show') {
+            $data['content'] = $this->content;
+        } else {
+            $data['excerpt'] = $this->getExcerpt();
+        }
+
+        return $data;
     }
 }
