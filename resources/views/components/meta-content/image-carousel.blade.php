@@ -1,7 +1,7 @@
 @props([
     'title' => 'Latest from Instagram',
     'posts' => [], // Array of post objects with image_url, permalink
-    'backgroundOverlay' => 'rgba(0, 0, 0, 0.3)',
+    'backgroundOverlay' => 'rgba(0, 0, 0, 0.5)',
 ])
 
 @php
@@ -15,7 +15,7 @@
 
     <div class="flex flex-col justify-center items-center relative z-10 px-4">
         @if($title)
-            <h1 class="text-white text-3xl md:text-5xl font-bold drop-shadow-lg mb-6 mt-4">{{ $title }}</h1>
+            <h1 class="text-2xl font-semibold drop-shadow-lg mb-6 mt-4 text-center">{{ $title }}</h1>
         @endif
 
         @if(count($posts) > 0)
