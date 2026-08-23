@@ -16,10 +16,15 @@ class CommitteeController extends Controller
     {
         $committee = Committee::current();
         $roles = $committee->roles()->orderBy('order')->get();
-        $members = $committee->members()->get();
+        $members = $committee->members()
+            ->join('committee_roles', 'committee_members.role_id', '=', 'committee_roles.id')
+            ->orderBy('committee_roles.order')
+            ->select('committee_members.*')
+            ->get();
 
         return view('get-involved.committee.index', ['committee' => $committee, 'roles' => $roles, 'members' => $members]);
     }
+
 
     public function previousCommittee($cid)
     {
@@ -27,7 +32,11 @@ class CommitteeController extends Controller
 
         $committee = committee::whereYear('start_date', $slugParts[0])->first();
         $roles = $committee->roles()->orderBy('order')->get();
-        $members = $committee->members()->get();
+        $members = $committee->members()
+            ->join('committee_roles', 'committee_members.role_id', '=', 'committee_roles.id')
+            ->orderBy('committee_roles.order')
+            ->select('committee_members.*')
+            ->get();
 
         return view('get-involved.committee.committee', ['committee' => $committee, 'roles' => $roles, 'members' => $members]);
     }
