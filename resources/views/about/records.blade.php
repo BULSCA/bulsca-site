@@ -120,7 +120,7 @@
                         <td> Individual Line Throw (12.5m) </td>
                         <td> H.Watson </td>
                         <td> 0:13:73 </td>
-                        <td> Loughborough </td>
+                        <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
                         <td> March 2024
                         </td>
@@ -147,7 +147,7 @@
                         <td> 100m Manikin Carry With Fins </td>
                         <td> H.Watson </td>
                         <td> 0:56:43 </td>
-                        <td> Loughborough </td>
+                        <td> Loughborough Students </td>
                         <td> Welsh Stillwater Lifesaving Championships </td>
                         <td> 2026
                         </td>
@@ -156,7 +156,7 @@
                         <td> 100m Manikin Tow (with fins and rescue tube) </td>
                         <td> E.Robson </td>
                         <td> 1:01:82 </td>
-                        <td> Loughborough </td>
+                        <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
                         <td> 2025
                         </td>
