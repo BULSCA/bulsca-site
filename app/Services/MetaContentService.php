@@ -11,7 +11,8 @@ class MetaContentService
 {
     protected $accessToken;
     protected $userId;
-    protected $baseUrl = 'https://graph.instagram.com';
+    //protected $baseUrl = 'https://graph.instagram.com';  // Old Instagram Graph API base URL for user authenticated requests
+    protected $baseUrl = 'https://graph.facebook.com/v24.0';
 
     public function __construct()
     {

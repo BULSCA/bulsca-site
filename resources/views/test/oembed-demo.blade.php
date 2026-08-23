@@ -23,10 +23,16 @@ Social Media Embed Demo |
     // Will use real API if configured, otherwise uses samples
     $posts = $metaService->getPosts(9);
 @endphp
--->
+
 @php
     $metaService = app(\App\Services\MetaContentService::class);
     $posts = $metaService->getSamplePosts(6);
+@endphp
+-->
+
+@php
+    $metaService = app(\App\Services\MetaContentService::class);
+    $posts = $metaService->getLatestPosts(20);
 @endphp
 
 <x-meta-content.image-carousel 
