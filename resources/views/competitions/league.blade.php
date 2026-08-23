@@ -124,13 +124,10 @@
             $bdata = $season->getLeagueResults('b');
             $odata = $season->getLeagueResults('o');
 
-            <!-- Determine if the overall results should be displayed based on the season year -->
-            <!-- temporary solution.  future plan should add boolean to the league schema -->
+            // Determine if the overall results should be displayed based on the season year
+            // temporary solution. future plan should add boolean to the league schema
             $season_year = $season->from->format('Y');
-            $display_overall_bool = false;
-            @if ($season_year < 2026)
-                $display_overall_bool = true;
-            @endif
+            $display_overall_bool = $season_year < 2026;
         @endphp
 
         @if ($display_overall_bool)
