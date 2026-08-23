@@ -22,7 +22,11 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-3 md:gap-y-9 pb-8 justify-items-center">
 
-        @foreach ($members as $member)
+        @foreach ($roles as $role)
+        @php
+            $member = $committee->members->firstWhere('role_id', $role->id);
+        @endphp
+        @if ($member)
             <a href="{{ route('committee.member.view', ['cid' => $committee->date_slug, 'nameslug' => $member->nameSlug]) }}" class="flex flex-col justify-between items-center rounded-md border hover:border-bulsca transition no-underline text-center overflow-hidden min-h-80 w-56">
                 <div class="rounded-full w-44 h-44 overflow-hidden flex items-center justify-center mt-4 mx-4">
                     <img src="{{ $member->image_path ? route('image', $member->image_path) : '/storage/logo/blogo.png' }}" class="w-full h-full" alt="">
@@ -35,6 +39,7 @@
                     {{ $member->role->label }}
                 </div>
             </a>
+        @endif
         @endforeach
 
     </div>
