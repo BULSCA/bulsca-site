@@ -310,31 +310,53 @@
 @endif
 <!-- End Competition Boast -->
 
-<!-- Instagram Carousel (toggle with INSTAGRAM_CAROUSEL_ENABLED, posts live in resources/data/instagram-posts.txt) -->
-<x-meta-content.instagram-carousel />
-<!-- End Instagram Carousel -->
 
-<!-- Champs 2026 Boast -->
-<!--
-<div class="container-boast" style="background: #004490">
-    <div class="inline-flex p-4 rounded-lg" style="background: #004490">
-        <img src="{{ asset('storage/photos/champs/2026/champs-logo-2.png') }}" class="w-56" alt="">
+
+<!-- Champs 2027 Boast -->
+<div class="container-boast bg-stripes">
+    <!--
+    <div class="inline-flex p-4 rounded-lg" style="background: #070660">
+        <img src="{{ asset('storage/photos/champs/2027/champs-logo-2.png') }}" class="w-56" alt="">
     </div>
-    <div class="flex flex-col">
-        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">7th-8th March</p>
+    -->
+    <div class="inline-flex items-center justify-center p-4 rounded-lg w-56">
+        <h1 class="text-white text-2xl md:text-3xl font-bold uppercase text-center leading-tight">
+            <span class="block">Champs</span>
+            <span class="block">2027</span>
+        </h1>
+    </div>
+
+    <div class="flex flex-col md:ml-12">
+        <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">6th-7th March</p>
         <p class="text-white 2xl:text-4xl text-3xl font-bold uppercase text-center md:text-left">
-            <span id="days"></span><span id="hours"></span><span id="mins"></span><span
-                id="secs"></span>
+            <span id="days"></span><span id="hours"></span><span id="mins"></span><span id="secs"></span>
         </p>
-        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Liverpool Aquatics Centre</p>
+        <p class="text-gray-300 2xl:text-xl text-lg font-semibold uppercase text-center md:text-left">@ Alan Higgs Centre, Coventry</p>
     </div>
 
+    <!--
     <a href="{{ route('champs.2026') }}" rel="noopener noreferrer" class="btn btn-thinner md:ml-auto mt-6 md:mt-0">
         Find out More
     </a>
+    -->
 </div>
--->
-<!-- End Champs 2026 Boast -->
+<!-- End Champs 2027 Boast -->
+
+
+
+<!-- Instagram Carousel -->
+<x-meta-content.instagram-carousel />
+<!-- End Instagram Carousel -->
+
+
+<style>
+    .bg-stripes {
+        background-color: #070660; /* Base color */
+        background-image: 
+            linear-gradient(45deg, #9e0d06 25%, transparent 25%, transparent 50%, #9e0d06 50%, #9e0d06 75%, transparent 75%, transparent);
+        background-size: 25rem 25rem; /* Size of the stripes */
+    }
+</style>
 
 <script>
     let clk = 0;
