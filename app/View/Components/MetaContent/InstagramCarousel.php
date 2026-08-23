@@ -13,9 +13,9 @@ class InstagramCarousel extends Component
 
     public function __construct(
         MetaContentService $metaContent,
-        $title = 'Latest from BULSCA Instagram',
+        $title = 'Latest from the BULSCA Instagram',
         $limit = null,
-        $backgroundOverlay = 'rgba(0, 0, 0, 0.5)'
+        $backgroundOverlay = 'transparent'
     ) {
         $this->title = $title;
         $this->backgroundOverlay = $backgroundOverlay;
