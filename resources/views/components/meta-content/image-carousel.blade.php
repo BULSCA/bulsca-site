@@ -1,12 +1,11 @@
 @props([
     'title' => 'Latest from Instagram',
-    'posts' => [], // Array of post objects with image_url, permalink (and embed_url in embed mode)
+    'posts' => [], // Array of post objects with image_url, permalink
     'backgroundOverlay' => 'rgba(0, 0, 0, 0.3)',
-    'mode' => 'image', // 'image' = our own photo cards, 'embed' = Instagram's iframe
 ])
 
 @php
-    $slideWidth = $mode === 'embed' ? 400 : 350;
+    $slideWidth = 350;
 @endphp
 
 <div {{ $attributes->merge(['class' => 'w-screen relative bg-gray-100 overflow-hidden py-12']) }}>
@@ -28,26 +27,7 @@
                             <div class="carousel-slide flex-shrink-0 px-4 transition-all duration-500"
                                  data-slide="{{ $index }}"
                                  style="width: {{ $slideWidth }}px;">
-                                @if($mode === 'embed')
-                                    <div class="transform transition-all duration-500 scale-90 opacity-60 rounded-lg shadow-2xl overflow-hidden bg-white"
-                                        data-card="{{ $index }}">
-                                        @if(!empty($post['embed_html']))
-                                            {!! $post['embed_html'] !!}
-                                        @else
-                                            {{-- last-resort fallback if we truly have nothing --}}
-                                            <iframe
-                                                src="{{ $post['embed_url'] }}"
-                                                class="w-full block"
-                                                height="500"
-                                                style="border: 0; overflow: hidden;"
-                                                scrolling="no"
-                                                allowtransparency="true"
-                                                loading="lazy"
-                                                title="{{ Str::limit($post['caption'] ?? 'Instagram post', 50) }}">
-                                            </iframe>
-                                        @endif
-                                    </div>
-                                @else
+
                                 <a href="{{ $post['permalink'] }}"
                                    target="_blank" 
                                    class="block transform transition-all duration-500 scale-90 opacity-60 hover:opacity-80" 
@@ -67,7 +47,6 @@
                                         </div>
                                     </div>
                                 </a>
-                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -197,26 +176,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('resize', updateCarousel);
 });
-</script>
-@endif
-
-@if($mode === 'embed')
-<script>
-    (function () {
-        function processEmbeds() {
-            if (window.instgrm) {
-                window.instgrm.Embeds.process();
-            }
-        }
-        if (window.instgrm) {
-            processEmbeds();
-        } else {
-            var s = document.createElement('script');
-            s.src = 'https://www.instagram.com/embed.js';
-            s.async = true;
-            s.onload = processEmbeds;
-            document.body.appendChild(s);
-        }
-    })();
 </script>
 @endif
