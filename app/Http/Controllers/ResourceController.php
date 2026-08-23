@@ -126,17 +126,53 @@ class ResourceController extends Controller
         return redirect()->back();
     }
 
+
     public function reupload(Request $request, Resource $resource)
     {
-        Storage::delete($resource->location);
-        $storeName = Str::random(40) . "." . $request->file("resource")->getClientOriginalExtension();
-        $path = Storage::putFileAs("resources/resources", $request->file("resource"), $storeName);
+        \Log::info('Resource reupload started', [
+            'resource_id' => $resource->id,
+            'old_location' => $resource->location,
+            'old_name' => $resource->name,
+            'user_id' => auth()->id(),
+        ]);
 
-        $resource->location = $path;
-        $resource->name = $request->input('name', $resource->name);
-        $resource->save();
+        try {
+            // Delete old file
+            Storage::delete($resource->location);
+            \Log::info('Old resource file deleted', ['location' => $resource->location]);
 
-        return redirect()->back();
+            // Generate new filename and store
+            $storeName = Str::random(40) . "." . $request->file("resource")->getClientOriginalExtension();
+            $path = Storage::putFileAs("resources/resources", $request->file("resource"), $storeName);
+
+            \Log::info('New resource file uploaded', [
+                'new_location' => $path,
+                'store_name' => $storeName,
+                'original_name' => $request->file("resource")->getClientOriginalName(),
+            ]);
+
+            // Update resource record
+            $resource->location = $path;
+            $resource->name = $request->input('name', $resource->name);
+            $resource->save();
+
+            \Log::info('Resource record updated', [
+                'resource_id' => $resource->id,
+                'new_location' => $resource->location,
+                'new_name' => $resource->name,
+            ]);
+
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            \Log::error('Resource reupload failed', [
+                'resource_id' => $resource->id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return redirect()->back()->with('error', 'Failed to reupload resource');
+        }
     }
 }
 
