@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class MetaContentService
 {
@@ -173,46 +174,92 @@ class MetaContentService
                 'timestamp' => now()->toIso8601String(),
             ];
             
-            try {
-                // Build access token - use app token format: {app-id}|{app-secret}
-                $appId = config('services.meta.app_id');
-                $appSecret = config('services.meta.app_secret');
-                
-                if (empty($appId) || empty($appSecret)) {
-                    return $placeholder;
-                }
-                
-                $accessToken = "{$appId}|{$appSecret}";
+            $data = $this->fetchOembed($instagramUrl);
 
-                $response = Http::timeout(10)->get('https://graph.facebook.com/v18.0/instagram_oembed', [
-                    'url' => $instagramUrl,
-                    'access_token' => $accessToken,
-                    'maxwidth' => 600,
-                    'omitscript' => true,
-                ]);
-
-                if ($response->successful()) {
-                    $data = $response->json();
-                    
-                    if (!empty($data['thumbnail_url'])) {
-                        return [
-                            'id' => md5($instagramUrl),
-                            'image_url' => $data['thumbnail_url'],
-                            'permalink' => $instagramUrl,
-                            'caption' => $data['title'] ?? '',
-                            'type' => 'IMAGE',
-                            'timestamp' => now()->toIso8601String(),
-                        ];
-                    }
-                }
-                
-            } catch (\Exception $e) {
-                // Silently fail and return placeholder
+            if (!empty($data['thumbnail_url'])) {
+                return [
+                    'id' => md5($instagramUrl),
+                    'image_url' => $data['thumbnail_url'],
+                    'permalink' => $instagramUrl,
+                    'caption' => $data['title'] ?? '',
+                    'type' => 'IMAGE',
+                    'timestamp' => now()->toIso8601String(),
+                ];
             }
-            
+
             // Always return placeholder if API fails
             return $placeholder;
         });
+    }
+
+    /**
+     * Call the oEmbed endpoint for a post.
+     *
+     * Without app credentials this endpoint still answers, but only with the
+     * embed HTML - thumbnail_url is only returned for authenticated calls, so
+     * there is no point spending the request.
+     *
+     * @return array|null
+     */
+    protected function fetchOembed($instagramUrl)
+    {
+        $appId = config('services.meta.app_id');
+        $appSecret = config('services.meta.app_secret');
+
+        $params = [
+            'url' => $instagramUrl,
+            'maxwidth' => 600,
+            'omitscript' => true,
+        ];
+
+        if (!empty($appId) && !empty($appSecret)) {
+            $params['access_token'] = "{$appId}|{$appSecret}";
+        }
+
+        try {
+            $response = Http::timeout(10)->get('https://graph.facebook.com/v18.0/instagram_oembed', $params);
+            return $response->successful() ? $response->json() : null;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    /**
+     * The shortcode part of a post URL, e.g. "ABC123" in /p/ABC123/
+     *
+     * @return string|null
+     */
+    protected function shortcodeFromUrl($instagramUrl)
+    {
+        return preg_match('#instagram\.com/(?:p|reel|reels|tv)/([A-Za-z0-9_\-]+)#i', $instagramUrl, $matches)
+            ? $matches[1]
+            : null;
+    }
+
+    /**
+     * Instagram's own iframe embed URL for a post. Needs no authentication.
+     *
+     * @return string|null
+     */
+    public function embedUrl($instagramUrl)
+    {
+        $shortcode = $this->shortcodeFromUrl($instagramUrl);
+
+        return $shortcode ? "https://www.instagram.com/p/{$shortcode}/embed/captioned/" : null;
+    }
+
+    /**
+     * Undocumented redirect to the full-size photo of a post. Needs no
+     * authentication, but only works under /p/ - not /reel/ - and Meta may
+     * withdraw it, hence the config flag.
+     *
+     * @return string|null
+     */
+    public function mediaUrl($instagramUrl, $size = 'l')
+    {
+        $shortcode = $this->shortcodeFromUrl($instagramUrl);
+
+        return $shortcode ? "https://www.instagram.com/p/{$shortcode}/media/?size={$size}" : null;
     }
 
     /**
@@ -239,6 +286,166 @@ class MetaContentService
         Log::info('Sample posts retrieved', ['count' => count($posts)]);
         
         return $posts;
+    }
+
+    /**
+     * Get the hand-curated posts listed in the carousel source file.
+     *
+     * Used until the Meta API integration is live: post links (or pasted
+     * embed code) are kept in a text file, see config('social.instagram_carousel').
+     *
+     * @param int|null $limit
+     * @return array
+     */
+    public function getCuratedPosts($limit = null)
+    {
+        $path = config('social.instagram_carousel.source');
+        $limit = $limit ?? config('social.instagram_carousel.limit', 10);
+
+        if (empty($path) || !is_file($path) || !is_readable($path)) {
+            Log::warning('Instagram carousel source file missing', ['path' => $path]);
+            return [];
+        }
+
+        // filemtime in the key means edits to the file show up straight away
+        $cacheKey = 'instagram_curated_' . md5($path) . '_' . filemtime($path) . "_{$limit}";
+
+        return Cache::remember($cacheKey, config('social.instagram_carousel.cache_ttl', 3600), function () use ($path, $limit) {
+            return collect($this->parseCuratedFile(file_get_contents($path)))
+                ->unique('url')
+                ->take($limit)
+                ->map(fn($entry) => $this->buildCuratedPost($entry))
+                ->values()
+                ->toArray();
+        });
+    }
+
+    /**
+     * Turn the contents of the carousel source file into post entries.
+     *
+     * Each entry is one of:
+     *   - a post link, optionally followed by "| image | caption"
+     *   - a block of pasted Instagram embed HTML (may span several lines)
+     *
+     * @return array<int, array{url: string, image: ?string, caption: ?string}>
+     */
+    protected function parseCuratedFile($contents)
+    {
+        $entries = [];
+        $htmlBlock = null;
+
+        foreach (preg_split('/\R/', $contents) as $line) {
+            $line = trim($line);
+
+            // Inside a pasted embed block: collect until the closing tag
+            if ($htmlBlock !== null) {
+                $htmlBlock .= ' ' . $line;
+
+                if (Str::contains($line, '</blockquote>')) {
+                    if ($entry = $this->parseCuratedEntry($htmlBlock)) {
+                        $entries[] = $entry;
+                    }
+                    $htmlBlock = null;
+                }
+
+                continue;
+            }
+
+            if ($line === '' || Str::startsWith($line, '#')) {
+                continue;
+            }
+
+            if (Str::contains($line, '<blockquote') && !Str::contains($line, '</blockquote>')) {
+                $htmlBlock = $line;
+                continue;
+            }
+
+            if ($entry = $this->parseCuratedEntry($line)) {
+                $entries[] = $entry;
+            }
+        }
+
+        // Unterminated embed block - take whatever we got
+        if ($htmlBlock !== null && $entry = $this->parseCuratedEntry($htmlBlock)) {
+            $entries[] = $entry;
+        }
+
+        return $entries;
+    }
+
+    /**
+     * Pull the post URL (and optional image / caption) out of a single entry.
+     *
+     * @return array{url: string, image: ?string, caption: ?string}|null
+     */
+    protected function parseCuratedEntry($entry)
+    {
+        $isHtml = Str::contains($entry, '<');
+        $parts = $isHtml ? [$entry] : array_map('trim', explode('|', $entry));
+
+        if (!preg_match('#https?://(?:www\.)?instagram\.com/(?:p|reel|reels|tv)/[A-Za-z0-9_\-]+#i', $parts[0], $matches)) {
+            Log::warning('Skipping unparseable Instagram carousel entry', ['entry' => Str::limit($entry, 120)]);
+            return null;
+        }
+
+        return [
+            'url' => $matches[0] . '/',
+            'image' => $isHtml ? null : ($parts[1] ?? null ?: null),
+            'caption' => $isHtml ? null : ($parts[2] ?? null ?: null),
+            'embed_html' => $isHtml ? $entry : null,   // <-- keep it
+        ];
+    }
+
+    /**
+     * Build a carousel-ready post from a curated entry.
+     *
+     * In 'embed' mode only the permalink matters - Instagram's iframe renders
+     * the post itself. In 'image' mode we need a photo URL, so work down the
+     * fallbacks documented in config/social.php.
+     */
+    protected function buildCuratedPost(array $entry)
+    {
+        $url = $entry['url'];
+        $needsOembed = empty($entry['image']) && empty($entry['embed_html']);
+        $oembed = $needsOembed ? $this->fetchOembed($url) : null;
+
+        return [
+            'id' => md5($url),
+            'image_url' => $this->curatedImageUrl($entry, $oembed),
+            'permalink' => $url,
+            'embed_url' => $this->embedUrl($url),
+            'embed_html' => $entry['embed_html'] ?? ($oembed['html'] ?? null),
+            'caption' => $entry['caption'] ?? $oembed['title'] ?? '',
+            'type' => 'IMAGE',
+            'timestamp' => null,
+        ];
+    }
+
+    /**
+     * Work out which photo to show for a curated post.
+     */
+    protected function curatedImageUrl(array $entry, $oembed = null)
+    {
+        if (!empty($entry['image'])) {
+            return Str::startsWith($entry['image'], ['http://', 'https://', '//'])
+                ? $entry['image']
+                : asset(ltrim($entry['image'], '/'));
+        }
+
+        if (!empty($oembed['thumbnail_url'])) {
+            return $oembed['thumbnail_url'];
+        }
+
+        if (config('social.instagram_carousel.media_hotlink', true) && $media = $this->mediaUrl($entry['url'])) {
+            return $media;
+        }
+
+        // Last resort: a coloured tile, so a bad entry is obvious rather than broken
+        $colors = ['E1306C', 'C13584', '833AB4', 'FD1D1D', 'F56040', 'FCAF45'];
+
+        return 'https://placehold.co/600x600/'
+            . $colors[abs(crc32($entry['url'])) % count($colors)]
+            . '/ffffff?text=Instagram';
     }
 
     /**

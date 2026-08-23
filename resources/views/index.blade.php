@@ -309,7 +309,11 @@
     </div>
 @endif
 <!-- End Competition Boast -->
- 
+
+<!-- Instagram Carousel (toggle with INSTAGRAM_CAROUSEL_ENABLED, posts live in resources/data/instagram-posts.txt) -->
+<x-meta-content.instagram-carousel />
+<!-- End Instagram Carousel -->
+
 <!-- Champs 2026 Boast -->
 <!--
 <div class="container-boast" style="background: #004490">
