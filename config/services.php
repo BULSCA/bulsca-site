@@ -36,6 +36,7 @@ return [
         'user_id' => env('META_USER_ID'),
         'app_id' => env('META_APP_ID'),
         'app_secret' => env('META_APP_SECRET'),
+        'post_limit' => (int) env('META_POST_LIMIT', 9),
     ],
 
     'turnstile' => [
