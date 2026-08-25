@@ -1585,8 +1585,8 @@ html {
 .w-full{
   width: 100%;
 }
-.w-10{
-  width: 2.5rem;
+.w-screen{
+  width: 100vw;
 }
 .w-6{
   width: 1.5rem;
@@ -2285,8 +2285,6 @@ html {
 }
 .pb-20{
   padding-bottom: 5rem;
-.pr-2{
-  padding-right: 0.5rem;
 }
 .pr-4{
   padding-right: 1rem;
@@ -2370,8 +2368,8 @@ html {
 .font-medium{
   font-weight: 500;
 }
-.font-bold{
-  font-weight: 700;
+.text-\[0\.65rem\]{
+  font-size: 0.65rem;
 }
 .font-normal{
   font-weight: 400;
@@ -4581,17 +4579,17 @@ div.form-search > .results > .result > p:last-child{
   border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
-.focus\:border-gray-900:focus{
+.focus\:border-indigo-300:focus{
   --tw-border-opacity: 1;
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
 }
 
-.focus\:border-indigo-300:focus{
+.focus\:border-indigo-700:focus{
   --tw-border-opacity: 1;
   border-color: rgb(165 180 252 / var(--tw-border-opacity));
 }
 
-.focus\:border-indigo-700:focus{
+.focus\:border-gray-300:focus{
   --tw-border-opacity: 1;
   border-color: rgb(67 56 202 / var(--tw-border-opacity));
 }
@@ -5027,8 +5025,6 @@ div.form-search > .results > .result > p:last-child{
   }
   .md\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  .md\:grid-cols-2{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
