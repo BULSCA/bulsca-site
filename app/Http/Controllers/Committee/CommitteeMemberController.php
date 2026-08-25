@@ -114,17 +114,20 @@ class CommitteeMemberController extends Controller
 
     public function memberProfile($cid, $nameslug)
     {
-        $committee_member = CommitteeMember::all()
-            ->first(function($member) use ($nameslug) {
+        $slugParts = explode('-', $cid);
+        $committee = Committee::whereYear('start_date', $slugParts[0])->firstOrFail();
+
+        $committee_member = $committee->members
+            ->first(function ($member) use ($nameslug) {
                 return Str::slug($member->name) === $nameslug;
             });
-    
+
         if (!$committee_member) {
             abort(404);
         }
-    
+
         $role = $committee_member->role;
-    
+
         return view('get-involved.committee.member-profile', [
             'member' => $committee_member,
             'role' => $role,

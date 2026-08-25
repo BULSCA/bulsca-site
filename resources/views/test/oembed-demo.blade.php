@@ -12,32 +12,12 @@ Social Media Embed Demo |
     :snowContainer="true"
 />
 
-<!-- 
-@php
-    $MetaContentService = app(\App\Services\MetaContentService::class);
-    $posts = $MetaContentService->getLatestPosts(9);
-@endphp
-
-@php
-    $metaService = app(\App\Services\MetaContentService::class);
-    // Will use real API if configured, otherwise uses samples
-    $posts = $metaService->getPosts(9);
-@endphp
--->
-@php
-    $metaService = app(\App\Services\MetaContentService::class);
-    $posts = $metaService->getSamplePosts(6);
-@endphp
-
-<x-meta-content.image-carousel 
-    title="Latest from BULSCA Instagram"
-    :posts="$posts"
-    backgroundOverlay="rgba(0, 0, 0, 0.5)"
-/>
+<x-meta-content.instagram-carousel />
 
 <!-- Rest of your demo content -->
 <div class="container-responsive py-8">
     <!-- Your existing Facebook/Instagram embed examples -->
+     <p>whitespace</p>
 </div>
 
 @endsection

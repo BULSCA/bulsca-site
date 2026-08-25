@@ -16,6 +16,7 @@ Route::middleware('guest')->group(function () {
     
     // ========= LOGIN ROUTES ==========
     // Default login shows choice page
+    
     Route::get('login', function() {
         // if SSO is enabled, show the choice page. Otherwise, redirect to legacy login.
         if (config('sso.enabled')) {
@@ -24,6 +25,7 @@ Route::middleware('guest')->group(function () {
             return redirect()->route('login.legacy');
         }
     })->name('login');
+    
 
     // Uncomment the following lines and remove the above to make SSO the default login method
     /*

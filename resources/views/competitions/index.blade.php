@@ -18,7 +18,7 @@ Competitions |
 <div class=" container-responsive ">
   <div class=" image-link-group">
     <div class=" image-link " style="background-image: url(/storage/photos/IMG_4946.JPG);">
-      <a href="{{ route('league') }}" class=" ">{{ $season->name }} {{ $season->to->format('Y') }}</a>
+      <a href="{{ route('league') }}" class=" ">{{ $season->name }}</a>
     </div>
 
     <div class=" image-link " style="background-image: url(/storage/photos/DSC_0016.jpg);">

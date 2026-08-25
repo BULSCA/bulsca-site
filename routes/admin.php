@@ -99,6 +99,9 @@ Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin'], funct
         Route::delete('/delete', [CommitteeMemberController::class, 'delete'])->middleware('can:admin.committee_members.delete')->name('admin.committee_members.delete');
         Route::get('/{committee_member}', [AdminController::class, 'viewCommitteeMember'])->name('admin.committee_member.view');
         Route::post('/{committee_member}/edit', [CommitteeMemberController::class, 'update'])->name('admin.committee_member.edit');
+        Route::post('/photo', [CommitteeMemberController::class, 'updateMemberPhoto'])
+            ->middleware('can:admin.committee_members.manage')
+            ->name('committee_member.updatePhoto');
     });
 
 

@@ -16,7 +16,7 @@
 
     <div class="container-responsive">
         <h1 class="header header-large">
-            Men's Individual
+            Open Individual
         </h1>
         <div class="table-wrapper relative">
             <table class="table-auto">
@@ -33,11 +33,11 @@
                 <tbody>
                     <tr>
                         <td>Individual Line Throw (12.5m)</td>
-                        <td>A.Ridsdale</td>
-                        <td>0:10:92</td>
-                        <td>University of Bristol</td>
-                        <td>BULSCA Championships</td>
-                        <td>March 2019</td>
+                        <td>A.Oleinik</td>
+                        <td>0:10:67</td>
+                        <td>University of Warwick</td>
+                        <td>Crawley Open 2026</td>
+                        <td> 2026</td>
                     </tr>
                     <tr>
                         <td> 200m Obstacles </td>
@@ -51,28 +51,28 @@
                     <tr>
                         <td> 50m Manikin Carry </td>
                         <td> S.Lawman </td>
-                        <td> 0:29:67 </td>
+                        <td> 0:29:38 </td>
                         <td> Leeds Beckett </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2024
+                        <td> RLSS Commonwealth Championships Swansea </td>
+                        <td> 2025
                         </td>
                     </tr>
                     <tr>
                         <td> 100m Manikin Carry With Fins </td>
                         <td> J.Sadberry </td>
-                        <td> 0:47:51 </td>
+                        <td> 0:45:35 </td>
                         <td> Swansea University </td>
-                        <td> National Speeds </td>
-                        <td> March 2024
+                        <td> RLSS Commonwealth Championships Swansea </td>
+                        <td> 2025
                         </td>
                     </tr>
                     <tr>
                         <td> 100m Manikin Tow (with fins and rescue tube) </td>
                         <td> J.Sadberry </td>
-                        <td> 0:51:95 </td>
+                        <td> 0:50:59 </td>
                         <td> Swansea University </td>
-                        <td> National Speeds </td>
-                        <td> March 2024
+                        <td> RLSS National Speeds </td>
+                        <td> 2026
                         </td>
                     </tr>
                     <tr>
@@ -87,10 +87,10 @@
                     <tr>
                         <td> 200m Superlifesaver </td>
                         <td> S.Lawman </td>
-                        <td> 2:11:14 </td>
+                        <td> 2:09:63 </td>
                         <td> Leeds Beckett </td>
-                        <td> SLSGB Stillwater Championships </td>
-                        <td> April 2024
+                        <td> BULSCA Championships </td>
+                        <td> 2025
                         </td>
                     </tr>
                 </tbody>
@@ -118,8 +118,8 @@
                 <tbody>
                     <tr>
                         <td> Individual Line Throw (12.5m) </td>
-                        <td> A.Davies </td>
-                        <td> 0:14:748 </td>
+                        <td> H.Watson </td>
+                        <td> 0:13:73 </td>
                         <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
                         <td> March 2024
@@ -128,10 +128,10 @@
                     <tr>
                         <td> 200m Obstacles </td>
                         <td> E.Robson </td>
-                        <td> 2:19:28 </td>
+                        <td> 2:16:38 </td>
                         <td> Loughborough Students </td>
-                        <td> Commonwealth Championships </td>
-                        <td> September 2023
+                        <td> RLSS Commonwealth Championships Swansea </td>
+                        <td> 2025
                         </td>
                     </tr>
                     <tr>
@@ -145,38 +145,38 @@
                     </tr>
                     <tr>
                         <td> 100m Manikin Carry With Fins </td>
-                        <td> E.Henderson </td>
-                        <td> 0:58:45 </td>
-                        <td> University of Ulster </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2019
+                        <td> H.Watson </td>
+                        <td> 0:56:43 </td>
+                        <td> Loughborough Students </td>
+                        <td> Welsh Stillwater Lifesaving Championships </td>
+                        <td> 2026
                         </td>
                     </tr>
                     <tr>
                         <td> 100m Manikin Tow (with fins and rescue tube) </td>
-                        <td> R.Carrol </td>
-                        <td> 1:03:78 </td>
-                        <td> University of Leeds </td>
+                        <td> E.Robson </td>
+                        <td> 1:01:82 </td>
+                        <td> Loughborough Students </td>
                         <td> BULSCA Championships </td>
-                        <td> March 2017
+                        <td> 2025
                         </td>
                     </tr>
                     <tr>
                         <td> 100m Rescue Medley </td>
                         <td> E.Robson </td>
-                        <td> 1:16:73 </td>
+                        <td> 1:16:49 </td>
                         <td> Loughborough Students </td>
-                        <td> Welsh Stillwater Championships </td>
-                        <td> January 2024
+                        <td> SLGB National Pool Championships </td>
+                        <td> 2025
                         </td>
                     </tr>
                     <tr>
                         <td> 200m Superlifesaver </td>
                         <td> E.Robson </td>
-                        <td> 2:33:40 </td>
+                        <td> 2:31:14 </td>
                         <td> Loughborough Students </td>
-                        <td> BULSCA Championships </td>
-                        <td> March 2024
+                        <td> RLSS Commonwealth Championships Swansea </td>
+                        <td> 2025
                         </td>
                     </tr>
                 </tbody>
@@ -416,6 +416,15 @@
                         <td> University of Loughborough </td>
                         <td> Warwick Comp </td>
                         <td> February 2024
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 4x50m Pool Lifesaver </td>
+                        <td> Loughborough J </td>
+                        <td> 02:03.25	 </td>
+                        <td> University of Loughborough </td>
+                        <td> Loughborough Comp </td>
+                        <td> May 2026
                         </td>
                     </tr>
 

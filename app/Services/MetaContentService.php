@@ -5,12 +5,14 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class MetaContentService
 {
     protected $accessToken;
     protected $userId;
-    protected $baseUrl = 'https://graph.instagram.com';
+    //protected $baseUrl = 'https://graph.instagram.com';  // Old Instagram Graph API base URL for user authenticated requests
+    protected $baseUrl = 'https://graph.facebook.com/v24.0';
 
     public function __construct()
     {
@@ -90,49 +92,39 @@ class MetaContentService
     }
 
     /**
-     * Get a long-lived access token (lasts 60 days)
+     * Get a long-lived access token (lasts ~60 days)
      * Call this once to exchange your short-lived token for a long-lived one
      */
     public function getLongLivedToken($shortLivedToken)
     {
-        $response = Http::get('https://graph.instagram.com/access_token', [
-            'grant_type' => 'ig_exchange_token',
+        $response = Http::get('https://graph.facebook.com/v24.0/oauth/access_token', [
+            'grant_type' => 'fb_exchange_token',
+            'client_id' => config('services.meta.app_id'),
             'client_secret' => config('services.meta.app_secret'),
-            'access_token' => $shortLivedToken,
+            'fb_exchange_token' => $shortLivedToken,
         ]);
 
         if ($response->successful()) {
             $data = $response->json();
             return [
                 'access_token' => $data['access_token'],
-                'expires_in' => $data['expires_in'], // Usually 5184000 (60 days)
+                'expires_in' => $data['expires_in'], // ~5184000 (60 days)
             ];
         }
 
+        Log::error('Meta long-lived token exchange failed', ['response' => $response->json()]);
         return null;
     }
 
     /**
-     * Refresh a long-lived token (before it expires)
+     * Refresh a long-lived token before it expires.
+     * Facebook Login for Business tokens don't have a separate refresh grant —
+     * running the same exchange again with the current token resets the clock,
+     * as long as it hasn't already expired.
      */
     public function refreshToken($currentToken = null)
     {
-        $token = $currentToken ?? $this->accessToken;
-        
-        $response = Http::get('https://graph.instagram.com/refresh_access_token', [
-            'grant_type' => 'ig_refresh_token',
-            'access_token' => $token,
-        ]);
-
-        if ($response->successful()) {
-            $data = $response->json();
-            return [
-                'access_token' => $data['access_token'],
-                'expires_in' => $data['expires_in'],
-            ];
-        }
-
-        return null;
+        return $this->getLongLivedToken($currentToken ?? $this->accessToken);
     }
 
     /**
@@ -173,47 +165,27 @@ class MetaContentService
                 'timestamp' => now()->toIso8601String(),
             ];
             
-            try {
-                // Build access token - use app token format: {app-id}|{app-secret}
-                $appId = config('services.meta.app_id');
-                $appSecret = config('services.meta.app_secret');
-                
-                if (empty($appId) || empty($appSecret)) {
-                    return $placeholder;
-                }
-                
-                $accessToken = "{$appId}|{$appSecret}";
+            $data = $this->fetchOembed($instagramUrl);
 
-                $response = Http::timeout(10)->get('https://graph.facebook.com/v18.0/instagram_oembed', [
-                    'url' => $instagramUrl,
-                    'access_token' => $accessToken,
-                    'maxwidth' => 600,
-                    'omitscript' => true,
-                ]);
-
-                if ($response->successful()) {
-                    $data = $response->json();
-                    
-                    if (!empty($data['thumbnail_url'])) {
-                        return [
-                            'id' => md5($instagramUrl),
-                            'image_url' => $data['thumbnail_url'],
-                            'permalink' => $instagramUrl,
-                            'caption' => $data['title'] ?? '',
-                            'type' => 'IMAGE',
-                            'timestamp' => now()->toIso8601String(),
-                        ];
-                    }
-                }
-                
-            } catch (\Exception $e) {
-                // Silently fail and return placeholder
+            if (!empty($data['thumbnail_url'])) {
+                return [
+                    'id' => md5($instagramUrl),
+                    'image_url' => $data['thumbnail_url'],
+                    'permalink' => $instagramUrl,
+                    'caption' => $data['title'] ?? '',
+                    'type' => 'IMAGE',
+                    'timestamp' => now()->toIso8601String(),
+                ];
             }
-            
+
             // Always return placeholder if API fails
             return $placeholder;
         });
     }
+
+
+
+
 
     /**
      * Get multiple posts from URLs
@@ -225,40 +197,6 @@ class MetaContentService
             ->filter()
             ->values()
             ->toArray();
-    }
-
-    /**
-     * Get sample posts from Instagram's official account
-     * Uses oEmbed API with sample URLs
-     */
-    public function getSamplePosts($limit = 6)
-    {
-        $sampleUrls = array_slice($this->getSampleUrls(), 0, $limit);
-        $posts = $this->getPostsFromUrls($sampleUrls);
-        
-        Log::info('Sample posts retrieved', ['count' => count($posts)]);
-        
-        return $posts;
-    }
-
-    /**
-     * Get posts - tries real API first, falls back to sample posts
-     */
-    public function getPosts($limit = 10, $useSamples = false)
-    {
-        if ($useSamples || empty($this->accessToken) || $this->accessToken === 'your_instagram_access_token') {
-            return $this->getSamplePosts($limit);
-        }
-
-        $posts = $this->getLatestPosts($limit);
-        
-        // Fallback to samples if API fails
-        if (empty($posts)) {
-            Log::info('Falling back to sample Instagram posts');
-            return $this->getSamplePosts($limit);
-        }
-
-        return $posts;
     }
 
 }

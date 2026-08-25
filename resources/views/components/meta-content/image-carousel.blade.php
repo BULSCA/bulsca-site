@@ -1,17 +1,21 @@
 @props([
     'title' => 'Latest from Instagram',
     'posts' => [], // Array of post objects with image_url, permalink
-    'backgroundOverlay' => 'rgba(0, 0, 0, 0.3)'
+    'backgroundOverlay' => 'rgba(255, 255, 255, 1)',
 ])
 
-<div {{ $attributes->merge(['class' => 'w-screen relative bg-gray-100 overflow-hidden py-12']) }}>
+@php
+    $slideWidth = 350;
+@endphp
+
+<div {{ $attributes->merge(['class' => 'w-screen relative bg-white overflow-hidden py-12']) }}>
     
     <!-- Background Overlay -->
-    <div class="absolute inset-0 bg-black" style="background: {{ $backgroundOverlay }};"></div>
+    <div class="absolute inset-0 bg-white" style="background: {{ $backgroundOverlay }};"></div>
 
     <div class="flex flex-col justify-center items-center relative z-10 px-4">
         @if($title)
-            <h1 class="text-white text-3xl md:text-5xl font-bold drop-shadow-lg mb-6 mt-4">{{ $title }}</h1>
+            <h1 class="text-xl font-semibold mb-6 mt-2 text-center">{{ $title }}</h1>
         @endif
 
         @if(count($posts) > 0)
@@ -20,10 +24,11 @@
                 <div class="relative overflow-hidden py-4">
                     <div class="flex transition-transform duration-500 ease-out" id="carousel-track">
                         @foreach($posts as $index => $post)
-                            <div class="carousel-slide flex-shrink-0 px-4 transition-all duration-500" 
+                            <div class="carousel-slide flex-shrink-0 px-4 transition-all duration-500"
                                  data-slide="{{ $index }}"
-                                 style="width: 350px;">
-                                <a href="{{ $post['permalink'] }}" 
+                                 style="width: {{ $slideWidth }}px;">
+
+                                <a href="{{ $post['permalink'] }}"
                                    target="_blank" 
                                    class="block transform transition-all duration-500 scale-90 opacity-60 hover:opacity-80" 
                                    data-card="{{ $index }}">
@@ -72,7 +77,7 @@
                     @foreach($posts as $index => $post)
                         <button
                             onclick="goToSlide({{ $index }})"
-                            class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition {{ $index === 0 ? 'bg-white' : '' }}"
+                            class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-bulsca transition {{ $index === 0 ? 'bg-bulsca' : '' }}"
                             data-dot="{{ $index }}">
                         </button>
                     @endforeach
@@ -100,7 +105,7 @@ function updateCarousel() {
     if (!track) return;
     
     // Calculate the offset to center the current slide
-    const slideWidth = 350;
+    const slideWidth = {{ $slideWidth }};
     const containerWidth = window.innerWidth;
     const offset = (containerWidth / 2) - (slideWidth / 2) - (currentSlide * slideWidth);
     
@@ -120,11 +125,11 @@ function updateCarousel() {
     // Update dots
     dots.forEach((dot, i) => {
         if (i === currentSlide) {
-            dot.classList.add('bg-white');
-            dot.classList.remove('bg-white/50');
+            dot.classList.add('bg-bulsca');
+            dot.classList.remove('bg-gray-300');
         } else {
-            dot.classList.remove('bg-white');
-            dot.classList.add('bg-white/50');
+            dot.classList.remove('bg-bulsca');
+            dot.classList.add('bg-gray-300');
         }
     });
 }
