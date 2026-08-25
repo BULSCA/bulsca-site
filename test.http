@@ -1,0 +1,16 @@
+curl -X GET "http://127.0.0.1:8000/api/articles" \
+  -H "Accept: application/json" \
+  -H "X-API-Key: abc123"
+
+
+
+//curl -X GET "http://127.0.0.1:8000/api/articles/1" \
+//  -H "Accept: application/json" \
+//  -H "X-API-KEY: abc123"
+
+//
+//
+//
+//curl -X GET "https://your-domain.com/api/user" \
+//  -H "Accept: application/json" \
+//  -H "Authorization: Bearer YOUR_SANCTUM_TOKEN"
