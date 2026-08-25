@@ -202,6 +202,7 @@ Route::post('/committee_member/updatePhoto', [CommitteeMemberController::class, 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/data.php';
+require __DIR__ . '/api.php';
 
 
 Route::get('/editor', function () {

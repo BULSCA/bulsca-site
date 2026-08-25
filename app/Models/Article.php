@@ -73,4 +73,36 @@ class Article extends Model
         // Either way, use the last defined value for $divisor.
         return number_format($number / $divisor, $precision) . $shorthand;
     }
+
+
+    public function getExcerpt(int $length = 155): string
+    {
+        \Log::info("Generating excerpt for article ID {$this->id} with content length " . strlen($this->content));
+        
+        if (!$this->content) {
+            return '';
+        }
+
+        // Strip HTML tags
+        $text = strip_tags($this->content);
+        
+        // Decode HTML entities
+        $text = html_entity_decode($text);
+        
+        // Remove extra whitespace
+        $text = trim(preg_replace('/\s+/', ' ', $text));
+        
+        // Trim to specified length
+        if (strlen($text) > $length) {
+            $excerpt = substr($text, 0, $length);
+            // Trim to last complete word
+            $lastSpace = strrpos($excerpt, ' ');
+            if ($lastSpace !== false) {
+                $excerpt = substr($excerpt, 0, $lastSpace);
+            }
+            return $excerpt . '...';
+        }
+
+        return $text;
+    }
 }
