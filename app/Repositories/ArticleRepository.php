@@ -9,7 +9,8 @@ class ArticleRepository implements ArticleRepositoryInterface
 {
     public function index()
     {
-        return Article::orderBy('pinned', 'desc')
+        return Article::with('tags')
+            ->orderBy('pinned', 'desc')
             ->orderBy('created_at', 'desc')
             ->get();
     }

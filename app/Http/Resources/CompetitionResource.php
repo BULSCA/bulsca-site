@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class ArticleResource extends BaseResource
+class CompetitionResource extends BaseResource
 {
     public function toArray(Request $request): array
     {
@@ -19,18 +18,11 @@ class ArticleResource extends BaseResource
             'updated_at' => $this->updated_at,
             'views' => $this->views,
             'thumbs_up' => $this->thumbs_up,
-            'thumbs_down' => $this->thumbs_down,
-            'tags' => $this->tags ? $this->tags->map(function ($tag) {
-                return [
-                    'id' => $tag->id,
-                    'name' => $tag->name,
-                    'slug' => $tag->slug ?? Str::slug($tag->name),
-                ];
-            }) : []
+            'thumbs_down' => $this->thumbs_down
         ];
 
-        // Include content only when viewing a single article
-        if ($request->route()->getName() === 'api.articles.show') {
+        // Include content only when viewing a single competition
+        if ($request->route()->getName() === 'api.competitions.show') {
             $data['content'] = $this->content;
         } else {
             $data['excerpt'] = $this->getExcerpt();

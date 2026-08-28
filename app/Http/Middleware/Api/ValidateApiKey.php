@@ -31,6 +31,7 @@ class ValidateApiKey
     private function isValidApiKey(string $apiKey): bool
     {
         $validKeys = explode(',', env('API_KEYS', ''));
+        \Log::info('Validating API key: ' . $apiKey, ['valid_keys' => $validKeys]);
         return in_array(trim($apiKey), array_map('trim', $validKeys));
     }
 }
