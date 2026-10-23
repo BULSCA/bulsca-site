@@ -20,6 +20,11 @@ class Article extends Model
         return $this->belongsToMany(Tag::class, 'article_tag', 'article_id', 'tag_id');
     }
 
+    public function writer()
+    {
+        return $this->belongsTo(User::class, 'author');
+    }
+
     public function getSlug()
     {
         $title = Str::replace(' ', '-', Str::lower($this->title));

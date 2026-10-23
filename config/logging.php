@@ -51,6 +51,14 @@ return [
     */
 
     'channels' => [
+        // Independent of the database/cache so outages remain diagnosable.
+        'diagnostics' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/diagnostics.log'),
+            'level' => 'info',
+            'days' => 14,
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
