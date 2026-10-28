@@ -45,6 +45,8 @@ jobs:
       MAIL_MAILER: array
       QUEUE_CONNECTION: sync
     steps:
+      - name: Temporary merge-protection failure probe
+        run: exit 1
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           persist-credentials: false
