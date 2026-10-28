@@ -43,7 +43,7 @@ class ArticleTest extends TestCase
         $author = User::factory()->create(['name' => 'Alex']);
         $article = Article::factory()->create(['title' => 'New title', 'author' => $author->id,
             'content' => '<p>Safe</p><script>bad()</script>', 'views' => 10]);
-        $before = $article->getAttributes();
+        $before = $article->fresh()->getAttributes();
         $this->getJson('/api/v1/articles/old-title.'.$article->id)->assertOk()
             ->assertJsonPath('data.slug', $article->getSlug())->assertJsonPath('data.author', 'Alex')
             ->assertJsonPath('data.content', '<p>Safe</p>');

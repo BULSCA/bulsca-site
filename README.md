@@ -59,3 +59,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Backend pull request checks
+
+`.github/workflows/api-tests.yml` runs Composer validation/install, PHP syntax and the full PHPUnit suite on PHP 8.3 with an isolated MySQL 8 service. `Required CI` fails when a prerequisite fails, is cancelled or is skipped. JUnit results are retained for seven days. PR creation/updates/drafts/retargeting, default/release pushes and merge queues are covered.
+
+For local tests, use `phpunit.xml` with a dedicated local MySQL database ending in `_test`, `APP_ENV=testing`, `DB_URL` empty and test-only credentials. The guard rejects nonlocal hosts, unsafe database names and a database matching the application `.env` before migrations run. Run `composer validate --strict --no-check-publish`, `composer install` and `vendor/bin/phpunit`; CI syntax checks cover app/tests/database/routes/config. Never supply application database credentials to the test command.
+
+GitHub rulesets require PRs and an up-to-date `Required CI` from GitHub Actions on the default branch and `release/` branches (including nested release names), with no bypass actors or mandatory human approvals. Force pushes and deletion are blocked. These settings live in GitHub, independently of workflow files. Existing PRs without the workflow need updating before merge. CODEX development branches remain pushable. No assets/containers are built and nothing is deployed by these checks.
