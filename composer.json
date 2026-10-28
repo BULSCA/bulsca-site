@@ -11,7 +11,7 @@
         "php": "^8.2.0",
         "backpack/crud": "^6.0",
         "backpack/permissionmanager": "^7.2",
-        "composer/package-versions-deprecated": "*",
+        "composer/package-versions-deprecated": "^1.11.99.5",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^12.0",
