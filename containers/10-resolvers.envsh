@@ -1,0 +1,4 @@
+#!/bin/sh
+NGINX_RESOLVERS=$(awk '/^nameserver / { printf "%s ", $2 }' /etc/resolv.conf)
+export NGINX_RESOLVERS
+test -n "$NGINX_RESOLVERS"
