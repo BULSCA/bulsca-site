@@ -5,7 +5,8 @@
 # BULSCA website API and administration
 
 [![Release tests](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml/badge.svg?branch=release%2Fpublic-site-v1&event=push)](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml?query=branch%3Arelease%2Fpublic-site-v1)
-[![Coverage reports](https://img.shields.io/badge/coverage-reports-blue)](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml?query=branch%3Arelease%2Fpublic-site-v1)
+[![Line coverage snapshot: 25.81%](https://img.shields.io/badge/line_coverage_snapshot-25.81%25-red)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
+[![API coverage snapshot: 98.05%](https://img.shields.io/badge/API_coverage_snapshot-98.05%25-brightgreen)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
 
 Laravel backend for BULSCA's website. It supplies the public Vue site's versioned API and retains the existing administration for news, clubs, committees, competitions, results and resources.
 
@@ -15,17 +16,22 @@ The public frontend lives in [BULSCA/bulsca-frontend](https://github.com/BULSCA/
 
 The live CI badge follows `release/public-site-v1` and requires the PHP unit/feature suite, real Laravel/Vue API integration and container configuration checks. For an unmerged PR, open its **Checks** tab to inspect that candidate's coverage.
 
-Open the latest successful run using either badge. Its **Backend checks and full PHPUnit suite** summary shows measured line coverage by category:
+<!-- coverage-snapshot:start -->
+Measured on **29 October 2026** in [CI run 40870156982](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982) for commit [`66f58b0`](https://github.com/BULSCA/bulsca-site/commit/66f58b03c22dba33b6169f2a6589216085664509). These are snapshot percentages; the CI badge and PR Checks link to current reports.
 
-| Category | Application code included |
-| --- | --- |
-| Public API | Versioned API controllers and response resources |
-| Middleware and validation | Middleware, requests, exceptions and shared sanitisation/DTO helpers |
-| Services | Public resource access, provider integrations and token storage |
-| Models and domain | Database models and competition/league logic |
-| Legacy web and authentication | Existing website, administration and authentication controllers |
-| Console and scheduling | Artisan commands and the scheduler |
-| Other application code | Providers, mail, notifications and remaining application code |
+| Category | Line coverage | Application code included |
+| --- | ---: | --- |
+| Public API | 98.05% | Versioned API controllers and response resources |
+| Middleware and validation | 39.57% | Middleware, requests, exceptions and shared sanitisation/DTO helpers |
+| Services | 41.38% | Public resource access, provider integrations and token storage |
+| Models and domain | 30.45% | Database models and competition/league logic |
+| Legacy web and authentication | 5.76% | Existing website, administration and authentication controllers |
+| Console and scheduling | 11.49% | Artisan commands and the scheduler |
+| Other application code | 27.17% | Providers, mail, notifications and remaining application code |
+| **Total** | **25.81%** | All application code, including uncovered legacy features |
+<!-- coverage-snapshot:end -->
+
+Each CI run publishes current category measurements in its **Backend checks and full PHPUnit suite** summary.
 
 Download **backend-coverage** from that run and open `html/index.html` for file/line detail. Clover XML and category summaries are included; coverage artifacts are retained for 30 days. Coverage summaries are generated for each tested commit.
 
