@@ -129,6 +129,16 @@ class PublicBrowsingTest extends TestCase
         $this->get('/resources/view/missing')->assertNotFound();
     }
 
+    public function test_published_downloads_and_portraits_use_api_origin_when_served_through_www(): void
+    {
+        config(['public_site.api_url' => 'https://api.bulsca.co.uk']);
+        $this->data['club']->image_path = 'test-club.png';
+        $this->data['club']->save();
+        $id = $this->data['resource']->id;
+        $this->getJson('https://www.bulsca.co.uk/api/v1/resources/'.$id.'/access')->assertOk()->assertJsonPath('data.url', 'https://api.bulsca.co.uk/api/v1/resources/'.$id.'/file');
+        $this->getJson('https://www.bulsca.co.uk/api/v1/clubs')->assertOk()->assertJsonPath('data.0.image_url', 'https://api.bulsca.co.uk/img/test-club.png');
+    }
+
     public function test_serc_and_casualty_lists_details_tags_and_links_are_read_only(): void
     {
         $this->getJson('/api/v1/sercs?tag=Pool')->assertOk()->assertJsonCount(1, 'data');

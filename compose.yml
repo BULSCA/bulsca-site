@@ -1,4 +1,4 @@
-name: bulsca
+name: ${COMPOSE_PROJECT_NAME:-bulsca}
 
 x-backend: &backend
   image: localhost/bulsca-backend:${BACKEND_TAG:?Set BACKEND_TAG to the backend commit}
@@ -112,6 +112,7 @@ services:
 
   database:
     image: docker.io/library/mysql:8.4
+    stop_grace_period: 60s
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set a distinct database root password}
       MYSQL_DATABASE: ${DB_DATABASE:-bulsca}
@@ -141,4 +142,4 @@ networks:
   application:
     ipam:
       config:
-        - subnet: 10.89.40.0/24
+        - subnet: ${APP_NETWORK_SUBNET:-10.89.40.0/24}
