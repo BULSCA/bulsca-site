@@ -1,64 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://www.bulsca.co.uk"><img src="storage/app/public/logo/blogo.png" width="180" alt="BULSCA logo"></a>
 </p>
 
-## About Laravel
+# BULSCA website API and administration
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![Release tests](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml/badge.svg?branch=release%2Fpublic-site-v1&event=push)](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml?query=branch%3Arelease%2Fpublic-site-v1)
+[![Coverage reports](https://img.shields.io/badge/coverage-reports-blue)](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml?query=branch%3Arelease%2Fpublic-site-v1)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Laravel backend for BULSCA's website. It supplies the public Vue site's versioned API and retains the existing administration for news, clubs, committees, competitions, results and resources.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The public frontend lives in [BULSCA/bulsca-frontend](https://github.com/BULSCA/bulsca-frontend). The first release keeps website, API and administration at `www.bulsca.co.uk`, `api.bulsca.co.uk` and `portal.bulsca.co.uk`, with Podman deployment instructions below.
 
-## Learning Laravel
+## Tests and coverage
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The live CI badge follows `release/public-site-v1` and requires the PHP unit/feature suite, real Laravel/Vue API integration and container configuration checks. For an unmerged PR, open its **Checks** tab to inspect that candidate's coverage.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Open the latest successful run using either badge. Its **Backend checks and full PHPUnit suite** summary shows measured line coverage by category:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Category | Application code included |
+| --- | --- |
+| Public API | Versioned API controllers and response resources |
+| Middleware and validation | Middleware, requests, exceptions and shared sanitisation/DTO helpers |
+| Services | Public resource access, provider integrations and token storage |
+| Models and domain | Database models and competition/league logic |
+| Legacy web and authentication | Existing website, administration and authentication controllers |
+| Console and scheduling | Artisan commands and the scheduler |
+| Other application code | Providers, mail, notifications and remaining application code |
 
-## Laravel Sponsors
+Download **backend-coverage** from that run and open `html/index.html` for file/line detail. Clover XML and category summaries are included; coverage artifacts are retained for 30 days. Coverage summaries are generated for each tested commit.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+To collect coverage locally, use PHP 8.3 with PCOV and the isolated test database described below:
 
-### Premium Partners
+```sh
+mkdir -p test-results/coverage
+vendor/bin/phpunit --coverage-clover test-results/coverage/clover.xml --coverage-html test-results/coverage/html
+python3 tools/coverage_summary.py test-results/coverage/clover.xml
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+All `app/` source files are included, including untested legacy features. Categories group source files, not test suites. PCOV reports line coverage; it does not supply branch/path coverage. The separate browser integration suite is not added to these percentages. Missing or invalid reports fail CI; coverage measurement is required without a minimum-percentage gate. Local reports stay in ignored `test-results/`.
 
 ## Backend pull request checks
 
@@ -153,3 +132,18 @@ Record the exact frontend/backend commits, resulting image IDs/digests (includin
 ### Configuration checks without builds
 
 `bash containers/check.sh` requires the sibling frontend, Node 24, Python/PyYAML, `podman-compose` 1.5.0, Podman, Nginx and ShellCheck. It verifies a checksum-pinned Hadolint binary, shell scripts, Compose normalization with fake secrets, real Nginx routing against temporary fixtures/fake FastCGI, and smoke-tool tests. CI runs these as `Container configuration`, required by `Required CI` in both repositories. No containers are started and no assets or images are built by these checks. Built-image and deployment verification remain owner-run gates.
+
+## Acknowledgments
+
+BULSCA's website reflects years of work by its maintainers and volunteers:
+
+- **[James O'Donohoe](https://github.com/jaykay351)** — ongoing maintenance and modernisation of the website, including the Vue frontend and API separation.
+- **Noah Hollowell** — previous maintainer. Thank you for the time, care and development work invested in the original BULSCA website and the foundation it provides for the site's future.
+
+Thank you also to the volunteers who maintain the site's content, competition information and resources for the university lifesaving community.
+
+### Open source acknowledgments and licence notices
+
+Built with [Laravel](https://laravel.com/), created by Taylor Otwell and maintained by its contributors, alongside Vue, Backpack and other open source libraries. Their work makes this project possible.
+
+Laravel is MIT-licensed. Its full copyright and permission notice is preserved in [NOTICE.laravel](NOTICE.laravel), and dependency notices remain with their respective packages. This framework notice does not assign a new licence to BULSCA's own application code, content or branding.
