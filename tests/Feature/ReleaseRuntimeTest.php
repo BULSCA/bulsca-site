@@ -61,4 +61,23 @@ class ReleaseRuntimeTest extends TestCase
         $this->withServerVariables($headers + ['REMOTE_ADDR' => '10.89.40.2'])->getJson('http://localhost/test-proxy')->assertJson(['secure' => true, 'host' => 'portal.bulsca.co.uk', 'ip' => '203.0.113.7']);
         $this->withServerVariables($headers + ['REMOTE_ADDR' => '198.51.100.2'])->getJson('http://localhost/test-proxy')->assertJson(['secure' => false, 'host' => 'localhost', 'ip' => '198.51.100.2']);
     }
+
+    public function test_portal_sso_redirect_and_session_cookie_keep_the_portal_origin(): void
+    {
+        \Illuminate\Support\Facades\Http::preventStrayRequests();
+        config(['release.trusted_proxies' => ['10.89.40.0/24'], 'sso.enabled' => true, 'sso.auth_server' => 'https://auth.example.test', 'sso.client_id' => 'test-client', 'sso.redirect_uri' => 'https://portal.bulsca.co.uk/auth/sso/callback', 'session.secure' => true, 'session.domain' => null]);
+        $response = $this->withServerVariables(['REMOTE_ADDR' => '10.89.40.2', 'HTTP_X_FORWARDED_PROTO' => 'https'])->get('http://portal.bulsca.co.uk/auth/sso');
+        $response->assertRedirect();
+        $location = $response->headers->get('Location');
+        $this->assertSame('auth.example.test', parse_url($location, PHP_URL_HOST));
+        parse_str(parse_url($location, PHP_URL_QUERY), $query);
+        $this->assertSame('https://portal.bulsca.co.uk/auth/sso/callback', $query['redirect_uri']);
+        $cookie = collect($response->headers->getCookies())->first(fn ($cookie) => $cookie->getName() === config('session.cookie'));
+        $this->assertNotNull($cookie);
+        $this->assertTrue($cookie->isSecure());
+        $this->assertTrue($cookie->isHttpOnly());
+        $this->assertNull($cookie->getDomain());
+        $this->assertSame('lax', $cookie->getSameSite());
+        \Illuminate\Support\Facades\Http::assertNothingSent();
+    }
 }
