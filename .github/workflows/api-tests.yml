@@ -112,7 +112,7 @@ jobs:
         with:
           repository: BULSCA/bulsca-frontend
           # Paired public contract revision; update deliberately with coordinated API changes.
-          ref: e4f5cd44d685def54cd791c109442a58f395d440
+          ref: 16011839c705701de466f69ac64ef6bf73c9d31b
           path: frontend
           persist-credentials: false
       - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc
