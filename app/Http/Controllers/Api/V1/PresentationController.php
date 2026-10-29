@@ -28,10 +28,11 @@ class PresentationController extends Controller
         $cache = Cache::store(config('public_site.cache_store'));
         $cached = $cache->get('public-social');
         if (is_array($cached) && $cached['refresh_after'] > time()) return Content::items($request, collect($cached['items'])) + (! empty($cached['stale']) ? ['stale' => true] : []);
-        if (! config('services.meta.user_id') || ! config('services.meta.access_token')) return Content::items($request, collect());
         try {
+            $token = app(\App\Services\MetaTokenStore::class)->get();
+            if (! config('services.meta.user_id') || ! $token) return Content::items($request, collect());
             $response = Http::connectTimeout(2)->timeout(5)->get('https://graph.facebook.com/v24.0/'.config('services.meta.user_id').'/media', [
-                'fields' => 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp', 'limit' => 12, 'access_token' => config('services.meta.access_token'),
+                'fields' => 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp', 'limit' => 12, 'access_token' => $token,
             ])->throw();
             $posts = $response->json('data');
             if (! is_array($posts)) throw new \RuntimeException('Invalid social response');

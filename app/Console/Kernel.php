@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('meta:refresh-token')->weekly();
+        $schedule->command('meta:refresh-token')->weekly()->withoutOverlapping();
     }
 
     /**
