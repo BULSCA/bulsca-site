@@ -107,6 +107,8 @@ class PublicBrowsingTest extends TestCase
     {
         $this->getJson('/api/v1/championships')->assertOk()->assertJsonCount(4, 'data');
         foreach ([2023, 2024, 2025, 2026] as $year) $this->getJson('/api/v1/championships/'.$year)->assertOk()->assertJsonPath('data.title', 'Championships '.$year)->assertJsonStructure(['data' => ['sections', 'links']]);
+        $this->getJson('/api/v1/championships/2026')->assertOk()->assertSee('Liverpool Aquatics Centre')->assertSee('7th-8th March 2026')->assertSee('27 Feb');
+        $this->getJson('/api/v1/championships/2024')->assertOk()->assertSee('Alan Higgs Centre')->assertSee('2nd-3rd March 2024');
         $this->getJson('/api/v1/championships/1990')->assertNotFound();
     }
 
