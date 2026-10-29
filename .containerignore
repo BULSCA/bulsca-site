@@ -7,6 +7,7 @@ vendor
 node_modules
 tests
 test-results
+**/__pycache__
 storage
 bootstrap/cache/*.php
 public/storage
