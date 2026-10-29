@@ -5,8 +5,8 @@
 # BULSCA website API and administration
 
 [![Release tests](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml/badge.svg?branch=release%2Fpublic-site-v1&event=push)](https://github.com/BULSCA/bulsca-site/actions/workflows/api-tests.yml?query=branch%3Arelease%2Fpublic-site-v1)
-[![Line coverage snapshot: 25.81%](https://img.shields.io/badge/line_coverage_snapshot-25.81%25-red)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
-[![API coverage snapshot: 98.05%](https://img.shields.io/badge/API_coverage_snapshot-98.05%25-brightgreen)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
+[![Line coverage snapshot: 25.81%](docs/badges/line-coverage.svg)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
+[![API coverage snapshot: 98.05%](docs/badges/api-coverage.svg)](https://github.com/BULSCA/bulsca-site/actions/runs/40870156982)
 
 Laravel backend for BULSCA's website. It supplies the public Vue site's versioned API and retains the existing administration for news, clubs, committees, competitions, results and resources.
 
