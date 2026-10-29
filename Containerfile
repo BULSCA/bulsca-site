@@ -35,6 +35,7 @@ ENV PUBLIC_API_HOST=api.bulsca.co.uk PORTAL_HOST=portal.bulsca.co.uk \
     NGINX_ENVSUBST_FILTER="PUBLIC_API_HOST|PORTAL_HOST|NGINX_RESOLVERS"
 COPY --chmod=0555 containers/10-resolvers.envsh /docker-entrypoint.d/10-resolvers.envsh
 COPY containers/default.conf.template /etc/nginx/templates/default.conf.template
+COPY containers/php.conf /etc/nginx/templates/bulsca/php.conf.template
 COPY --from=dependencies /var/www/html/public/ /var/www/html/public/
 USER 101
 EXPOSE 8080
