@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'api_url' => env('PUBLIC_API_URL'),
     'read_limit' => (int) env('PUBLIC_API_RATE_LIMIT', 120),
     'contact_enabled' => (bool) env('CONTACT_FORM_ENABLED', true),
     'cache_store' => env('PUBLIC_API_CACHE_STORE', 'file'),

@@ -18,7 +18,7 @@ class TrainingController extends Controller
 
     private function casualtyEntry(Casualty $casualty): array
     {
-        return array_filter(Content::entry($casualty, 'casualties', $casualty->name) + ['summary' => app(\App\Support\ArticleContent::class)->excerpt($casualty->description ?? ''), 'tags' => $casualty->tags->pluck('name')->values(), 'image_url' => $casualty->getImages->first() ? route('image', ['path' => $casualty->getImages->first()->path]) : null], fn ($v) => $v !== null);
+        return array_filter(Content::entry($casualty, 'casualties', $casualty->name) + ['summary' => app(\App\Support\ArticleContent::class)->excerpt($casualty->description ?? ''), 'tags' => $casualty->tags->pluck('name')->values(), 'image_url' => $casualty->getImages->first() ? Content::image($casualty->getImages->first()->path) : null], fn ($v) => $v !== null);
     }
 
     private function tag(Request $request, $query): void
@@ -67,6 +67,6 @@ class TrainingController extends Controller
     {
         $casualty = Casualty::with('tags', 'getImages', 'getCasualtyGroup')->findOrFail(Content::id($slug));
         $related = SERC::with('tags')->whereHas('tags', fn ($q) => $q->whereIn('serc_tags.id', $casualty->tags->pluck('id')))->orderByDesc('when')->get();
-        return ['data' => $this->casualtyEntry($casualty) + ['sections' => [Content::section('Briefing', $casualty->description), ['heading' => 'Reference', 'paragraphs' => array_values(array_filter([$casualty->manual_reference, $casualty->getCasualtyGroup?->name]))]], 'images' => $casualty->getImages->map(fn ($image) => Content::link($casualty->name, route('image', ['path' => $image->path])))->filter()->values(), 'entries' => $related->map($this->sercEntry(...))->values()]];
+        return ['data' => $this->casualtyEntry($casualty) + ['sections' => [Content::section('Briefing', $casualty->description), ['heading' => 'Reference', 'paragraphs' => array_values(array_filter([$casualty->manual_reference, $casualty->getCasualtyGroup?->name]))]], 'images' => $casualty->getImages->map(fn ($image) => Content::link($casualty->name, Content::image($image->path)))->filter()->values(), 'entries' => $related->map($this->sercEntry(...))->values()]];
     }
 }
