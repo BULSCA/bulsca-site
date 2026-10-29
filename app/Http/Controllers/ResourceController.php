@@ -16,8 +16,8 @@ class ResourceController extends Controller
     public function get(Request $req, $id)
     {
 
-        $resource = Resource::find($id);
-        $extension = pathinfo($resource->location)['extension'];
+        $resource = Resource::findOrFail($id);
+        $extension = pathinfo($resource->location, PATHINFO_EXTENSION);
 
         if (!$resource) {
             abort(404);

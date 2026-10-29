@@ -70,10 +70,82 @@ jobs:
           path: test-results/
           if-no-files-found: warn
           retention-days: 7
+  public-api-integration:
+    name: Public API integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: testing
+          MYSQL_DATABASE: bulsca_integration_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -ptesting"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_KEY: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: bulsca_integration_test
+      DB_USERNAME: root
+      DB_PASSWORD: testing
+      DB_URL: ''
+      CACHE_DRIVER: file
+      CACHE_STORE: file
+      SESSION_DRIVER: array
+      MAIL_MAILER: array
+      QUEUE_CONNECTION: sync
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          path: backend
+          persist-credentials: false
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: BULSCA/bulsca-frontend
+          # Paired public contract revision; update deliberately with coordinated API changes.
+          ref: afbb8d7c4c7269448241966bcbcfe0d256a94557
+          path: frontend
+          persist-credentials: false
+      - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          extensions: dom, mbstring, pdo_mysql, intl, zip, curl, xml, fileinfo, calendar
+          coverage: none
+      - run: composer install --prefer-dist --no-interaction --no-progress
+        working-directory: backend
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify generated API contracts match
+        run: python3 ../backend/tools/generate_api_types.py --output src/api/generated.ts --check
+      - name: Real Laravel and Vue browser acceptance without a build
+        run: bash scripts/ci-api-integration.sh ../backend
+      - name: Save integration evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: public-api-integration
+          path: frontend/node_modules/.cache/bulsca-api-integration/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
   required:
     name: Required CI
     if: ${{ always() }}
-    needs: [backend-tests]
+    needs: [backend-tests, public-api-integration]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
