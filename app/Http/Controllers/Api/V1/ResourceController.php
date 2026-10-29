@@ -51,7 +51,7 @@ class ResourceController extends Controller
     {
         $resource = $this->resources->query()->findOrFail($id);
         abort_unless(Storage::exists($resource->location), 404);
-        return ['data' => ['url' => route('api.v1.resources.file', ['id' => $resource->id]), 'filename' => $resource->name, 'expires_at' => null]];
+        return ['data' => ['url' => Content::url(route('api.v1.resources.file', ['id' => $resource->id], false)), 'filename' => $resource->name, 'expires_at' => null]];
     }
 
     public function file(string $id)

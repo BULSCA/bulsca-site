@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 15
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: testing
           MYSQL_DATABASE: bulsca_test
@@ -57,7 +57,7 @@ jobs:
       - run: composer validate --strict --no-check-publish
       - run: composer install --prefer-dist --no-interaction --no-progress
       - name: Check PHP syntax
-        run: find app tests database routes config -name '*.php' -print0 | xargs -0 -n1 php -l
+        run: find app tests database routes config containers -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: Full unit and feature suite on isolated MySQL
         run: |
           mkdir -p test-results
@@ -79,7 +79,7 @@ jobs:
         working-directory: frontend
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: testing
           MYSQL_DATABASE: bulsca_integration_test
@@ -112,7 +112,7 @@ jobs:
         with:
           repository: BULSCA/bulsca-frontend
           # Paired public contract revision; update deliberately with coordinated API changes.
-          ref: a3097dc145c24c22df3dcb752860263a00f6e78a
+          ref: f962d0c48e05920f404da308678b765d10d995d5
           path: frontend
           persist-credentials: false
       - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc
@@ -142,10 +142,40 @@ jobs:
           include-hidden-files: true
           if-no-files-found: warn
           retention-days: 7
+  container-checks:
+    name: Container configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: bulsca-site
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          path: bulsca-site
+          persist-credentials: false
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: BULSCA/bulsca-frontend
+          ref: f962d0c48e05920f404da308678b765d10d995d5
+          path: bulsca-frontend
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '24'
+      - name: Install configuration check tools without building images
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends nginx shellcheck podman python3-yaml python3-venv
+          python3 -m venv "$RUNNER_TEMP/compose-tools"
+          "$RUNNER_TEMP/compose-tools/bin/pip" install podman-compose==1.5.0
+          echo "$RUNNER_TEMP/compose-tools/bin" >> "$GITHUB_PATH"
+      - name: Validate Containerfiles, shell scripts, Compose and Nginx routing
+        run: bash containers/check.sh
   required:
     name: Required CI
     if: ${{ always() }}
-    needs: [backend-tests, public-api-integration]
+    needs: [backend-tests, public-api-integration, container-checks]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:

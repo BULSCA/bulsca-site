@@ -1,0 +1,145 @@
+name: ${COMPOSE_PROJECT_NAME:-bulsca}
+
+x-backend: &backend
+  image: localhost/bulsca-backend:${BACKEND_TAG:?Set BACKEND_TAG to the backend commit}
+  build:
+    context: .
+    dockerfile: Containerfile
+    target: runtime
+  environment: &backend-environment
+    APP_NAME: BULSCA
+    APP_ENV: production
+    APP_DEBUG: "false"
+    APP_KEY: ${APP_KEY:?Supply the existing Laravel APP_KEY}
+    APP_URL: https://${PORTAL_HOST:-portal.bulsca.co.uk}
+    PUBLIC_API_URL: https://${PUBLIC_API_HOST:-api.bulsca.co.uk}
+    PUBLIC_API_HOST: ${PUBLIC_API_HOST:-api.bulsca.co.uk}
+    TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.1,::1,10.89.40.0/24}
+    CORS_ALLOWED_ORIGINS: https://${PUBLIC_SITE_HOST:-www.bulsca.co.uk}
+    DB_CONNECTION: mysql
+    DB_HOST: database
+    DB_PORT: "3306"
+    DB_DATABASE: ${DB_DATABASE:-bulsca}
+    DB_USERNAME: ${DB_USERNAME:-bulsca}
+    DB_PASSWORD: ${DB_PASSWORD:?Set the application database password}
+    CACHE_DRIVER: file
+    PUBLIC_API_CACHE_STORE: file
+    SESSION_DRIVER: file
+    SESSION_SECURE_COOKIE: "true"
+    SESSION_SAME_SITE: lax
+    QUEUE_CONNECTION: sync
+    FILESYSTEM_DISK: local
+    LOG_CHANNEL: daily
+    LOG_LEVEL: info
+    SSO_ENABLED: ${SSO_ENABLED:-true}
+    SSO_AUTH_SERVER: ${SSO_AUTH_SERVER:-https://auth.bulsca.co.uk}
+    SSO_CLIENT_ID: ${SSO_CLIENT_ID:-bulsca}
+    SSO_CLIENT_SECRET: ${SSO_CLIENT_SECRET:-}
+    TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
+    TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
+    CONTACT_FORM_ENABLED: ${CONTACT_FORM_ENABLED:-false}
+    MAIL_MAILER: smtp
+    MAIL_HOST: ${MAIL_HOST:-}
+    MAIL_PORT: ${MAIL_PORT:-587}
+    MAIL_USERNAME: ${MAIL_USERNAME:-}
+    MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+    MAIL_ENCRYPTION: ${MAIL_ENCRYPTION:-tls}
+    MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-noreply@bulsca.co.uk}
+    MAIL_FROM_NAME: BULSCA
+    META_ACCESS_TOKEN: ${META_ACCESS_TOKEN:-}
+    META_USER_ID: ${META_USER_ID:-}
+    META_APP_ID: ${META_APP_ID:-}
+    META_APP_SECRET: ${META_APP_SECRET:-}
+  volumes:
+    - storage:/var/www/html/storage
+  read_only: true
+  tmpfs:
+    - /tmp
+    - /var/www/html/bootstrap/cache:uid=33,gid=33,mode=0755
+  security_opt: [no-new-privileges:true]
+  restart: unless-stopped
+  networks: [application]
+
+services:
+  frontend:
+    image: localhost/bulsca-frontend:${FRONTEND_TAG:?Set FRONTEND_TAG to the frontend commit}
+    build:
+      context: ../bulsca-frontend
+      dockerfile: Containerfile
+      target: runtime
+      args:
+        VITE_PUBLIC_DATA_MODE: live
+        VITE_WEBSITE_API_URL: /api/v1
+        VITE_COMPETITION_API_URL: /api/v1
+        VITE_PORTAL_URL: https://${PORTAL_HOST:-portal.bulsca.co.uk}
+    environment:
+      PUBLIC_API_HOST: ${PUBLIC_API_HOST:-api.bulsca.co.uk}
+    ports: ["127.0.0.1:${FRONTEND_PORT:-8080}:8080"]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    networks: [application]
+
+  backend:
+    <<: *backend
+    depends_on:
+      database:
+        condition: service_healthy
+
+  backend-web:
+    image: localhost/bulsca-backend-web:${BACKEND_TAG:?Set BACKEND_TAG}
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: web
+    environment:
+      PUBLIC_API_HOST: ${PUBLIC_API_HOST:-api.bulsca.co.uk}
+      PORTAL_HOST: ${PORTAL_HOST:-portal.bulsca.co.uk}
+    ports: ["127.0.0.1:${BACKEND_PORT:-8081}:8080"]
+    volumes:
+      - storage:/var/www/html/storage:ro
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    networks: [application]
+
+  scheduler:
+    <<: *backend
+    command: [php, artisan, schedule:work]
+    healthcheck:
+      disable: true
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  database:
+    image: docker.io/library/mysql:8.4
+    stop_grace_period: 60s
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set a distinct database root password}
+      MYSQL_DATABASE: ${DB_DATABASE:-bulsca}
+      MYSQL_USER: ${DB_USERNAME:-bulsca}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set the application database password}
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql --protocol=TCP -h 127.0.0.1 -u"$$MYSQL_USER" -D"$$MYSQL_DATABASE" -Nse "SELECT 1" >/dev/null']
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 12
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    networks: [application]
+
+volumes:
+  storage:
+    external: true
+    name: ${STORAGE_VOLUME:-bulsca-storage-v1}
+  database:
+    external: true
+    name: ${DB_VOLUME:-bulsca-mysql-v1}
+
+networks:
+  application:
+    ipam:
+      config:
+        - subnet: ${APP_NETWORK_SUBNET:-10.89.40.0/24}

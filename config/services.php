@@ -32,6 +32,7 @@ return [
     ],
 
     'meta' => [
+        'token_path' => storage_path('app/private/meta-token.enc'),
         'access_token' => env('META_ACCESS_TOKEN'),
         'user_id' => env('META_USER_ID'),
         'app_id' => env('META_APP_ID'),

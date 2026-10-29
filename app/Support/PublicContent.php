@@ -49,8 +49,14 @@ class PublicContent
         if (! $path) return null;
         if (preg_match('/^https?:\/\//i', $path)) return self::link('Image', $path)['url'] ?? null;
         if (str_contains($path, '..') || str_contains($path, '\\')) return null;
-        if (str_starts_with($path, '/storage/') || str_starts_with($path, 'public/')) return url('/storage/'.ltrim(preg_replace('#^(public/|/?storage/)#', '', $path), '/'));
-        return route('image', ['path' => ltrim($path, '/')]);
+        if (str_starts_with($path, '/storage/') || str_starts_with($path, 'public/')) return self::url('/storage/'.ltrim(preg_replace('#^(public/|/?storage/)#', '', $path), '/'));
+        return self::url(route('image', ['path' => ltrim($path, '/')], false));
+    }
+
+    public static function url(string $path): string
+    {
+        $origin = config('public_site.api_url');
+        return $origin ? rtrim($origin, '/').'/'.ltrim($path, '/') : url($path);
     }
 
     public static function collection(Request $request, Builder $query, callable $map, ?string $search = 'name', int $size = 12): array

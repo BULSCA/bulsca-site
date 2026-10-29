@@ -1,0 +1,41 @@
+map $http_x_forwarded_proto $forwarded_proto {
+    default $scheme;
+    https https;
+}
+server {
+    listen 8080 default_server;
+    server_name _;
+    location = /health/web { access_log off; return 200 "ok\n"; }
+    location / { return 404; }
+}
+server {
+    listen 8080;
+    server_name ${PUBLIC_API_HOST};
+    include /etc/nginx/conf.d/bulsca/php.conf;
+    location = /health/web { access_log off; return 200 "ok\n"; }
+    location = /health/live { try_files /__dynamic__ /index.php?$query_string; }
+    location = /health/ready { try_files /__dynamic__ /index.php?$query_string; }
+    location = /api/v1 { try_files /__dynamic__ /index.php?$query_string; }
+    location /api/v1/ { try_files /__dynamic__ /index.php?$query_string; }
+    location /img/ {
+        limit_except GET { deny all; }
+        try_files $uri /index.php?$query_string;
+    }
+    location /storage/ { limit_except GET { deny all; } try_files $uri =404; }
+    location ~ "^/resources/view/(?:[0-9]+|[a-fA-F0-9-]{36})$" {
+        limit_except GET { deny all; }
+        try_files /__dynamic__ /index.php?$query_string;
+    }
+    location / { return 404; }
+}
+server {
+    listen 8080;
+    server_name ${PORTAL_HOST};
+    include /etc/nginx/conf.d/bulsca/php.conf;
+    location = /health/web { access_log off; return 200 "ok\n"; }
+    location / { try_files $uri $uri/ /index.php?$query_string; }
+    location /storage/ { try_files $uri =404; }
+    location /css/ { try_files $uri =404; }
+    location /js/ { try_files $uri =404; }
+    location /packages/ { try_files $uri =404; }
+}

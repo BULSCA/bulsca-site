@@ -16,7 +16,7 @@ class MetaContentService
 
     public function __construct()
     {
-        $this->accessToken = config('services.meta.access_token');
+        $this->accessToken = app(MetaTokenStore::class)->get();
         $this->userId = config('services.meta.user_id');
     }
 
@@ -56,11 +56,11 @@ class MetaContentService
                     })->toArray();
                 }
 
-                Log::error('Meta API error', ['response' => $response->json()]);
+                Log::error('Meta API error', ['status' => $response->status()]);
                 return [];
 
             } catch (\Exception $e) {
-                Log::error('Meta fetch error', ['error' => $e->getMessage()]);
+                Log::error('Meta fetch unavailable');
                 return [];
             }
         });
@@ -97,14 +97,14 @@ class MetaContentService
      */
     public function getLongLivedToken($shortLivedToken)
     {
-        $response = Http::get('https://graph.facebook.com/v24.0/oauth/access_token', [
+        $response = Http::connectTimeout(2)->timeout(5)->get('https://graph.facebook.com/v24.0/oauth/access_token', [
             'grant_type' => 'fb_exchange_token',
             'client_id' => config('services.meta.app_id'),
             'client_secret' => config('services.meta.app_secret'),
             'fb_exchange_token' => $shortLivedToken,
         ]);
 
-        if ($response->successful()) {
+        if ($response->successful() && is_string($response->json('access_token')) && $response->json('access_token') !== '' && is_int($response->json('expires_in')) && $response->json('expires_in') > 0) {
             $data = $response->json();
             return [
                 'access_token' => $data['access_token'],
@@ -112,7 +112,7 @@ class MetaContentService
             ];
         }
 
-        Log::error('Meta long-lived token exchange failed', ['response' => $response->json()]);
+        Log::error('Meta long-lived token exchange failed', ['status' => $response->status()]);
         return null;
     }
 
