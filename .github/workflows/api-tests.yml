@@ -53,23 +53,35 @@ jobs:
           php-version: '8.3'
           tools: composer:v2
           extensions: dom, mbstring, pdo_mysql, intl, zip, curl, xml, fileinfo
-          coverage: none
+          coverage: pcov
       - run: composer validate --strict --no-check-publish
       - run: composer install --prefer-dist --no-interaction --no-progress
       - name: Check PHP syntax
         run: find app tests database routes config containers -name '*.php' -print0 | xargs -0 -n1 php -l
-      - name: Full unit and feature suite on isolated MySQL
+      - name: Verify coverage summary calculations
+        run: python3 -m unittest discover -s tools -p test_coverage_summary.py
+      - name: Full unit and feature suite on isolated MySQL with coverage
         run: |
-          mkdir -p test-results
-          vendor/bin/phpunit --log-junit test-results/phpunit.xml
+          mkdir -p test-results/coverage
+          vendor/bin/phpunit --log-junit test-results/phpunit.xml --coverage-clover test-results/coverage/clover.xml --coverage-html test-results/coverage/html
+      - name: Publish coverage categories in the run summary
+        run: python3 tools/coverage_summary.py test-results/coverage/clover.xml >> "$GITHUB_STEP_SUMMARY"
       - name: Save PHPUnit results
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: backend-test-results
-          path: test-results/
+          path: test-results/phpunit.xml
           if-no-files-found: warn
           retention-days: 7
+      - name: Save backend coverage reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: backend-coverage
+          path: test-results/coverage/
+          if-no-files-found: error
+          retention-days: 30
   public-api-integration:
     name: Public API integration
     runs-on: ubuntu-24.04

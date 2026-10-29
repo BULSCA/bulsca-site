@@ -8,6 +8,8 @@
 .env.backup
 .env.testing
 .env.release
+test-results/
+__pycache__/
 backups/
 .phpunit.cache/
 .phpunit.result.cache
