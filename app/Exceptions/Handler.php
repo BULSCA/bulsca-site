@@ -91,6 +91,7 @@ class Handler extends ExceptionHandler
             $body['errors'] = $e->errors();
         }
         $safe = response()->json($body, $status)->header('X-Request-ID', $id);
+        if ($request->is('api/v1/portal/*')) $safe->header('Cache-Control', 'private, no-store')->header('Vary', 'Cookie');
         foreach (['Retry-After', 'Allow', 'WWW-Authenticate'] as $header) {
             if ($response->headers->has($header)) {
                 $safe->headers->set($header, $response->headers->get($header));
