@@ -13,19 +13,19 @@ class PeopleController extends Controller
 {
     public function clubs(Request $request): array
     {
-        return Content::collection($request, University::where('active', true)->orderBy('name')->orderBy('id'), $this->clubEntry(...));
+        return Content::collection($request, University::with('portalOrganisation')->where('active', true)->orderBy('name')->orderBy('id'), $this->clubEntry(...));
     }
 
     public function club(string $slug): array
     {
-        $club = University::where('active', true)->findOrFail(Content::id($slug));
+        $club = University::with('portalOrganisation')->where('active', true)->findOrFail(Content::id($slug));
         return ['data' => $this->clubEntry($club) + ['sections' => [Content::section('About the club', $club->getPage?->content)]]];
     }
 
     private function clubEntry(University $club): array
     {
         return array_filter(Content::entry($club, 'clubs', $club->name) + [
-            'location' => $club->location, 'image_url' => Content::image($club->image_path),
+            'location' => $club->location, 'image_url' => Content::image($club->portalOrganisation?->active && $club->portalOrganisation?->logo_path ? 'public/'.$club->portalOrganisation->logo_path : $club->image_path),
             'links' => Content::links([Content::link('Website', $this->website($club->website)), Content::link('Facebook', $this->social('facebook.com', $club->facebook)), Content::link('Instagram', $this->social('instagram.com', $club->instagram))]),
         ], fn ($value) => $value !== null);
     }

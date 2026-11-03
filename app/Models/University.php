@@ -14,6 +14,8 @@ class University extends Model
 
     protected $guarded = ['id'];
 
+    public function portalOrganisation() { return $this->hasOne(\App\Models\Portal\Organisation::class, 'university_id'); }
+
 
     public function getPage()
     {
