@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            Route::middleware('web')->prefix('api/v1/portal')->name('api.v1.portal.')->group(base_path('routes/portal.php'));
             // No session, auth, throttle cache or external providers are needed to diagnose readiness.
             Route::get('/health/live', [\App\Http\Controllers\HealthController::class, 'live']);
             Route::get('/health/ready', [\App\Http\Controllers\HealthController::class, 'ready']);
