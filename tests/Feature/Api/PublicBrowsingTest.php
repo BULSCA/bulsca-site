@@ -45,6 +45,16 @@ class PublicBrowsingTest extends TestCase
         $this->getJson('/api/v1/committees/2026-99')->assertNotFound();
     }
 
+    public function test_linked_club_logo_is_public_without_exposing_portal_memberships(): void
+    {
+        $association = \App\Models\Portal\Organisation::where('slug', 'bulsca')->firstOrFail();
+        $organisation = \App\Models\Portal\Organisation::create(['name' => 'Test club', 'slug' => 'test-club', 'kind' => 'club', 'parent_id' => $association->id, 'university_id' => $this->data['club']->id, 'logo_path' => 'portal-logos/test.png']);
+        $this->getJson('/api/v1/clubs')->assertOk()->assertJsonPath('data.0.image_url', \App\Support\PublicContent::image('public/portal-logos/test.png'))->assertJsonMissingPath('data.0.memberships');
+        $this->getJson('/api/v1/clubs/old.'.$this->data['club']->id)->assertOk()->assertJsonPath('data.image_url', \App\Support\PublicContent::image('public/portal-logos/test.png'));
+        $organisation->update(['active' => false]);
+        $this->getJson('/api/v1/clubs')->assertOk()->assertJsonMissingPath('data.0.image_url');
+    }
+
     public function test_competition_reads_do_not_write_and_hide_phones_outside_window(): void
     {
         $id = $this->data['comp']->id;

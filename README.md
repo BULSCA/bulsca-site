@@ -153,3 +153,32 @@ Record the exact frontend/backend commits, resulting image IDs/digests (includin
 ### Configuration checks without builds
 
 `bash containers/check.sh` requires the sibling frontend, Node 24, Python/PyYAML, `podman-compose` 1.5.0, Podman, Nginx and ShellCheck. It verifies a checksum-pinned Hadolint binary, shell scripts, Compose normalization with fake secrets, real Nginx routing against temporary fixtures/fake FastCGI, and smoke-tool tests. CI runs these as `Container configuration`, required by `Required CI` in both repositories. No containers are started and no assets or images are built by these checks. Built-image and deployment verification remain owner-run gates.
+
+## Organisation portal API
+
+The standalone Vue portal in [admin-panel](https://github.com/BULSCA/admin-panel) uses this backend as the authority for people, memberships, committee appointments and permissions. The additive `portal_*` tables do not migrate or grant access from legacy `user_universities`, public committee biographies or Backpack roles. Review existing committees and appoint people explicitly. BULSCA is seeded as an association; clubs affiliate to it and can optionally link to an existing public university/club. One person can belong to several organisations.
+
+After applying the normal migrations, have the first administrator sign in using this backend's configured SSO provider. An operator can then run `php artisan portal:bootstrap-superadmin person@example.org` for that existing account. This explicit, repeatable command grants the existing global `super_admin` role, BULSCA membership and an initial manager appointment. It never creates an identity-provider account. Superadmins should add other BULSCA members and assign committee roles; signing in alone grants no membership or permissions. Subsequent users must also sign in once before a manager adds their registered email. Email invitations and identity-provider account provisioning are not included.
+
+Committee appointments grant permissions only while their organisation, membership, appointment and committee term are active. Dates are inclusive in Europe/London. Club permissions are `branding.manage`, `members.manage`, `committees.manage` and `roles.manage`. BULSCA can additionally grant `clubs.manage`, which explicitly authorises management of affiliated clubs. Mere BULSCA membership conveys no club management. The protected Organisation manager role provides the organisation's full catalogue; custom roles can delegate only permissions the actor currently holds in that same organisation. Club roles cannot grant `clubs.manage` or global superadmin access. Appoint a replacement current manager before ending the last manager's appointment/membership/term. Deactivation revokes old appointments; reactivation requires explicit new appointments to restore powers. Historic roles cannot be deleted while appointments reference them.
+
+Private endpoints are under `/api/v1/portal`, using the `web` session, authentication, CSRF protection, throttling and `private, no-store` responses:
+
+| Endpoint | Operations |
+| --- | --- |
+| `/csrf`, `/me`, `/logout` | GET CSRF cookie, GET account/organisations, POST sign out |
+| `/organisations` | GET central directory; POST affiliated club with known initial manager |
+| `/organisations/{organisation}` | GET scoped member search/pagination, committees, roles and effective permissions |
+| `…/members`, `…/members/{membership}` | POST existing member; PATCH membership active status |
+| `…/committees`, `…/committees/{committee}` | POST committee; PATCH its name/dates |
+| `…/roles`, `…/roles/{role}` | POST custom role; PATCH permissions/name; DELETE unused role |
+| `…/appointments`, `…/appointments/{appointment}` | POST explicit committee appointment; DELETE revokes it |
+| `…/branding` | POST multipart six-digit hex primary/secondary colours and optional PNG/JPEG/WebP logo (2 MB, 2048×2048 maximum) |
+
+Successful responses use a `data` envelope; reads return permissions for interface controls, while every write independently checks authority under an organisation lock. Tenant-scoped validation and composite foreign keys prevent mixing members, roles or committees across organisations. Outsiders receive 404; members without a required permission receive 403. Ordinary directories show names and role titles; only member managers receive contact emails and inactive memberships. No public route exposes portal membership data. An active organisation linked to a legacy public club can override its public directory logo; colours remain available to the portal without changing the public API contract.
+
+The portal must reverse-proxy `/api/`, `/auth/sso` (including its callback), `/storage/` and `/img/` to this backend on the portal origin, preserving cookies and request methods. Do not proxy private requests through the public website's cookie-stripping API proxy. Keep `APP_URL` and the registered SSO callback on the portal origin, `PUBLIC_API_URL` on the public API origin, and production cookies secure/host-scoped. The new Vue portal uses `/auth/sso?portal=1`; authentication failures return to its sign-in screen. The existing release container still serves legacy portal pages; serving the new Vue assets at the portal hostname is a separate owner-run cutover. Do not enable both prototype authentication backends.
+
+Administration audit events store actor/record IDs, permission names and action codes, never request bodies, emails, tokens or IP addresses. `portal:prune-audit` removes events older than 90 days and runs daily through the Laravel scheduler; ensure the deployment scheduler is active. Diagnostic reports use the existing bounded, cookie-free `/api/v1/client-errors` endpoint. No analytics or new tracking cookies are introduced. The SSO callback now requires a single-use nonempty state, regenerates the authenticated session and avoids logging credentials or provider bodies.
+
+`tests/Feature/Api/PortalTest.php` and `PortalAuthenticationTest.php` cover tenant isolation, delegation, CSRF, revocation, term dates, manager handover, branding/storage errors, audit retention and SSO. They run as part of the existing guarded MySQL PHPUnit suite. Deployment, real provider configuration and production data onboarding remain operator checks.
