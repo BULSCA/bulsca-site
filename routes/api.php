@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('uni-logo/{uni_name}', 'App\Http\Controllers\UniversityController@getLogo');
 
 Route::prefix('v1')->name('api.v1.')->group(function () {
+    Route::get('manifest', [\App\Http\Controllers\Api\V1\ManifestController::class, 'index']);
     Route::get('presentation', [\App\Http\Controllers\Api\V1\PresentationController::class, 'presentation']);
     Route::get('notice', [\App\Http\Controllers\Api\V1\PresentationController::class, 'notice']);
     Route::get('social/posts', [\App\Http\Controllers\Api\V1\PresentationController::class, 'social']);

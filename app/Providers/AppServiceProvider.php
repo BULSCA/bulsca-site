@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\PublicContentRevision;
 use App\View\Components\FormInput;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('form-input', FormInput::class);
+        app(PublicContentRevision::class)->register();
     }
 }
