@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "BULSCA public API",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "servers": [
     {
@@ -116,6 +116,35 @@
                 }
               }
             },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/manifest": {
+      "get": {
+        "operationId": "manifest",
+        "description": "Published route manifest and content revision for prerendering. Reads do not change the revision.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManifestResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
             "content": {
               "application/json": {
                 "schema": {
@@ -3699,6 +3728,59 @@
         "required": [
           "event_id",
           "type"
+        ],
+        "additionalProperties": false
+      },
+      "ManifestRoute": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Canonical public page path."
+          },
+          "kind": {
+            "type": "string",
+            "description": "One of: page, article, tag, club, committee, committee-member, season, championship, competition, resource-page, resource, serc, casualty."
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "kind",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "ManifestResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "revision": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Monotonic content revision; increases only after committed public-content writes."
+              },
+              "routes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ManifestRoute"
+                },
+                "description": "Every published public page, unique and sorted by URL."
+              }
+            },
+            "required": [
+              "revision",
+              "routes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "data"
         ],
         "additionalProperties": false
       }

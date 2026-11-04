@@ -3,7 +3,8 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Tag;
-use App\Services\PublicRouteManifest;
+use App\Services\{PublicContentRevision, PublicRouteManifest};
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Storage;
 use Tests\Support\PublicSiteFixture;
@@ -14,6 +15,7 @@ class PublicManifestTest extends TestCase
     use DatabaseMigrations;
 
     private array $data;
+    private PublicContentRevision $revisions;
     private PublicRouteManifest $manifest;
 
     protected function setUp(): void
@@ -22,6 +24,9 @@ class PublicManifestTest extends TestCase
         $this->travelTo(now()->setDate(2026, 10, 28)->startOfDay());
         Storage::fake('local');
         config(['filesystems.default' => 'local', 'public_site.cache_store' => 'array']);
+        // These tests are not about throttling; keep them out of the shared suite bucket.
+        $this->withoutMiddleware(\Illuminate\Routing\Middleware\ThrottleRequests::class);
+        $this->revisions = app(PublicContentRevision::class);
         $this->manifest = app(PublicRouteManifest::class);
         $this->data = PublicSiteFixture::create();
     }
@@ -103,5 +108,44 @@ class PublicManifestTest extends TestCase
         $this->assertSame('page', $byUrl['/about']['kind']);
         $this->assertSame('article', $byUrl['/article/test-public-news.'.$this->data['article']->id]['kind']);
         $this->assertSame('Test University', $byUrl['/get-involved/clubs/test-university.'.$this->data['club']->id]['title']);
+    }
+
+    public function test_manifest_endpoint_is_public_and_deterministic(): void
+    {
+        $first = $this->getJson('/api/v1/manifest')->assertOk();
+        $second = $this->getJson('/api/v1/manifest')->assertOk();
+        $this->assertSame($first->getContent(), $second->getContent());
+        $this->assertIsInt($first->json('data.revision'));
+        $this->assertIsArray($first->json('data.routes'));
+    }
+
+    public function test_manifest_reads_do_not_change_the_revision(): void
+    {
+        $before = $this->revisions->current();
+        $this->getJson('/api/v1/manifest')->assertOk();
+        $this->getJson('/api/v1/manifest')->assertOk();
+        $this->assertSame($before, $this->revisions->current());
+    }
+
+    public function test_revision_change_publishes_updated_route_list(): void
+    {
+        $first = $this->getJson('/api/v1/manifest')->assertOk()->json('data');
+        $article = $this->data['article'];
+        $article->delete();
+        $second = $this->getJson('/api/v1/manifest')->assertOk()->json('data');
+        $this->assertSame($first['revision'] + 1, $second['revision']);
+        $this->assertNotContains('/article/test-public-news.'.$article->id, array_column($second['routes'], 'url'));
+    }
+
+    public function test_stale_manifest_cache_does_not_survive_a_revision_change(): void
+    {
+        $this->getJson('/api/v1/manifest')->assertOk();
+        $article = $this->data['article'];
+        Model::unguarded(function () use ($article) {
+            $article->update(['title' => 'Fresh headline']);
+        });
+        $routes = array_column($this->getJson('/api/v1/manifest')->assertOk()->json('data.routes'), 'url');
+        $this->assertContains('/article/fresh-headline.'.$article->id, $routes);
+        $this->assertNotContains('/article/test-public-news.'.$article->id, $routes);
     }
 }
