@@ -82,6 +82,16 @@ Deployment checks belong to the owner. The paired `release/public-site-v1` branc
 
 The frontend's `scripts/ci-api-integration.sh` starts a Vue dev server, Chrome and Laravel against seeded isolated SQL data. `tests/Support/public-api-bootstrap.php` refuses unsafe environments/databases before seed/reset or HTTP handling, uses temporary cache/files, and fakes external HTTP/mail. The test-only router can inject an actual Laravel failure; no fault injection exists in product routes. The suite checks public pages at six widths, real downloads/contact/ratings, safe failures and recovery. Each repository's CI tests its PR against a pinned counterpart commit; update that reference when coordinating contract changes. Browser reports/screenshots, safe diagnostics and server logs are retained as CI artifacts. Nothing is built or deployed.
 
+### Public route manifest and content revision
+
+`GET /api/v1/manifest` returns `{ "data": { "revision": int, "routes": [{ "url", "kind", "title" }] } }` covering every published public page: informational pages, articles, tag pages, active clubs, current and archived committees with member profiles, current and archived league seasons, championship archive years, competitions, resource pages, downloadable documents, SERCs and casualties. Routes are unique, sorted by URL, and contain no user-specific data. Deleted or unpublished records, inactive clubs and unlinked uploads are excluded; archived content remains listed.
+
+The revision is a monotonic counter in `public_site_revisions` owned by `App\Services\PublicContentRevision`. It increases only after a committed write to a registered public-content model (articles/tags, clubs and club pages, committees/members/roles, seasons and league results, competitions and their information, resources/pages/sections, SERCs/casualties/groups and global notices). Page reads, view/rating counters and rolled-back transactions never change it. The route list is cached in `PUBLIC_API_CACHE_STORE` keyed by revision, so a changed revision always publishes a freshly built list; reading the manifest does not change the revision.
+
+Publication trigger contract (deployment-side; not implemented or tested here): a prerenderer polls `/api/v1/manifest`, stores the last observed revision, and rebuilds its prerendered pages only when the returned revision differs. The manifest is the authoritative list of routes to build. Triggering and serving builds remain owner-run steps; this change adds no VPS configuration or deployment test.
+
+`tests/Feature/Api/PublicManifestTest.php` and `PublicContentRevisionTest.php` cover route completeness, uniqueness and ordering, archived content, exclusions, commit/rollback revision semantics and read-only access. They run in the guarded MySQL suite.
+
 ## Podman release deployment (operator-run)
 
 Use sibling `bulsca-site` and `bulsca-frontend` checkouts of the reviewed release commits on a Linux host with rootless Podman 5+, `podman-compose` 1.5.0 and an existing HTTPS reverse proxy. `release/public-site-v1` is the target in both repositories; only release branches omit the `CODEX/` prefix. Review the focused commits in each implementation PR and merge them into the releases yourself. Neither default branch is a release target.
