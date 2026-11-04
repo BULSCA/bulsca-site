@@ -32,7 +32,10 @@ class PublicContentRevision
         foreach (self::WATCHED as $model) {
             $model::saved(fn (Model $record) => $this->note($record));
             $model::deleted(fn () => $this->note());
-            $model::restored(fn () => $this->note());
+            // The restored event only exists on soft-delete models.
+            if (in_array(\Illuminate\Database\Eloquent\SoftDeletes::class, class_uses_recursive($model), true)) {
+                $model::restored(fn () => $this->note());
+            }
         }
     }
 
